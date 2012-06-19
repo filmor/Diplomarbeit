@@ -1,0 +1,64 @@
+\section{Asymptotics of the exterior parametrix}
+By using the summation formula derived in LV12 the existence and values of the
+asymptotic components of the specific operator we're looking at can be
+calculated directly. From Lemma bla we know, that we only have to consider $j\in
+{0, 1, 2}$ since the requested asymptotic coefficient is of order $-5$ % TODO
+
+The calculation for $j=0$ is straight-forward:
+\begin{align}
+    \Tr R^{(0)} =& \Integ[1]{0}{x}{k_\theta(x,x;\mu) - k_\mathbb{R}(x,x;\mu)} \\
+    =& -\frac1{2\mu} C(\mu,\theta) \Integ[1]{0}{x}{\Eto{-2\mu x}} \\
+%    =& -\frac1{2\mu} C(\mu,\theta) \left( \frac1{2\mu} - \frac{\Eto{-2\mu}}{2\mu} \right) \\
+    \SimAs{\mu\to\infty}& -\frac1{4\mu^2}
+    \label{eqn:jeq0}
+\end{align}
+
+For $j=1$ and $j=2$ we employ the following Lemma:
+\begin{Lemma}[Watson]
+    \label{watson}
+    Let $\phi\colon [0,1] \to \mathbb{C}, \phi(t) = t^\sigma g(t)$ such that $g$ is
+    analytic in a neighbourhood of $0$, $\sigma > -1$, and
+    \begin{align*}
+        \forall t > 0: \left|\phi(t)\right| < C \Eto{bt}
+    \end{align*}
+
+    Then
+    \begin{align*}
+        \Integ[T]{0}{t}{\Eto{-xt}\phi(t)}\ \SimAs{x\to\infty}\ \sum_{n=0}^{\infty}
+        \frac{\phi^{(n)}(0)}{x^{n+\sigma+1}} \frac{\Gamma(n+\sigma+1)}{n!}
+    \end{align*}
+
+    \begin{proof}
+        TODO
+    \end{proof}
+    \begin{Remark}
+        We actually don't need analyticity but only the existence of as many
+        derivatives as degrees we want and additionally a finiteness condition
+        on
+    \end{Remark}
+\end{Lemma}
+
+% j = 1, + + 
+The first term for $j=1$ is as follows
+\begin{align*}
+    \Tr R^{(1)}_{++} &= C(\mu,\theta)^2
+        \Integ[1]{0}{x}{
+            \Integ[1]{0}{z}{\Eto{-\mu(x+z)}
+            \lambda(z)\Eto{-\mu(z+x}}
+            }
+        \\
+        &= C(\mu,\theta)^2
+            \Integ[1]{0}{x}{
+                \Eto{-2\mu x}
+            }
+            \Integ[1]{0}{z}{\Eto{-2\mu z}\lambda(z)}
+        \\
+        &= C(\mu, \theta)^2 \left(
+            \frac1{2\mu} - \frac{\Eto{-2\mu}}{2\mu}
+           \right)
+           \Integ[1]{0}{z}{\Eto{-2\mu z}\lambda(z)}
+        \\
+        &\SimAs{\mu\to\infty}
+            \frac{(-1)^2}{2\mu}
+            \sum_{n=0}^{\infty}\frac{\lambda^{(n)}(0)}{(2\mu)^{n+1}}
+\end{align*}

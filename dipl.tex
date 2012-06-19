@@ -1,0 +1,67 @@
+\documentclass[a4paper,twoside]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, fancyhdr, csquotes}
+\usepackage[standard, thmmarks]{ntheorem}
+\usepackage[ngerman, english]{babel}
+\usepackage[backend=biber]{biblatex}
+\usepackage[scale=0.8]{geometry}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[EL]{\scriptsize\leftmark}
+\fancyhead[OR]{\scriptsize\rightmark}
+\fancyfoot[EL]{\thepage}
+\fancyfoot[OR]{\thepage}
+\renewcommand{\headrulewidth}{0.1pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{8pt}
+
+\newcommand{\Thema}{Thema}
+\author{Benedikt Christian Sauer}
+\title{\Thema}
+
+\newcommand{\Eto}[1]{\ensuremath{\mathrm e^{#1}}}
+\newcommand{\Integ}[4][]{\ensuremath{\int\limits_{#2}^{#1} #4\,\mathrm d{#3}}}
+\newcommand{\Tr}{\ensuremath{\operatorname{Tr}}}
+\newcommand{\Sim}{\ensuremath{\operatorname{\sim}}}
+\newcommand{\SimAs}[1]{\ensuremath{\underset{#1}{\operatorname{\sim}}}}
+
+\begin{document}
+\begin{titlepage}
+  \begin{center}
+    \Huge{\bf\textsf{\Thema}} \\
+    \vspace{3cm}
+    \Large Diplomarbeit im Fach Mathematik \\
+    \vspace{1cm}
+    \normalsize angefertigt am Mathematischen Institut von \\
+    \vspace{1cm}
+    \large{\bf Benedikt Christian Sauer} \\
+    \vspace{2cm}
+    \normalsize vorgelegt der Mathematisch-Naturwissenschaftlichen Fakultät der Universität
+    Bonn \\
+    \vspace{1cm}
+    \large August 2012
+  \end{center}
+\end{titlepage}
+\newpage
+\tableofcontents
+\vfill
+\begin{center}
+  \large 1.\ Gutachter: Matthias Lesch \\
+  \large 2.\ Gutachter: \\
+\end{center}
+\newpage
+\input{intro/de}
+\input{intro/en}
+\input{intro/setting}
+\input{main/interior}
+\input{main/exterior}
+\input{main/compile}
+\input{summary}
+\begin{appendix}
+    \input{appendix/special-functions}
+    \input{appendix/proof-watson}
+\end{appendix}
+\end{document}
