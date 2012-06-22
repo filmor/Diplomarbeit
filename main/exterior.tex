@@ -4,7 +4,7 @@ asymptotic components of the specific operator we're looking at can be
 calculated directly. From Lemma bla we know, that we only have to consider $j\in
 {0, 1, 2}$ since the requested asymptotic coefficient is of order $-5$ % TODO
 
-The calculation for $j=0$ is straight-forward:
+The calculation for $j=0$ is straightforward:
 \begin{align}
     \Tr R^{(0)} =& \Integ[1]{0}{x}{k_\theta(x,x;\mu) - k_\mathbb{R}(x,x;\mu)} \\
     =& -\frac1{2\mu} C(\mu,\theta) \Integ[1]{0}{x}{\Eto{-2\mu x}} \\
@@ -15,21 +15,9 @@ The calculation for $j=0$ is straight-forward:
 
 For $j=1$ and $j=2$ we employ the following Lemma:
 \begin{Lemma}[Watson]
-    \label{watson}
-    Let $\phi\colon [0,1] \to \mathbb{C}, \phi(t) = t^\sigma g(t)$ such that $g$ is
-    analytic in a neighbourhood of $0$, $\sigma > -1$, and
-    \begin{align*}
-        \forall t > 0: \left|\phi(t)\right| < C \Eto{bt}
-    \end{align*}
-
-    Then
-    \begin{align*}
-        \Integ[T]{0}{t}{\Eto{-xt}\phi(t)}\ \SimAs{x\to\infty}\ \sum_{n=0}^{\infty}
-        \frac{\phi^{(n)}(0)}{x^{n+\sigma+1}} \frac{\Gamma(n+\sigma+1)}{n!}
-    \end{align*}
-
+    \input{snippets/watsons-lemma}
     \begin{proof}
-        TODO
+        See Appendix~\ref{sec:proof-watson}.
     \end{proof}
     \begin{Remark}
         We actually don't need analyticity but only the existence of as many
@@ -38,14 +26,16 @@ For $j=1$ and $j=2$ we employ the following Lemma:
     \end{Remark}
 \end{Lemma}
 
-% j = 1, + + 
+% j = 1, ++
+% TODO: 1/2µ einbauen
 The first term for $j=1$ is as follows
 \begin{align*}
     \Tr R^{(1)}_{++} &= C(\mu,\theta)^2
         \Integ[1]{0}{x}{
             \Integ[1]{0}{z}{\Eto{-\mu(x+z)}
-            \lambda(z)\Eto{-\mu(z+x}}
+                \lambda(z)\Eto{-\mu(z+x)}
             }
+        }
         \\
         &= C(\mu,\theta)^2
             \Integ[1]{0}{x}{
@@ -62,3 +52,36 @@ The first term for $j=1$ is as follows
             \frac{(-1)^2}{2\mu}
             \sum_{n=0}^{\infty}\frac{\lambda^{(n)}(0)}{(2\mu)^{n+1}}
 \end{align*}
+
+% j = 1, +-
+The second term for $j=1$ is
+\begin{align*}
+    \Tr R^{(1)}_{+-} &= -C(\mu,\theta)
+        \Integ[1]{0}{x}{
+            \Integ[1]{0}{z}{\Eto{-\mu(x+z)}
+                \lambda(z)\Eto{-\mu\left|z-x\right|}
+            }
+        } \\
+        &= -C(\mu,\theta)
+            \Integ[1]{0}{x}{\left(
+                \Integ[x]{0}{z}{
+                    \Eto{-\mu(x+z+x-z)} \lambda(z)
+                }
+                +
+                \Integ[1]{x}{z}{
+                    \Eto{-\mu(x+z-x+z)} \lambda(z)
+                }
+                \right)
+            } \\
+        &= -C(\mu,\theta) \left(
+            \Integ[1]{0}{x}{\Eto{-2\mu x} \Lambda(x)}
+            + \Integ[1]{0}{x}{\Eto{-2\mu x}\lambda(x)x}
+            \right) \\
+        &\SimAs{\mu\to\infty}\ 
+            \sum_{n=0}^\infty \frac{\Lambda^{(n)}(0)}{(2\mu)^{n+1}}
+            + \sum_{n=0}^\infty \frac{n\lambda^{(n-1)}(0)}{(2\mu)^{n+1}} \\
+        &= \sum_{n=0}^\infty \frac{(n+1)\lambda^{(n-1)}}{(2\mu)^{n+1}}
+\end{align*}
+% TODO: Beweis, dass Int_0^1 Int_y^1 f(x) dx dy = Int_0^1 x f(x) dx
+% TODO: (x*f(x))^(n) = x*f^(n) + n*f^(n-1)
+where $\Lambda(x) := \Integ[x]{0}{z}{\lambda(z)}$.
