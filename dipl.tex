@@ -6,6 +6,7 @@
 \usepackage[ngerman, english]{babel}
 \usepackage[backend=biber]{biblatex}
 \usepackage[scale=0.8]{geometry}
+\usepackage{lmodern}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -17,6 +18,9 @@
 
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{8pt}
+
+% Fix bold headings
+\def\bfseries{\fontseries \bfdefault \selectfont \boldmath}
 
 \newcommand{\Thema}{Thema}
 \author{Benedikt Christian Sauer}
