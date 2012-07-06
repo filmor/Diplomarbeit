@@ -1,11 +1,22 @@
 \section{Asymptotics of $\Tr{(\Delta_\lambda + z^2)^{-2}}$}
+By formal derivation we see that
+\begin{align*}
+    \partial_z\Tr{(\Delta_\lambda + z^2)}^{-1} &=
+        (2z) \Tr{(\Delta_\lambda + z^2)}^{-2}
+        .
+\end{align*}
+Since we saw in the previous sections that
+\begin{align*}
+    \Tr{(\Delta_\lambda + z^2)}^{-1}
+        \ \SimAs{\left|(z,\lambda)\right|\to\infty}\ 
+\end{align*}
 
 \section{Compilation}
 Now that we have calculated the coefficients we only need to integrate the
 homogeneous part with the logarithm. To do that we use the Mellin transform,
 since
 \begin{align*}
-    \left.\frac\partial{\partial z} \Integ[\infty]{0}{x}{x^z f(x)}\right|_{z=0}
+    \left.\frac\partial{\partial z}\right|_{z=0}\Integ[\infty]{0}{x}{x^z f(x)}
     &= \Integ[\infty]{0}{x}{\ln{(x)} f(x)}
 \end{align*}
 if one of the integrals exist. We thus calculate:
@@ -16,7 +27,7 @@ if one of the integrals exist. We thus calculate:
     \frac12\Integ[\infty]{0}{y}{\frac{y^{\frac{n+z+1}{2}}}{(1 +
     y)^{\frac{n+5}{2}}}} \\
     % Betafunktion
-    &= \frac12 B\left(\tfrac{n+z+1}{2}, \tfrac{4-z}{2}\right)
+    &= \frac12 B\!\left(\tfrac{n+z+1}{2}, \tfrac{4-z}{2}\right)
 \end{align*}
 where $B(a,b)$ is the beta function. % Benutztes Integral mit ref!
 % a = n+z+1/2, b = n+5/2 - a
@@ -26,13 +37,13 @@ The function is symmetric, and its
 derivative is $\partial_a B(a,b) = B(a,b) (\psi(a) - \psi(a+b))$, where
 $\psi(x) = \partial_x \ln\Gamma(x)$ is the digamma function, so we get
 \begin{align*}
-    \left.\frac12\frac\partial{\partial z} B\left(\tfrac{n+z+1}{2}, \tfrac{4-z}{2}\right)\right|_{z=0}
-    &= \left.\frac14 B\left(\tfrac{n+z+1}{2}, \tfrac{4-z}{2}\right)
-    \left(\psi\left(\tfrac{n+z+1}{2}\right) - \psi\left(\tfrac{n+5}{2}\right) -
-    \psi\left(\tfrac{4-z}{2}\right) +
-    \psi\left(\tfrac{n+5}{2}\right)\right)\right|_{z=0} \\
-    &= \frac14 B\left(\tfrac{n+1}{2}, 2\right)
-    \left(\psi\left(\tfrac{n+1}{2}\right) - \psi\left(2\right)\right)
+    \left.\frac12\frac\partial{\partial z}\right|_{z=0} B\!\left(\tfrac{n+z+1}{2}, \tfrac{4-z}{2}\right)
+    &= \left.\frac14 B\!\left(\tfrac{n+z+1}{2}_, \tfrac{4-z}{2}\right)
+    \left(\psi\!\left(\tfrac{n+z+1}{2}\right) - \psi\!\left(\tfrac{n+5}{2}\right) -
+    \psi\!\left(\tfrac{4-z}{2}\right) +
+    \psi\!\left(\tfrac{n+5}{2}\right)\right)\right|_{z=0} \\
+    &= \frac14 B\!\left(\tfrac{n+1}{2}\vphantom{\tfrac11}_, 2\right)
+    \left(\psi\!\left(\tfrac{n+1}{2}\right) - \psi\!\left(2\right)\right)
 \end{align*}
 
 $B(\tfrac{n+1}{2}, 2)$ can be evaluated using the formula given above to be
