@@ -6,10 +6,10 @@ calculated directly. From Lemma bla we know, that we only have to consider $j\in
 
 The calculation for $j=0$ is straightforward:
 \begin{align}
-    \Tr R^{(0)} =& \Integ[1]{0}{x}{k_\theta(x,x;\mu) - k_\mathbb{R}(x,x;\mu)} \\
-    =& -\frac1{2\mu} C(\mu,\theta) \Integ[1]{0}{x}{\Eto{-2\mu x}} \\
+    \Tr R^{(0)} &= \Integ[1]{0}{x}{k_\theta(x,x;\mu) - k_\mathbb{R}(x,x;\mu)} \\
+    &= -\frac1{2\mu} C(\mu,\theta) \Integ[1]{0}{x}{\Eto{-2\mu x}} \\
 %    =& -\frac1{2\mu} C(\mu,\theta) \left( \frac1{2\mu} - \frac{\Eto{-2\mu}}{2\mu} \right) \\
-    \SimAs{\mu\to\infty}& -\frac1{4\mu^2}
+    &\SimAs{\mu\to\infty} -\frac1{4\mu^2}
     \label{eqn:jeq0}
 \end{align}
 
@@ -80,8 +80,13 @@ The second term for $j=1$ is
         &\SimAs{\mu\to\infty}\ 
             \sum_{n=0}^\infty \frac{\Lambda^{(n)}(0)}{(2\mu)^{n+1}}
             + \sum_{n=0}^\infty \frac{n\lambda^{(n-1)}(0)}{(2\mu)^{n+1}} \\
-        &= \sum_{n=0}^\infty \frac{(n+1)\lambda^{(n-1)}}{(2\mu)^{n+1}}
+        &= \sum_{n=0}^\infty \frac{(n+1)\lambda^{(n-1)}}{(2\mu)^{n+1}},
 \end{align*}
 % TODO: Beweis, dass Int_0^1 Int_y^1 f(x) dx dy = Int_0^1 x f(x) dx
-% TODO: (x*f(x))^(n) = x*f^(n) + n*f^(n-1)
-where $\Lambda(x) := \Integ[x]{0}{z}{\lambda(z)}$.
+where $\Lambda(x) := \Integ[x]{0}{z}{\lambda(z)}$. We also used the identities
+\begin{align*}
+    &\Integ[1]{0}{x}{\Integ[1]{x}{y}{f(y)}} = \Integ[1]{0}{x}{xf(x)},
+    \text{ and }
+    &\frac{\mathrm d^n}{\mathrm dx^n}xf(x) = xf^{(n)}(x) + nf^{(n-1)}(x).
+\end{align*}
+
