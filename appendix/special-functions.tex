@@ -1,4 +1,75 @@
 \section{Special Functions}
 \subsection{Gamma Function}
+The Gamma function is defined on $\mathbb{R}_{+}$ as the exponential integral
+\begin{align}
+    \Gamma(x) := \Integ[\infty]{0}{t}{\Eto{-t}t^{x-1}}.
+    \label{def:gamma}
+\end{align}
+
 \subsection{Digamma Function}
+The Digamma function is the logarithmic derivative of the Gamma function
+\begin{align}
+    \psi(x) := \frac{\mathrm d}{\mathrm dx}\ln{\Gamma(x)}
+            = \frac{\Gamma'(x)}{\Gamma(x)},
+    \label{def:digamma}
+\end{align}
+which is sometimes also denoted by the ancient greek letter $\digamma$, which is
+actually called ``digamma''.
 \subsection{Beta Function}
+The Beta function is defined for $x,y\in\mathbb{C}$ with $\Re(x),\Re(y) > 0$ as
+\begin{align}
+    B(x,y) = \Integ[1]{0}{t}{t^{x-1}(1-t)^{y-1}}.
+    \label{def:beta}
+\end{align}
+It is also sometimes called \textit{Euler integral of the first kind}.
+
+In this Thesis we use two specific representations of the Beta function, namely
+\begin{align}
+    B(x, y) &= \frac{\Gamma(x)\cdot\Gamma(y)}{\Gamma(x+y)} \quad \text{and}
+    \label{frm:beta_rep1} \\
+    B(x, y) &= \Integ[\infty]{0}{t}{\frac{t^{x-1}}{(1 + t)^{x+y}}}
+    \label{frm:beta_rep2}
+\end{align}
+
+We can derive Formula \ref{frm:beta_rep2} easily by substituting $t \mapsto
+\frac{t'}{1+t'}$. Formula \ref{frm:beta_rep1} is a bit more subtle:
+\begin{align*}
+    \Gamma(x) \Gamma(y) &= \Integ[\infty]{0}{t_1}{\Eto{-t_1}t_1^{x-1}}
+                           \Integ[\infty]{0}{t_2}{\Eto{-t_2}t_2^{y-1}} \\
+    &= \Integ[\infty]{0}{t_1}{
+        \Integ[\infty]{0}{t_2}{
+            \Eto{-t_1-t_2}t_1^{x-1}t_2^{y-1}
+            }
+        },\text{ substitute $t_1 = zt$ and $t_2 = z(1-t)$} \\
+    &= \Integ[\infty]{0}{z}{
+        \Integ[1]{0}{t}{
+            \Eto{-z}(zt)^{x-1}(z(1-t))^{y-1}z
+            }
+        } \\
+        &= \Integ[\infty]{0}{z}{
+            \Eto{-z}z^{x+y-1}
+            }
+            \Integ[1]{0}{t}{t^{x-1}(1-t)^{y-1}} \\
+    \Leftrightarrow \Gamma(x)\Gamma(y) &= \Gamma(x+y)B(x,y)
+\end{align*}
+
+From the first representation we can also calculate the derivative of the Beta
+function:
+\begin{align}
+    \frac{\partial}{\partial x} B(x, y)
+    &= \frac{
+                \Gamma'(x)\Gamma(y)\Gamma(x+y) - \Gamma(x)\Gamma(y)\Gamma'(x+y) 
+            }{
+                \Gamma(x+y)^2
+            } \nonumber \\
+    &= \frac{
+                (\Gamma(x)\psi(x))\Gamma(y)\Gamma(x+y) -
+                \Gamma(x)\Gamma(y)(\Gamma(x+y)\psi(x+y))
+            }{
+                \Gamma(x+y)^2
+            } \nonumber \\
+    &= \frac{\Gamma(x)\cdot\Gamma(y)}{\Gamma(x+y)}\left(\psi(x) - \psi(x+y)\right)
+        \nonumber \\
+    &= B(x,y)\left(\psi(x) - \psi(x+y)\right)
+    \label{frm:beta_deriv}
+\end{align}
