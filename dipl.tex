@@ -1,12 +1,16 @@
-\documentclass[a4paper,twoside]{scrartcl}
+\documentclass[paper=a4,twoside,parskip=full]{scrartcl}
 
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath, amssymb, fancyhdr, csquotes}
 \usepackage[standard, thmmarks]{ntheorem}
-\usepackage[ngerman, english]{babel}
+\usepackage[ngerman, english, british]{babel}
 \usepackage[backend=biber]{biblatex}
 \usepackage[scale=0.8]{geometry}
+\usepackage[T1]{fontenc}
 \usepackage{lmodern}
+% \usepackage{mathpazo}
+% \usepackage{eulervm}
+% \usepackage{fourier}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -22,31 +26,54 @@
 % Fix bold headings
 \def\bfseries{\fontseries \bfdefault \selectfont \boldmath}
 
-\newcommand{\Thema}{Thema}
+\newcommand{\Thema}{Zur Resolventenspur multiparametrischer
+Sturm-Liouville-Operatoren}
+\newcommand{\ThemaEn}{On the Resolvent Trace of multi-parametric Sturm-Liouville Operators}
+
 \author{Benedikt Christian Sauer}
 \title{\Thema}
 
 \newcommand{\Eto}[1]{\ensuremath{\mathrm e^{#1}}}
 \newcommand{\Integ}[4][]{\ensuremath{\int\limits_{#2}^{#1} #4\,\mathrm d{#3}}}
-\newcommand{\Tr}{\ensuremath{\operatorname{Tr}}}
-\newcommand{\Sim}{\ensuremath{\operatorname{\sim}}}
-\newcommand{\SimAs}[1]{\ensuremath{\underset{#1}{\operatorname{\sim}}}}
+\DeclareMathOperator{\Tr}{Tr}
+\newcommand{\SimAs}[1]{\ensuremath{\mathrel{\underset{#1}{\sim}}}}
+
+\renewcommand{\Re}{\ensuremath{\operatorname{Re}}}
+\renewcommand{\Im}{\ensuremath{\operatorname{Im}}}
+\renewcommand{\theta}{\vartheta}
+\renewcommand{\phi}{\varphi}
 
 \begin{document}
 \begin{titlepage}
   \begin{center}
-    \Huge{\bf\textsf{\Thema}} \\
-    \vspace{3cm}
-    \Large Diplomarbeit im Fach Mathematik \\
-    \vspace{1cm}
-    \normalsize angefertigt am Mathematischen Institut von \\
-    \vspace{1cm}
-    \large{\bf Benedikt Christian Sauer} \\
-    \vspace{2cm}
-    \normalsize vorgelegt der Mathematisch-Naturwissenschaftlichen Fakultät der Universität
-    Bonn \\
-    \vspace{1cm}
-    \large August 2012
+      \textsc{Diplomarbeit} \\
+      \bigskip
+      \textit{\Thema} \\
+      \textit{(\ThemaEn)}
+  \end{center}
+  \vspace{\stretch{1}}
+  \begin{center}
+      Angefertigt am \\
+      Mathematischen Institut
+  \end{center}
+  \vspace{\stretch{1}}
+  \begin{center}
+      Vorgelegt der \\
+      Mathematisch-Naturwissenschaftlichen Fakultät der \\
+      Rheinischen Friedrich-Wilhelms-Universität Bonn
+  \end{center}
+  \vspace{\stretch{1}}
+  \begin{center}
+      September 2012 \\
+      \bigskip
+      Von \\
+      \bigskip
+      Benedikt Christian Sauer \\
+      \bigskip
+      geboren am \\
+      30. März 1988 \\
+      in \\
+      Bonn\,--\,Bad~Godesberg
   \end{center}
 \end{titlepage}
 \newpage
@@ -57,15 +84,28 @@
   \large 2.\ Gutachter: \\
 \end{center}
 \newpage
+\selectlanguage{ngerman}
 \input{intro/de}
+\selectlanguage{british}
 \input{intro/en}
 \input{intro/setting}
 \input{main/interior}
 \input{main/exterior}
 \input{main/compile}
 \input{summary}
-\begin{appendix}
-    \input{appendix/special-functions}
-    \input{appendix/proof-watson}
-\end{appendix}
+\appendix
+\input{appendix/special-functions}
+\input{appendix/proof-watson}
+\newpage
+\selectlanguage{ngerman}
+\pagestyle{plain}
+\begin{center}
+    \textbf{\large Eidesstattliche Erklärung}
+\end{center}
+\vspace{2cm}
+Hiermit erkläre ich, Benedikt Christian Sauer, an Eides statt, dass ich die
+Diplomarbeit \textit{"`\Thema"'} selbstständig verfasst und keine anderen als
+die angegebenen Hilfsmittel benutzt sowie Zitate kenntlich gemacht habe. \\
+\vspace{2cm} \\
+Bonn, den \today
 \end{document}
