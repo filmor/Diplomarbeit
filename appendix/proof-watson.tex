@@ -1,8 +1,24 @@
 \section{Proof of Watson's lemma}
+% TODO: Geschichte?
+% TODO: Beweis so ausweiten, dass er auch für k continuous derivatives funzt
 \label{sec:proof-watson}
 \begin{theorem}
     \input{snippets/watsons-lemma}
     \begin{proof}
-        The proof 
+        The proof due to Miller (ref MILLER) uses the Taylor series expansion of
+        $g(t)$ with a remainder term in the integrand.
+
+        Since we only assume differentiability in some neighbourhood of $t=0$ we
+        need to estimate the integral for some $0 < s < T$, with $s$ being
+        sufficiently small such that $g\in C^{\infty}([0,s])$. We can now split
+        up the integral $F(x)$ as
+        \begin{align*}
+            F(x) = \Integ[s]{0}{t}{\Eto{-xt}\phi(t)} +
+                   \Integ[T]{s}{t}{\Eto{-xt}\phi(t)}.
+        \end{align*}
     \end{proof}
+    \begin{remark}
+        There is also a very simple proof using the so called Moment Expansion
+        by Estrada (ref).
+    \end{remark}
 \end{theorem}
