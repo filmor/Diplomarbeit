@@ -1,61 +1,29 @@
-%lastlabel 100   DO NOT EDIT THIS LINE 
-% 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Projectname: 
-% Description:
-% Authors:
-% Started:
-% Last Edited:
-% Files:          main.tex, localbib.bib,amsalpha-lmp.bst 
-% Latex/Software dependencies: amsmath,hyperref,geometry,math60,mlthm
-%			       mathrsfs
-% Comments: 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt,a4paper,twoside,reqno]{amsart}
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Hints for collaborators: I (ML) am a vim user (consider using a
-% real editor like emacs or vim and not toys), so please don't touch
-% the markers %{{{ resp. %}}} which occur at various places.
-% They are fold markers which help me very much.
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% TOPMATTER ------------------------------------------------%{{{
+%\usepackage{showkeys} %makefile will take care of this
 
-% options draft, arxiv, submit
-\documentclass[draft,reqno]{ml-gen}
-
-\usepackage{tikz}   % if you need figures
-%\usepackage{graphicx} % embedded graphics
-%\usepackage{xy} \xyoption{all} % sophisticated comm. diagrams
-\usepackage{amsmath,upref} % maybe amscd
+\usepackage{tikz}
+\usepackage{amsmath}
 \usepackage{amssymb,amsfonts,mathrsfs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+%Der nachfolgende Userpackage erlaubt eine bessere Textformatierung,
+%die Formeln schießen dabei nicht über den Rand und der Text sieht besser aus.
+\usepackage[driver=pdftex,margin=3cm,heightrounded=true,centering]{geometry}
 
-%Footnotes
-\usepackage[symbol]{footmisc}
-\usepackage{perpage}
-\MakePerPage[5]{footnote}
 
-\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,backref=page]{hyperref}
+
+
+%\usepackage{mllocal} % local macro definitions, just to avoid the clutter
 \usepackage{math60,mlthm}
 \usepackage{local}
 
-% The following works better in one sided mode
-% showkeys ignores 'oneside' and puts label on the left
-% on even numbered pages, hence they become invisible
-\usepackage{showlabels}
-\renewcommand{\showlabelfont}{\scriptsize\ttfamily}
-
-%\renewcommand{\rmdefault}{pplj}
-%\usepackage{euler}
-
-\setcounter{tocdepth}{1}
-%\numberwithin{equation}{subsection}
-
-\subjclass[2010]{Primary XXX; Secondary XXX}
-\keywords{Analytic Torsion, XXX}
-%\date{\today}
+\setcounter{tocdepth}{2}
+\numberwithin{equation}{section}
 
 \tolerance=2000 
 \emergencystretch=20pt 
-%}}}
-% TITLE AND ABSTRACT %{{{
+
+%\input{LesVer-Reg-26.05.12.tex}
+% von jetzt an bitte Namen beibehalten und 
+% eigene Versionsverwaltung pflegen.
 \input{body.tex}
