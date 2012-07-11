@@ -1,0 +1,29 @@
+\documentclass[12pt,a4paper,twoside,reqno]{amsart}
+
+%\usepackage{showkeys} %makefile will take care of this
+
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,mathrsfs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+%Der nachfolgende Userpackage erlaubt eine bessere Textformatierung,
+%die Formeln schießen dabei nicht über den Rand und der Text sieht besser aus.
+\usepackage[driver=pdftex,margin=3cm,heightrounded=true,centering]{geometry}
+
+
+
+
+%\usepackage{mllocal} % local macro definitions, just to avoid the clutter
+\usepackage{math60,mlthm}
+\usepackage{local}
+
+\setcounter{tocdepth}{2}
+\numberwithin{equation}{section}
+
+\tolerance=2000 
+\emergencystretch=20pt 
+
+%\input{LesVer-Reg-26.05.12.tex}
+% von jetzt an bitte Namen beibehalten und 
+% eigene Versionsverwaltung pflegen.
+\input{body.tex}

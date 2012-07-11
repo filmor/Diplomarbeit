@@ -1,0 +1,72 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mlthm}[07/23/2011]
+\typeout{ML Theorem for use with amsthm, Version 1.01 July 23, 2011, c Matthias Lesch}
+
+\RequirePackage{amsthm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  1. Theorem environments                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slightly different theoremstyle for definitions 
+% fontshape slanted: to be developed as option
+%\def\th@MLdefinition{%
+%  \slshape % body font
+%}
+
+\theoremstyle{plain}
+\thm@headfont{\bfseries\sffamily}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{defprop}[theorem]{Definition and Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+% well, in rare cases, I am writing in german
+\newtheorem{satz}[theorem]{Satz}
+\newtheorem{satzdef}[theorem]{Satz und Definition}
+\newtheorem{kor}[theorem]{Korollar}
+\newtheorem{folg}[theorem]{Folgerung}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{notiz}[theorem]{Notiz}
+
+
+\theoremstyle{definition}
+\def\th@definition{%
+\slshape % body font
+}
+\newtheorem{dfn}[theorem]{Definition}
+
+% FYI
+%\def\th@definition{%
+%  \normalfont % body font
+%}
+\theoremstyle{remark} % i.e. same as plain, but theorembodyfont is rm
+\def\th@remark{
+\thm@headfont{\bfseries\sffamily}
+%\upshape\sffamily
+}
+
+\newtheorem{example}[theorem]{Example}
+\newtheorem{examples}[theorem]{Examples}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+
+
+%set theoremstyle back to plain
+\theoremstyle{plain}
+% FYI, a copy of the \theoremstyle{remark} definition
+%\def\th@remark{%
+%  \thm@headfont{\itshape}%
+%  \normalfont % body font
+%  \thm@preskip\topsep
+%  \divide\thm@preskip\tw@
+%  \thm@postskip\thm@preskip
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% end of Theorem environment definitions                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

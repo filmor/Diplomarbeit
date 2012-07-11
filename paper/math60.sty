@@ -1,0 +1,491 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{math60}[05/25/2011]
+\typeout{Math Makro-Paket, Version 6.0 May 25 2011, c Matthias Lesch}
+
+\RequirePackage{amsthm,amsmath,amsfonts}
+
+% This package provides some useful makros for typesetting
+% math papers. It should be used with amslatex
+
+% Table of contents
+
+%  1. Theorem environments
+%  2. Proofs
+%  3. Numbering of formulas
+%  4. Font adjustments (does not work with pdflatex in Micro$oft environments :-)
+%  5. Bibliographic matters
+%  6. Some useful hacks
+%  7. Endless list of abbreviations (greek letters, mathbold letters, operatornames etc.)
+%  8. Authoring Tools
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  1. Theorem environments                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%removed in version 6.0
+%use package mlthm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2. Proofs                                                      %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% For proofs use the proof environment
+% If a proof ends with a formula, then you can put the qedsymbol
+% by hand writing \qed
+% But then you need to close the proof environment with
+
+\newcommand{\exendproof}{\renewcommand{\qed}{\relax}\end{proof}}
+
+% deprecated, use \qedhere
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  3. Numbering of Formulas                                              %
+%  I have customized the equation and theorem numbering               
+%  for the following reasons: I don't like the default numbering in
+%  documentclass article. Moreover, I provide makros for equation numbers
+%  like (1.4a), (1.4b) etc. (When I did this, I was not aware of the
+%  subequations environment of amsmath, so this is maybe obsolete)     % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  equations are numbered by sections
+\numberwithin{equation}{section}
+
+% just produces an equation number at the end of the line
+% for use with itemize environments etc.
+\newcommand{\puteqnnum}{\refstepcounter{equation}\hfill\@eqnnum}
+
+\newcommand{\eqnnumlbl}[1]{\puteqnnum\label{#1}}
+
+% Sometimes you may want produce equation numbers like (4.5a), (4.5b)
+% or maybe even (4.9'). The ' get's the nice german name schnoerkel
+
+\def\resetschnoerkel{\def\schnoerkel{\relax}}%
+\resetschnoerkel
+\newcounter{saveeqn}% counter to store the value of equation temporarily
+
+% fancytag environment: first argument (optional): number of equations
+%                                                  backwards
+%                       second argument:           the tag to be added
+
+\newenvironment{fancytag}[2][1]{
+\renewcommand{\schnoerkel}{#2}
+\setcounter{saveeqn}{\value{equation}}
+\addtocounter{equation}{#1}
+}{\resetschnoerkel
+\setcounter{equation}{\value{saveeqn}}
+}
+
+% The next environment allows to customize the equation tag for ONE
+% equation. I.E. only one equation number is allowed between \begin{custeqnnum}
+% and \end{custeqnnum}. More equation numbers don't lead to an error
+% message. However, the result won't be what you expect.
+
+\newenvironment{custeqnnum}[1]{
+\renewcommand{\theequation}{#1}}{\addtocounter{equation}{-1}}
+
+% similar for Theorem numbers:
+\newenvironment{custthmnum}[1]{
+\renewcommand{\thetheorem}{#1}}{\addtocounter{theorem}{-1}}
+
+
+% Numbering of equations with a,b,c.. 
+
+\newcommand{\alpheqn}[1][\relax]{
+     \refstepcounter{equation}
+     \if#1\relax \relax
+       \else \label{#1}
+     \fi  
+     \setcounter{saveeqn}{\value{equation}}%
+    \setcounter{equation}{0}%
+    \renewcommand{\theequation}{\thealphequation}}
+\newcommand{\reseteqn}{\setcounter{equation}{\value{saveeqn}}%
+     \renewcommand{\theequation}{\thearabicequation}}
+
+\newenvironment{alphnumbering}[1][\relax]{\alpheqn[#1]}{\reseteqn}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End of Numbering of Formulas %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 4. Font adjustments            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% I do not like the use of calligraphic fonts for script letters
+% the rsfs script fonts are very nice and part of many latex distributions
+% If they exist, we are using the rsfs script fonts
+% if not we use the euler fonts
+% if both are unavailable we use the mathcal fonts instead
+% The command in all cases is \mathscr
+% So don't worry, mathscr will work
+\providecommand{\mathscr}{\mathcal} % a priori mathscr is mathcal
+\IfFileExists{mathrsfs.sty}{
+\usepackage{mathrsfs}}         %  \mathscr produces rsfs fonts
+   {%  else try euler fonts
+     \IfFileExists{eucal.sty}{
+        \usepackage[mathscr]{eucal}} % \mathscr produces Euscript fonts,
+                     % the option [mathscr] ensures that
+                     % \mathcal is not altered
+   {% else both unavailable, do nothing, mathscr remains mathcal
+   }
+}
+%Unfortunately mathrsfs is not compatible with pdf in Micro$oft environments
+%Just use UNIX and you don't have to worry about dialers and viruses.
+%\TryPackage{eucal}{}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End of Font adjustments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 5. Bibliography matters %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% deprecated, use bibtex
+
+\newcommand{\BIBand}[1]{and}
+\newcommand{\toappear}{to appear in}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  6. Some useful hacks %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \ref with normalfont
+\newcommand{\plref}[1]{{\normalfont \ref{#1}}}
+
+% cite with normalfont
+\newcommand{\mycite}[1]{\mbox{\normalfont (#1, \cite{#1})}}
+
+% No comment
+\newcommand{\myindent}{\hspace*{1.5em}}
+
+
+% A macro to normalize set definitions. They have
+% somewhat larger brackets. Looks nice!
+\newcommand{\setdef}[2]{\{ #1 \,|\, #2\}}
+\newcommand{\bigsetdef}[2]{\bigl\{ #1 \,\bigm|\, #2\bigr\}}
+\newcommand{\Bigsetdef}[2]{\Bigl\{ #1 \,\Bigm|\, #2\Bigr\}}
+\newcommand{\biggsetdef}[2]{\biggl\{ #1 \,\biggm|\, #2\biggr\}}
+
+% Scalar products will look nicer with the following:
+\newcommand{\inn}[1]{\langle #1 \rangle}
+\newcommand{\binn}[1]{\bigl\langle #1 \big\rangle }
+\newcommand{\scalar}[2]{\langle #1,#2\rangle}
+\newcommand{\bigscalar}[2]{\bigl\langle #1,#2\bigr\rangle}
+
+
+% smooth functions/sections 
+\newcommand{\cinfz}[1]{C_c^\infty(#1)}% compact support
+\newcommand{\cinf}[1]{C^\infty(#1)}
+\newcommand{\ginfz}[1]{\Gamma_c^\infty(#1)}
+\newcommand{\ginf}[1]{\Gamma^\infty(#1)}
+
+
+% abbreviation for inverse 
+\newcommand{\ii}{^{-1}}
+
+% Since \bigoplus is so large, we define \oplus as an operator
+%\newcommand\moplus{\operatorname*{\oplus}}
+\DeclareMathOperator*{\moplus}{\oplus}
+
+% The famous regularized integral
+\newcommand\regint{-\hspace*{-1em}\int}
+\newcommand\reginttext{-\hspace*{-0.9em}\int}
+
+% abbreviations for font sizes
+\newcommand\SSS{\scriptscriptstyle}
+\newcommand\DST{\displaystyle}
+\newcommand\TST{\textstyle}
+\newcommand\SST{\scriptstyle}
+% array tools
+\newcommand{\superwidearray}{\renewcommand{\arraystretch}{2}}
+\newcommand{\widearray}{\renewcommand{\arraystretch}{1.5}}
+\newcommand{\restarray}{\renewcommand{\arraystretch}{1}}
+
+
+% 
+\newcommand{\ovl}[1]{\overline{#1}}
+\newcommand{\ov}{\overline}
+\renewcommand{\tilde}{\widetilde}
+\newcommand{\mat}[4]{\begin{pmatrix} #1 & #2\\ #3 & #4 \end{pmatrix}}
+\newcommand{\pmat}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+
+\newenvironment{mleqnarray}{\begin{equation}%
+\begin{array}{@{\DST }r@{\DST}c@{\DST}l}}{\end{array}\end{equation}}
+
+% lists and stuff
+\newenvironment{thmenum}{
+\renewcommand{\labelenumi}{\textnormal{(\arabic{enumi})}}
+\renewcommand{\labelenumii}{\textnormal{(\roman{enumii})}}
+\begin{enumerate}}{\end{enumerate}}
+
+\newenvironment{romanenum}{
+\renewcommand{\labelenumi}{\textnormal{(\roman{enumi})}}
+\begin{enumerate}}{\end{enumerate}}
+
+\newenvironment{MLlist}{
+\begin{list}{}{\leftmargin2.5em}}{\end{list}}
+
+\newlength{\boxwidth}
+\newenvironment{MLnumlist}{
+\setlength{\boxwidth}{\textwidth}
+\addtolength{\boxwidth}{-\leftmargin}
+\addtolength{\boxwidth}{-1.5cm}
+\newcommand{\MLitem}[1]{\item  \parbox[t]{\boxwidth}{##1}}}{}
+
+%%% LONGHOOKRIGHTARROW
+\newcommand*{\longhookrightarrow}{\ensuremath{\lhook\joinrel\relbar\joinrel\rightarrow}}
+%%   long arrows
+    %* From: Adrian Nievergelt <nievi-adi@xxxxxx>
+    %* Date: Sun, 08 Jul 2007 19:52:14 +0200
+
+%Scott Pakin wrote:
+
+    %Jose Capco wrote:
+
+        %When typing embeddings or injection maps I use \hookrightarrow in math-
+        %mode. But this is sometimes too short for me. Is there a way to
+        %elongate a symbol in LaTeX? I don't feel like using an extra package
+        %just because I want a longer \hookrightarrow, so if this is not
+        %possible without the use of an extra package I'll just put up with
+        %\hookrightarrow
+
+
+    %LaTeX defines \hookrightarrow as \lhook\joinrel\rightarrow -- the
+    %combination of a hook and a right arrow. It further defines
+    %\longrightarrow
+    %as \relbar\joinrel\rightarrow -- the combination of a line and a right
+    %arrow. All you need to do is combine the three parts (hook, line, arrow)
+    %to produce a long, hooked right arrow:
+
+
+    %\newcommand*{\longhookrightarrow}{\ensuremath{\lhook\joinrel\relbar\joinrel\rightarrow}}
+
+
+    %-- Scott
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End of useful hacks              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 7. Endless list of abbreviations%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%greek letters
+
+\newcommand\ga{\alpha} 
+\newcommand\gb{\beta}  
+%\newcommand\gg{\gamma} % exists
+\newcommand\gG{\Gamma}
+\newcommand\gd{\delta} \newcommand\gD{\Delta} 
+\newcommand\gk{\kappa}
+\newcommand\pl{\partial}%<---abweichende Terminologie
+%\newcommand\ge{\epsilon}% already exists
+\newcommand\gve{\varepsilon}
+\newcommand\gf{\phi } 
+\newcommand\gvf{\varphi} 
+\newcommand\gF{\Phi}
+\newcommand\gl{\lambda} 
+\newcommand\gL{\Lambda}
+\newcommand\go{\omega} 
+\newcommand\gO{\Omega}
+\newcommand\gr{\rho} 
+\newcommand\gvr{\varrho} 
+\newcommand\gR{\Rho}
+\newcommand\gs{\sigma} 
+\newcommand\gS{\Sigma}
+\newcommand\gt{\theta} 
+\newcommand\gvt{\vartheta} 
+\newcommand\gT{\Theta}
+
+% a command for Epsilon
+\newcommand\eps{\varepsilon}
+
+%
+% blackboard-bold symbols for number fields etc.
+%
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+
+
+%mathcal letters c+Letter
+\newcommand\cA{\mathcal{A}}
+\newcommand\cB{\mathcal{B}}
+\newcommand\cC{\mathcal{C}}
+\newcommand\cD{\mathcal{D}}
+\newcommand\cE{\mathcal{E}}
+\newcommand\cF{\mathcal{F}}
+\newcommand\cG{\mathcal{G}}
+\newcommand\cH{\mathcal{H}}
+\newcommand\cI{\mathcal{I}}
+\newcommand\cJ{\mathcal{J}}
+\newcommand\cK{\mathcal{K}}
+\newcommand\cL{\mathcal{L}}
+\newcommand\cM{\mathcal{M}}
+\newcommand\cN{\mathcal{N}}
+\newcommand\cO{\mathcal{O}}
+\newcommand\cP{\mathcal{P}}
+\newcommand\cQ{\mathcal{Q}}
+\newcommand\cR{\mathcal{R}}
+\newcommand\cS{\mathcal{S}}
+\newcommand\cT{\mathcal{T}}
+\newcommand\cU{\mathcal{U}}
+\newcommand\cV{\mathcal{V}}
+\newcommand\cW{\mathcal{W}}
+\newcommand\cX{\mathcal{X}}
+\newcommand\cY{\mathcal{Y}}
+\newcommand\cZ{\mathcal{Z}}
+
+%script letters s+Letter (see rsfs above)
+\newcommand\sA{\mathscr{A}}
+\newcommand\sB{\mathscr{B}}
+\newcommand\sC{\mathscr{C}}
+\newcommand\sD{\mathscr{D}}
+\newcommand\sE{\mathscr{E}}
+\newcommand\sF{\mathscr{F}}
+\newcommand\sG{\mathscr{G}}
+\newcommand\sH{\mathscr{H}}
+\newcommand\sI{\mathscr{I}}
+\newcommand\sJ{\mathscr{J}}
+\newcommand\sK{\mathscr{K}}
+\newcommand\sL{\mathscr{L}}
+\newcommand\sM{\mathscr{M}}
+\newcommand\sN{\mathscr{N}}
+\newcommand\sO{\mathscr{O}}
+\newcommand\sP{\mathscr{P}}
+\newcommand\sQ{\mathscr{Q}}
+\newcommand\sR{\mathscr{R}}
+\newcommand\sS{\mathscr{S}}
+\newcommand\sT{\mathscr{T}}
+\newcommand\sU{\mathscr{U}}
+\newcommand\sV{\mathscr{V}}
+\newcommand\sW{\mathscr{W}}
+\newcommand\sX{\mathscr{X}}
+\newcommand\sY{\mathscr{Y}}
+\newcommand\sZ{\mathscr{Z}}
+
+% mathematical objects to be set in normalfont
+%xyz<->\xyz
+
+%\newcommand\arg{{\rm arg\,}}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\comp}{comp}
+\DeclareMathOperator{\const}{const}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\dom}{\mathscr{D}} % domain of an operator, may be redefined according to taste
+%\newcommand\div{{\operatorname{div\,}}}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+%\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\inc}{inc}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator*{\LIM}{LIM}
+\DeclareMathOperator{\loc}{loc}
+\DeclareMathOperator{\Mat}{M}
+\DeclareMathOperator{\odd}{odd}
+\DeclareMathOperator{\Op}{Op}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\rg}{rg}
+%\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\spec}{spec}
+\DeclareMathOperator{\Str}{Str}
+\DeclareMathOperator{\str}{str}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\vol}{vol}
+
+\newcommand{\maxmin}{\operatorname{max/min}}
+\newcommand{\minmax}{\operatorname{min/max}}
+\newcommand{\evodd}{\operatorname{ev/odd}}
+\newcommand{\oddev}{\operatorname{odd/ev}}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 8. Authoring Tools              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+% Margin notes
+\newcommand{\checknote}{\marginpar{check}}
+
+\newcommand{\TODO}[1][\relax]{
+\textbf{TODO} \marginpar{TODO #1}
+}
+
+
+% for internal comments
+\newcommand{\commentary}{\relax}
+\newcommand{\nocomments}{\renewcommand{\commentary}[1]{\relax}}
+\newcommand{\withcomments}{
+\renewcommand{\commentary}[1]{\par\bigskip\par\noindent
+\hrulefill
+\par
+\begin{small}
+##1
+\end{small}
+\par\noindent
+\hrulefill
+\par\bigskip
+} % end of commentary
+} % end of withcomments
+
+\newcommand{\details}{\relax}
+\newcommand{\nodetails}{\renewcommand{\details}[1]{\relax}}
+\newcommand{\nomarginpars}{\renewcommand{\marginpar}[1]{\relax}}
+\newcommand{\withdetails}{
+\renewcommand{\details}[1]{\par\bigskip\par\noindent
+\hrulefill
+\par
+Details (to be removed in final version):
+\par
+\begin{small}
+##1
+\end{small}
+\par\noindent
+\hrulefill
+\par\bigskip
+} % end of details
+} % end of withdetails
+
+% by default there are neither comments nor details
+\nocomments
+\nodetails
+
+%Awful hack:
+\DeclareOption{details}{\withdetails}
+\DeclareOption{comments}{\withcomments}
+\DeclareOption{final}{%
+    \nomarginpars
+    \nocomments
+    \nodetails}
+\ProcessOptions\relax
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%the following lines can easily be uncommented by a sed command
+%we assume that no other lines start with %SED
+%S4ef235ED \withcomments % in case you do not want to have the comments
+%S4ef235ED \withdetails  % final version without details
+
+
+
