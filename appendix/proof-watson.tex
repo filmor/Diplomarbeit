@@ -16,6 +16,93 @@
             F(x) = \Integ[s]{0}{t}{\Eto{-xt}\phi(t)} +
                    \Integ[T]{s}{t}{\Eto{-xt}\phi(t)}.
         \end{align*}
+
+        The integral over $\left[s,T\right]$ can be easily estimated as
+        \begin{align*}
+            \left|\Integ[T]{s}{t}{\Eto{-xt}\phi(t)}\right| &\le
+            \Eto{-xs} \Integ[T]{s}{t}{\left|\phi(t)\right|} \\
+            &\le \Eto{-xs}\Integ[T]{0}{t}{\left|\phi(t)\right|}.
+        \end{align*}
+        Since we assumed this integral to be finite and $s>0$ we have for
+        $x\to\infty$
+        \begin{align}
+            \Integ[T]st{\Eto{-xt}\phi(t)} = O(x^{-\infty}),
+        \end{align}
+        so we see that this term doesn't contribute to the asymptotic expansion.
+
+        For the first term, the integral over $\left[0,s\right]$ we use the
+        taylor expansion of $g$ with remainder
+        \begin{align*}
+            g(t) = \sum_{n=0}^{N} \frac{g^{(n)}(0)}{n!}t^n + r_N(t).
+        \end{align*}
+
+        We thus have
+        \begin{align*}
+            \Integ[s]0t{\Eto{-xt}t^\sigma g(t)} = \sum_{n=0}^N
+            \frac{g^{(n)}(0)}{n!} \Integ[s]0t{\Eto{-xt}t^{\sigma+n}} +
+            \Integ[s]0t{\Eto{-xt}t^\sigma r_N(t)},
+        \end{align*}
+        where we can estimate the remainder term as
+        \begin{align*}
+            \left|\Integ[s]0t{\Eto{-xt}t^\sigma r_N(t)}\right| &\le
+            \Integ[s]0t{\Eto{-xt}t^\sigma\left|r_N(t)\right|} \\
+            &\le \sup_{\tau\in\left[0,s\right]}
+            \frac{\bigl|g^{(N+1)}(\tau)\bigr|}{(N+1)!}\Integ[s]0t{\Eto{-xt}t^{\sigma+N+1}}.
+        \end{align*}
+
+        It thus suffices to estimate the asymptotic behaviour of integrals of
+        the type $F_\alpha(x) := \Integ[s]0t{\Eto{-xt}t^\alpha}$ for
+        $x\to\infty$. We have
+        \begin{align*}
+            F_\alpha(x) &= \Integ[\infty]{0}{t}{\Eto{-xt}t^\alpha} -
+            \Integ[\infty]{s}{t}{\Eto{-xt}t^\alpha} \\
+            &= x^{-(\alpha+1)}\Integ[\infty]{s}{\tau}{\Eto{-\tau}\tau^\alpha} -
+            \Integ[\infty]{s}{t}{\Eto{-xt}t^\alpha} \\
+            &= x^{-(\alpha+1)}\Gamma(\alpha + 1) - 
+            \Integ[\infty]{s}{t}{\Eto{-xt}t^\alpha}.
+        \end{align*}
+        For the second term we can use the Hölder equation in the special case
+        $p=q=2$, where we split the exponential as $\Eto{-xt} =
+        \Eto{-xt/2}\Eto{-xt/2}$, to get
+        \begin{align*}
+            \Integ[\infty]{s}{t}{\Eto{-xt}t^\alpha} &\le
+            \sqrt{\Integ[\infty]{s}{t}{\Eto{-xt}}} \cdot
+            \sqrt{\Integ[\infty]{s}{t}{\Eto{-xt}t^{2\alpha}}} \\
+            &= \Eto{-xs/2} \sqrt{\Integ[\infty]{s}{t}{\Eto{-xt}t^{2\alpha}}}.
+        \end{align*}
+        The second term in the product decreases with $x$, and since we are
+        interested in the case $x\to\infty$ we can assume $x>1$ to estimate the
+        square of the second factor as
+        \begin{align*}
+            \Integ[\infty]{s}{t}{\Eto{-xt}t^{2\alpha}} &\underset{x>1}\le
+            \Integ[\infty]{s}{t}{\Eto{-t}t^{2\alpha}} \\
+            &=: C_{s,\alpha}
+        \end{align*}
+        and thus since $s>0$ we have the following asymptotic behaviour for
+        $x\to\infty$:
+        \begin{align*}
+            \Integ[\infty]{s}{t}{\Eto{-xt}t^\alpha} &\le \Eto{-xs/2}
+            \sqrt{\Integ[\infty]{s}{t}{\Eto{-t}t^{2\alpha}}} \\
+            &\le C_{s,\alpha}\,\Eto{-xs/2} = O(x^{-\infty}),
+        \end{align*}
+        thus, again, this term doesn't contribute to the asymptotic expansion.
+
+        Using this we have
+        \begin{align*}
+            F_\alpha(x) = x^{-(\alpha+1)}\,\Gamma(\alpha + 1) + O(x^{-\infty}),
+        \end{align*}
+        and inserting $\alpha = \sigma + N + 1$ for the remainder and $\alpha =
+        \sigma + n$ for the main term we arrive at
+        \begin{align*}
+            F(x) &= \sum_{n=0}^N \frac{g^{(n)}(0)}{n!} F_{\sigma+n} + F_{\sigma +
+            N + 1} \\
+            &= \sum_{n=0}^N \frac{g^{(n)}(0)}{n!}
+                 \Gamma(\sigma + n +1)\,x^{-(\sigma + n + 1)} + \Gamma(\sigma +
+                 N + 2)\,x^{-(\sigma + N + 2)} \\
+            &= \sum_{n=0}^N \frac{g^{(n)}(0)}{n!}\Gamma(\sigma + n +
+            1)\,x^{-(\sigma + n + 1)} + O\bigl(x^{-(\sigma + N + 2)}\bigr).
+        \end{align*}
+        This proofs the statement.
     \end{proof}
     \begin{remark}
         There is also a very simple proof using the so called Moment Expansion
