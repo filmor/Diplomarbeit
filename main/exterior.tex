@@ -2,14 +2,43 @@
 By using the summation formula derived in LV12 the existence and values of the
 asymptotic components of the specific operator we're looking at can be
 calculated directly. From Lemma bla we know, that we only have to consider $j\in
-{0, 1, 2}$ since the requested asymptotic coefficient is of order $-5$ % TODO
+\{0, 1, 2\}$ since the requested asymptotic coefficient is of order $-5$.
+
+In (%größtenteils)
+accordance with LV12 we denote
+\begin{align*}
+    % TODO Anständig einführen im Setting, Unterschiede zum LV12-paper ausweisen
+    % TODO Explizit darauf hinweisen, dass alle gewöhnlichen Funktionen als
+    %      Multiplikationsoperator zu verstehen sind.
+    % TODO Es ist gesteigert eklig, dass R_+ negatives Vorzeichen hat …
+    R_- &:= \Eto{-\mu\left|x-y\right|} \\
+    R_+ &:= -C(\mu,\theta)\Eto{-\mu(x+y)} \\
+    R_\theta &:= \tfrac1{2\mu} (R_- + R_+) \\
+    R_{(\sigma_1,\sigma_2,\ldots,\sigma_n)} &:= 
+    \left(\tfrac1{2\mu}\right)^n R_{\sigma_1} \lambda(V,W) R_{\sigma_2} \dots
+    \lambda(V,W) R_{\sigma_n} \\
+    R^{(j)} &:= (-1)^j \psi \left( [R_\theta \lambda(V,W)]^j R_\theta -
+    [R_\mathbb{R}\lambda(V,W)]^j R_\mathbb{R}\right) \phi \\
+            &= (-1)^j
+                \sum_{
+                        \substack{
+                         \sigma\in\{+,-\}^j \\
+                         \sigma\neq(+,\ldots,+)
+                         }
+                        }
+                     \psi R_\sigma
+                \phi
+    \label{<++>}
+\end{align*}
+
+% TODO
 
 The calculation for $j=0$ is straightforward:
 \begin{align}
-    \Tr R^{(0)} &= \Integ[1]{0}{x}{k_\theta(x,x;\mu) - k_\mathbb{R}(x,x;\mu)} \\
-    &= -\frac1{2\mu} C(\mu,\theta) \Integ[1]{0}{x}{\Eto{-2\mu x}} \\
+    \Tr R^{(0)} =& \Integ[1]{0}{x}{k_\theta(x,x;\mu) - k_\mathbb{R}(x,x;\mu)} \\
+    =& -\frac1{2\mu} C(\mu,\theta) \Integ[1]{0}{x}{\Eto{-2\mu x}} \\
 %    =& -\frac1{2\mu} C(\mu,\theta) \left( \frac1{2\mu} - \frac{\Eto{-2\mu}}{2\mu} \right) \\
-    &\SimAs{\mu\to\infty} -\frac1{4\mu^2}
+    \SimAs{\mu\to\infty}& -\frac1{4\mu^2}
     \label{eqn:jeq0}
 \end{align}
 
