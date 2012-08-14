@@ -4,7 +4,7 @@
 \usepackage{amsmath, amssymb, fancyhdr, csquotes}
 \usepackage[standard, thmmarks]{ntheorem}
 \usepackage[ngerman, english, british]{babel}
-\usepackage[backend=biber]{biblatex}
+% \usepackage[backend=biber]{biblatex}
 \usepackage[scale=0.8]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -20,11 +20,16 @@
 \fancyfoot[OR]{\thepage}
 \renewcommand{\headrulewidth}{0.1pt}
 
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{8pt}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{.5em}
 
 % Fix bold headings
 \def\bfseries{\fontseries \bfdefault \selectfont \boldmath}
+
+\numberwithin{equation}{section}
+\numberwithin{theorem}{section}
+\numberwithin{Remark}{section}
+\numberwithin{Lemma}{section}
 
 \newcommand{\Thema}{Zur Resolventenspur multiparametrischer
 Sturm-Liouville-Operatoren}
@@ -34,7 +39,7 @@ Sturm-Liouville-Operatoren}
 \title{\Thema}
 
 \newcommand{\Eto}[1]{\ensuremath{\mathrm e^{#1}}}
-\newcommand{\Integ}[4][]{\ensuremath{\int\limits_{#2}^{#1} #4\,\mathrm d{#3}}}
+\newcommand{\Integ}[4][]{\ensuremath{\int_{#2}^{#1} #4\,\mathrm d{#3}}}
 \DeclareMathOperator{\Tr}{Tr}
 \newcommand{\SimAs}[1]{\ensuremath{\mathrel{\underset{#1}{\sim}}}}
 
