@@ -4,6 +4,7 @@ asymptotic components of the specific operator we're looking at can be
 calculated directly. From Lemma bla we know, that we only have to consider $j\in
 \{0, 1, 2\}$ since the requested asymptotic coefficient is of order $-5$.
 
+\subsection{Preliminaries}
 In (%größtenteils)
 accordance with LV12 we denote
 \begin{align*}
@@ -31,18 +32,15 @@ accordance with LV12 we denote
     \label{<++>}
 \end{align*}
 
-% TODO
-
-The calculation for $j=0$ is straightforward:
+We also set
 \begin{align}
-    \Tr R^{(0)} =& \Integ[1]{0}{x}{k_\theta(x,x;\mu) - k_\mathbb{R}(x,x;\mu)} \\
-    =& -\frac1{2\mu} C(\mu,\theta) \Integ[1]{0}{x}{\Eto{-2\mu x}} \\
-%    =& -\frac1{2\mu} C(\mu,\theta) \left( \frac1{2\mu} - \frac{\Eto{-2\mu}}{2\mu} \right) \\
-    \SimAs{\mu\to\infty}& -\frac1{4\mu^2}
-    \label{eqn:jeq0}
+    \Lambda(x) := \Integ[x]{0}{t}{\lambda(t)}\quad\text{and}\quad
+    \mathrm M(x) := \Integ[x]{0}{t}{\Lambda(t)}.
 \end{align}
 
-For $j=1$ and $j=2$ we employ the following Lemma:
+We will need both of the following Lemmas for the calculation. The first one is
+a classical result of asymptotic analysis and is the base of all further results
+on the asymptotics of exponential integrals.
 \begin{Lemma}[Watson]
     \input{snippets/watsons-lemma}
     \begin{proof}
@@ -51,9 +49,42 @@ For $j=1$ and $j=2$ we employ the following Lemma:
     \begin{Remark}
         We actually don't need analyticity but only the existence of as many
         derivatives as degrees we want and additionally a finiteness condition
-        on
+        on .
     \end{Remark}
 \end{Lemma}
+
+The second Lemma is a quite general formula for nested integrals, in which the
+upper limit of the inner integral is the integration variable of the outer one:
+\begin{Lemma}
+    Let $f,g\colon[0,1]\to\mathbb{R}$ be integrable functions. Then the
+    following formula holds:
+    \begin{align}
+        .
+        \label{eqn:integ-formula}
+    \end{align}
+    \begin{proof}
+    \end{proof}
+\end{Lemma}
+
+With those given we can explicitly calculate the asymptotics of the
+resolvent-trace.
+
+\subsection{Calculations}
+% TODO
+From the above considerations we know that we will have to calculate the
+asymptotics of $2^3 - 1 + 2^2 - 1 + 2^1 - 1 = 11$ traces.
+
+The calculation for $j=0$ is straightforward:
+\begin{align}
+    \Tr R^{(0)} =& \Integ[1]{0}{x}{k_\theta(x,x;\mu) - k_\mathbb{R}(x,x;\mu)} \\
+    =& -\frac1{2\mu} C(\mu,\theta) \Integ[1]{0}{x}{\Eto{-2\mu x}} \\
+    =& -\frac1{2\mu} C(\mu,\theta) \left( \frac1{2\mu} - \frac{\Eto{-2\mu}}{2\mu} \right) \\
+    \SimAs{\mu\to\infty}& -\frac1{4\mu^2}
+    \label{eqn:jeq0}
+\end{align}
+
+For $j=1$ and $j=2$ we need to employ both Watson's Lemma and our integration
+formula.
 
 % j = 1, ++
 % TODO: 1/2µ einbauen
@@ -112,10 +143,47 @@ The second term for $j=1$ is
         &= \sum_{n=0}^\infty \frac{(n+1)\lambda^{(n-1)}}{(2\mu)^{n+1}},
 \end{align*}
 % TODO: Beweis, dass Int_0^1 Int_y^1 f(x) dx dy = Int_0^1 x f(x) dx
-where $\Lambda(x) := \Integ[x]{0}{z}{\lambda(z)}$. We also used the identities
+since $\Lambda(0) = 0$. We also used the identities
 \begin{align*}
-    &\Integ[1]{0}{x}{\Integ[1]{x}{y}{f(y)}} = \Integ[1]{0}{x}{xf(x)},
-    \text{ and }
-    &\frac{\mathrm d^n}{\mathrm dx^n}xf(x) = xf^{(n)}(x) + nf^{(n-1)}(x).
+    \Integ[1]{0}{x}{\Integ[1]{x}{y}{f(y)}} = \Integ[1]{0}{x}{xf(x)},
+    \quad\text{and}\quad
+    (xf(x))^{(n)} = xf^{(n)}(x) + nf^{(n-1)}(x).
 \end{align*}
+
+% j = 1, -+
+Similarly we can calculate the asymptotics for $R_{-+}$:
+% TODO
+
+% j = 2
+The calculations for $j = 2$ are a bit more involved. Again, we need to
+transform the integrals such that we can apply Watson's lemma. The least
+problematic term is again the one without any absolute values in the exponent:
+% TODO: Falsch gerechnet :)
+% +++
+\begin{align*}
+    \Tr R^{(2)}_{+++} &= \frac{1}{4\mu^2} C(\mu,\theta)^2
+    \Integ[1]{0}{x}{\Integ[1]{0}{z_1}{\Integ[1]{0}{z_2}{\Eto{-\mu z_1 - \mu z_2}
+    \lambda(z_1)\lambda(z_2)}}} \\
+    &= \left( \Integ[1]{0}{z}{\Eto{-\mu z}\lambda(z)} \right)^2 \\
+    &\SimAs{\mu\to\infty} \left( \sum_{n=0}^{\infty}\frac{\lambda^{(n)}(0)}{n!}
+    \right)^2
+\end{align*}
+
+% ++-
+% -++
+% +-+
+% --+
+% +--
+% -+-
+
+Now that we have calculated all those terms we only need to sum them up and
+match coefficients to get the first three terms in the asymptotic expansion of
+$\Tr(\Delta_\lambda + z^2)^{-1}$. In particular we have to deal with the fact,
+that $\lambda(x) = \lambda^2 V(x) + W(x)$ is of mixed order. Furthermore we note
+that, as it was for the interior parametrix, the coefficients of the trace
+expansion are again a homogeneous polynomial in $V$, $W$ and their respective
+derivatives. Assuming that we can carry on with our method (which is possible
+though highly tedious) this will also hold for higher orders, since it will by
+construction only produce powers of $\lambda(x)$ and its derivatives.
+% TODO: PROOF, das ist wichtig (sagt Lesch!)
 
