@@ -1,0 +1,35 @@
+\section{Einführung}
+Diese Arbeit beschäftigt sich mit der asymptotischen Entwicklung der Spur
+multiparametrischer Sturm-Liouville-Operatoren auf dem abgeschlossenen Intervall
+$[0,1]$. Operatoren dieser Art erhält man beispielsweise bei der Untersuchung
+des Laplace-Beltrami-Operators auf einer Rotationsfläche wenn dieser bezüglich
+$\mathbb{S}^1$ in seine Komponenten zerlegt wird.
+
+% \dots
+
+Bei dieser Methode erhält man, wie in LV gezeigt, einen Fehlerterm in Form eines
+Integrals über eine bestimmte Komponentenfunktion der asymptotischen Entwicklung
+von $\Tr(\Delta_\lambda + z^2)^{-2}$ für $\left|(\lambda, z)\right|\to\infty$.
+Diesen genau zu berechnen ist Ziel dieser Arbeit. Dazu werden im Folgenden
+Formeln sowohl für die innere Asymptotik, als auch für die Asymptotik gegen die
+Randwerte 0 und 1 hergeleitet. Für ersteres verwenden wir dabei den
+multiparametrischen Kalkül der Pseudodifferentialoperatoren, für letzteres eine
+neue Herangehensweise basierend auf der sehr einfachen Asymptotik exponentieller
+Integrale, also Integrale der Form $F(x) = \Integ[T]{0}{t}{\Eto{-tx}f(t)}$.
+
+Zunächst beweisen wir folgenden Hauptsatz:
+% MThm 1: Asymptotik im Inneren
+Die Existenz der Entwicklung ist durch einen Satz der Theorie parametrischer
+Pseudodifferentialoperatoren gesichert, der ebenfalls bewiesen wird.
+
+Dann zeigen wir mithilfe Watsons Lemmas, dass für den Rand folgendes gilt:
+% MThm 2: Asymptotik am Rand
+Hier ist die Existenz der asymptotischen Entwicklung per Konstruktion gesichert.
+Wir starten mit expliziten Formeln für den Kern des Operators und zeigen, dass
+die jeweiligen Spurintegrale nach Watsons Lemma eine asymptotische Entwicklung
+besitzen.
+
+Unter Anwendung beider Hauptsätze erhalten wir somit den Fehlerterm als Polynom
+$n$-ten Grades in den Ableitungen von $f$ im Inneren und am Rand:
+% Cor:    Explizite Formel für den Fehlerterm in f^(n)
+
