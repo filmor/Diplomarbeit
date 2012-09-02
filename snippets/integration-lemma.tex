@@ -1,0 +1,22 @@
+\begin{Lemma}
+    \label{lem:triangle-integration}
+    Let $f,g\colon[0,1]\to\mathbb{R}$ be continuous. Then the following formula
+    holds:
+    \begin{align*}
+        \Integ[1]{0}{x}{g(x)\Integ[1]{x}{y}{f(y)}} =
+        \Integ[1]{0}{y}{f(y)\Integ[y]{0}{x}{g(x)}}
+    \end{align*}
+    \begin{proof}
+        Let $F(x) := \Integ[x]{0}{y}{f(y)}$ and $G(y) := \Integ[y]{0}{x}{g(x)}$.
+        Then we see using partial integration:
+        \begin{align*}
+            \Integ[1]{0}{x}{g(x)\Integ[1]{x}{y}{f(y)}} &=
+            \Integ[1]{0}{x}{g(x)F(1)} - \Integ[1]{0}{x}{g(x)F(x)} \\
+            &= G(1)F(1) - \left(\Bigl.G(y)F(y)\Bigr|_0^1 -
+            \Integ[1]{0}{y}{G(y)f(y)}\right) \\
+            &= \Integ[1]{0}{y}{G(y)f(y)} =
+            \Integ[1]{0}{y}{f(y)\Integ[y]{0}{x}{g(x)}},
+        \end{align*}
+        which proves the given formula.
+    \end{proof}
+\end{Lemma}

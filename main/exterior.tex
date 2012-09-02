@@ -29,7 +29,6 @@ accordance with LV12 we denote
                         }
                      \psi R_\sigma
                 \phi
-    \label{<++>}
 \end{align*}
 
 We also set
@@ -44,27 +43,23 @@ on the asymptotics of exponential integrals.
 \begin{Lemma}[Watson]
     \input{snippets/watsons-lemma}
     \begin{proof}
-        See Appendix~\ref{sec:proof-watson}.
+        Since the proof is a bit lengthy and not needed to understand the
+        following it can be found in Appendix~\ref{sec:proof-watson}.
     \end{proof}
-    \begin{Remark}
-        We actually don't need analyticity but only the existence of as many
-        derivatives as degrees we want and additionally a finiteness condition
-        on .
-    \end{Remark}
+%    \begin{Remark}
+%        We actually don't need analyticity but only the existence of as many
+%        derivatives as degrees we want and additionally a finiteness condition
+%        on .
+%    \end{Remark}
 \end{Lemma}
 
 The second Lemma is a quite general formula for nested integrals, in which the
 upper limit of the inner integral is the integration variable of the outer one:
-\begin{Lemma}
-    Let $f,g\colon[0,1]\to\mathbb{R}$ be integrable functions. Then the
-    following formula holds:
-    \begin{align}
-        .
-        \label{eqn:integ-formula}
-    \end{align}
-    \begin{proof}
-    \end{proof}
-\end{Lemma}
+\input{snippets/integration-lemma}
+\begin{Remark}
+    % \tikz (0,0) -- (0,1) -- (1,0) -- (0,0);
+    % Dreiecke mit tikz
+\end{Remark}
 
 With those given we can explicitly calculate the asymptotics of the
 resolvent-trace.
@@ -72,7 +67,12 @@ resolvent-trace.
 \subsection{Calculations}
 % TODO
 From the above considerations we know that we will have to calculate the
-asymptotics of $2^3 - 1 + 2^2 - 1 + 2^1 - 1 = 11$ traces.
+asymptotics of $2^3 - 1 + 2^2 - 1 + 2^1 - 1 = 11$ traces. For symmetry reasons
+we can reduce this to 7 integrals.
+% TODO: Symmetrieüberlegungen! Das muss gehen (denn es funktioniert), ist aber
+% nichttrivial. Sind die Integrale stetig in x und y? Das ist quasi der wichtige
+% Punkt. Ist F(x) = \int e^(-tx) f(x) stetig? Sollte es sein, genau an diese
+% Stelle gehört der zugehörige Beweis.
 
 The calculation for $j=0$ is straightforward:
 \begin{align}
@@ -143,15 +143,13 @@ The second term for $j=1$ is
         &= \sum_{n=0}^\infty \frac{(n+1)\lambda^{(n-1)}}{(2\mu)^{n+1}},
 \end{align*}
 % TODO: Beweis, dass Int_0^1 Int_y^1 f(x) dx dy = Int_0^1 x f(x) dx
-since $\Lambda(0) = 0$. We also used the identities
-\begin{align*}
-    \Integ[1]{0}{x}{\Integ[1]{x}{y}{f(y)}} = \Integ[1]{0}{x}{xf(x)},
-    \quad\text{and}\quad
-    (xf(x))^{(n)} = xf^{(n)}(x) + nf^{(n-1)}(x).
-\end{align*}
+since $\Lambda(0) = 0$. We also used the identity $(xf(x))^{(n)} = xf^{(n)}(x) +
+nf^{(n-1)}(x)$ as well as the triangle integration
+(Lemma~\ref{lem:triangle-integration}) with $g \equiv 1$.
 
 % j = 1, -+
-Similarly we can calculate the asymptotics for $R_{-+}$:
+For the symmetry reasons given above this does also give the asymptotics of $\Tr
+R^{(1)}_{-+}$.
 % TODO
 
 % j = 2
@@ -161,17 +159,62 @@ problematic term is again the one without any absolute values in the exponent:
 % TODO: Falsch gerechnet :)
 % +++
 \begin{align*}
-    \Tr R^{(2)}_{+++} &= \frac{1}{4\mu^2} C(\mu,\theta)^2
-    \Integ[1]{0}{x}{\Integ[1]{0}{z_1}{\Integ[1]{0}{z_2}{\Eto{-\mu z_1 - \mu z_2}
-    \lambda(z_1)\lambda(z_2)}}} \\
-    &= \left( \Integ[1]{0}{z}{\Eto{-\mu z}\lambda(z)} \right)^2 \\
-    &\SimAs{\mu\to\infty} \left( \sum_{n=0}^{\infty}\frac{\lambda^{(n)}(0)}{n!}
-    \right)^2
+    \Tr R^{(2)}_{+++} &= \frac{1}{8\mu^3} C(\mu,\theta)^3
+    \Integ[1]{0}{x}{
+        \Integ[1]{0}{z_1}{
+            \Integ[1]{0}{z_2}{
+                \Eto{-\mu(x + z_1 + z_1 + z_2 + z_2 + x)}
+                \lambda(z_1)\lambda(z_2)
+                }
+            }
+        } \\
+    &= \left(\frac{C(\mu,\theta)}{2\mu}\right)^3
+            \Integ[1]{0}{x}{\Eto{-2\mu x}}
+           \left(
+               \Integ[1]{0}{z}{\Eto{-2\mu z}\lambda(z)}
+            \right)^2 \\
+    &\SimAs{\mu\to\infty}
+    \frac{1}{(2\mu)^6}
+        \left( \sum_{n=0}^{\infty}\frac{\lambda^{(n)}(0)}{(2\mu)^n} \right)^2
 \end{align*}
 
-% ++-
-% -++
+Now we calculate the case $\Tr R^{(2)}_{++-} =  \Tr R^{(2)}_{-++}$ as follows
+\begin{align*}
+    \Tr R^{(2)}_{-++} &= \left(\frac{C(\mu,\theta)}{2\mu}\right)^3
+        \Integ[1]{0}{x}{
+            \Integ[1]{0}{z_1}{
+                \Integ[1]{0}{z_2}{
+                    \Eto{-\mu(\left|x-z_1\right| + (z_1 + z_2) + (z_2 + y))}
+                    \lambda(z_1)\lambda(z_2)
+                }
+            }
+        } \\
+        &= \left(\frac{C(\mu,\theta)}{2\mu}\right)^3
+            \Integ[1]{0}{x}{
+                \Bigl(
+                \Integ[x]{0}{z_1}{
+                    \Integ[1]{0}{z_2}{
+                        \Eto{-\mu(2x+2z_2)}\lambda(z_1)\lambda(z_2)
+                    }
+                    } \\ &\hphantom{=} + 
+                \Integ[1]{x}{z_1}{
+                    \Integ[1]{0}{z_2}{
+                        \Eto{-\mu(2z_1+2z_2)}\lambda(z_1)\lambda(z_2)
+                    }
+                }
+                \Bigr)
+            } \\
+            % FALSCH
+        &= \left(\frac{C(\mu,\theta)}{2\mu}\right)^3 \left(
+            \Lambda(x) \Integ[1]{0}{x}{\Eto{-2\mu x}}
+            \Integ[0]{1}{z_2}{\Eto{-2\mu z_2}\lambda(z_2)}
+            + \left(\Integ[0]{1}{z}{\Eto{-2\mu z}\lambda(z)}\right)^2
+            \right)
+\end{align*}
+Very similar to that we can calculate $\Tr R_{+-+}$.
 % +-+
+
+
 % --+
 % +--
 % -+-

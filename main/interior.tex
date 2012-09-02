@@ -16,14 +16,34 @@ parameter has an asymptotic expansion in its parameter:
 The multi-parametric symbol of the operator $(\Delta_\lambda + z^2)$ is
 \begin{align}
     a_2(x,\xi,\lambda,z) &= \xi^2 + \lambda^2 V(x) + z^2 \\
-    a_0(x,\xi,\lambda,z) &= W(x).
+    a_0(x,\xi,\lambda,z) &= W(x),
     \label{eqn:symbol}
 \end{align}
+with all other $a_n \equiv 0$.
 
-Using the product formula for symbols (e.g. ref GILKEY) we can inductively
-derive the first coefficients of the resolvent of $(\Delta_\lambda + z^2)$ to be
+We use the following product formula for symbols:
 \begin{align}
-    b_{-2}(x,\xi,\lambda,z) &= a_2^{-1}(x,\xi,\lambda,z) \\
+    =
+    \label{eqn:product-formula}
+\end{align}
+This variant is chosen deliberately, since we thus have to calculate fewer
+$x$-derivatives.
+
+Since we're ultimately interested in the kernel on the diagonal we will need to
+integrate the resulting symbol for the parametrix, since
+\begin{align*}
+    k(x,y) &= \frac{1}{2\pi}\Integ{\mathrm{O}}{\xi}{
+        \Eto{\mathrm i\left\langle x-y, \xi\right\rangle} a(x,\xi)
+        } \\
+    \Rightarrow k(x,x) &= \frac{1}{2\pi}\Integ{\mathbb{R}}{\xi}{a(x,\xi)},
+\end{align*}
+where $\int_{O}$ denotes the oscillating integral (REF), which coincides with
+the usual integral for $x = y$.
+
+Using the product formula we can inductively derive the first coefficients
+of the parametrix of $(\Delta_\lambda + z^2)$ to be
+\begin{align}
+    b_{-2}(x,\xi,\lambda,z) &= (a_2(x,\xi,\lambda,z))^{-1} \\
     b_{-3}(x,\xi,\lambda,z) &= \\
     b_{-4}(x,\xi,\lambda,z) &=
     \label{eqn:coeff-symbol}
