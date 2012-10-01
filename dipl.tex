@@ -1,16 +1,19 @@
 \documentclass[paper=a4,twoside,parskip=full]{scrartcl}
 
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath, amssymb, fancyhdr, csquotes}
-\usepackage[standard, thmmarks]{ntheorem}
-\usepackage[ngerman, english, british]{babel}
+\usepackage{amsmath,amssymb,amsfonts,fancyhdr,csquotes,tikz}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[standard,thmmarks]{ntheorem}
+\usepackage[ngerman,english,british]{babel}
 % \usepackage[backend=biber]{biblatex}
 \usepackage[scale=0.8]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{esint}
 % \usepackage{mathpazo}
 % \usepackage{eulervm}
 % \usepackage{fourier}
+% TODO: Subequation?
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -19,9 +22,6 @@
 \fancyfoot[EL]{\thepage}
 \fancyfoot[OR]{\thepage}
 \renewcommand{\headrulewidth}{0.1pt}
-
-%\setlength{\parindent}{0em}
-%\setlength{\parskip}{.5em}
 
 % Fix bold headings
 \def\bfseries{\fontseries \bfdefault \selectfont \boldmath}
@@ -33,14 +33,28 @@
 
 \newcommand{\Thema}{Zur Resolventenspur multiparametrischer
 Sturm-Liouville-Operatoren}
-\newcommand{\ThemaEn}{On the Resolvent Trace of multi-parametric Sturm-Liouville Operators}
+\newcommand{\ThemaEn}{On the Resolvent Trace of multi-parametric Sturm-Liouville
+Operators}
 
 \author{Benedikt Christian Sauer}
 \title{\Thema}
 
 \newcommand{\Eto}[1]{\ensuremath{\mathrm e^{#1}}}
-\newcommand{\Integ}[4][]{\ensuremath{\int_{#2}^{#1} #4\,\mathrm d{#3}}}
+\newcommand{\Integ}[4][]{\ensuremath{\int_{#2}^{#1}\!#4\,\mathrm d{#3}}}
+\newcommand{\Int}[2]{\Integ[1]{0}{#1}{#2}}
+
+\newcommand{\Abs}[1]{\ensuremath{\left|#1\right|}}
+\newcommand{\Wsum}[1]{\ensuremath{\sum_{n=0}^\infty \frac{#1}{(2\mu)^{n+1}}}}
+\newcommand{\Regint}[2]{\ensuremath{\fint_{1}^{\infty}\!#2\,\mathrm d{#1}}}
+\DeclareMathOperator*{\Reglim}{LIM}
+% TODO
+\DeclareMathOperator{\Regsum}{\sum}
+\newcommand{\Sphere}[1]{\ensuremath{{\mathbb{S}^{#1}}}}
+\newcommand{\Cinf}[1][]{\ensuremath{C^\infty_{#1}}}
+\newcommand{\Rplus}{\ensuremath{{\mathbb{R}_+}}}
+
 \DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\vol}{vol}
 \newcommand{\SimAs}[1]{\ensuremath{\mathrel{\underset{#1}{\sim}}}}
 
 \renewcommand{\Re}{\ensuremath{\operatorname{Re}}}
@@ -93,6 +107,7 @@ Sturm-Liouville-Operatoren}
 \input{intro/de}
 \selectlanguage{british}
 \input{intro/en}
+\input{intro/conventions}
 \input{intro/setting}
 \input{main/interior}
 \input{main/exterior}
