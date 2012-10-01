@@ -2,3 +2,71 @@
 % Multitude of references to ML and BV
 Abschnitt vom Anfang von LV de-facto kopieren, eigene Definitionen benutzen un
 genauer angeben, was was ist und woraus das jeweils folgt.
+
+\subsection{Laplace-Beltrami operator on a surface of revolution}
+Let $M = [0,1]\times\Sphere{1}$ be a surface of revolution by use of the metric
+$g = \mathrm dx^2 \oplus f(x)^2 g_\Sphere{1}$ with $f\in \Cinf([0,1],
+\Rplus)$. The associated Laplace-Beltrami operator is given by
+\begin{align}
+  \Delta = -\frac{\partial^2}{\partial x^2} -
+            \frac{f'(x)}{f(x)}\frac{\partial}{\partial x} +
+            \frac{1}{f(x)^2}\Delta_\Sphere1,
+\end{align}
+acting on $\Cinf[0]\bigl((0,1)\times\Sphere1\bigr)$. The correct Lebesgue
+measure on the space $(M,g)$ is given by $f(x)\,\mathrm dx\, \mathrm
+d\vol(g_\Sphere1)$. Under the unitary map
+\begin{align*}
+  \Phi: L^2(M, g)\to L^2([0,1], \mathrm dx)\otimes L^2(\Sphere1, g_\Sphere1) \\
+  (\Phi u)(x) := u(x) \sqrt{f(x)},
+\end{align*}
+the Laplacian $\Delta$ transforms into the operator
+% TODO: Proof
+\begin{align*}
+  \Phi\Delta\Phi^{-1} = -\frac{\partial}{\partial x^2} +
+  \frac{1}{f(x)^2}\Delta_\Sphere1 + \left( \frac{f''(x)}{2f(x)} -
+  \left(\frac{f'(x)}{2f(x)}\right)^2\right).
+\end{align*}
+The functions $f_\lambda(x) := \frac{1}{\sqrt{2\pi}}\Eto{\mathrm i\lambda x}$
+form for $\lambda\in\mathbb{Z}$ an orthonormal basis of $L^2(\Sphere1)$ of
+eigenfunctions of $\Delta_\Sphere1$ to the eigenvalues $\lambda^2$, where the
+eigenvalues $\lambda^2 \neq 0$ have multiplicity 2 while $\lambda = 0$ has
+multiplicity 1. Hence we have the decomposition
+% TODO: Proof
+\begin{align}
+  \label{eqn:lpl-decomp}
+  \Phi\Delta\Phi^{-1} &= \bigoplus_{\lambda=-\infty}^{\infty} \left(
+    -\frac{\partial^2}{\partial x^2} + \frac{\lambda^2}{f(x)^2} + 
+     \left( \frac{f''(x)}{2f(x)} -
+     \left(\frac{f'(x)}{2f(x)}\right)^2\right)\right)
+     =: \bigoplus_{\lambda=0}^{\infty}\Delta_\lambda
+\end{align}
+into a direct sum of one-dimensional Sturm-Liouville type operators. We consider
+seperated Dirichlet or generalised Neumann boundary conditions for $\Delta$,
+where it is straight-forrward to see, that those also correspond to separated
+Dirichlet, resp.\ generalized Neumann boundary conditions for
+$\Phi\Delta\Phi^{-1}$ and that the resulting self-adjoint operator is compatible
+with the given decomposition \eqref{eqn:lpl-decomp}. Since the transformed
+operator does indeed behaves, from an analytical point of view, the same as the
+operator $\Delta$ we will denote the self-adjoint extensions of $\Delta$ and
+$\Delta_\lambda$ again by the same name, % TODO Fixed boundary conditions
+
+\subsection{Regularised sums and integrals}
+% TODO Define asymptotic expansion
+
+% x\to 0
+We define the \emph{regularised limit} for $x\to\infty$ as
+\begin{align}
+  \Reglim_{x\to\infty} f(x) := a_{00}.
+\end{align}
+
+If for some $N\in\mathbb{N}$ the remainder $x^{\alpha_N}\log^{M_N}(x)f_N\in
+L^1[1,\infty)$, the integral $\Integ[R]{1}{x}{f(x)}$ does also admit an
+asymptotic expansion of the given form and we define its \emph{regularised
+integral} as
+\begin{align}
+  \Regint{x}{f(x)} := \Reglim_{R\to\infty}\Integ[R]{1}{x}{f(x)}.
+\end{align}
+
+\begin{align}
+  \Regsum_x^y
+\end{align}
