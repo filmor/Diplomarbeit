@@ -38,12 +38,13 @@ $(a * b)_n \equiv \delta_{n0}$. Actually this will also work for $(b * a)$,
 i.~e.\ $BA$, but this complicates further calculations as with the chosen order
 we only have $\xi$-derivatives of $a_n$ which are
 \begin{align}
-  \partial_{\xi}^1 a = 2\xi \text{ and } \partial_{\xi}^2 a = 2.
+  \partial_{\xi} a = 2\xi \text{ and } \partial_{\xi}^2 a = 2.
 \end{align}
 Thus the above sum collapses and only three terms are left:
 \begin{align}
-  a * b = ab + 2\xi\,D_x b + 2D_x^2 b.
+  a * b = (a_2 + a_0)b - 2\xi\mathrm i\,\partial_x b - \partial_x^2 b.
 \end{align}
+We will now split up $b$ in its asymptotic components.
 
 From the known asymptotics of $a$ we can now inductively derive the first
 coefficients of the parametrix of $(\Delta_\lambda + z^2)$.
