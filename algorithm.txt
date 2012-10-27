@@ -1,0 +1,17 @@
+- Integrale aufteilen
+- Watsons Lemma sobald das Integral in der Form
+    \Int exp(-kx) f(x)
+  ist, wobei eine Komposition aus \lambda, allen Stammfunktionen und
+  Ableitungen dieser Funktion sowie Monomen ist.
+- Dreiecksregel
+
+Algorithmus:
+    - Integrale aufschreiben
+    - Alle |x-z|-Bestandteile aufteilen
+    - Sortieren
+    - Dreiecksregel auf alle Terme mit einer Integrationsvariablen als
+      untere(!) Grenze (die obere Grenze interessiert bei Watsons Lemma nur
+      wenn sie 0 ist und das kann beim Lebesgue-Integral ignoriert werden,
+      Grenzwert?)
+    - Watsons Lemma auf alle verbliebenen Terme, die nun auch alle schön in
+      Produkte zerfallen sollten.

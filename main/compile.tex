@@ -15,38 +15,42 @@ Now that we have calculated the coefficients we only need to integrate the
 homogeneous part with the logarithm. To do that we use the Mellin transform,
 since
 \begin{align*}
-    \left.\frac\partial{\partial z}\right|_{z=0}\Integ[\infty]{0}{x}{x^z f(x)}
+    \left.\frac\partial{\partial r}\right|_{r=0}\Integ[\infty]{0}{x}{x^r f(x)}
     &= \Integ[\infty]{0}{x}{\ln{(x)} f(x)}
 \end{align*}
 if one of the integrals exist. We thus calculate:
 \begin{align*}
-    \Integ[\infty]{0}{\lambda}{\frac{\lambda^{n + z}}{\left(1 +
+    \Integ[\infty]{0}{\lambda}{\frac{\lambda^{n + r}}{\left(1 +
     \lambda^2\right)^{\frac{n+5}{2}}}} &=
     % Substituiere \lambda^2 = y
-    \frac12\Integ[\infty]{0}{y}{\frac{y^{\frac{n+z+1}{2}}}{(1 +
+    \frac12\Integ[\infty]{0}{y}{\frac{y^{\frac{n+r+1}{2}}}{(1 +
     y)^{\frac{n+5}{2}}}} \\
     % Betafunktion
-    &= \frac12 B\bigl(\tfrac{n+z+1}{2}, \tfrac{4-z}{2}\bigr)
+    &= \frac12 B\bigl(\tfrac{n+r+3}{2}, \tfrac{2-r}{2}\bigr)
 \end{align*}
 where $B(a,b)$ is the beta function. % Benutztes Integral mit ref!
-% a = n+z+1/2, b = n+5/2 - a
+% a = n+z+3/2, b = n+5/2 - a
 
 The function is symmetric, and its
 derivative is $\partial_a B(a,b) = B(a,b) (\psi(a) - \psi(a+b))$, where
 $\psi(x) = \partial_x \ln\Gamma(x)$ is the digamma function, so we get
 \begin{align*}
-    \left.\frac12\frac\partial{\partial z}\right|_{z=0} B\bigl(\tfrac{n+z+1}{2},
-    \tfrac{4-z}{2}\bigr)
-    &= \left.\frac14 B\bigl(\tfrac{n+z+1}{2}, \tfrac{4-z}{2}\bigr)
-    \left(\psi\bigl(\tfrac{n+z+1}{2}\bigr) - \psi\bigl(\tfrac{n+5}{2}\bigr) -
-    \psi\bigl(\tfrac{4-z}{2}\bigr) +
-    \psi\bigl(\tfrac{n+5}{2}\bigr)\right)\right|_{z=0} \\
-    &= \frac14 B\bigl(\tfrac{n+1}{2}, 2\bigr)
-    \left(\psi\bigl(\tfrac{n+1}{2}\bigr) - \psi\bigl(2\bigr)\right)
+    \left.\frac12\frac\partial{\partial r}\right|_{r=0} B\bigl(\tfrac{n+r+3}{2},
+    \tfrac{2-r}{2}\bigr)
+    &= \left.\frac14 B\bigl(\tfrac{n+r+3}{2}, \tfrac{2-r}{2}\bigr)
+    \left(\psi\bigl(\tfrac{n+r+3}{2}\bigr) - \psi\bigl(\tfrac{n+5}{2}\bigr) -
+    \psi\bigl(\tfrac{2-r}{2}\bigr) +
+    \psi\bigl(\tfrac{n+5}{2}\bigr)\right)\right|_{r=0} \\
+    &= \frac14 B\bigl(\tfrac{n+3}{2}, 2\bigr)
+    \left(\psi\bigl(\tfrac{n+3}{2}\bigr) - \psi\bigl(1\bigr)\right)
 \end{align*}
 
-$B\bigl(\tfrac{n+1}{2}, 2\bigr)$ can be evaluated using the formula given above
-to be $\tfrac{4}{(n+1)(n+3)}$. Using the recurrence relation $\psi(x + 1) =
+% TODO Wo ist die Formel gegeben? Formel auschreiben! Die Formel ist B(a,b) =
+% Gamma(a) Gamma(b) / Gamma(a+b)
+$B\bigl(\tfrac{n+3}{2}, 2\bigr)$ can be evaluated using the formula $B(a,b) =
+\tfrac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$ (\ref{frm:beta_rep1}) which is proven
+in the appendix on special functions (\ref{sec:beta_function}).
+to be $\tfrac{4}{(n+1)(n+3)(n+5)}$. Using the recurrence relation $\psi(x + 1) =
 \psi(x) + \tfrac{1}{x}$ and the special values $\psi(1) = -\gamma$ and
 $\psi(\tfrac{1}{2}) = -\gamma - 2\ln 2$ ($\gamma$ being the Euler-Mascheroni
 constant) we arrive at the following explicit formula for the integral:

@@ -49,32 +49,36 @@ We will now split up $b$ in its asymptotic components.
 From the known asymptotics of $a$ we can now inductively derive the first
 coefficients of the parametrix of $(\Delta_\lambda + z^2)$.
 \begin{align}
-    b_{-2}(x,\xi,\lambda,z) &= (a_2(x,\xi,\lambda,z))^{-1} \\
-    b_{-3}(x,\xi,\lambda,z) &= \\
-    b_{-4}(x,\xi,\lambda,z) &=
-    \label{eqn:coeff-symbol}
+  b_{-2} &= \frac{1}{a_2} \\
+  b_{-3} &= -2\frac{\xi a_2'}{a_2^3}\\
+  b_{-4} &= -4\frac{\xi^2 a_2''}{a_2^4}
+  + 12\frac{\xi^2 (a_2')^2}{a_2^5} - \frac{a_0}{a_2^2} +
+  2\frac{a_2''}{a_2^3} -4\frac{(a_2')^2}{a_2^4}
+  \label{eqn:coeff-symbol}
 \end{align}
-
 % This variant is chosen deliberately, since we thus have to calculate fewer
 % $x$-derivatives.
 
 Since we are ultimately interested in the kernel on the diagonal we will need to
 integrate the resulting symbol for the parametrix, since
 \begin{align*}
-    k(x,y) &= \frac{1}{2\pi}\Integ{\mathrm{O}}{\xi}{
+    k(x,y) &= \frac{1}{2\pi}\Oscint{\xi}{
         \Eto{\mathrm i\left\langle x-y, \xi\right\rangle} a(x,\xi)
         } \\
     \Rightarrow k(x,x) &= \frac{1}{2\pi}\Integ{\mathbb{R}}{\xi}{a(x,\xi)},
 \end{align*}
 where $\int_{O}$ denotes the oscillating integral (REF), which coincides with
-the usual integral over $\mathbb{R}$ for $x = y$.
+the usual integral over $\mathbb{R}$ for $x = y$. The integrals can be handled
+with in a uniform way using the beta function. 
 
 The corresponding terms in the kernel are thus
 \begin{align}
-    k_{b_{-1}}(x,x,\lambda,z) &= \\
-    k_{b_{-2}}(x,x,\lambda,z) &= \\
-    k_{b_{-3}}(x,x,\lambda,z) &= \\
-    \label{eqn:coeff-kernel}
+  k_{b_{-1}}(x,x,\lambda,z) &= \frac{1}{2} \frac{1}{\lambda^2 V(x) + z^2} \\
+  k_{b_{-2}}(x,x,\lambda,z) &= 0 \\
+  k_{b_{-3}}(x,x,\lambda,z) &= -\frac{1}{8} \frac{\lambda^2 V''(x)}{(\lambda^2
+    V(x) + z^2)^{5/2}} + \frac{15}{64} \frac{\lambda^4 V'(x)^2}{(\lambda^2V(x)
+    + z^2)^{7/2}} -\frac{1}{4}\frac{W(x)}{(\lambda^2 V(x) + z^2)^{3/2}} + \ldots \\
+  \label{eqn:coeff-kernel}
 \end{align}
 
 To now get the coefficients of the kernel of $(\Delta_\lambda + z^2)^{-2}$ we

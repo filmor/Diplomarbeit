@@ -8,10 +8,10 @@
 % \usepackage[backend=biber]{biblatex}
 \usepackage[scale=0.8]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
+% \usepackage{lmodern}
 \usepackage{esint}
 % \usepackage{mathpazo}
-% \usepackage{eulervm}
+\usepackage{eulervm}
 % \usepackage{fourier}
 % TODO: Subequation?
 
@@ -44,7 +44,7 @@ Operators}
 \newcommand{\Int}[2]{\Integ[1]{0}{#1}{#2}}
 
 \newcommand{\Abs}[1]{\ensuremath{\left|#1\right|}}
-\newcommand{\Wsum}[1]{\ensuremath{\sum_{n=0}^\infty \frac{#1}{(2\mu)^{n+1}}}}
+\newcommand{\Wsum}[2][0]{\ensuremath{\sum_{n=#1}^\infty \frac{#2(0)}{(2\mu)^{n+1}}}}
 \newcommand{\Regint}[2]{\ensuremath{\fint_{1}^{\infty}\!#2\,\mathrm d{#1}}}
 \newcommand{\Oscint}[2]{\Integ{\mathrm O}{#1}{#2}}
 \DeclareMathOperator*{\Reglim}{LIM}
@@ -57,6 +57,7 @@ Operators}
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\vol}{vol}
 \newcommand{\SimAs}[1]{\ensuremath{\mathrel{\underset{#1}{\sim}}}}
+\newcommand{\SimMu}{\ensuremath{\SimAs{\mu\to\infty}}}
 
 \renewcommand{\Re}{\ensuremath{\operatorname{Re}}}
 \renewcommand{\Im}{\ensuremath{\operatorname{Im}}}
@@ -84,7 +85,7 @@ Operators}
   \end{center}
   \vspace{\stretch{1}}
   \begin{center}
-      September 2012 \\
+      Dezember 2012 \\
       \bigskip
       Von \\
       \bigskip

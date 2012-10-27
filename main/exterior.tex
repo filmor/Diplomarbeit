@@ -11,20 +11,22 @@ accordance with LV12 we denote
     % TODO Anständig einführen im Setting, Unterschiede zum LV12-paper ausweisen
     % TODO Explizit darauf hinweisen, dass alle gewöhnlichen Funktionen als
     %      Multiplikationsoperator zu verstehen sind.
-    % TODO Es ist gesteigert eklig, dass R_+ negatives Vorzeichen hat …
-    R_- &:= \Eto{-\mu\left|x-y\right|} \\
-    R_+ &:= -C(\mu,\theta)\Eto{-\mu(x+y)} \\
+    \mu &:= \sqrt{\lambda^2 V(0) + z^2} \\
+  % TODO: \lambda(0) = W(0), da \tilde V(x) = V(x) - V(0) = 0 für x = 0
+    \lambda(x) &:= \lambda^2 \tilde V(x) + W(x) \\
+       k_{R_-} &:= \Eto{-\mu\Abs{x-y}} \\
+    k_{R_+} &:= -C(\mu,\theta)\Eto{-\mu(x+y)} \\
     R_\theta &:= \tfrac1{2\mu} (R_- + R_+) \\
     R_{(\sigma_1,\sigma_2,\ldots,\sigma_n)} &:= 
     \left(\tfrac1{2\mu}\right)^n R_{\sigma_1} \lambda(V,W) R_{\sigma_2} \dots
     \lambda(V,W) R_{\sigma_n} \\
     R^{(j)} &:= (-1)^j \psi \left( [R_\theta \lambda(V,W)]^j R_\theta -
-    [R_\mathbb{R}\lambda(V,W)]^j R_\mathbb{R}\right) \phi \\
+    [R_-\lambda(V,W)]^j R_-\right) \phi \\
             &= (-1)^j
                 \sum_{
                         \substack{
-                         \sigma\in\{+,-\}^j \\
-                         \sigma\neq(+,\ldots,+)
+                          \sigma\in\{+,-\}^{j+1} \\
+                         \sigma\neq(-,\ldots,-)
                          }
                         }
                      \psi R_\sigma
@@ -41,11 +43,11 @@ We will need both of the following Lemmas for the calculation. The first one is
 a classical result of asymptotic analysis and is the base of all further results
 on the asymptotics of exponential integrals.
 \begin{Lemma}[Watson]
-    \input{snippets/watsons-lemma}
-    \begin{proof}
-        Since the proof is a bit lengthy and not needed to understand the
-        following it can be found in Appendix~\ref{sec:proof-watson}.
-    \end{proof}
+  \input{snippets/watsons-lemma}
+  \begin{proof}
+    Since the proof is a bit lengthy and not needed to understand the following
+    it can be found in Appendix~\ref{sec:proof-watson}.
+  \end{proof}
 %    \begin{Remark}
 %        We actually don't need analyticity but only the existence of as many
 %        derivatives as degrees we want and additionally a finiteness condition
@@ -70,13 +72,17 @@ upper limit of the inner integral is the integration variable of the outer one:
 \end{Remark}
 
 With those given we can explicitly calculate the asymptotics of the
-resolvent-trace. 
+resolvent-trace, which we will do now for $x=0$. The case $x=1$ is identical to
+this one if we employ the transformation $x\mapsto 1-x$, which results in a sign
+change for odd derivatives of $\lambda(x)$, and of course evaluation at $x=1$
+instead of $0$.
 
 \subsection{Calculations}
 % TODO
 From the above considerations we know that we will have to calculate the
 asymptotics of $2^3 - 1 + 2^2 - 1 + 2^1 - 1 = 11$ traces. For symmetry reasons
 we can reduce this to 7 integrals.
+% TODO: Auswalzen warum Stetigkeit ausreicht.
 % TODO: Symmetrieüberlegungen! Das muss gehen (denn es funktioniert), ist aber
 % nichttrivial. Sind die Integrale stetig in x und y? Das ist quasi der wichtige
 % Punkt. Ist F(x) = \int e^(-tx) f(t) stetig? Sollte es sein, genau an diese
@@ -106,56 +112,86 @@ we can reduce this to 7 integrals.
   \end{proof}
 \end{Lemma}
 
-In the following calculations we define $C := \frac{C(\mu,\theta)}{2\mu} \to
--(2\mu)^{-1}$ as $\mu\to\infty$.
-
-The calculation for $j=0$ is straightforward:
+In the following calculations we define analogous to $R$
 \begin{align}
-  \Tr R^{(0)} &= \Int{x}{k_\theta(x,x;\mu) - k_\mathbb{R}(x,x;\mu)} \\
-              &= -C \Int{x}{\Eto{-2\mu x}} \\
-              &= -C \left(
-                \frac1{2\mu} - \frac{\Eto{-2\mu}}{2\mu}
-                \right) \\
-              &\SimAs{\mu\to\infty}\ -\frac1{4\mu^2}
-  \label{eqn:jeq0}
+  C_{(\sigma_1,\ldots,\sigma_n)} := \Bigl(-\frac{1}{2\mu}\Bigr)^n
+                                    \prod_{
+                                      \substack{
+                                        1\le i \le n \\
+                                        \sigma_i = -
+                                    }} -C(\mu,\theta),
+\end{align}
+which converges to $(-2\mu)^{-n}$ as $\mu\to\infty$, where $k$ is the count
+of $(-)$-symbols in $\sigma$, since $C(\mu,\theta)\to -1$ in the non-degenerate
+case of $\theta \neq 0$.
+% TODO: Fall \theta != 0 genauer erklären (Neumann vs Dirichlet glaub ich)
+
+The calculation of all terms with $\sigma=(+,\ldots,+)$ is straightforward:
+\begin{align*}
+  \Tr R^{(j)}_{+\ldots+} &=
+    C_{+\ldots+}
+    \Int{x}{
+      \Integ{[0,1]^{j}}{z}{
+        \Eto{-\mu((x + z_1) + (z_1 + z_2) + \ldots + (z_j + x))}
+        \prod_{i=1}^j \lambda(z_i)
+      }
+    } \\
+    &= C_{+\ldots+}
+      \Int{x}{\Eto{-2\mu x}} \left(\Int{z}{\Eto{-2\mu z}\lambda(z)}\right)^j \\
+    &= C_{+\ldots+}
+      \left(\frac1{2\mu} - \frac{\Eto{-2\mu}}{2\mu}\right)
+      \left(\Int{z}{\Eto{-2\mu z}\lambda(z)}\right)^j \\
+      &\SimMu (-2\mu)^{-j-2}
+      \left(\Wsum{\lambda^{(n)}}\right)^j = (-1)^j (2\mu)^{-2(j+1)}
+      \left(\sum_{n=0}^\infty\frac{\lambda^{(n)}(0)}{(2\mu)^n}\right)^j.
+\end{align*}
+% TODO: Proof of this statement? Im Prinzip geht da auch wieder Stetigkeit ein,
+% TODO: Denn wir fassen die Integrale quasi als einzelne Integrale mit
+% TODO: unterschiedlichen Parametern (\mu_1, …, \mu_n) auf, auf die nacheinander
+% TODO: Watsons Lemma angewandt wird. Für die Partialsummen gilt das
+% TODO: offensichtlich, damit sollte das folgen.
+The last transformation uses Watson's lemma as well as the fact, that we can
+apply it simultaneously to multiple integrals to determine the common
+asymptotics, which is ensured by the finiteness of $F(x) =
+\Int{x}{\Eto{-tx}f(t)}$. %TODO: Auswalzen, siehe oben
+
+From this calculation we immediately get the first term we were looking for:
+\begin{align}
+  \label{eqn:tr1}
+  \Tr R^{(0)} \SimAs{\mu\to\infty} (2\mu)^{-2}
 \end{align}
 
-For $j=1$ and $j=2$ we need to employ both Watson's Lemma and our integration
-formula.
+For the other terms with $j=1$ and $j=2$ we need to employ both Watson's Lemma
+and our integration formula. The process is always the same:
+\begin{enumerate}
+  \item Write down the whole integral with one large exponential
+  \item Combine all terms that appear trivially in the exponent (i.e. not in the
+    absolute value of a difference) and split of the $\Int{x}{\Eto{-2\mu
+    x}\lambda(x)}$-term
+  \item For each absolute value of the form $\left|x-y\right|$ in the exponent 
+    split the corresponding integral in $x > y$ and $x < y$
+  \item The resulting parameter in the integral limits can be coped with using
+    the integration formula, which flattens the integral
+  \item The integral is now in the form of multiple exponential integrals
+    multiplied together, so we apply Watson's lemma on each of them
+\end{enumerate}
+That way we derive a finite product of infinite sums as the asymptotic
+expansion. To get an actual coefficient from that we use combinatorics (we could
+of course just combine the sum using the Cauchy product formula, but that will
+just result in a much more complicated term).
 
-% TODO: Sichergehen, dass wenigstens j=1 schonmal stimmt!
-% j = 1, ++
-The first term for $j=1$ is as follows
-\begin{align*}
-  \Tr R^{(1)}_{++} &= C^2 \Int{x}{
-    \Int{z}{
-      \Eto{-\mu(x+z+z+x)}\lambda(z)
-    }
-  } \\
-  &= C^2 \Int{x}{
-    \Eto{-2\mu x}
-  }
-  \Int{z}{
-    \Eto{-2\mu z}\lambda(z)
-  } \\
-  &= C^2 \left(
-      \frac1{2\mu} - \frac{\Eto{-2\mu}}{2\mu}
-    \right)
-    \Int{z}{\Eto{-2\mu z}\lambda(z)} \\
-  &\SimAs{\mu\to\infty}\ %
-  \frac{1}{2\mu} \Wsum{\lambda^{(n)}(0)}
-\end{align*}
-
+% j = 1, ++: Oben
 % j = 1, +-
-The second term for $j=1$ is
+Additional to the already calculated $\Tr R^{(1)}_{++}$-term we need to
+calculate only this one for $j=1$:
 \begin{align*}
-  \Tr R^{(1)}_{+-} &= -C^2 \Int{x}{
+  \Tr R^{(1)}_{+-} &= C_{+-} \Int{x}{
       \Int{z}{
         \Eto{-\mu(x+z+\Abs{z-x})}
         \lambda(z)
       }
     } \\
-    &= -C^2 \Int{x}{
+    &= C_{+-} \Int{x}{
       \left(
         \Integ[x]{0}{z}{
           \Eto{-\mu(x+z+x-z)}\lambda(z)
@@ -165,99 +201,96 @@ The second term for $j=1$ is
         }
       \right)
     } \\
-    &= -C^2 \left(
+    &= C_{+-} \left(
       \Int{x}{\Eto{-2\mu x} \Lambda(x)}
       + \Int{x}{\Eto{-2\mu x} \lambda(x)x}
       \right) \\
       % Result:
-    &\SimAs{\mu\to\infty}\ %
-      -\frac{1}{2\mu}
-      \Wsum{\Lambda^{(n)}(0)} + \Wsum{n\lambda^{(n-1)}(0)} \\
-      %
-    &= \Wsum{(n+1)\lambda^{(n-1)}},
+    &\SimAs{\mu\to\infty} %
+      (2\mu)^{-3}\left(
+      \Wsum{\Lambda^{(n)}} + \Wsum{n\lambda^{(n-1)}}\right)
+      = (2\mu)^{-3} \Wsum[1]{(n+1)\lambda^{(n-1)}},
 \end{align*}
 since $\Lambda(0) = 0$. We also used the identity $(xf(x))^{(n)} = xf^{(n)}(x) +
-nf^{(n-1)}(x)$ as well as the triangle integration
+nf^{(n-1)}(x)$ (which results in the $n\lambda^{(n-1)}(0)$ term as we evaluate
+at $0$) as well as the triangle integration
 (Lemma~\ref{lem:triangle-integration}) with $g \equiv 1$.
-% j = 1, -+
-For the symmetry reasons given above this does also give the asymptotics of $\Tr
-R^{(1)}_{-+}$.
+For the symmetry reasons given above this is also the asymptotics of $\Tr
+R^{(1)}_{-+}$, so we have:
+\begin{align}
+  \label{eqn:tr1}
+  \Tr R^{(1)} \SimAs{\mu\to\infty} (-2\mu)^{-4}
+  \left(
+    \lambda^2\cdot 0 + W(0) + \sum_{n=1}^\infty \frac{
+      \lambda^{(n)}(0) + 2(n+1)\lambda^{(n-1)}(0)
+    }{(2\mu)^n}
+  \right)
+\end{align}
 
 % j = 2
-The calculations for $j = 2$ are a bit more involved. Again, we need to
-transform the integrals such that we can apply Watson's lemma. The least
-problematic term is again the one without any absolute values in the exponent:
-% TODO: Falsch gerechnet :), Vorzeichen!
-% +++
+The calculations for $j = 2$ are a bit more involved. We start off with the case
+$\Tr R^{(2)}_{++-} =  \Tr R^{(2)}_{-++}$:
+% -++
 \begin{align*}
-  \Tr R^{(2)}_{+++} &= C^3
-  \Int{x}{
-    \Int{z_1}{
-      \Int{z_2}{
-        \Eto{-\mu(x + z_1 + z_1 + z_2 + z_2 + x)}
-        \lambda(z_1)\lambda(z_2)
-      }
+  \Tr R^{(2)}_{-++} &= C_{-++} \Int{x}{
+  \Int{z_1}{
+    \Int{z_2}{
+      \Eto{-\mu(\Abs{x-z_1} + z_1 + z_2 + z_2 + x)}
+      \lambda(z_1)\lambda(z_2)
     }
-  } \\
-  &= C^3 \Int{x}{
-    \Eto{-2\mu x}
   }
-  \left(
-    \Int{z}{
-      \Eto{-2\mu z}\lambda(z)
+  } \\
+  &= C_{-++} \Int{z_2}{\Eto{-2\mu z_2}\lambda(z_2)}
+  \Int{x}{
+    \left(
+    \Integ[x]{0}{z_1}{
+      \Eto{-2\mu x}\lambda(z_1)
     }
-  \right)^2 \\
-  % Result
-  &\SimAs{\mu\to\infty}\ %
-  \frac{1}{(2\mu)^6}
-  \left((2\mu)\Wsum{\lambda^{(n)}(0)}\right)^2
-\end{align*}
-
-Now we calculate the case $\Tr R^{(2)}_{++-} =  \Tr R^{(2)}_{-++}$ as follows
-\begin{align*}
-  \Tr R^{(2)}_{-++} &= -C^3 \Int{x}{
-    \Int{z_1}{
-      \Int{z_2}{
-        \Eto{-\mu(\Abs{x-z_1} + z_1 + z_2 + z_2 + x)}
-        \lambda(z_1)\lambda(z_2)
-      }
+    + \Integ[1]{x}{z_1}{
+      \Eto{-2\mu z_1}\lambda(z_1)
     }
-  } 
-  % TODO: Nicht fertig, war falsch
+    \right)
+  } \\
+  &= C_{-++} \Int{z}{\Eto{-2\mu z}\lambda(z)}
+  \Int{x}{\Eto{-2\mu x}(\Lambda(x) + x\lambda(x))} \\
+  &\SimMu (-2\mu)^{-4} \Wsum{\lambda^{(n)}} \Wsum[1]{(n+1)\lambda^{(n-1)}}.
 \end{align*}
 Very similar to that we can calculate $\Tr R_{+-+}$:
 % +-+
 \begin{align*}
-  \Tr R_{+-+}^{(2)} &= -C^3 \Int{x}{
+  \Tr R_{+-+}^{(2)} &= C_{+-+} \Int{x}{
     \Int{z_1}{
       \Int{z_2}{
-        \Eto{-\mu(x+z_1 + \lvert z_1 - z_2\rvert + z_2 + x)}
+        \Eto{-\mu(x+z_1 + \Abs{z_1 - z_2} + z_2 + x)}
         \lambda(z_1)\lambda(z_2)
       }
     }
   } \\
-  &= -C^3 \Int{x}{
-    \Eto{-2\mu x} \left(
-      \Int{z_1}{
-        \Integ[1]{z_1}{z_2}{
-          \Eto{-\mu(2z_2)}\lambda(z_1)\lambda(z_2)
-        }
-        + \Integ[z_1]{0}{z_2}{
-          \Eto{-\mu(2z_1)}\lambda(z_1)\lambda(z_2)
-        }
-      }
+  &= C_{+-+} \Int{x}{\Eto{-2\mu x}}
+  \Int{z_1}{
+    \left(
+    \Integ[1]{z_1}{z_2}{
+      \Eto{-2\mu z_2}\lambda(z_1)\lambda(z_2)
+    }
+    + \Integ[z_1]{0}{z_2}{
+      \Eto{-2\mu z_1}\lambda(z_1)\lambda(z_2)
+    }
     \right)
   } \\
-  &= -C^3 \Int{x}{\Eto{-2\mu x}}
+  &= C_{+-+} \Int{x}{\Eto{-2\mu x}}
     \Int{z}{
       \Eto{-2\mu z}\left(
         \Lambda(z)\lambda(z) + z (\lambda(z))^2
       \right)
-    }
+    } \\
+  % Result
+    &\SimMu (-2\mu)^{-4} \sum_{n=0}^\infty \frac{(\Lambda\lambda)^{(n)} +
+  (z(\lambda(z))^2)^{(n)}(0)}{(2\mu)^{n+1}}
 \end{align*}
 
+% --+
 \begin{align*}
-  \Tr R_{--+}^{(2)} &= C^3 \Int{x}{
+  \Tr R_{--+}^{(2)} &= C_{--+} \Int{x}{
     \Int{z_2}{
       \Int{z_1}{
         \Eto{-\mu(\Abs{x-z_1} + \Abs{z_1 - z_2} + z_2 + x)}
@@ -265,19 +298,18 @@ Very similar to that we can calculate $\Tr R_{+-+}$:
       }
     }
   } \\
-  &= C^3 \Int{x}{
+  &= C_{--+} \Int{x}{
     \left(
       \Integ[x]{0}{z_2}{
         \left(
           \Integ[z_2]{0}{z_1}{
             \Eto{-2\mu(x + z_2 - z_1)}\lambda(z_1)\lambda(z_2)
-          }
-          + \Integ[1]{z_2}{z_1}{
-            \Eto{-2\mu(x)}\lambda(z_1)\lambda(z_2)
+          } + \Integ[1]{z_2}{z_1}{
+            \Eto{-2\mu x}\lambda(z_1)\lambda(z_2)
           }
         \right)
-      } \\
-    &\hphantom{=} + \Integ[1]{x}{z_2}{
+      }\right. \\
+      &\left.{} + \Integ[1]{x}{z_2}{
         \left(
           \Integ[z_2]{0}{z_1}{
             \Eto{-2\mu z_2}\lambda(z_1)\lambda(z_2)
@@ -296,14 +328,14 @@ Very similar to that we can calculate $\Tr R_{+-+}$:
 
 % -+-
 \begin{align*}
-  \Tr R_{-+-}^{(2)} &= C^3 \Int{x}{
+  \Tr R_{-+-}^{(2)} &= C_{-+-} \Int{x}{
     \Int{z_2}{
       \Int{z_1}{
         \Eto{-\mu(\Abs{x-z_1}+z_1+z_2+\Abs{z_2-x})}\lambda(z_1)\lambda(z_2)
       }
     }
   } \\
-  &= C^3 \Int{x}{
+  &= C_{-+-} \Int{x}{
     \Eto{-2\mu x}
     \left(
       \Lambda(x)^2 + \lambda(x)M(x) + \ldots
@@ -330,12 +362,11 @@ derivatives.
 Summing up the previous results we get the following three terms of the
 asymptotic expansion of $\Tr R_\theta$:
 % TODO: Achtung: Hier ist nicht verwendet, dass \lambda = \lambda^2 V + W, also
-%       von gemischter Ordnung ist! Außerdem muss \mu = \sqrt(\lambda^2 + z^2)  
-%       ausgeschrieben werden
+% von gemischter Ordnung ist! Außerdem muss \mu = \sqrt(\lambda^2 V(0) + z^2)
+% ausgeschrieben werden
 \begin{align}
   h_1 &= \frac{1}{4\mu^2} = \frac{1}{4} (\lambda^2 + z^2)^{-1} \\
-  h_2 &= \frac{1}{8\mu^3} (\lambda'(0) + 6\lambda'(0)) =
-         \frac{7}{8\mu^3}\lambda'(0) \\
-  h_3 &= 
+  h_2 &= \frac{\lambda^2}{(2\mu)^5} V'(0) \\
+  h_3 &= \frac{\lambda^4}{(2\mu)^8}\cdot + \frac{\lambda^2}{(2\mu)^6}\cdot + \frac{1}{(2\mu)^4}\cdot
 \end{align}
 
