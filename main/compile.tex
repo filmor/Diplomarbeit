@@ -9,11 +9,22 @@ Since we saw in the previous sections that
     \Tr{(\Delta_\lambda + z^2)}^{-1}
     \ \SimAs{\Abs{(z,\lambda)}\to\infty}\ 
 \end{align*}
+% TODO results from the previous sections (asymptotics of Tr^{-1})
+we see that the corresponding coefficients are
+\begin{align}
+  (2z)^{-1} \partial_z \frac{\lambda^n}{(\lambda^2 + z^2)^{m}}
+    &= -m \frac{\lambda^n}{(\lambda^2 + z^2)^{m+1}}.
+\end{align}
 
-\section{Compilation}
+\section{Compilation and Application}
 Now that we have calculated the coefficients we only need to integrate the
-homogeneous part with the logarithm. To do that we use the Mellin transform,
-since
+homogeneous part with the logarithm, as given in the main theorem of (LESCH
+VERTMAN):
+\begin{align*}
+  \Integ[\infty]{0}{\lambda}{h_3(1,\lambda)\ln(\lambda)}.
+\end{align*}
+
+To do that we use the Mellin transform, since
 \begin{align*}
     \left.\frac\partial{\partial r}\right|_{r=0}\Integ[\infty]{0}{x}{x^r f(x)}
     &= \Integ[\infty]{0}{x}{\ln{(x)} f(x)}
