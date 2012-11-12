@@ -1,19 +1,17 @@
 \section{Asymptotics of $\Tr{(\Delta_\lambda + z^2)^{-2}}$}
-By formal derivation we see that
+By formally deriving we see that
 \begin{align*}
-    \partial_z\Tr{(\Delta_\lambda + z^2)}^{-1} &=
-        (2z) \Tr{(\Delta_\lambda + z^2)}^{-2}.
+    \partial_z \Tr{(\Delta_\lambda + z^2)}^{-1} &=
+        (-2z) \Tr{(\Delta_\lambda + z^2)}^{-2}.
 \end{align*}
-Since we saw in the previous sections that
-\begin{align*}
-    \Tr{(\Delta_\lambda + z^2)}^{-1}
-    \ \SimAs{\Abs{(z,\lambda)}\to\infty}\ 
-\end{align*}
-% TODO results from the previous sections (asymptotics of Tr^{-1})
-we see that the corresponding coefficients are
+
+Since we saw in the previous sections that the components of the trace expansion
+of the resolvent are of the form $\frac{\lambda^n}{(\lambda^2 k + z^2)^m}$ (with
+$k$ being one of $V(0)$, $V(1)$ and $V(x)$) we get the following formula for the
+coefficients of $\Tr{(\Delta_\lambda + z^2)}^{-2}$:
 \begin{align}
-  (2z)^{-1} \partial_z \frac{\lambda^n}{(\lambda^2 + z^2)^{m}}
-    &= -m \frac{\lambda^n}{(\lambda^2 + z^2)^{m+1}}.
+  (-2z)^{-1} \partial_z \frac{\lambda^n}{(\lambda^2 k + z^2)^{m}}
+    &= m \frac{\lambda^n}{(\lambda^2 k + z^2)^{m+1}}
 \end{align}
 
 \section{Compilation and Application}

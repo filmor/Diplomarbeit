@@ -1,9 +1,9 @@
 \documentclass[paper=a4,twoside,parskip=full]{scrartcl}
 
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath,amssymb,amsfonts,fancyhdr,csquotes,tikz}
+\usepackage{amsmath,amssymb,amsfonts,fancyhdr,csquotes,tikz,enumerate}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
-\usepackage[standard,thmmarks]{ntheorem}
+\usepackage[standard,thmmarks,hyperref,thref]{ntheorem}
 \usepackage[ngerman,english,british]{babel}
 % \usepackage[backend=biber]{biblatex}
 \usepackage[scale=0.8]{geometry}
@@ -26,10 +26,12 @@
 % Fix bold headings
 \def\bfseries{\fontseries \bfdefault \selectfont \boldmath}
 
+\newtheorem{MainTheorem}{Main Theorem}
+
 \numberwithin{equation}{section}
-\numberwithin{theorem}{section}
-\numberwithin{Remark}{section}
 \numberwithin{Lemma}{section}
+\numberwithin{Theorem}{section}
+\numberwithin{Remark}{section}
 
 \newcommand{\Thema}{Zur Resolventenspur multiparametrischer
 Sturm-Liouville-Operatoren}

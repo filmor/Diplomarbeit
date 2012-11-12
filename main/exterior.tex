@@ -81,35 +81,23 @@ instead of $0$.
 % TODO
 From the above considerations we know that we will have to calculate the
 asymptotics of $2^3 - 1 + 2^2 - 1 + 2^1 - 1 = 11$ traces. For symmetry reasons
-we can reduce this to 7 integrals.
+we can reduce this to 7 integrals. We can do this as we can see in the further
+calculation that it suffices to prove the following Lemma:
 % TODO: Auswalzen warum Stetigkeit ausreicht.
-% TODO: Symmetrieüberlegungen! Das muss gehen (denn es funktioniert), ist aber
-% nichttrivial. Sind die Integrale stetig in x und y? Das ist quasi der wichtige
-% Punkt. Ist F(x) = \int e^(-tx) f(t) stetig? Sollte es sein, genau an diese
-% Stelle gehört der zugehörige Beweis.
-
-% TODO: Achtung: Für Lipschitzstetigkeit braucht man offenbar \int tf(t),
-% nachsehen, ob das hier gegeben ist. Wenn nicht, nochmal mit einfacher
-% Stetigkeit probieren.
 \begin{Lemma}
-  Let $f\colon [0,T)\to\mathbb{R}$ (where $T$ can be $\infty$) be an integrable
-    function. Then the exponential integral
+  Let $f\colon [0,T)\to\mathbb{R}$ (where $T$ may be $\infty$) be an integrable
+  function. Then the exponential parameter integral
   \begin{align*}
     F(x) = \Integ[T]{0}{t}{\Eto{-tx} f(t)}
   \end{align*}
   is continuous in $x$.
-  \begin{proof}
-    We only need the Lipschitz continuity of the exponential function for
-    negative exponents:
-    \begin{align*}
-      \lvert F(x) - F(y)\rvert &=
-      \left|\Integ[T]{0}{t}{\Eto{-tx}f(t)} - \Integ[T]{0}{t}{\Eto{-ty}f(t)}\right|
-      = \left|\Integ[T]{0}{t}{\left(\Eto{-tx}-\Eto{-ty}\right)f(t)}\right| \\
-      &\le \Integ[T]{0}{t}{L\left|x - y\right| \lvert tf(t)\rvert}
-      = L \left\|f\right\|_{L^1([0,T))} \left|x-y\right|,
-    \end{align*}
-    where $L$ is the Lipschitz constant for $x\mapsto\exp(-x)$ on $\Rplus$.
-  \end{proof}
+  \begin{Proof}
+    The statement follows immediately from a classical result of Lebesgue theory
+    on the continuity of parameter-dependent integrals (REF: Königsberger 2
+    282f). We only need to check, that there is an integrable majorant for all
+    $x$, which is simply $f(t)$ in this case, and that the whole integrand is
+    continuous in $x$ for fixed $t$ which is obvious.
+  \end{Proof}
 \end{Lemma}
 
 In the following calculations we define analogous to $R$
@@ -182,7 +170,7 @@ just result in a much more complicated term).
 
 % j = 1, ++: Oben
 % j = 1, +-
-Additional to the already calculated $\Tr R^{(1)}_{++}$-term we need to
+In addition to the already calculated $\Tr R^{(1)}_{++}$-term we need to
 calculate only this one for $j=1$:
 \begin{align*}
   \Tr R^{(1)}_{+-} &= C_{+-} \Int{x}{
@@ -253,7 +241,7 @@ $\Tr R^{(2)}_{++-} =  \Tr R^{(2)}_{-++}$:
   } \\
   &= C_{-++} \Int{z}{\Eto{-2\mu z}\lambda(z)}
   \Int{x}{\Eto{-2\mu x}(\Lambda(x) + x\lambda(x))} \\
-  &\SimMu (-2\mu)^{-4} \Wsum{\lambda^{(n)}} \Wsum[1]{(n+1)\lambda^{(n-1)}}.
+  &\SimMu (2\mu)^{-4} \Wsum{\lambda^{(n)}} \Wsum[1]{(n+1)\lambda^{(n-1)}}.
 \end{align*}
 Very similar to that we can calculate $\Tr R_{+-+}$:
 % +-+
@@ -284,11 +272,13 @@ Very similar to that we can calculate $\Tr R_{+-+}$:
       \right)
     } \\
   % Result
-    &\SimMu (-2\mu)^{-4} \sum_{n=0}^\infty \frac{(\Lambda\lambda)^{(n)} +
+    &\SimMu (2\mu)^{-5} \sum_{n=0}^\infty \frac{(\Lambda\lambda)^{(n)} +
   (z(\lambda(z))^2)^{(n)}(0)}{(2\mu)^{n+1}}
 \end{align*}
 
 % --+
+Finally we arrive at the two most difficult terms, involving two absolute values
+in the exponent, first $\Tr R_{--+}^{(2)}$:
 \begin{align*}
   \Tr R_{--+}^{(2)} &= C_{--+} \Int{x}{
     \Int{z_1}{
@@ -298,7 +288,7 @@ Very similar to that we can calculate $\Tr R_{+-+}$:
       }
     }
   } \\
-  &= C_{--+} \Int{x}{\Bigl( \\
+  = C_{--+} \Int{x}{\Bigl( \\
     % (I) x < z_1 < z_2
     &\Integ[1]{x}{z_1}{\Integ[1]{z_1}{z_2}{
         \Eto{-2\mu z_2}\lambda(z_1)\lambda(z_2)
@@ -322,88 +312,97 @@ Very similar to that we can calculate $\Tr R_{+-+}$:
     \Bigr)
   }
 \end{align*}
+After splitting the Integral in those four terms we evaluate them one by one:
+\begin{enumerate}[(I)]
+  \item Using $\Integ[x]{0}{z}{z\lambda(z)} = x\Lambda(x) - M(x)$ we have:
+    \begin{align*}
+      \Int{x}{
+        \Integ[1]{x}{z_1}{\Integ[1]{z_1}{z_2}{
+            \Eto{-2\mu z_2}\lambda(z_1)\lambda(z_2)
+          }
+        }
+      }
+      &= \Int{z_1}{z_1 \Integ[1]{z_1}{z_2}{\Eto{-2\mu z_2}\lambda(z_1)\lambda(z_2)}}
+      \\
+      &= \Int{z_2}{\Eto{-2\mu z_2}\lambda(z_2) \Integ[z_2]{0}{z_1}{z_1\lambda(z_1)}}
+      \\
+      &\SimMu \Wsum{(x\lambda\Lambda - \lambda M)^{(n)}}
+    \end{align*}
 
-(I) Let $F(x) := \Integ[x]{0}{z}{z\lambda(z)}$. Then:
-\begin{align*}
-  \Int{x}{
-    \Integ[1]{x}{z_1}{\Integ[1]{z_1}{z_2}{
-        \Eto{-2\mu z_2}\lambda(z_1)\lambda(z_2)
+  \item
+    \begin{align*}
+      \Int{x}{
+        \Integ[1]{x}{z_1}{
+          \Integ[z_1]{0}{z_2}{
+            \Eto{-2\mu z_1}{\lambda(z_1)\lambda(z_2)}
+          }
+        }
       }
-    }
-  }
-  &= \Int{z_1}{z_1 \Integ[1]{z_1}{z_2}{\Eto{-2\mu z_2}\lambda(z_1)\lambda(z_2)}}
-  \\
-  &= \Int{z_2}{\Eto{-2\mu z_2}\lambda(z_2) \Integ[z_2]{0}{z_1}{z_1\lambda(z_1)}}
-  \\
-  &\SimMu \Wsum{(\lambda F)^{(n)}}
-\end{align*}
+      &= \Int{z_1}{z_1 \Eto{-2\mu z_1}\lambda(z_1)\Lambda(z_1)} \\
+      &\SimMu \Wsum{(z\lambda\Lambda)^{(n)}}
+    \end{align*}
 
-(III)
-\begin{align*}
-  \Int{x}{
-    \Integ[1]{x}{z_1}{
-      \Integ[z_1]{0}{z_2}{
-        \Eto{-2\mu z_1}{\lambda(z_1)\lambda(z_2)}
+  \item
+    \begin{align*}
+      \Int{x}{
+        \Integ[x]{0}{z_1}{
+          \Integ[z_1]{0}{z_2}{
+            \Eto{-2\mu x}\lambda(z_1)\lambda(z_2)
+          }
+        }
       }
-    }
-  }
-  &= \Int{z_1}{z_1 \Eto{-2\mu z_1}\lambda(z_1)\Lambda(z_1)} \\
-  &\SimMu \Wsum{(z\lambda\Lambda)^{(n)}}
-\end{align*}
+      &= \Int{x}{
+        \Eto{-2\mu x} \Integ[x]{0}{z_1}{\lambda(z_1)\Lambda(z_1)}
+      } \\
+      &\SimMu \sum_{n=1}^\infty \frac{(\lambda\Lambda)^{(n-1)}}{(2\mu)^{n+1}}
+    \end{align*}
 
-(IV)
-\begin{align*}
-  \Int{x}{
-    \Integ[x]{0}{z_1}{
-      \Integ[z_1]{0}{z_2}{
-        \Eto{-2\mu x}\lambda(z_1)\lambda(z_2)
-      }
-    }
-  }
-  &= \Int{x}{
-    \Eto{-2\mu x} \Integ[x]{0}{z_1}{\lambda(z_1)\Lambda(z_1)}
-  } \\
-  &\SimMu \sum_{n=1}^\infty \frac{(\lambda\Lambda)^{(n-1)}}{(2\mu)^{n+1}}
-\end{align*}
-
-(II)
-\begin{align*}
-  \Int{x}{
-    \Eto{-2\mu x}
-    \Integ[x]{0}{z_1}{
-      \Eto{+2\mu z_1} \lambda(z_1)
-      \Integ[1]{z_1}{z_2}{
-        \Eto{-2\mu z_2} \lambda(z_2)
-      }
-    }
-  }
-  &= \Int{z_1}{
-    \Eto{2\mu z_1}\lambda(z_1)
-    \Integ[1]{z_1}{z_2}{
-      \Eto{-2\mu z_2}\lambda(z_2)
-    }
-    \frac{1}{2\mu}\left(\Eto{-2\mu z_1} - \Eto{-2\mu}\right)
-  } \\
-  &= \text{(a) } \frac{1}{2\mu}
-    \Int{z_1}{
-      \lambda(z_1)
-      \Integ[1]{z_1}{z_2}{
-        \Eto{-2\mu z_2}\lambda(z_2)
-      }
-    } \\
-  &= \frac{1}{2\mu} \Int{z_2}{\Eto{-2\mu z_2}\lambda(z_2)\Lambda(z_2)}
-    \SimMu \sum_{n=1}\frac{(\lambda \Lambda)^{(n-1)}}{(2\mu)^{n+1}}
-\end{align*}
+  \item After those pretty straight-forward calculations we are left with a more
+    difficult one:
+    \begin{align*}
+      \Int{x}{
+        \Eto{-2\mu x}
+        &\Integ[x]{0}{z_1}{
+          \Eto{+2\mu z_1} \lambda(z_1)
+          \Integ[1]{z_1}{z_2}{
+            \Eto{-2\mu z_2} \lambda(z_2)
+          }
+        }
+      } \\
+      =&\Int{z_1}{
+        \Eto{2\mu z_1}\lambda(z_1)
+        \Integ[1]{z_1}{z_2}{
+          \Eto{-2\mu z_2}\lambda(z_2)
+        }
+        \frac{1}{2\mu}\left(\Eto{-2\mu z_1} - \Eto{-2\mu}\right)
+      } \\
+      =&\ \frac{1}{2\mu}
+        \Int{z_1}{
+          \lambda(z_1)
+          \Integ[1]{z_1}{z_2}{
+            \Eto{-2\mu z_2}\lambda(z_2)
+          }
+        }
+        -\frac{1}{4\mu}
+        \left(\Int{z}{\Eto{-2\mu z}\lambda(z)}\right)^{2}
+        \\
+        =&\ \frac{1}{2\mu} \Int{z_2}{\Eto{-2\mu z_2}\lambda(z_2)\Lambda(z_2)}
+        -\frac1{4\mu}\left(\Int{z}{\Eto{-2\mu z}\lambda(z)}\right)^{2}
+        \\
+        &\ \SimMu \sum_{n=1}\frac{(\lambda \Lambda)^{(n-1)}}{(2\mu)^{n+1}}
+              -\frac{1}{4\mu}\left(\Wsum{\lambda^{(n)}}\right)^2
+    \end{align*}
+    % TODO Finalize
+\end{enumerate}
 which leads us to
 \begin{align*}
   \Tr R_{--+}^{(2)}
   &= (2\mu)^{-4} \sum_{n=1}^{\infty}
   \frac{
-    (\lambda F + x\lambda\Lambda)^{(n)}(0)
+    (M + 2x\lambda\Lambda)^{(n)}(0)
     + 2(\lambda\Lambda)^{(n-1)}(0)
   }{(2\mu)^n}
 \end{align*}
-
 
 % -+-
 \begin{align*}
@@ -417,7 +416,7 @@ which leads us to
   &= C_{-+-} \Int{x}{
     \Eto{-2\mu x}
     \left(
-      \Lambda(x)^2 + \lambda(x)M(x) + \ldots
+      \Lambda(x)^2 + 2\lambda(x)M(x)
       % TODO: Dritter Term ist noch nicht 
       % gerechnet!
     \right)
@@ -440,12 +439,23 @@ derivatives.
 
 Summing up the previous results we get the following three terms of the
 asymptotic expansion of $\Tr R_\theta$:
-% TODO: Achtung: Hier ist nicht verwendet, dass \lambda = \lambda^2 V + W, also
-% von gemischter Ordnung ist! Außerdem muss \mu = \sqrt(\lambda^2 V(0) + z^2)
-% ausgeschrieben werden
 \begin{align}
   h_1 &= \frac{1}{4\mu^2} = \frac{1}{4} (\lambda^2 + z^2)^{-1} \\
   h_2 &= \frac{\lambda^2}{(2\mu)^5} V'(0) \\
-  h_3 &= \frac{\lambda^4}{(2\mu)^8}\cdot + \frac{\lambda^2}{(2\mu)^6}\cdot + \frac{1}{(2\mu)^4}\cdot
+  h_3 &= \frac{\lambda^4}{(2\mu)^8} \frac12 (V'(0))^{2}
+       + \frac{\lambda^2}{(2\mu)^6} \left(V''(0) + 6V'(0)\right)
+       + \frac1{(2\mu)^4} W(0).
 \end{align}
 
+We have thus proven the following theorem
+\begin{MainTheorem}
+  The multiparametric trace-expansion of the resolvent of the Sturm-Liouville
+  operator
+  \begin{align*}
+    \Delta_\lambda = -\partial_x^2 + \lambda^2 V(x) + W(x)
+  \end{align*}
+  up to the third non-vanishing order is given by
+  \begin{align*}
+    \text{kommt noch}
+  \end{align*}
+\end{MainTheorem}
