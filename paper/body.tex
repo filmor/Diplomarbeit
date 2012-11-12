@@ -1,3 +1,4 @@
+%lastlabel 8 120928 DO NOT EDIT
 \begin{document}
 
 \title[Regularizing infinite sums of zeta-determinants]
@@ -25,21 +26,31 @@ Germany}
 \thanks{Both authors were supported by the 
         Hausdorff Center for Mathematics.}
 
-\subjclass[2000]{58J52; 34B24}
+%\subjclass[2000]{58J52; 34B24}
 \date{This document was compiled on: \today}
 
 
 \begin{abstract}
-Laplace-Beltrami operator on a surface of revolution decomposes into an infinite direct sum 
-of scalar Laplace-type operators, parametrized by the eigenvalues of the cross-section $\mathbb{S}^1$. 
-We present here a new resolvent trace expansion for such scalar Laplace-type operators, 
-polyhomogeneous both in the operator and the resolvent parameter. 
-We apply the polyhomogeneous expansion to equate the zeta-determinant of the 
-Laplace-Beltrami operator to a regularized sum of zeta-determinants of the scalar 
-Laplace-type operators plus a locally computable term from the polyhomogeneous 
-resolvent trace asymptotics. 
-This approach provides a systematic alternative to summing up zeta-functions of the scalar operators 
+We present a new multiparameter resolvent trace expansion for elliptic
+operators, polyhomogeneous in both the resolvent and auxiliary variables.
+For elliptic operators on closed manifolds the expansion is a simple
+consequence of the parameter dependent pseudodifferential calculus. As
+an additional nontrivial toy example we treat here Sturm-Liouville operators with
+separated boundary conditions.
+
+As an application we give a new formula, in terms of regularized sums, for the
+$\zeta$--determinant of an infinite direct sum of Sturm-Liouville operators.
+The Laplace-Beltrami operator on a surface of revolution decomposes into an
+infinite direct sum of Sturm-Louville operators, parametrized by the
+eigenvalues of the Laplacian on the cross-section $\mathbb{S}^1$.  We apply
+the polyhomogeneous expansion to equate the zeta-determinant of the
+Laplace-Beltrami operator as a regularized sum of zeta-determinants of the
+Sturm-Liouville operators plus a locally computable term from the
+polyhomogeneous resolvent trace asymptotics.  This approach provides a
+completely new method for summing up zeta-functions of  operators
 and computing the meromorphic extension of that infinite sum to $s=0$. 
+
+We expect out method to extend to a much larger class of operators.
 \end{abstract}
 
 \maketitle
@@ -49,26 +60,28 @@ and computing the meromorphic extension of that infinite sum to $s=0$.
 %**************************************************************************
 \section{Introduction and formulation of the result}
 %**************************************************************************
-Various geometric problems involve zeta-determinants of Hodge-Laplace operators 
-which decompose into an infinite sum of scalar Laplace-type operators. The most prominent 
-example seems to be the discussion of analytic torsion on spaces with conical singularities, where the problem 
-of computing the zeta-determinant of an infinite sum of scalar operators arises naturally and has 
-motivated the work of the first author in \cite{Les:DOR}. 
+Various geometric problems involve zeta-determinants of Hodge-Laplace
+operators which decompose into an infinite sum of scalar Laplace-type
+operators. The most prominent example seems to be the discussion of analytic
+torsion on spaces with conical singularities, where the problem of computing
+the zeta-determinant of an infinite sum of scalar operators arises naturally
+and has motivated the work of the first author in \cite{Les:DOR}. 
 
-Basic approach to this problem is given by summing up zeta-functions 
+The basic approach to this problem is given by summing up zeta-functions 
 $\zeta(s,\Delta_\lambda), \lambda \in \N_0$ of the scalar Laplace-type operators 
-$\Delta_\lambda$ for $\operatorname{Re}(s) \gg 0$ and computing
+$\Delta_\lambda$ for $\textup{Re}(s) \gg 0$ and computing the
 meromorphic extension of that infinite sum to $s=0$. This approach was taken by Spreafico 
 in \cite{Spr:ZFA, Spr:ZIF}, where the intricate task of constructing a meromorphic extension 
 is addressed for bounded cones. Compare also the discussion by Bordag, Kirsten and 
 Dowker in \cite{BKD:HKA} and by the second author in \cite{Ver:ATO}.
 
-In this article we present a conceptually new ansatz to computing the zeta determinant 
-of an infinite sum of scalar Laplace-type operators, which uses a new polyhomogeneous 
+In this article we present a conceptually new method for computing the zeta determinant 
+of an infinite sum of operators, which uses a new polyhomogeneous 
 resolvent trace expansion. Our model setup here is a surface of 
 revolution. The spectral decomposition on $\mathbb{S}^1$ decomposes the Laplace-Beltrami operator 
-$\Delta$ on a surface of revolution into an infinite sum of scalar Laplace-type operators 
-$\Delta_\lambda, \lambda \in \N_0$. 
+$\Delta$ on a surface of revolution into an infinite sum of 
+Sturm-Liouville operators $\Delta_\lambda, \lambda \in \N_0$ on a finite
+interval with separated boundary conditions.
 
 We establish an expansion of the resolvent trace for $\Delta_\lambda$, 
 polyhomogeneous both in $\lambda$ and the resolvent parameter, and prove that 
@@ -82,28 +95,29 @@ $\Tr(\Delta+z^2)^{-2}$ as $z\to \infty$, which do not appear in the
 corresponding (standard) resolvent expansions of the scalar operators $\Delta_\lambda$. 
 
 \subsection{Laplace-Beltrami operator on a surface of revolution}
-Let $(M=[0,1]\times \mathbb{S}^1, g=dx^2\oplus f(x)^2 g_{\mathbb{S}^1})$ be a surface of revolution with 
-$f\in C^{\infty}[0,1], f > 0$. This is a warped product metric and the associated Laplace-Beltrami operator is given 
-by the differential expression 
-\begin{align}
+Let $(M=[0,1]\times \mathbb{S}^1, g=dx^2\oplus f(x)^2 g_{\mathbb{S}^1})$ be a
+surface of revolution with $f\in C^{\infty}[0,1], f > 0$. This is a warped
+product metric and the associated Laplace-Beltrami operator is given by the
+differential expression 
+\begin{equation}
 \Delta = -\frac{\partial^2}{\partial x^2} - 
 \frac{f'(x)}{f(x)} \frac{\partial}{\partial x} + \frac{1}{f(x)^2} \Delta_{\mathbb{S}^1},
-\end{align}
+\end{equation}
 acting on $C^{\infty}_0((0,1) \times \mathbb{S}^1)$, the 
 space of complex-valued smooth compactly supported functions on $(0,1)\times 
 \mathbb{S}^1$. The natural $L^2$-space with respect to the metric $g$ 
 is $L^2(M,g)=L^2([0,1]\times S^1, f(x)\, dx\, \textup{dvol}(g_{\mathbb{S}^1}))$.
 Under the unitary map
-\begin{align}
+\begin{equation}
 \label{unitary}
-\Phi: L^2(M,g) \to L^2([0,1], dx, L^2(\mathbb{S}^1,g_{\mathbb{S}^1})), 
+\Phi: L^2(M,g) \to L^2([0,1], L^2(\mathbb{S}^1,g_{\mathbb{S}^1})), 
 \ (\Phi u)(x):= u(x)\sqrt{f(x)},
-\end{align}
+\end{equation}
 the Laplacian $\Delta$ transforms into the operator
-\begin{align*}
+\begin{equation}
 \Phi \Delta \Phi^{-1} = -\frac{\partial^2}{\partial x^2} + \frac{1}{f(x)^2} \Delta_{\mathbb{S}^1} 
-+ \left[\frac{f''(x)}{2f(x)} - \left(\frac{f'(x)}{2f(x)}\right)^2\right], 
-\end{align*}
++ \left[\\marke\frac{f''(x)}{2f(x)} - \left(\frac{f'(x)}{2f(x)}\right)^2\right], 
+\end{equation}
 acting on $L^2([0,1],L^2(\mathbb{S}^1))$.
 The functions $\left(\frac{1}{\sqrt{2\pi}}e^{i\lambda x}\right)_{\lambda \in \Z}$
 form an orthonormal basis of $L^2(\mathbb{S}^1)$ of eigenfunctions 
@@ -126,7 +140,7 @@ We consider separated Dirichlet or generalized Neumann boundary conditions for
 $\Delta$. It is straightforward to check that under the unitary transformation 
 $\Phi$ they correspond to separated Dirichlet or generalized Neumann 
 boundary conditions for $\Phi \Delta \Phi^{-1}$ and that the resulting self-adjoint operator is compatible with the 
-decomposition \eqref{laplace-decomp}. By slight abuse of notation
+decomposition \Eqref{laplace-decomp}. By slight abuse of notation
 we denote the transformed self-adjoint operator again by $\Delta$;
 the resulting self-adjoint extensions of $\Delta_\lambda, \lambda\in \Z$,
 are again denoted by $\Delta_\lambda$. So the operators are 
@@ -134,84 +148,97 @@ identified with their self-adjoint extensions which does not lead to
 notational confusion as the boundary conditions are fixed.
 
 \subsection{Hadamard partie finie regularized sums and integrals} 
-We write $\R_+=[0,\infty)$.
-Let $f\in C^{\infty}(\R_+,\C)$ be a function with a (partial) asymptotic expansion 
+We write $\R_+=[0,\infty)$.  Let $f\in C^{\infty}(\R_+,\C)$ be a function with
+a (partial) asymptotic expansion 
 \begin{equation}
 \label{reg-limit}
 \begin{split}
-f(x) &\sim \sum_{j=1}^{N-1} \sum_{k=0}^{M_j} a_{jk}x^{\A_j} \log^k(x) +
-\sum_{k=0}^{M_0} a_{0k} \log^k(x) \\ 
-&+ x^{\A_N}\log^{M_N}(x) f_N(x), \ \textup{as} \ x\to \infty,
+f(x) \sim &\sum_{j=1}^{N-1} \sum_{k=0}^{M_j} a_{jk}x^{\A_j} \log^k(x) +
+             \sum_{k=0}^{M_0} a_{0k} \log^k(x) \\ 
+          &\quad + x^{\A_N}\log^{M_N}(x) f_N(x), \ \textup{as} \ x\to \infty,
 \end{split}
 \end{equation}
 where $N\in \N$ is arbitrary, the remainder $f_N(x)=o(1)$ as $x\to \infty$, 
 $(\A_j)\subset \C$ is a sequence of complex numbers with $\textup{Re}(\A_j)\neq 0$, 
 ordered by descending real part and $\textup{Re}(\A_N) \leq 0$. 
 We define its \emph{regularized limit} for $x\to \infty$ as 
-\begin{align}
+\begin{equation}
 \LIM_{x\to \infty}f(x) :=a_{00}.
-\end{align}
-If $f(x)$ has a (partial) asymptotic expansion of the form \eqref{reg-limit} as $x\to 0$, 
+\end{equation}
+If $f(x)$ has a (partial) asymptotic expansion of the form \Eqref{reg-limit} as $x\to 0$, 
 with $\textup{Re}(\A_N) \geq 0$, its regularized limit at zero is defined again as the 
 constant term in the expansion. If for $N\in \N$ sufficiently large, the remainder 
 $x^{\A_N} \log^{M_N}(x) f_N\in L^1[1,\infty)$ (i.e. if $\textup{Re}(\A_N) <-1$), the integral $\int_1^R f(x)dx$ also admits an asymptotic 
-expansion of the form \eqref{reg-limit} and we can define its regularized integral 
+expansion of the form \Eqref{reg-limit} and we can define its regularized integral 
 as 
-\begin{align}
+\begin{equation}
 \regint_1^\infty f(x)dx := \LIM_{R\to \infty}\int_1^R f(x) dx.
-\end{align}
+\end{equation}
 Similarly, 
-\begin{align}
-\regint_0^1 f(x)dx := \LIM_{\epsilon\to 0}\int_\epsilon^1 f(x) dx,
-\end{align}
+\begin{equation}
+\regint_0^1 f(x)dx := \LIM_{\eps\to 0}\int_\eps^1 f(x) dx,
+\end{equation}
 if this regularized limit exists. We also need a notion 
-of a partie-finie regularized sum. The Euler MacLaurin summation formula 
-yields for $f\in C^{\infty}(\R_+,\C)$ and any $N,M\in \N$
+of a partie finie regularized sum. The Euler MacLaurin summation formula 
+yields for $f\in C^{\infty}(\R_+,\C)$ and any $N\in \N, M\in\N_0$
 \begin{equation}
 \label{EM}
 \begin{split}
-\sum_{\lambda=1}^{N} f(\lambda) &= \int_1^N f(x)dx +\sum_{k=1}^M \frac{B_{2k}}{(2k)!} 
-\left(f^{(2k-1)}(N)-f^{(2k-1)}(1)\right) \\ &+ \frac{1}{(2M+1)!} \int_1^N 
-B_{2M+1}(x-[x])f^{(2M+1)}(x)dx  +\frac{1}{2}(f(1) + f(N)),
+\sum_{\lambda=1}^{N} f(\lambda) 
+    =& \int_1^N f(x)dx +\sum_{k=1}^M \frac{B_{2k}}{(2k)!} 
+             \Bigl(f^{(2k-1)}(N)-f^{(2k-1)}(1)\Bigr) \\ 
+     &\quad + \frac{1}{(2M+1)!} \int_1^N 
+              B_{2M+1}(x-[x])f^{(2M+1)}(x)dx  +\frac{1}{2}(f(1) + f(N)),
 \end{split}
 \end{equation}
 where $B_j$ denotes the $j$-th Bernoulli number, $B_j(x)$ the $j$-th Bernoulli 
 polynomial, and $f^{(j)}$ denotes the $j$-th derivative of $f\in C^{\infty}(\R_+)$. 
-Assume that $f$ admits an asymptotic expansion of the form \eqref{reg-limit}, which 
-may be differentiated $(2M+1)$ times and $2M>\textup{Re}(\A_1)$. Then \eqref{EM} 
-allows us to define the regularized sum as
+Assume that $f$ admits an asymptotic expansion of the form \Eqref{reg-limit}, which 
+may be differentiated $(2M+1)$ times and $2M>\textup{Re}(\A_1)$. Then \Eqref{EM} 
+shows that also $\sum_{\gl=1}^N f(\gl)$ admits an asymptotic expansion of
+the form \Eqref{reg-limit} and analogously to the regularized integral
+we define the regularized sum as
 \begin{align}
-\regsum_{\lambda=1}^\infty f(\lambda) := 
-\LIM_{N\to \infty} \sum_{\lambda=1}^{N} f(\lambda).
+\regsum_{\lambda=1}^\infty f(\lambda) :=& \LIM_{N\to \infty}
+\sum_{\lambda=1}^{N} f(\lambda)\label{EqRegSum1}\\
+    =& \int_1^\infty f(x)dx -\sum_{k=1}^M \frac{B_{2k}}{(2k)!} 
+    f^{(2k-1)}(1)+\frac{1}{2}f(1) +\frac 12
+              \LIM_{N\to\infty} f(N)\label{EqRegsum2}\\ 
+     &\quad + \frac{1}{(2M+1)!} \int_1^\infty 
+              B_{2M+1}(x-[x])f^{(2M+1)}(x)dx  .\nonumber
 \end{align}
+The second equality follows from \Eqref{EM} and \Eqref{reg-limit}.
+
 Similarly, for a function $f\in C^\infty(\R,\C)$ with an asymptotic expansion 
-of the form \eqref{reg-limit} both as $x\to +\infty$ and also as $x\to -\infty$, 
+of the form \Eqref{reg-limit} both as $x\to +\infty$ and also as $x\to -\infty$, 
 which may be differentiated $(2M+1)$ times and $2M>\textup{Re}(\A_1)$, we define 
 the regularized sum as
 \begin{align}
-\regsum_{\lambda=-\infty}^\infty f(\lambda) := 
+\regsumwide_{\lambda=-\infty}^\infty f(\lambda) := 
 \LIM_{N\to \infty} \sum_{\lambda=-N}^{N} f(\lambda).
 \end{align}
 
 \subsection{Statement of the main results}
 Our first main result establishes a Fubini-type theorem for regularized integrals and
-is one fundamental ingredient in the derivation of our main statement.
-\begin{theorem}
-\label{fubini}
+is one fundamental ingredient in the derivation of our main Theorem
+\plref{main-thm} below.
+\begin{theorem}\label{fubini}
 Assume $f\in C^{\infty}(\R_+^2)$ is of the form 
 \begin{align}
 f(x,y) = \sum_{j=0}^{N-1}f_{\A_j}(x,y) + F_N(x,y),
 \end{align}
-where $N\in \N$ and each $f_{\A_j}\in C^\infty(\R^2_+\backslash \{(0,0)\})$ is homogeneous of order $\A_j\in \C$ in 
-both variables jointly. The remainder is assumed to be $F_N\in L^1[1,\infty)^2$. Then 
+where each $f_{\A_j}\in C^\infty(\R^2_+\setminus \{(0,0)\})$ is homogeneous of order $\A_j\in \C$ in 
+both variables jointly, and the remainder $F_N$ is integrable over $\R^2_+\setminus
+\bigsetdef{(x,y)}{|(x,y)|\le r}$ for any $r>0$. Then, for $a,b\ge 0$
 \begin{align}\label{fubini-eq}
-\regint_1^\infty\regint_1^\infty f(x,y) \, dy \, dx = 
-\regint_1^\infty \regint_1^\infty f(x,y) \, dx \, dy + 
+\regint_a^\infty\regint_b^\infty f(x,y) \, dy \, dx = 
+\regint_b^\infty \regint_a^\infty f(x,y) \, dx \, dy + 
 \regint_0^\infty f_{-2}(1,y)\log(y) dy.
 \end{align}  
 \end{theorem}
-
-The regularized integral on the right hand side of \eqref{fubini-eq} 
+Note that regardless of the values of $a,b$ the integration in the
+correction term on the right is from $0$ to $\infty$.
+The regularized integral on the right hand side of \Eqref{fubini-eq} 
 indeed exists, see Remark \ref{reg-int-remark}. \medskip
 
 Our second main result addresses the polyhomogeneous asymptotic expansion of the 
@@ -219,21 +246,21 @@ resolvent trace for $(\Delta_\lambda+z^2)^{-1}$ \emph{jointly} in $(\lambda,z)\i
 
 \begin{prop}\label{phg-trace}
 Consider for $\lambda\in \R$ and $V,W \in C^\infty[0,\infty)$ with $V>0$ the differential operator
-\begin{align}
+\begin{align}\label{EqDeltaLa}
 \Delta_{\lambda,0}=-\frac{\partial^2}{\partial x^2} + \lambda^2 V + W
 : C^{\infty}_0(0,1) \to C^{\infty}_0(0,1).
 \end{align} 
 Let $\Delta_\lambda$ be the self-adjoint extension of $\Delta_{\lambda,0}$, obtained
 by imposing \emph{separated} Dirichlet or generalized Neumann boundary conditions. 
 Then the resolvent $(\Delta_\lambda+z^2)^{-1}$ 
-is trace class for $z\geq z_0$, 
+is trace class for $|(\gl,z)|\geq z_0$, 
 and its trace admits the following polyhomogeneous expansion 
 \begin{align*}
 \partial_\lambda^{\A}\partial_z^{\beta}\Tr(\Delta_\lambda+z^2)^{-1} \sim \sum_{i=0}^{\infty} 
 h_i (\lambda,z), \quad
 |(\lambda,z)| \rightarrow \infty,
 \end{align*}
-where each $h_i\in C^{\infty}(\R^2_+\backslash \{(0,0)\})$ is homogeneous of order $(-\gamma_i)$, 
+where each $h_i\in C^{\infty}(\R^2_+\setminus \{(0,0)\})$ is homogeneous of order $(-\gamma_i)$, 
 $\gamma_i:=i+1+\A+\beta$. Note that $h_i$ depends on $\A,\beta$.
 \end{prop}
 
@@ -243,16 +270,24 @@ In particular
 \Tr(\Delta_\lambda+z^2)^{-2} = (2z)^{-1} \partial_z
 \Tr(\Delta_\lambda+z^2)^{-1} \sim \sum_{i=0}^\infty h_i (\lambda,z), \ |(\lambda,z)| \to \infty,
 \end{align}
-where each $h_i\in C^{\infty}(\R^2_+\backslash \{(0,0)\})$
+where each $h_i\in C^{\infty}(\R^2_+\setminus \{(0,0)\})$
 is homogeneous of order $(-\gamma_i)$, $\gamma_i:=i+3$,  jointly in both variables. 
 
 Proposition \ref{phg-trace} implies in particular the well-known fact, that for fixed 
 $\lambda$ there is an asymptotic expansion as $z\to \infty$
-\begin{align}\label{1.14a}
-\Tr(\Delta_\lambda+z^2)^{-1} \sim \sum_{k=0}^\infty b_k z^{-k-1}, \\
+\begin{equation}\label{1.14a}
+\Tr(\Delta_\lambda+z^2)^{-1} \sim \sum_{k=0}^\infty b_k z^{-k-1}, 
+\end{equation}
+which may be differentiated by $z$, e.g.,
+\begin{equation}
+ \begin{split}
 \label{1.14b}
-\Tr(\Delta_\lambda+z^2)^{-2} \sim \sum_{k=0}^\infty c_k z^{-k-3}.
-\end{align}
+\Tr(&\Delta_\lambda+z^2)^{-2} = -\frac{1}{2z} 
+                \frac{d}{dz} \Tr\bl(\Delta_\gl + z^2\br)\\
+                &\sim \sum_{k=0}^\infty \frac{k+1}{2} b_k z^{-k-3}
+                =: \sum_{k=0}^\infty c_k z^{-k-3}.
+               \end{split}
+              \end{equation}
 The leading orders in the resolvent trace asymptotics for $\Delta:=\oplus \Delta_\lambda, \lambda \in \Z$, 
 and $\Delta_\lambda$ are fundamentally different. On the one hand $\Tr(\Delta_\lambda+z^2)^{-2}=O(z^{-3})$ 
 whereas $\Tr(\Delta+z^2)^{-2}=O(z^{-2})$ as $z\to \infty$. Indeed, the resolvent trace asymptotics of $\Delta_\lambda$ 
@@ -261,24 +296,34 @@ in an obvious way. Nevertheless we have the
 
 \begin{theorem}\label{trace-sum}
 In the notation of Proposition \textup{\ref{phg-trace}} we have
+for the operator 
+\begin{equation}\label{EqDelta}
+ \Delta:=\bigoplus_{\gl=-\infty}^\infty \Delta_\gl
+\end{equation}
+the resolvent trace expansion
 \begin{align}\label{1.15}
 \Tr(\Delta+z^2)^{-2} = \sum_{\lambda=-\infty}^{\infty}\Tr(\Delta_\lambda+z^2)^{-2} 
 \sim \sum_{k=2}^\infty a_k z^{-k}, \ z \to \infty.
 \end{align}
 \end{theorem}
-
+Note that $\Delta$ is just an abstract sum of operators of the form
+\Eqref{EqDeltaLa} and therefore does not necessarily have an interpretation
+as a realization of an elliptic boundary value problem on a surface.
 If, like in the case of a surface of revolution, $\Delta$ is a realization of a 
-local elliptic boundary value problem, this result is well-known, e.g. \cite[Sec. 1.11]{Gil:ITH}.
-The main point of Theorem \ref{trace-sum}, however, is the discussion of
-the difference in the leading orders of the resolvent trace expansion of 
-$\Tr(\Delta_\lambda+z^2)^{-2}=O(z^{-3})$ and their sum $\Tr(\Delta+z^2)^{-2}=O(z^{-2})$
-as $z \to \infty$, which we explain precisely using the polyhomogeneous resolvent trace expansion 
-in Proposition \ref{phg-trace} and \eqref{EM}.
+local elliptic boundary value problem, then Theorem \ref{trace-sum} is well-known, 
+e.g. \cite[Sec. 1.11]{Gil:ITH}.
+More important than the result itself, however, is our method of proof using
+the polyhomogeneous resolvent trace expansion in Proposition \ref{phg-trace}
+and \Eqref{EM}, which explains precisely the difference in the leading
+orders of the resolvent trace expansion of
+$\Tr(\Delta_\lambda+z^2)^{-2}=O(z^{-3}), z\to\infty,$ 
+and their sum $\Tr(\Delta+z^2)^{-2}=O(z^{-2}), z\to\infty$.
 
 We now define the associated zeta-regularized determinants, following \cite[(1.7)]{Les:DOR}.
 The zeta-function of $\Delta_\lambda$ is defined for $\textup{Re}(s)\gg 0$ by 
 \begin{align}\label{zeta}
-\zeta (s, \Delta_\lambda) = \sum_{\mu \in \textup{Spec}\Delta_\lambda \backslash \{0\}}
+\zeta (s, \Delta_\lambda) = \sum_{\mu \in \textup{Spec}\Delta_\lambda
+\setminus \{0\}}
 \textup{m($\mu$)} \mu^{-s}, \ \textup{Re}(s) \gg 0,
 \end{align}
 where $\textup{m($\mu$)}$ denotes the multiplicity of the eigenvalue $\mu >0$. Using
@@ -287,49 +332,51 @@ the identity
 \zeta (s, \Delta_\lambda) = 2 \, \frac{\sin \pi s}{\pi} 
 \regint_0^\infty z^{1-2s} \Tr(\Delta_\lambda+z^2)^{-1} dz,
 \end{align}
-the asymptotics \eqref{1.14a} implies that $\zeta (s, \Delta_\lambda)$ extends meromorphically 
-to $\C$ with $s=0$ being a regular point. From \eqref{1.14a} and \eqref{1.17} one derives a 
+the asymptotics \Eqref{1.14a} implies that $\zeta (s, \Delta_\lambda)$ extends meromorphically 
+to $\C$ with $s=0$ being a regular point. From \Eqref{1.14a} and \Eqref{1.17}
+one derives the 
 formula for $\log \det_{\zeta} \Delta_\lambda = -\zeta' (0, \Delta_\lambda)$
 \begin{equation}
 \log \det\nolimits_{\zeta} \Delta_\lambda = -2 \regint_0^\infty z \Tr(\Delta_\lambda + z^2)^{-1} dz.
 \end{equation}
 The resolvent $(\Delta+z^2)^{-1}$ is not trace class and we cannot employ exactly the same
-formulas for the definition of $\det_{\zeta} \Delta$. However, integration by parts in \eqref{1.17} yields
+formulas for the definition of $\det_{\zeta} \Delta$. However, integration by parts in \Eqref{1.17} yields
 \begin{align}
 \label{1.18}
 \zeta (s, \Delta_\lambda) = 2 \, \frac{\sin \pi s}{\pi (1-s)} 
-\regint_0^\infty z^{3-2s} \Tr(\Delta_\lambda+z^2)^{-2} dz.
+\regint_0^\infty z^{3-2s} \Tr(\Delta_\lambda+z^2)^{-2} dz,
 \end{align}
-As before, the asymptotics \eqref{1.14b} implies that $\zeta (s, \Delta_\lambda)$ extends meromorphically 
-to $\C$ with $s=0$ being a regular point. From \eqref{1.14b} and \eqref{1.18} we infer
-\begin{align}
+and thus with \Eqref{1.14b}
+\begin{equation}\label{EqLogDetzLa}
  \log \det\nolimits_{\zeta} \Delta_\lambda = 
 -2 \regint_0^\infty z^3 \Tr(\Delta_\lambda + z^2)^{-2} dz.
-\end{align}
-Invoking Theorem \ref{trace-sum} one sees that \eqref{1.18} is still valid 
-for $\Delta$ instead of $\Delta_\lambda$. Moreover, the asymptotic expansion \eqref{1.15}
-implies a formula for $\det_{\zeta} \Delta := \exp(-\zeta' (0, \Delta))$
-\begin{align}
-\log \det\nolimits_{\zeta} \Delta &= -2 \regint_0^\infty z^3 \Tr(\Delta + z^2)^{-2} dz. 
-\end{align}
+\end{equation}
+Invoking Theorem \ref{trace-sum} one sees that \Eqref{1.18} is still valid 
+for $\Delta$ instead of $\Delta_\lambda$. Moreover, the asymptotic expansion \Eqref{1.15}
+implies that \Eqref{EqLogDetzLa} also holds for $\Delta$:
+\begin{equation}
+\log \det\nolimits_{\zeta} \Delta = -2 \regint_0^\infty z^3 \Tr(\Delta + z^2)^{-2} dz. 
+\label{EqLogDetz}
+\end{equation}
 
 Note that unlike in the standard convention, here we do not set the zeta-determinant to zero 
 for operators that are not invertible. Our third and final main result now reads as follows.
 
-\begin{theorem}
+\begin{theorem} In the notation of Proposition \plref{phg-trace} and Theorem
+ \plref{trace-sum} we have for the zeta-regularized sum of $\Delta$
 \label{main-thm}
 \begin{align}
-\log \det\nolimits_{\zeta} \Delta = \regsum_{\lambda=-\infty}^\infty \log \det\nolimits_{\zeta} \Delta_\lambda 
+\log \det\nolimits_{\zeta} \Delta = \regsumwide_{\lambda=-\infty}^\infty \log \det\nolimits_{\zeta} \Delta_\lambda 
 - 4 \regint_0^\infty h_{2}(1,y) \log (y) dy,
 \end{align}
 where $h_{2}$ denotes the homogeneous term of degree $(-5)$ in the 
-polyhomogeneous asymptotic expansion of $\textup{Tr}(\Delta_\lambda + z^2)^{-2}$
+polyhomogeneous asymptotic expansion of $\Tr(\Delta_\lambda + z^2)^{-2}$
 as $|(\lambda, z)|\to \infty$.
 \end{theorem}
 
-Note that by \eqref{trace-2-expansion}, the correction term $h_{2}$ in Theorem \ref{main-thm}
+Note that by \Eqref{trace-2-expansion}, the correction term $h_{2}$ in Theorem \ref{main-thm}
 is the third (local) component of the polyhomogeneous asymptotic expansion of 
-$\textup{Tr}(\Delta_\lambda + z^2)^{-2}$.
+$\Tr(\Delta_\lambda + z^2)^{-2}$.
 
 
 %**************************************************************************
@@ -337,7 +384,7 @@ $\textup{Tr}(\Delta_\lambda + z^2)^{-2}$.
 %**************************************************************************
 In this section we establish a polyhomogeneous asymptotic expansion of the 
 resolvent trace for $(\Delta_\lambda+z^2)^{-1}$ jointly in $(\lambda,z)\in \R_+^2$. 
-The discussion is separated in two parts for the interior and the boundary parametrices. 
+The discussion is separated into two parts for the interior and the boundary parametrices. 
 We begin with the interior parametrix where the polyhomogeneous expansion is 
 a consequence of the strongly parametric elliptic calculus. 
 
@@ -350,12 +397,11 @@ We apply this calculus to establish a polyhomogeneous asymptotic expansion
 for the resolvent $(\Delta_\lambda +z^2)^{-1}$ in the interior of the interval $(0,1)$,
 jointly in $(\lambda, z)$. 
 
-
 Consider the differential operators 
 \begin{equation}
 \begin{split}
 \Delta_{\lambda,0}&=-\partial_x^2 + \lambda^2 V +W: C^\infty _0(0,1) \to C^\infty _0(0,1),\\
-\Delta^\R_\lambda&=-\partial_x^2 + \lambda^2 V +W: C^\infty _0(\R) \to C^\infty _0(\R),
+\Delta^\R_\lambda &=-\partial_x^2 + \lambda^2 V +W: C^\infty _0(\R) \to C^\infty _0(\R),
 \end{split}
 \end{equation}
 where $V,W \in C^\infty(\R)$ with $V>0$. As before, $\Delta_\lambda$ is a self-adjoint 
@@ -387,7 +433,7 @@ k(x,x;\lambda,z)
 \end{equation}
 see \cite[Theorem 5.1]{Les:PDO}. The functions $e_j$
 are smooth on $\R\times (\Gamma \cap \mathbb{S}^1)$ and the expansion 
-\eqref{interior} is uniform in compact subsets of $\R$.
+\Eqref{interior} is uniform for $x$ in compact subsets of $\R$.
 
 We choose cutoff functions $(\phi,\psi)$ with 
 $\textup{supp}\, \phi, \textup{supp}\, \psi \subset (0,1)$,
@@ -396,7 +442,6 @@ $\textup{supp}\, \phi \cap \textup{supp}\, d\psi=\emptyset$.
 We define $R^I:= \psi R \phi$, which will be shown to 
 provide an interior parametrix to $\Delta(\lambda,z)$. 
 Indeed 
-
 \begin{equation}
  \begin{split}
   \Delta(\lambda,z) R^I &= [-\partial_x^2, \psi] R \phi + \psi (\Delta^\R(\lambda,z)R-I) \phi + \phi \\
@@ -408,13 +453,12 @@ and $\phi$ have disjoint support and hence
 $[-\partial_x^2, \psi] R \phi \in \CL^{-\infty}(\R;\Gamma)$.
 Moreover, $\Delta^\R(\lambda,z)R-I\in \CL^{-\infty}(\R;\Gamma)$ and hence 
 $R_2(\lambda,z)\in \CL^{-\infty}(\R,\Gamma)$, however the Schwartz kernel of $R_2(\lambda,z)$
-is compactly supported in $(0,1)^2$. Consequently, by \eqref{interior} we find
-
+is compactly supported in $(0,1)^2$. Consequently, by \Eqref{interior} we find
 \begin{equation}
 \label{interior-expansion}
  \begin{split}
   \Tr (\Delta(\lambda,z)^{-1} \phi) 
-&= \Tr R^I + \Tr (\Delta(\lambda,z)^{-1}R_2) \\
+&= \Tr R^I - \Tr (\Delta(\lambda,z)^{-1}R_2) \\
 &= \Tr (\psi \Delta^\R(\lambda,z)^{-1} \phi) + O(|(\lambda,z)|^{-\infty})\\
 &\sim \sum_{j=0}^\infty e_j \left(\frac{(\lambda,z)}{|(\lambda,z)|}\right)
 |(\lambda,z)|^{-1-j}, \ |(\lambda,z)| \to \infty.
@@ -432,7 +476,7 @@ differential calculus.
 We construct a parametrix to $\Delta(\lambda,z)$ near the boundary $x=0$.
 The parametrix construction near $x=1$ works ad verbatim.
 The polyhomogeneous asymptotic expansion of the boundary parametrix in $(\lambda,z)$ 
-together with the expansion \eqref{interior-expansion} 
+together with the expansion \Eqref{interior-expansion} 
 of the interior parametrix proves the statement in Proposition \ref{phg-trace}
 on the polyhomogeneous asymptotic expansion of the trace of 
 the resolvent $\Delta(\lambda,z)^{-1}$.
@@ -440,10 +484,10 @@ the resolvent $\Delta(\lambda,z)^{-1}$.
 Consider $l=-\partial_x^2$ acting on $C^\infty_0(\R)$.
 The operator $l$ is essentially self-adjoint in $L^2(\R)$ and we write $\bar{l}$ for its self-adjoint extension.
 For $0 \leq \theta <\pi$ let $L^\theta$ be $\bar{l}$ restricted to 
-\begin{align}
+\begin{equation}
 \dom (L^\theta) := 
-\{f \in H^1\R_+ \mid \cos \theta f(0) + \sin \theta f'(0) =0\}.
-\end{align}
+\bigsetdef{f \in H^1\R_+}{\cos \theta \cdot f(0) + \sin \theta\cdot f'(0) =0}.
+\end{equation}
 For $\mu \in \C, \textup{Re}\, \mu >0$ the resolvent kernel 
 of $(L^\theta + \mu^2)^{-1}$ is given by 
 \begin{align}\label{kernel-theta}
@@ -465,24 +509,26 @@ Note that for $\mu\in\R$
 &=  (1+|C(\mu,\theta)|) K_\R(x,y;\mu).
  \end{split}
 \end{equation}
-We will also need an estimate for $j-$fold convolution of the 
+We will also need an estimate for a $j-$fold convolution of the 
 resolvent kernels. Let $K_\R^j(x,y;\mu)$ denote the kernel of $(\bar{l}+\mu^2)^{-j}$. 
 From the formula
-\begin{align}
+\begin{equation}
 \frac{\partial}{\partial \mu} (\bar{l}+\mu^2)^{-j} = 2\mu(-j) (\bar{l}+\mu^2)^{-j-1},
-\end{align}
+\end{equation}
 we infer 
-\begin{align}\label{j-fold}
-(\bar{l}+\mu^2)^{-1} = \frac{(-1)^{j-1}}{2^{j-1} (j-1)!}\left(\frac{1}{\mu}
-\frac{\partial}{\partial \mu}\right)^{j-1} (\bar{l}+\mu^2)^{-1}. 
-\end{align}
-From \eqref{j-fold} and the explicit formula \eqref{2.5a} for $K_\R$ we find
+\begin{equation}\label{j-fold}
+(\bar{l}+\mu^2)^{-j} = \frac{(-1)^{j-1}}{2^{j-1} (j-1)!}
+  \Bigl(\frac{1}{\mu}\frac{\partial}{\partial \mu}\Bigr)^{j-1} (\bar{l}+\mu^2)^{-1}. 
+\end{equation}
+From \Eqref{j-fold} and the explicit formula \Eqref{2.5a} for $K_\R$ we find
 \begin{equation}
  \begin{split}
 \label{kernel-real}
- K_\R^j(x,y;\mu) &= \sum_{k=0}^{j-1} \frac{1}{k!} \left(\prod\limits_{l=1}^{j-k-1} \frac{2l-1}{l} \right)
-\frac{|x-y|^k}{2^j \mu^{2j-1-k}}e^{-\mu|x-y|}\\ & \leq \frac{1}{2} \sum_{k=0}^{j-1} 
-\frac{1}{k!} \left( \frac{|x-y|}{2\mu}\right)^k \mu^{-2j+1} e^{-\mu|x-y|} \\
+ K_\R^j(x,y;\mu) &= \sum_{k=0}^{j-1} \frac{1}{k!}
+                   \Bigl(\prod\limits_{l=1}^{j-k-1} \frac{2l-1}{l} \Bigr)
+                  \frac{|x-y|^k}{2^j \mu^{2j-1-k}}e^{-\mu|x-y|}\\ 
+      & \leq \frac{1}{2} \sum_{k=0}^{j-1} \frac{1}{k!} 
+         \Bigl( \frac{|x-y|}{2\mu}\Bigr)^k \frac{1}{\mu^{2j-1}} e^{-\mu|x-y|} \\
 &\leq \frac{1}{2\mu^{2j-1}}\exp\left (-\frac{\mu}{2}|x-y|\right).
  \end{split}
 \end{equation}
@@ -493,24 +539,25 @@ such that $\| V-V(0) \|_\infty \leq \frac{1}{2}V(0)$.
 Abbreviate $\mu^2:= \lambda^2 V(0) + z^2$ and $\widetilde{V}:=V-V(0)$.
 Consider 
 \begin{align*}
-(L^\theta + \lambda^2V + W + z^2)^{-1} =
- (I + (L^\theta + \mu^2)^{-1}(\lambda^2\widetilde{V} + W))^{-1} (L^\theta + \mu^2)^{-1}
-\\ = \sum_{j=0}^\infty (-1)^j \left( (L^\theta + \mu^2)^{-1}(\lambda^2\widetilde{V} + W)\right)^j 
-(L^\theta + \mu^2)^{-1}.
+(L^\theta + \lambda^2V + W + z^2)^{-1} &=
+   (I + (L^\theta + \mu^2)^{-1}(\lambda^2\widetilde{V} + W))^{-1} (L^\theta +
+   \mu^2)^{-1} \\
+    & = \sum_{j=0}^\infty (-1)^j \left( (L^\theta + \mu^2)^{-1}(\lambda^2\widetilde{V} + W)\right)^j 
+      (L^\theta + \mu^2)^{-1}.
 \end{align*}
-
 Note that the Neumann series converges in the operator norm sense, 
 since for $\|\widetilde{V} \|_\infty \leq \frac{1}{2}V(0)$ and $z \gg 0$
 sufficiently large we find 
-\begin{align*}
+\begin{equation}\label{EqKernelEst}
  \| (L^\theta + \mu^2)^{-1}(\lambda^2\widetilde{V} + W) \| \leq
 \frac{\lambda^2\|\widetilde{V}\|_\infty + \|W\|_\infty}
 {\lambda^2 V(0) + z^2} <1.
-\end{align*}
+\end{equation}
+
 We also need to justify the corresponding Neumann series 
 expansion for the resolvent kernel. Suppose that $V,W$ 
 are both supported in $[0,\delta]$ and recall the estimates 
-\eqref{kernel-theta-est} and \eqref{kernel-real}. 
+\Eqref{kernel-theta-est} and \Eqref{kernel-real}. 
 Then for real $(\lambda,z)$ and for $0\leq x,y <\delta$
 we find
 \begin{align*}
@@ -519,41 +566,40 @@ we find
 &\times \int_\R \cdots \int_\R K_\R(x,s_1;\mu) \cdots K_\R(s_{j-1},y;\mu) \,
 ds_1 \cdots ds_{j-1} \\ & = (\lambda^2\|\widetilde{V}\|_\infty + \|W\|_\infty)^j (1+|C(\mu,\theta)|)^j
 K_\R^{j}(x,y;\mu) \\
-& \leq \mu \left(\frac{(\lambda^2\|\widetilde{V}\|_\infty + \|W\|_\infty) (1+|C(\mu,\theta)|)}
-{\mu^2}\right)^j \exp (-\frac{\mu}{2}|x-y|).
+& \leq \frac{\mu}{2} \Bigl(\frac{(\lambda^2\|\widetilde{V}\|_\infty + \|W\|_\infty) (1+|C(\mu,\theta)|)}
+{\mu^2}\Bigr)^j \exp (-\frac{\mu}{2}|x-y|).
 \end{align*}
 
 Note that $|C(\mu,\theta)|\to 1$ as $\mu \to \infty$ and consequently 
 for $\mu \geq \mu_0$ large enough, the sequence of kernels 
 converges uniformly for $0\leq x,y <\delta$ and
-\begin{equation}
+\begin{multline}
 \label{N-series-est}
- \begin{split}
-\left| \sum_{j=0}^\infty \left( (L^\theta + \mu^2)^{-1}(\lambda^2\widetilde{V} + W)\right)^j (x,y) \right| 
-\leq \frac{\mu^3 \exp (-\mu|x-y|/2)}{\mu^2 - (\lambda^2\|\widetilde{V}\|_\infty + \|W\|_\infty) (1+|C(\mu,\theta)|)}.
- \end{split}
-\end{equation}
+ %\begin{split}
+\sum_{j=0}^\infty \Bigl|\bl (L^\theta + \mu^2)^{-1}(\lambda^2\widetilde{V} +
+W)\br^j (x,y) \Bigr|  \\
+\leq \frac{\frac 12 \mu^3 \exp (-\mu|x-y|/2)}{\mu^2 - (\lambda^2\|\widetilde{V}\|_\infty + \|W\|_\infty) (1+|C(\mu,\theta)|)}.
+% \end{split}
+\end{multline}
 
 Similar arguments also work for the derivatives of the kernels. Another convolution by $K_\R$
 then yields 
 \begin{prop}
 Let $V,W\in C^\infty_0(\R)$ with $V(0) > 0$ and $\| V-V(0) \|_\infty \leq \frac{1}{2}V(0)$.
-Put $\mu^2=\lambda^2V(0) +z^2$.Then the kernel of $(L^\theta + \lambda^2V + W + z^2)^{-1}$
+Put $\mu^2=\lambda^2V(0) +z^2$. Then the kernel of $(L^\theta + \lambda^2V + W + z^2)^{-1}$
 satisfies uniformly for $\mu\geq \mu_0>0$ and $\lambda \geq 0$
 \begin{align}
-|\partial_x^j (L^\theta + \lambda^2V + W + z^2)^{-1}(x,y)| \leq C(\mu_0) \mu^{j-1} \exp (-\mu|x-y|/2).
+|\partial_x^j (L^\theta + \lambda^2V + W + z^2)^{-1}(x,y)| \leq C(\mu_0)
+\mu^{j-1} \exp (-\mu|x-y|/2),
+\quad j=0,1.
 \end{align}
 \end{prop}
-
-\begin{center}
-\textbf{CHECK THE STATEMENT OF THE PROP. ABOVE!}
-\end{center}\medskip
-
+\mpar{\textbf{CHECK THE STATEMENT OF THE PROP. ABOVE!}}
 
 Consider the differential operator $\Delta_{\lambda,0}=-\partial_x^2 + \lambda^2V+W$ on 
 $C^\infty_0(\R_+)$, and its self-adjoint realization $L^\theta + \lambda^2V+W$ in $L^2(\R_+)$.
 We can now write down a parametrix for 
-$\Delta^\theta(\lambda,z)=(L^\theta + \lambda^2V+W + z^2)$. 
+$\Delta^\theta(\lambda,z):=L^\theta + \lambda^2V+W + z^2$. 
 We consider two cutoff functions $\phi$ and $\psi$, see Figure \ref{fig:CutOff}, both 
 identically one in an open neighborhood of $x=0$ with compact 
 support $\textup{supp}\, \phi, \textup{supp}\, \psi \subset [0,1)$
@@ -598,25 +644,25 @@ $\textup{supp}\, \phi \cap \textup{supp}\, d\psi = \emptyset$.
 \end{center}
 \end{figure}
 
-
-Given $V,W\in C^\infty[0,1]$ with $V(0) >0$ we set $W_\psi=\psi W$ and
-$V_\psi=\psi V=: V(0) + \widetilde{V}_\psi$, where we choose $\textup{supp} \, \psi$ 
+Given $V,W\in C^\infty[0,1]$ with $V(0) >0$ we set 
+\begin{equation}\label{EqWpsiVspi}
+ W_\psi=\psi W \text{ and } V_\psi=\psi V=: V(0) + \widetilde{V}_\psi,
+\end{equation}
+where we choose $\textup{supp} \, \psi$ 
 small enough to guarantee that $\|\widetilde{V}_\psi\|_\infty \leq \frac{1}{2} V(0)$. Then we put
 \begin{align*}
  R_{\partial} := \psi (L^\theta + \lambda^2V_\psi + W_\psi + z^2)^{-1} \phi.
 \end{align*}
-
 Clearly, $R_{\partial}$ maps into $\dom (L^\theta)=\dom (\Delta^\theta(\lambda,z))$. Moreover we compute 
-\begin{align*}
-\Delta^\theta(\lambda,z)R_{\partial} &= [-\partial_x^2 ,\psi] 
-(L^\theta + \lambda^2V_\psi + W + z^2)^{-1} \phi + \phi\\
-&=:\phi + R_3(\lambda,z).
-\end{align*}
-
+\[
+\Delta^\theta(\lambda,z)R_{\partial} = [-\partial_x^2 ,\psi] 
+(L^\theta + \lambda^2V_\psi + W + z^2)^{-1} \phi + \phi
+=:\phi + R_3(\lambda,z).
+\]
 Note that by the choice of cutoff functions, $[-\partial_x^2, \psi]$ 
 and $\phi$ have disjoint support. Let $d>0$ denote the minimum of 
 $|x-y|$ for $x\in \textup{supp}[-\partial_x^2, \psi]$ and 
-$y\in \textup{supp}\phi$. Then there exists a constant $C>0$ such that by \eqref{N-series-est}
+$y\in \textup{supp}\phi$. Then there exists a constant $C>0$ such that by \Eqref{N-series-est}
 \begin{align*}
 \left| R_3(\lambda,z) (x,y) \right| 
 \leq C \cdot 
@@ -629,32 +675,31 @@ Consequently we find
 \end{align}
 and hence it suffices to establish a polyhomogeneous expansion for the 
 trace of the boundary parametrix $R_{\partial}$. Write 
-\begin{align*}
+\begin{equation}\label{EqKplus}
  K_+ (x,y;\mu) = - \frac{1}{2\mu}C(\mu,\theta) e^{-\mu (x+y)},
-\end{align*}
-so that $K_\theta=K_\R+K_+$, cf. \eqref{kernel-theta} and \eqref{2.5a}. Moreover we abbreviate 
-$$\lambda(V,W):=\lambda^2\widetilde{V}_\psi + W_\psi.$$ 
+\end{equation}
+so that $K_\theta=K_\R+K_+$, cf. \Eqref{kernel-theta} and \Eqref{2.5a}. Moreover we abbreviate 
+\begin{equation}\label{EqLaVW}
+\lambda(V,W):=\lambda^2\widetilde{V}_\psi + W_\psi.
+\end{equation}
 Then, using $\mu^2 = \lambda^2 V(0) + z^2$, we can write
 \begin{align*}
  R_{\partial} = \psi (L^\theta + \lambda^2V_\psi + W_\psi + z^2)^{-1} \phi 
 = \psi (L^\theta + \mu^2 + \lambda(V,W))^{-1} \phi.
 \end{align*}
-Assume 
-that $\textup{supp}\, \psi\subset [0,\delta]$ with $\delta >0$
-sufficiently small so that $\|\widetilde{V}_\psi\|_\infty \leq \frac{1}{2}V(0)$ 
-and $|\widetilde{V}_\psi(x)|<c \cdot x$. Then, by \eqref{N-series-est} we may expand the boundary 
+ Then, by \Eqref{N-series-est} we may expand the boundary 
 parametrix $R_\partial$ as a Neumann series as follows
-
 \begin{align*}
 R_\partial 
-&= \sum_{j=0}^\infty (-1)^j \psi \left[K_\theta \lambda(V,W)\right]^j 
+    =& \sum_{j=0}^\infty (-1)^j \psi \bigl[K_\theta \lambda(V,W)\bigr]^j 
 K_\theta \phi \\
-&= \sum_{j=0}^\infty (-1)^j \psi \left( \left[K_\theta \lambda(V,W)\right]^j 
-K_\theta -  \left[K_\R \lambda(V,W)\right]^j K_\R \right) \phi \\
-&+  \sum_{j=0}^\infty (-1)^j \psi \left[K_\R \lambda(V,W)\right]^j 
-K_\R \phi =: R^0_\partial + R^1_\partial.
+    =& \sum_{j=0}^\infty (-1)^j \psi \Bigl( \bigl[K_\theta \lambda(V,W)\bigr]^j 
+          K_\theta - \bigl[K_\R \lambda(V,W)\bigr]^j K_\R \Bigr) \phi \\
+     &+  \sum_{j=0}^\infty (-1)^j \psi \bigl[K_\R \lambda(V,W)\bigr]^j 
+            K_\R \phi =: R^0_\partial + R^1_\partial.
 \end{align*}
-By similar arguments as in the previous subsection, $R^1_\partial=R^I + O(\mu^{-\infty})$ 
+By similar arguments as in the previous subsection, $\Tr\bl R^1_\partial\br=
+\Tr\bl R^I \br + O(\mu^{-\infty})$ 
 and hence a polyhomogeneous expansion of the boundary parametrix follows 
 from such an expansion of $R^0_\partial$. We write
 \begin{align*}
@@ -663,155 +708,201 @@ K_\theta -  \left[K_\R \lambda(V,W)\right]^j K_\R \right) \phi
 =: \sum_{j=0}^{\infty} R^{0j}_\partial.
 \end{align*}
 
-Before we proceed we note the following 
-\begin{prop}
-Let $R$ be a ring and $a,b\in R$ be any not necessarily commuting associative ring elements. Then
-$$(a+b)^n-b^n= \sum_{j=0}^{n-1} b^j a (a+b)^{n-1-j}.$$
-\end{prop}
-\begin{proof}
-We proceed by induction. The formula holds for $n=0$ and $n=1$. 
-Assume the formula is true for some $n\in \N$. Then
-\begin{align*}
-&(a+b)^{n+1} -b^{n+1} = [(a+b)^n-b^n](a+b) + b^n a \\
-&= \sum_{j=0}^{n-1} b^j a (a+b)^{n-1-j} + b^na = \sum_{j=0}^{n} b^j a (a+b)^{n-j}.
-\end{align*}
-\end{proof}
-
-Consequently, we find
-\begin{align*}
-R^{0j}_\partial &= (-1)^j\psi \left( \left[K_\theta \lambda(V,W)\right]^j 
-K_\theta -  \left[K_\R \lambda(V,W)\right]^j K_\R \right) \phi \\
-&= \sum_{k=0}^{j-1} (K_\R \lambda(V,W))^k (K_+ \lambda(V,W)) (K_\theta \lambda(V,W))^{j-k-1} K_\R 
-+  (K_\theta \lambda(V,W))^{j} K_+.
-\end{align*}
-
-\begin{prop}\label{R-expansion}
-Let $M\in \N$ be fixed. For $j\geq M$ and $z\geq z_0$ sufficiently large there exists some $q \in (0,1)$ such that 
-\begin{equation}
-\left|\partial^\A_\lambda \partial_z^\beta \textup{Tr} \left( R^{0j}_\partial \right) \right| 
-\leq C \cdot j \cdot \mu^{-M-2-\A-\beta} q^{j-M}.
+Before we proceed we note that for elements $a, b$
+in a not necessarily commutative ring we have the identity
+\begin{equation}\label{EqBinomId}
+(a+b)^n-b^n= \sum_{j=0}^{n-1} b^j a (a+b)^{n-1-j},
 \end{equation}
-\end{prop}
-
-\begin{proof}
-Consider for a given $N\in \N$ the following convolution of kernels
-\[
-K=K_0\prod\limits_{j=1}^N \left(K_j \lambda^2 \widetilde{V}_\psi  \right),
-\]
-such that 
-\begin{enumerate}
-\item All $K_j, j=0,..,N$ satisfy the estimate $|K_j(x,y;\mu)| \leq C \frac{1}{\mu} e^{-\mu |x-y|}$, \\
-\item At least one kernel $K_j$ satisfies $|K_j(x,y;\mu)| \leq C \frac{1}{\mu} e^{-\mu (x+y)}$.
-\end{enumerate}
-We claim that 
-\begin{align}
-|K(x,y;\lambda,\mu)| \leq C^{N+1} \frac{\lambda^{2N}}{\mu^{N+1}} \max \{x,y\}^{2N} 
-\exp (-\mu (x+y)).
-\end{align}
-Obviously the statement is analogous for any permutation of the factors in $K$. 
-We prove the claim by induction. Clearly it is true for $N=0$. 
-Assume the estimate holds for some $N\in \N$. Then it sufficies to prove 
-the corresponding estimate for 
-
-\begin{align*}
-\left(K  ( K_{N+1} \lambda^2 \widetilde{V}_\psi )\right)(x,y;\lambda,\mu) =
-\int_0^1 K(x,z;\lambda,\mu) K_{N+1}(z,y;\mu)\lambda^2 \widetilde{V}_\psi(y) dz.
-\end{align*}
-
-We assume $x \leq y$. Even though the kernels are not symmetric, 
-the estimates for $x\geq y$ are similar. We then split the integral above into 
-three parts, with integration in $z\in [0,x], [x,y]$ and $z\in [y,1]$.
-
-In the first case $z\in [0,x]$ we find, using the estimates for $K$ and $K_{N+1}$
-and $|\widetilde{V}_\psi(z)|\leq z$
-\begin{align*}
-\int_0^x | K(x,z;\lambda,\mu) K_{N+1}(z,y;\mu)\lambda^2 \widetilde{V}_\psi(y)| dz 
-&\leq C^{N+2} \frac{\lambda^{2(N+1)}}{\mu^{N+2}} 
-\int_0^x x^{2N} y e^{-\mu(x+z)} e^{-\mu(y-z)} \\
-\leq C^{N+2} \frac{\lambda^{2(N+1)}}{\mu^{N+2}} y^{2N+1} e^{-\mu(x+y)} \int_0^x dz 
-& \leq C^{N+2} \frac{\lambda^{2(N+1)}}{\mu^{N+2}} y^{2(N+1)} e^{-\mu(x+y)}.
-\end{align*}
-
-In the second case $z\in [x,y]$ we find almost ad verbatim
-\begin{align*}
-\int_x^y | K(x,z;\lambda,\mu) K_{N+1}(z,y;\mu)\lambda^2 \widetilde{V}_\psi(y)| dz 
-&\leq C^{N+2} \frac{\lambda^{2(N+1)}}{\mu^{N+2}} 
-\int_x^y z^{2N} y e^{-\mu(x+z)} e^{-\mu(y-z)} \\
-\leq C^{N+2} \frac{\lambda^{2(N+1)}}{\mu^{N+2}} y^{2N+1} e^{-\mu(x+y)} \int_x^y dz 
-& \leq C^{N+2} \frac{\lambda^{2(N+1)}}{\mu^{N+2}} y^{2(N+1)} e^{-\mu(x+y)}.
-\end{align*}
-
-In the third case $z\in [y,1]$ we find
-\begin{align*}
-\int_y^1 |K(x,z;\lambda,\mu) K_{N+1}(z,y;\mu)\lambda^2 \widetilde{V}_\psi(y)| dz 
-&\leq C^{N+2} \frac{\lambda^{2(N+1)}}{\mu^{N+2}} 
-\int_y^1 z^{2N} y e^{-\mu(x+z)} e^{-\mu(z-y)} \\
-\leq C^{N+2} \frac{\lambda^{2(N+1)}}{\mu^{N+2}} y e^{-\mu(x-y)} 
-\int_y^\infty z^{2N} e^{-2\mu z} dz 
-&=C^{N+2} \frac{\lambda^{2(N+1)}}{\mu^{3N+3}} y e^{-\mu(x-y)} 
-\int_{\mu y}^\infty u^{2N} e^{-2 u} du. 
-\end{align*}
-
-In order to estimate the latter integral, note for any $R,\A>0$
-\begin{align*}
-&\int_{R}^\infty u^{\A} e^{-2 u} du = \int_R^{2R} u^\A e^{-2u} du 
-+ \int_{2R}^\infty u^\A e^{-2u} du  \\
-&\leq e^{-2R}  \int_R^{2R} u^\A du  + 2^{\A+1} \int_{R}^\infty v^\A e^{-4v} dv \\
-&\leq e^{-2R} \frac{(2R)^{\A+1} - R^{\A+1}}{\A+1}+ 2^{\A+1} e^{-2R} 
-\int_{R}^\infty u^{\A} e^{-2 u} du.
-\end{align*}
-
-Consequently
-\begin{align*}
-\int_{R}^\infty u^{\A} e^{-2 u} du \leq 
-\frac{2^{\A+1}-1}{(\A+1)(1-2^{\A+1} e^{-2R})} R^{\A+1} e^{-2R}.
-\end{align*}
-
-Hence we find
-\begin{align*}
-&\int_y^1 |K(x,z;\lambda,\mu) K_{N+1}(z,y;\mu)\lambda^2 \widetilde{V}_\psi(y)| dz 
-\leq C^{N+2} \frac{\lambda^{2(N+1)}}{\mu^{3N+3}} y e^{-\mu(x-y)} 
-\int_{\mu y}^\infty u^{2N} e^{-2 u} du \\
-&\leq C^{N+2} \frac{\lambda^{2(N+1)}}{\mu^{3N+3}} y e^{-\mu(x-y)} 
-(\mu y)^{2N+1} e^{-2\mu y}= C^{N+2} \frac{\lambda^{2(N+1)}}{\mu^{N+2}} 
-y^{2(N+1)} e^{-\mu(x+y)}.
-\end{align*}
-
-For the trace of $K$ we then deduce 
-\begin{align*}
-\textup{Tr} \left(|K|\right) \leq C^{N+1} \frac{\lambda^{2N}}{\mu^{N+1}} 
-\int_0^1 x^{2N} \exp (-2 \mu x) dx 
-\leq \textup{const} \frac{\lambda^{2N}}{\mu^{3N+2}} = O(\mu^{-N-2}), \mu \to \infty.
-\end{align*}
-
-If some of the factors $\lambda^2 \widetilde{V}_\psi$ in the expression for $K$ 
-are replaced by $W_\psi$, the argument is similar and the trace estimates give 
-the same decay order as $\mu \to \infty$. 
-
-Hence, in order to estimate the trace of $R^{0j}$ and $\widetilde{R}^{0j}$, 
-we may split off $(M+1)$ terms of the form $K$ with $N=M$ and estimate 
-the trace of $R^{0j}$ and $\widetilde{R}^{0j}$ against the trace norm of 
-$K$ times the operator norm of the other $(j-M)$ components. This proves 
-the statement.
-\end{proof}
+as one checks by induction.
 
 To expand $R^0_\partial$ we write for a fixed $M\in \N$
-$$R^0_\partial = \sum_{j=0}^{M-1} R^{0j}_\partial + \sum_{j=M}^\infty R^{0j}_\partial.$$
-Proposition \ref{R-expansion} yields 
-Consequently we find
-\begin{align}
-\label{remainder-expansion}
-\textup{Tr} \sum_{j=M}^{\infty} R^{0j}_\partial = O(\mu^{-M-2}), \mu \to \infty,
-\end{align}
-and hence a partial polyhomogeneous expansion of the boundary parametrix $R^0_\partial$ 
-follows from a polyhomogeneous expansion of the finitely many summands 
+\begin{equation}\label{EqRsplit}
+R^0_\partial = \sum_{j=0}^{M-1} R^{0j}_\partial + \sum_{j=M}^\infty
+R^{0j}_\partial,
+\end{equation}
+where
+\begin{equation}\label{EqRdel0j}
+ \begin{split}
+R^{0j}_\partial =& (-1)^j\psi \Bigl( \bigl[K_\theta \lambda(V,W)\bigr]^j 
+                K_\theta -  \bigl[K_\R \lambda(V,W)\bigr]^j K_\R \Bigr) \phi \\
+       =& (-1)^j \psi  \sum_{k=0}^{j-1} (K_\R \lambda(V,W))^k (K_+
+       \lambda(V,W)) (K_\theta \lambda(V,W))^{j-k-1} K_\R \phi\\
+       &\quad +(-1)^j \psi   (K_\theta \lambda(V,W))^{j} K_+ \phi.
+   \end{split}      
+\end{equation}
+The first task is to show that the trace of the second sum in \Eqref{EqRsplit}
+decays sufficiently fast, more concretely $O(\mu^{-M-3/2}), \mu\to\infty$.
+The second task, which will occupy the whole Subsection \ref{SSPolBou}, then
+is to show that the first sum in \Eqref{EqRsplit} has a polyhomogeneous
+expansion. Since we may choose $M$ as large as we please we will then
+obtain Proposition \ref{phg-trace}.
+
+\begin{prop}\label{R-expansion}
+Let $M\in \N, \ga, \gb\in\N_0$ be fixed. 
+For $\mu_0$ sufficiently large there exist constants $C>0, 0<q<1$ such that
+for $N\ge M$ and $\mu\ge \mu_0$ 
+\begin{equation}
+\bigl\|\pl^\A_\lambda \pl_z^\beta  R^{0N}_\pl  \bigr\|_\tr 
+\leq C \cdot N\cdot q^{N-M} \cdot \mu^{-M-\ga-\gb-3/2},
+\end{equation}
+and consequently
+\begin{equation}\label{EqRemEst}  %120928
+ \Bigl\|\pl^\ga_\gl \pl_z^\gb \sum_{j=M}^\infty R^{0j}_\partial \Bigr\|_\tr =
+ O\bl \mu^{-\mu-\ga-\gb}\br, \text{ as } \mu\to\infty.
+\end{equation}
+Here $\|\cdot\|_\tr$ denotes the trace norm.
+\end{prop}
+\begin{proof} We treat the case $\ga=\gb=0$. The case of general
+ $\ga,\gb$ follows easily since, e.g., 
+ \begin{align*}
+\pl_z \bl L^\theta + \mu^2 \br\ii      &= -2z  \bl L^\gt+\mu^2)^{-2},
+\intertext{resp.}
+   \pl_\gl \bl L^\theta + \mu^2 \br\ii &= -2 \gl \, V(0)\,  \bl
+   L^\gt+\mu^2)^{-2},
+  \end{align*}
+and similarly for the other involved kernels.
+
+Each of the $N$ summands of $R^{0N}_\pl$ is of the form 
+\begin{equation}
+P_N=\psi \, K_0\prod\limits_{j=1}^N  \gl(V,W) K_j \, \phi,
+\end{equation}
+where $K_j, j=0,\ldots,N$, is either $K_\R, K_+,$ or $K_\gt$.
+Note that due to the factor $\gl(V,W)$ all kernels (may be assumed
+to have) support $\subset [0,\delta)$. 
+
+In view of \Eqref{EqKernelEst} we may choose $\mu_0$ such that
+there exists a $0<q<1$ such that
+\begin{equation}
+     \|\gl(V,W) K_j\|\le q
+    \end{equation}
+for $\mu\ge \mu_0$ and all $j$.
+Thus we may estimate the trace norm of $P_N$ by
+\begin{equation}\label{EqTraNorEst}
+  \bigl\| P_N \bigr\|_\tr \le \| \psi K_0 \|_\HS\cdot
+  q^{N-M}\cdot \bigl\|  \prod_{j=1}^M \gl(V,W) K_j \phi \bigr\|_\HS,
+\end{equation}
+where $\|\cdot\|_\tr, \|\cdot\|_\HS$ denote the trace norm resp.
+the Hilbert-Schmidt norm.
+
+Of the $K_j$ in \Eqref{EqTraNorEst} at least one equals $K_+$ (cf.
+\Eqref{EqRdel0j}) and by choosing those factors whose norm
+we estimate by $q$ appropriately we can arrange that in \Eqref{EqTraNorEst}
+at least one of the $K_j, j=1,\ldots, M$ equals $K_+$. So we have
+\begin{enumerate}
+\item All $K_j, j=0,\ldots, N$ satisfy the estimate 
+ \begin{equation}
+  |K_j(x,y;\mu)| \leq C_1 \frac{1}{\mu} e^{-\mu |x-y|}, 
+ \end{equation} 
+\item At least one kernel $K_j$ satisfies 
+ \begin{equation}
+  |K_j(x,y;\mu)| \leq C_1 \frac{1}{\mu} e^{-\mu (x+y)}.
+ \end{equation} 
+\end{enumerate}
+For the Hilbert-Schmidt norm of $\psi K_0$ we have
+\begin{equation}\label{Eq1209281}   %120928
+     \|\psi K_0 \|_\HS^2  \le \frac{C_1^2}{\mu^2} \int_0^1\int_0^1 e^{-2\mu
+     |x-y|} dx dx=O(\mu^{-3}), \text{ as } \mu\to\infty.   
+\end{equation}
+For $Q_M:=\prod_{j=1}^M \gl(V,W) K_j$ we claim that
+\begin{equation}\label{EqQMEst}  %120928
+ | Q_M(x,y;\gl,\mu)|\le \sum_{\ga,\gb} c_{\ga\gb} \cdot \mu^{-\ga}\cdot
+ \max(x,y)^\gb \cdot e^{-\mu(x+y)},
+\end{equation}
+where the sum is over finitely many $\ga, \gb$ with the restrictions
+$\ga\ge 1$ and $\ga+\gb\ge M-1$.
+
+The Hilbert-Schmidt norm square of each summand on the right of
+\Eqref{EqQMEst} can be estimated by
+\begin{equation}\label{Eq1209283}   %120928
+  \begin{split}
+      2 \mu^{-2\ga} &\int_0^1\int_0^y y^{2\gb} e^{-2\mu(x+y)} dx dy\\
+   &\le 2 \mu^{-2\ga} \int_0^\infty y^{2\gb} e^{-2\mu y} dy\cdot
+   \int_0^\infty e^{-2\mu x} dx\\
+   &= O(\mu^{-2\ga-2\gb-2})=O(\mu^{-2M}), \text{ as } \mu\to\infty,
+  \end{split}
+\end{equation}
+thus \Eqref{EqQMEst} implies
+\begin{equation}\label{Eq1209284}  %120928
+ \bigl\| Q_M\bigr\|_\HS = O\bl \mu^{-M}\br,
+\end{equation}
+and \Eqref{EqTraNorEst}, \Eqref{Eq1209281} and \Eqref{Eq1209284} give the
+claim. It therefore remains to prove \Eqref{EqQMEst}, which we single
+out separately below. 
+\end{proof}
+
+\subsubsection{Proof of \Eqref{EqQMEst}} We proceed by induction on $M$.
+Recall from \Eqref{EqLaVW} $\gl(V,W)=\gl^2 \tV_\psi+W_\psi,$
+$\tV_\psi=\psi V-V(0)$. Recall furthermore 
+from \Eqref{EqWpsiVspi} that $\psi$ was chosen such that
+$\|\widetilde{V}_\psi\|_\infty \leq \frac{1}{2}V(0)$. Moreover,
+since $\tV_\psi(0)=0$ and $\tV$ is smooth, we have $|\tV_\psi(x)|\le c\cdot x$
+for some $c>0$. Thus
+\[
+   |\gl(V,W)(x)|\le c (\gl^2\cdot x+1),
+\]
+and hence
+\[ 
+|\gl(V,W) K_j(x,y;\gl,\mu)|\le c(\mu\cdot x + \mu\ii) e^{-\mu|x-y|},
+\]
+resp., for at least one $j$, $e^{-\mu(x+y)}$ instead of $e^{-\mu|x-y|}$. This
+establishes \Eqref{EqQMEst} for $M=1$.
+
+For the inductive step we treat the case $x\le y$. Though the kernels are not 
+symmetric, the estimates for $x\ge y$ are similar. We pick one of the
+summands on the right of \Eqref{EqQMEst}
+\begin{align*} 
+  k_1(x,y;\mu)&=\mu^{-\ga} \max(x,y)^\gb e^{-\mu(x+y)}, \quad \ga+\gb\ge M-1,
+  \ga\ge 1\\
+  \intertext{and}
+  k_2(x,y;\mu)&= (\mu\cdot x + \mu\ii) e^{-\mu|x-y|}.
+ \end{align*}
+We split the integral $\int_0^1 k_1(x,z;\mu)k_2(z,y;\mu) dz$ into
+the two parts $\int_0^y$ and $\int_y^1$. 
+In the first case $z\in [0,y]$ we find
+\begin{align*}
+\int_0^y | &k_1(x,z;\mu) k_2(z,y;\mu) | dz \\
+           &\le \mu^{-\ga} (\mu y + \mu\ii) e^{-\mu(x+y)} \int_0^y y^\gb dz \\ 
+           & \le C_2 \bl\mu^{-(\ga-1)} y^{\gb+2} + \mu^{-(\ga+1)}
+                      y^{\gb+1}\br e^{-\mu(x+y)};
+\end{align*}
+certainly $\ga-1+\gb+2\ge (M+1)-1, \ga+1+\gb+1\ge (M+1)-1$.
+
+Secondly,
+\begin{equation}\label{Eq1209286}   %120928
+  \begin{split}
+   \int_y^1 | &k_1(x,z;\mu) k_2(z,y;\mu) | dz \\
+         &  \le \mu^{-\ga} e^{-\mu(x-y)} \int_y^1 z^\gb (\mu z + \mu\ii)
+                    e^{-2\mu z} dz\\
+         & \le \mu^{-(\ga+\gb+1)} e^{-\mu(x-y)} \int_{\mu y}^\infty z^\gb (z+\mu\ii)
+         e^{-2z} dz\\
+         &\le C_3\bl \mu^{-(\ga+\gb+1)} + \mu^{-\ga} y^{\gb+1} +
+             \mu^{-(\ga+2)} y^\gb\br e^{-\mu(x+y)}.
+  \end{split}
+\end{equation}
+In the last step we have used that for $\gamma>0$
+\begin{equation}\label{eq:1209287}  %120928
+    \int_R^\infty z^\gamma e^{-2z} dz \le C(\gamma) (1+R^\gamma) e^{-2R},\quad 0\le
+    R<\infty.    
+\end{equation}
+The last line of \Eqref{Eq1209286} is indeed of the form as the right
+hand side of \Eqref{EqQMEst} with $\ga+\gb+2\ge \ga+\gb+1\ge (M+1)-1$.
+This establishes the inductive step and \Eqref{EqQMEst} is proved.
+\hfill \qed
+
+\subsection{The polyhomogeneous expansion of the boundary
+parametrix}\label{SSPolBou}
+It follows from Proposition \plref{R-expansion} that
+a polyhomogeneous expansion of the trace of the boundary parametrix $R^0_\partial$ up
+to a given order $O(\mu^{-M-3/2})$ follows from a polyhomogeneous expansion 
+of the trace of the finitely many summands 
 \[
 \sum_{j=0}^{M-1} R^{0j}_\partial = \sum_{j=0}^{M-1} (-1)^j \psi \left( \left[K_\theta \lambda(V,W)\right]^j 
-K_\theta -  \left[K_\R \lambda(V,W)\right]^j K_\R \right) \phi, 
+K_\theta -  \left[K_\R \lambda(V,W)\right]^j K_\R \right) \phi.
 \]
-and the full expansion follows by taking $M\to \infty$. We establish a polyhomogeneous 
-expansion of the finitely many summands above using the microlocal formalism 
-of blowups. 
+Since $M$ can be chosen arbitrarily this in fact establishes a
+full asymptotic expansion of the trace of $R^0_\pl$.
+We establish a polyhomogeneous  expansion of the finitely many summands above 
+using the microlocal formalism  of blowups. 
 
 The kernels $K_+$ and $K_\R$ are functions on $\R^+_{1/\mu} \times (\R^+)^2_{(x,y)}$ 
 with non-uniform behaviour at the diagonal $\mathscr{D}:=\{\mu=\infty, x=y\}$ and 
@@ -827,13 +918,17 @@ of its boundaries and the corresponding defining functions. For any multi-index 
 \ldots, b_N)\in \C^N$ we write $\rho^b = \rho_1^{b_1} \ldots \rho_N^{b_N}$.  Denote by $\mathcal{V}_b(X)$ the space
 of smooth vector fields on $X$ which lie
 tangent to all boundary faces. All distributions on $X$ are locally restrictions of distributions 
-defined across the boundaries of $X$. A distribution $\w$ on $X$ is said to be conormal
+defined across the boundaries of $X$. A distribution $\w$ on $X$ is said to be
+conormal\mpar{heisst die Distribution nun $\w, w$ oder $u$?}
 if $w\in \rho^b C^\infty(X)$ for some $b\in \C^N$, and 
 $V_1 \ldots V_\ell u \in \rho^b C^\infty(X)$, for all $V_j \in \mathcal{V}_b(X)$ 
 and for every $\ell \geq 0$. An index set 
 $E_i = \{(\gamma,p)\} \subset {\mathbb C} \times {\mathbb N}$ 
 satisfies the following hypotheses:
-\begin{enumerate}
+\begin{enumerate}\mpar{Definition tendenziell ungenau, vgl. Vorlage Melrose
+  Buch, z.B. sind unendlich viele Log-Potenzen fuer festes $\gamma$
+  ausgeschlossen. Also muss man entweder (1) praezisieren oder in (2) auch
+  verlagen, dass fuer $p>P_\gamma$ eben $(\gamma,p)\not\in E_i$.}
 \item $\textup{Re}(\gamma)$ accumulates only at plus infinity,
 \item For each $\gamma$ there is $P_{\gamma}\in \N_0$, such 
 that $(\gamma,p)\in E_i$ for $p \leq P_\gamma < \infty$,
@@ -849,7 +944,9 @@ w \sim \sum_{(\gamma,p) \in E_i} a_{\gamma,p} \rho_i^{\gamma} (\log \rho_i)^p, \
 \end{align}
 with coefficients $a_{\gamma,p}$ conormal on $H_i$, polyhomogeneous with index $E_j$
 at any $H_i\cap H_j$. 
-\end{defn}
+\end{defn}\mpar{whatever tilde means. In Melrose Buch wird das erklaert.
+Hier bleibt das schemenhaft}
+
 
 We also need to consider polyhomogeneous distributions on a manifold with corners $X$, 
 conormal to an embedded submanifold $Y\subset X$. 
@@ -871,7 +968,7 @@ on an ambient space, which are conormal to any smooth extension of $Y$ across $\
 Choosing now index sets $E$ for each boundary face of $X$ as in Definition 
 \ref{phg}, we define a space $\mathscr{A}_{\textup{phg}}^E(X,Y)$
 as the space of distributions conormal to $Y$, with
-polyhomogeneous expansions as in \eqref{A} at all boundary faces and 
+polyhomogeneous expansions as in \Eqref{A} at all boundary faces and 
 with coefficients conormal to the intersection of $Y$ with each boundary face. 
 
 We now continue with the definition of a blowup $\mathscr{M}^2_b$, so that 
@@ -883,7 +980,7 @@ structure with respect to which these coordinates are smooth.
 
 We first perform a blowup of $\mathscr{A}$.
 The resulting space $[\R_+\times \R_+^2, \mathscr{A}]$ is defined as the union of
-$\R_+\times \R_+^2 \backslash \mathscr{A}$ with the interior spherical normal bundle of 
+$\R_+\times \R_+^2 \setminus \mathscr{A}$ with the interior spherical normal bundle of 
 $\mathscr{A}$ in $\R_+\times \R_+^2$. The blowup $[\R_+\times \R_+^2, \mathscr{A}]$ 
 is endowed with the unique minimal differential structure with respect to which smooth 
 functions in the interior of $\R_+\times \R_+^2$ and polar coordinates on $\R_+\times \R_+^2$ 
@@ -897,7 +994,8 @@ the submanifold and replacing it with its spherical normal bundle. The second
 blowup introduces an additional boundary hypersurface td, the temporal diagonal. 
 $\mathcal{M}_b$ is a manifold with boundaries and corners, visualized in the Figure \ref{blowup}.
 
-
+\mpar{Es waere hilfreich in der Figur die Koordinatenachsen zu benennen $x,y,
+1/\mu$}
 \begin{figure}[h]
 \begin{center}
 \begin{tikzpicture}
@@ -928,15 +1026,13 @@ Projective coordinates on $\mathcal{M}_b$ are given as follows.
 Near the top corner of ff away from tf the projective coordinates are given by
 \begin{align}\label{top-coord}
 \rho=\frac{1}{\mu}, \  \xi=\frac{x}{\rho}, \ \widetilde{\xi}=\frac{y}{\rho},
-\end{align}
-
+\end{align}\mpar{align Umbebung wird abused}
 where in these coordinates $\rho, \xi, \widetilde{\xi}$ are the defining functions of 
 the faces ff, lf and rf respectively. For the bottom corner of ff away from rf the 
 projective coordinates are given by
 \begin{align}\label{right-coord}
 \tau=(\mu y)^{-1}, \ s=\frac{x}{y}, \ y,
 \end{align}
-
 where in these coordinates $\tau, s, y$ are the defining functions of tf, lf and ff respectively. 
 For the bottom corner of ff away from lf the projective coordinates are obtained by interchanging 
 the roles of $x$ and $y$. The projective coordinates on $\mathcal{M}_b$ near the top of td away 
@@ -956,7 +1052,8 @@ The blowup $\mathscr{M}^2_b$ is similar to the blowup space construction for inc
 conical singularities by Mooers \cite{Moo:HKA} with the difference that here the 
 blowup is not parabolic in $\mu^{-1}-$direction.
 
-One can easily check in local projective coordinates above that the 
+One can easily check in local projective coordinates above that the
+\mpar{check}
 kernels $K_+$ and $K_\R$ both lift to polyhomogeneous 
 distributions on $\mathscr{M}^2_b$, the latter being conormal to $\beta^*\{x=y\}$. 
 Put for any $k\in \N_0$ 
@@ -1003,12 +1100,13 @@ This expression can be rephrased as follows.
 \label{projections}
 \end{equation} 
 Assuming that all kernels are extended to vanish for $\mu^{-1}<0$, 
-and reinterpreting them as densities in a suitable way specified below, we can rewrite \eqref{comp1} as
+and reinterpreting them as densities in a suitable way specified below, we can rewrite \Eqref{comp1} as
 \[
 K_C = (\pi_C)_* \left( \pi_\Delta^* K_A  \pi_R^* K_B \right).
 \]
 
-The basic idea is a construction of a triple-space $\mathscr{M}^3_b$,
+The basic idea is a construction of a triple-space
+$\mathscr{M}^3_b$,\mpar{later $M^3_h$, b oder h?}
 which is a blowup of $R^+_{1/\mu}\times (\R_+)^3_{(x,z,y)}$ obtained 
 by a sequence of blowups, such that there are maps
 \[
@@ -1031,7 +1129,7 @@ by $\Pi_C$ of this product is again polyhomogeneous on $M^2_h$.
 
 % REPHRASE AS IT COMES FROM THE JOINT WORK WITH RAFE
 
-In order to state the pushforward theorem, introduce some terminology.  
+In order to state the pushforward theorem, we introduce some terminology.  
 Let $X$ and $X'$ be two compact manifolds with corners, and let $f: X \to X'$ 
 be a smooth map.  Let $\{H_i\}$ and $\{H_j'\}$ be enumerations of the codimension one boundary faces of $X$ and $X'$,
 respectively, and let $\rho_i$, $\rho_j'$ be global defining functions for $H_i$, resp.\ $H_j'$. We say that the map $f$
@@ -1054,15 +1152,16 @@ hypersurface in $X$ gets mapped to a corner in $X'$), then $f$ is called a $b$-f
 Suppose that $\nu_0$ is a density on $X$ which is smooth up to all boundary faces and everywhere nonvanishing. 
 A smooth $b$-density $\nu_b$ is, by definition, any density of the form $\nu_b =\nu_0 (\Pi \rho_i)^{-1}$.  
 Let us fix smooth nonvanishing $b$-densities $\nu_b$ on $X$ and $\nu_b'$ on $X'$. 
-\begin{prop}[The Pushforward Theorem]
+\begin{prop}[The Pushforward Theorem]\mpar{Let $f_b:X\to X'$ be a
+ $b$--fibration!  Quellenangabe. Z.B. Mel92, Gruber/Grieser}
 Let $u$ be a polyhomogeneous function on $X$ with index sets  $E_j$ the faces $H_j$ of $X$.  Suppose that each $(z,p) \in E_j$
 has $\mbox{Re}\, z > 0$ if the index $j$ satisfies $e(i,j) = 0$ for all $j$ (which means that $H_j$ is mapped to the interior of $X'$).
 Then the pushforward $f_* (u \nu_b)$ is well-defined and equals $h \nu_b'$ where $h$ is polyhomogeneous on $X'$ and has
 an index family $f_b(\mathcal{E})$ given by an explicit formula in terms of the index family $\mathcal{E}$ for $X$.
 \end{prop}
-Rather than giving the formula for the image index set in generality, let us describe it slightly informally but specifically
+Rather than giving the formula for the image index set in general, let us describe it slightly informally but specifically
 enough for the present situation.  If $H_{j_1}$ and $H_{j_2}$ are both mapped to a face $H_i'$, and if $H_{j_1} \cap H_{j_2} = \emptyset$,
-then they contribute the index set $E_{j_1} + E_{j_2}$ to $H_i'$. If they do intersect, however, then the contribution is the
+then they contribute to the index set $E_{j_1} + E_{j_2}$ to $H_i'$. If they do intersect, however, then the contribution is the
 extended union $E_{j_1} \overline{\cup} E_{j_2}$
 \begin{align*}
 E_{j_1} \overline{\cup} E_{j_2} := E_{j_1} \cup E_{j_2} \cup \{((z, p + q + 1): \exists \, (z,p) \in E_{j_1},\ 
@@ -1158,7 +1257,7 @@ The face $(111)$ is the front face introduced by blowing up $F$. We denote the d
 by $\rho_{ijk}$. The triple space comes with a natural blowdown map 
 $\beta^{(3)}: \mathscr{M}^3_b \to \R_+ \times (\R_+)^3$. 
 
-Now recall the projections $\pi_C$, $\pi_\Delta$ and $\pi_R$ defined in \eqref{projections}.  
+Now recall the projections $\pi_C$, $\pi_\Delta$ and $\pi_R$ defined in \Eqref{projections}.  
 These induce projections $\Pi_C$, $\Pi_\Delta$ and $\Pi_R$ from 
 $\mathscr{M}^3_b$ to the reduced blowup space $\mathscr{M}^2_{rb}$. 
 It is not hard to check that the choice of submanifolds $F, F_{\Delta,R,C}$ that have been blown up ensures that these 
@@ -1191,7 +1290,7 @@ for the temporal face tf in $\mathscr{M}^2_{rb}$. Note
 \[
 \Pi^*_{C,\Delta,R} \circ \left(\beta^{(2)}\right)^* = \left(\beta^{(3)}\right)^* \circ \pi^*_{C,\Delta,R}.
 \]
-Consequently, in view of \eqref{RLC} and \eqref{beta-tau}, we conclude
+Consequently, in view of \Eqref{RLC} and \Eqref{beta-tau}, we conclude
 \begin{equation}
 \begin{split}
 &\Pi_C^*(T)=\tau \rho_{110} \rho_{011}, \\
@@ -1203,7 +1302,8 @@ Consequently, in view of \eqref{RLC} and \eqref{beta-tau}, we conclude
 Using these data, we now derive the anticipated composition formula. 
 Consider again $K_A \in \mathscr{A}_{\textup{phg}}^{l,p,E_{\textup{rf}}, E_{\textup{rf}}}(\mathscr{M}^2_b)$ 
 and $K_B \in \mathscr{A}_{\textup{phg}}^{l',\infty,E'_{\textup{rf}}, E'_{\textup{rf}}}(\mathscr{M}^2_b,\beta^*\{x=y\})$. 
-We write $t:=\mu^{-1}$ and reinterpret both kernels as `right densities', 
+We write $t:=\mu^{-1}$ and reinterpret both kernels as `right densities',
+\mpar{half densities??}
 $K_A(x,z;t) dz$ and $K_B(z,y;t) dy$. Then their product on $\R^+_t \times (\R_+)^3_{(x,z,y)}$ is
 \[
 K_A(x,z;t) K_B(z,y;t) dz \, dy.
@@ -1223,7 +1323,6 @@ is the defining function of the corresponding front face. Hence we compute the l
 \end{split}
 \label{lift1}
 \end{equation}
-
 where $\nu^{(3)}$ is a density on $\mathscr{M}^3_b$, smooth up to all boundary faces and everywhere 
 nonvanishing; $\nu^{(3)}_b$ is a $b$-density, obtained from $\nu^{(3)}$ by dividing 
 by a product of all defining functions on $\mathscr{M}^3_b$; 
@@ -1235,8 +1334,8 @@ vanishes to infinite order in $\tau \rho_{110} \rho_{101} \rho_{011}$. Altogethe
 \[
 \left(\Pi_\Delta^*\kappa_A\right) \left(\Pi_R^*\kappa_B\right) (\beta^{(3)})^* (dt \, dx \, dz \, dy)  
  =\rho_{111}^{\ell + \ell' + 3} \left( \Pi \rho_{ijk} \right) G \nu_b^{(3)},
-\]
-
+\]\mpar{unnoetige Leerzeilen nach Umgebungen erzeugen merkwuerdige
+parindents...}
 where $G$ is a bounded polyhomogeneous function on $\mathscr{M}^3_b$, 
 vanishing to infinite order in $(\tau \rho_{110} \rho_{101} \rho_{011})$, 
 with index sets $E'_{\lf}$, $E_{\rf}$ and $E_{\lf} + E'_{\rf}$ 
@@ -1258,7 +1357,7 @@ on $\mathscr{M}^3_b$. Applying the Pushforward Theorem now gives
 \label{lift3}
 \end{equation}
 where $\nu^{(2)}_b$ is a $b$-density on $\mathscr{M}^2_{rb}$ 
-and $G'$ is a bouned polyhomogeneous function on $\mathscr{M}^2_{rb}$, 
+and $G'$ is a bounded polyhomogeneous function on $\mathscr{M}^2_{rb}$, 
 which vanishes to infinite order in $T$, is of leading order $(\ell + \ell'+3)$ at 
 the front face and has the index sets $(E'_{\lf}, E_{\rf})$ 
 at the left and right boundary faces. By \cite[Proposition B7.20]{EMM:ROT} the 
@@ -1270,14 +1369,14 @@ the kernel on $\mathscr{M}^2_{rb}$ is vanishing to infinite order at $(101)$.
 Hence, for $\kappa_A$ and $\kappa_B$ with integer exponents in their front face expansions, 
 same holds for their composition.
 
-By an argument similar to \eqref{lift1}, we compute
+By an argument similar to \Eqref{lift1}, we compute
 \begin{equation}
 \begin{split}
 \left(\beta^{(2)}\right)^*(dt \, dx\, dy)=\rho_{11}^{2} \left(\rho_{10}\rho_{11}\rho_{01} T\right) \nu^{(2)}_b .
 \end{split}
 \label{lift4}
 \end{equation}
-Consequently, combining \eqref{lift3} and \eqref{lift4}, we deduce that 
+Consequently, combining \Eqref{lift3} and \Eqref{lift4}, we deduce that 
 $(\beta^{(2)})^* K_{A \circ B}=\kappa_{A\circ B}$ 
 vanishes to infinite order in $T$, is of leading order $(\ell + \ell'+1)$ at 
 the front face and has the index sets $(E'_{\lf}, E_{\rf})$ 
@@ -1292,7 +1391,7 @@ For any $K \in
 and any cutoff function $\phi \in C^\infty_c(\R_+)$ with $\phi \equiv 1$ 
 in an open neighborhood of zero, we find for $(E_{\textup{lf}} + E_{\textup{rf}} + 1) >-1$ 
 \begin{align}
-\textup{Tr} (K\phi) = \int_{\R_+} K(x,x; \mu)\phi(x) dx \sim \sum_{j=0}^\infty 
+\Tr (K\phi) = \int_{\R_+} K(x,x; \mu)\phi(x) dx \sim \sum_{j=0}^\infty 
 a_j \mu^{-(l+1)-j}, \ \mu \to \infty.
 \end{align} 
 \end{prop}
@@ -1308,7 +1407,8 @@ temporal diagonal again.
 The restriction of $\beta^*K$ to $\mathscr{B}$ is polyhomogeneous 
 with the index set $E_l$ at the front face, index set $(E_{\lf}+ E_{\rf})$ 
 at the left face and vanishes to infinite order at the temporal diagonal.
-Consider the projection $\pi: \R^+_{1/\mu} \times \R^+_x$. Then ($t=1/\mu$)
+Consider the projection $\pi: \R^+_{1/\mu} \times \R^+_x$. Then
+($t=1/\mu$)\mpar{hier fehlt wohl irgendwo ein $=$}
 \begin{align*}
 (\pi \circ \beta_{\mathscr{B}})_* \left( \beta^*(K\phi)|_{\mathscr{B}} 
 \beta^*_{\mathscr{B}}(dt \, dx)\right) 
@@ -1356,119 +1456,88 @@ E_0}(\mathscr{M}^2_b).
 \]
 Proposition \ref{trace-boundary} now implies 
 \[
-\textup{Tr} K(j,p,q) \sim \sum_{i=0}^\infty a_i \frac{\lambda^{2p}}
+\Tr\bl K(j,p,q)\br \sim \sum_{i=0}^\infty a_i \frac{\lambda^{2p}}
 {\mu^{2(j+1)+p+i}} =: \sum_{i=0}^\infty a_i^{jp} (\lambda, z),
 \]
 where each $a_i^{jp}$ is homogeneous in $(\lambda, z)$ of homogeneity 
 degree $(p-2(j+1)-i)$. Consequently, overall we obtain
-\begin{equation}
+\begin{multline}
 \label{boundary-expansion}
- \begin{split}
-\Tr \sum_{j=0}^{M-1} (-1)^j \psi \left( \left[K_\theta \lambda(V,W)\right]^j 
-K_\theta -  \left[K_\R \lambda(V,W)\right]^j K_\R \right) \phi \\ 
+\Tr \Bigl[\sum_{j=0}^{M-1} (-1)^j \psi \left( \left[K_\theta \lambda(V,W)\right]^j 
+K_\theta -  \left[K_\R \lambda(V,W)\right]^j K_\R \right) \phi\Bigr] \\ 
 \sim \sum_{i=0}^\infty e_i(\lambda,z), \ |(\lambda,z)| \to \infty,
- \end{split}
-\end{equation}
-where each $e_i\in C^{\infty}(\R^2_+\backslash \{(0,0)\})$ is homogeneous
-of order $(-2-i)$ jointly in both variables.
+\end{multline}
+where each $e_i\in C^{\infty}(\R^2_+\setminus \{(0,0)\})$ is homogeneous
+of order $(-2-i)$ jointly in both variables. We have now all ingredients
+to prove Proposition \ref{phg-trace}.
 
-Comparing to \eqref{interior-expansion}, we see that the leading term in the 
-polyhomogeneous expansion of $\Tr(\Delta_\lambda+z^2)^{-1}$ indeed 
-comes from the interior. Summarizing \eqref{boundary-expansion} with the polyhomogeneous expansion of 
-the interior parametrix in \eqref{interior-expansion} and \eqref{remainder-expansion} we finally arrive at 
-our first main result, Proposition \ref{phg-trace}.
+\subsection{Proof of Proposition \ref{phg-trace}}
+This is now a consequence of the interior expansion \Eqref{interior-expansion}, 
+Proposition \plref{R-expansion} and \Eqref{boundary-expansion}. 
+Comparing \Eqref{R-expansion} and \Eqref{boundary-expansion} we see that
+the leading term in the polyhomogeneous expansion of $\Tr(\Delta_\lambda+z^2)^{-1}$ indeed 
+comes from the interior. \hfill\qed
 
-\begin{prop}
-\label{phg-trace2}
-The resolvent $(\Delta_\lambda+z^2)^{-1}$ is trace class for $z\geq z_0$, 
-and its trace admits the following polyhomogeneous expansion 
-\begin{align*}
-\partial_\lambda^{\A}\partial_z^{\beta}
-\Tr(\Delta_\lambda+z^2)^{-1} \sim \sum_{i=0}^\infty h_i (\lambda,z), \ |(\lambda,z)| \to \infty,
-\end{align*}
-where $\gamma_i:=(i+\A+\beta +1)$ and each $h_i\in C^{\infty}(\R^2_+\backslash \{(0,0)\})$
-is homogeneous of order $(-\gamma_i)$ jointly in both variables. 
-\end{prop}
-
+\subsection{Proof of Theorem \ref{trace-sum}}
 As an application of the polyhomogeneity of the resolvent trace 
-we now clarify in which sense the trace expansions 
+we now prove Theorem \plref{trace-sum} and 
+clarify in which sense the trace expansions 
 of $\Tr(\Delta_\lambda+z^2)^{-2}$ sum up to the trace expansion 
 of $\Tr(\Delta+z^2)^{-2}$. Note that $\Tr(\Delta_\lambda+z^2)^{-2}=O(z^{-3})$, 
 whereas $\Tr(\Delta+z^2)^{-2}=O(z^{-2})$, as $z\to \infty$. 
 So the trace expansions clearly do not sum up in an obvious way.
-We employ the Euler Maclaurin formula \eqref{EM} 
-and find for $z\geq z_0$ sufficiently large
-\begin{equation}
-\begin{split}
-\sum_{\lambda=1}^{N} \Tr(\Delta_\lambda+z^2)^{-2} &=
-\int_1^N \Tr(\Delta_\lambda+z^2)^{-2} d\lambda \\
-&+ \sum_{k=1}^M \frac{B_{2k}}{(2k)!} \,
-\partial_\lambda^{(2k-1)}\Tr(\Delta_\lambda+z^2)^{-2}|_{\lambda=N} \\
-&- \sum_{k=1}^M \frac{B_{2k}}{(2k)!}  \,
-\partial_\lambda^{(2k-1)}\Tr(\Delta_\lambda+z^2)^{-2}|_{\lambda=1} \\ 
-&+ \frac{1}{(2M+1)!} \int_1^N B_{2M+1}(\lambda-[\lambda]) \,
-\partial_\lambda^{(2M+1)}\Tr(\Delta_\lambda+z^2)^{-2} d\lambda \\ &+ 
-\frac{1}{2}(\Tr(\Delta_1+z^2)^{-2}+\Tr(\Delta_N+z^2)^{-2}),
-\end{split}
-\end{equation}
-where $B_j$ denotes the $j$-th Bernoulli number, $B_j(x)$ the $j$-th Bernoulli 
-polynomial. Using Proposition \ref{phg-trace2} we consider the limit $N\to \infty$ and find
-\begin{equation}
-\label{EM2}
-\begin{split}
-\sum_{\lambda=1}^{\infty} \Tr(\Delta_\lambda+z^2)^{-2} &=
-\int_1^\infty \Tr(\Delta_\lambda+z^2)^{-2} d\lambda \\
-&+ \frac{1}{2}\Tr(\Delta_1+z^2)^{-2} - \sum_{k=1}^M \frac{B_{2k}}{(2k)!} \, 
-\partial_\lambda^{(2k-1)}\Tr(\Delta_\lambda+z^2)^{-2}|_{\lambda=1} \\ 
+
+We apply the Euler Maclaurin formula \Eqref{EqRegsum2} to
+$f(\gl)=\Tr(\Delta_\gl+z^2)^{-2}$. Note that the sum
+is convergent and that $\lim_{N\to\infty} f(N)=0$.
+We find
+\begin{align}
+\sum_{\lambda=1}^{\infty} \Tr(\Delta_\lambda+z^2)^{-2}
+   =&\int_1^\infty \Tr(\Delta_\lambda+z^2)^{-2} d\lambda +
+   \frac{1}{2}\Tr(\Delta_1+z^2)^{-2}\nonumber \\
+    &    - \sum_{k=1}^M \frac{B_{2k}}{(2k)!} \, 
+\pl_\lambda^{(2k-1)}\Tr(\Delta_\lambda+z^2)^{-2}|_{\lambda=1} \label{EM2} \\ 
 &+ \frac{1}{(2M+1)!} \int_1^\infty B_{2M+1}(\lambda-[\lambda]) \,
-\partial_\lambda^{(2M+1)}\Tr(\Delta_\lambda+z^2)^{-2} d\lambda.
-\end{split}
-\end{equation}
+\pl_\lambda^{(2M+1)}\Tr(\Delta_\lambda+z^2)^{-2} d\lambda.\nonumber
+\end{align}
 We need to establish asymptotic behaviour of each of the terms above as $z\to \infty$.
-The standard resolvent trace expansion yields 
-\begin{equation}
-\label{exp1}
+The standard resolvent trace expansion \Eqref{trace-2-expansion}
+yields
+\begin{equation}\label{exp1}
 \begin{split}
 \frac{1}{2}\Tr(\Delta_1+z^2)^{-2}  - \sum_{k=1}^M \frac{B_{2k}}{(2k)!} \, 
 \partial_\lambda^{(2k-1)}\Tr(\Delta_\lambda+z^2)^{-2}|_{\lambda=1} 
 \sim \sum_{i=0}^{\infty} a_i z^{-3-i}, \ z\to \infty.
 \end{split}
 \end{equation}
-Moreover, Proposition \ref{phg-trace2} implies
-\begin{equation}
-\label{exp2}
+Moreover, Proposition \ref{phg-trace} implies
+\begin{equation} \label{exp2}
 \begin{split}
 \frac{1}{(2M+1)!} \int_1^\infty B_{2M+1}(\lambda-[\lambda]) \, 
 \partial_\lambda^{(2M+1)}\Tr(\Delta_\lambda+z^2)^{-2} d\lambda\\
 \leq C \cdot \int_1^\infty (\lambda+z)^{-4-2M} d\lambda =O(z^{-3-2M}), \ z\to\infty.
 \end{split}
 \end{equation}
-It remains to derive an asymptotic expansion for the second term in \eqref{EM2}.
-Proposition \ref{phg-trace2} implies
+It remains to derive an asymptotic expansion for the first integral term in \Eqref{EM2}.
+Proposition \ref{phg-trace} implies
 \begin{align*}
 \Tr(\Delta_\lambda+z^2)^{-2} = (2z)^{-1} \partial_z
 \Tr(\Delta_\lambda+z^2)^{-1} \sim \sum_{i=0}^\infty h_i (\lambda,z), \ |(\lambda,z)| \to \infty,
 \end{align*}
-where $\gamma_i:=(i+3)$ and each $h_i\in C^{\infty}(\R^2_+\backslash \{(0,0)\})$
+where $\gamma_i:=(i+3)$ and each $h_i\in C^{\infty}(\R^2_+\setminus \{(0,0)\})$
 is homogeneous of order $(-\gamma_i)$ jointly in both variables. 
-The asymptotic expansion of the second term in \eqref{EM2}
-follows from the following simple calculation
+The asymptotic expansion of the first integral term in \Eqref{EM2}
+now follows from 
 \begin{align*}
 \int_1^\infty h_i(\lambda, z) \, d\lambda = 
 z^{-\gamma_i} \int_1^\infty h_i(\lambda / z, 1) \, d\lambda =
-z^{-\gamma_i + 1} \int_1^\infty h_i(\nu, 1) \, d\nu,
+z^{-\gamma_i + 1} \int_1^\infty h_i(\nu, 1) \, d\nu.
 \end{align*}
-where the $\nu$-integral is finite, since as a consequence of 
+The $\nu$-integral is finite, since as a consequence of 
 smoothness of $h_i(1,\cdot)$ at $z=0$ and homogeneity, $h(\nu,1) = O(\nu^{-\gamma_i}), \gamma_i\geq 3$, 
-see Remark \ref{reg-int-remark} below.
-This proves our second main result
-\begin{theorem}
-\begin{align}
-\Tr(\Delta+z^2)^{-2} \equiv \sum_{\lambda=-\infty}^{\infty}\Tr(\Delta_\lambda+z^2)^{-2} 
-\sim \sum_{k=2}^\infty a_k z^{-k}, \ z \to \infty. 
-\end{align}
-\end{theorem}
-
+cf. Remark \ref{reg-int-remark} below.
+This proves our second main result Theorem \plref{trace-sum}.
+\hfill\qed
 
 %**************************************************************************
 \section{Fubini theorem for regularized integrals}
@@ -1478,22 +1547,20 @@ the main technical tool for proving the general Fubini Theorem \ref{fubini}
 for polyhomogeneous functions.
 
 \begin{theorem}
-Let $f_{\A}\in C^{\infty}(\R_+^2 \backslash \{(0,0)\})$ be homogeneous of degree $\A \in \C$ in both variables jointly. Then the following Fubini-identity holds
-\begin{equation}
+Let $f_{\A}\in C^{\infty}(\R_+^2 \setminus \{(0,0)\})$ be homogeneous of degree $\A \in \C$ in both variables jointly. Then the following Fubini-identity holds
+\begin{multline}
 \label{27-1}
-\regint\limits_1^\infty \regint\limits_1^\infty f_{\A}(x,y) dy \, dx - 
-\regint\limits_1^\infty \regint\limits_1^\infty f_{\A}(x,y) dx \, dy = 
-\left\{
-\begin{split}
-\regint\limits_0^\infty &f_{\A}(1,y) \log(y) dy, \ &\A=-2, \\
-&0, &\A\neq -2.
-\end{split}
-\right.
-\end{equation}
+\regint_1^\infty \regint_1^\infty f_{\A}(x,y) dy \, dx - 
+\regint_1^\infty \regint_1^\infty f_{\A}(x,y) dx \, dy = \\
+\begin{cases}
+\regint_0^\infty f_{\A}(1,y) \log(y) dy, &\A=-2, \\
+             0, &\A\neq -2.
+\end{cases}
+\end{multline}
 \end{theorem}
 
 \begin{remark}\label{reg-int-remark}
-The smoothness of $f_\A$ on $\R^2_+\backslash\{(0,0)\}$
+The smoothness of $f_\A$ on $\R^2_+\setminus\{(0,0)\}$
 implies the smoothness of $f_\A(1,\cdot)$ and $f_\A(\cdot, 1)$
 up to $0$. Furthermore, the homogeneity and the Taylor expansion 
 of $f_\A(\cdot, 1)$ at $0$ give for $y \to \infty$
@@ -1503,7 +1570,7 @@ f_\A(1,y)=y^\A f_\A(1/y,1)
 \sim \sum_{j=0}^\infty \frac{\partial_1^{(j)}f_\A(0,1)}{j!} y^{\A-j},
 \end{equation}
 ensuring the existence of the regularized integral 
-on the right hand side of \eqref{27-1}.
+on the right hand side of \Eqref{27-1}.
 \end{remark}
 
 \begin{proof}
@@ -1530,7 +1597,7 @@ Consequently
 &= \LIM_{R\to \infty}\regint_1^\infty x^\A \regint_R^\infty f_\A(1,y/x) dy \, dx. 
 \end{split}
 \end{equation}
-We separate the integral on the right hand side of \eqref{fubini-1}
+We separate the integral on the right hand side of \Eqref{fubini-1}
 \begin{equation*}
 \begin{split}
 \regint\limits_1^\infty x^\A \regint\limits_R^\infty \!f_\A(1,\frac{y}{x}) dy \, dx 
@@ -1540,7 +1607,7 @@ We separate the integral on the right hand side of \eqref{fubini-1}
 \end{split}
 \end{equation*}
 For the first summand we use the asymptotic expansion 
-\eqref{27-2}. Let $A\in \C$ denote the coefficient of $y^{-1}$
+\Eqref{27-2}. Let $A\in \C$ denote the coefficient of $y^{-1}$
 in this expansion as $y\to \infty$. Then we find
 \begin{equation}
 \begin{split}
@@ -1633,7 +1700,7 @@ and hence vanishes in the regularized limit. Consequently we find
 \right\} \xrightarrow[\LIM]{R\to \infty} 0.
 \end{split}
 \end{equation}
-Finally, using \eqref{27-2} we find for $\A\neq -2$
+Finally, using \Eqref{27-2} we find for $\A\neq -2$
 \begin{equation}
 \begin{split}
 &\LIM_{R\to \infty} 
@@ -1659,8 +1726,8 @@ We finally obtain
 \end{split}
 \right.
 \end{equation}
-The statement follows from \eqref{fubini-2}
-and \eqref{fubini-3}.
+The statement follows from \Eqref{fubini-2}
+and \Eqref{fubini-3}.
 \end{proof}
 
 The main result of this section is 
@@ -1672,7 +1739,7 @@ Assume $f\in C^{\infty}(\R_+^2)$ is of the form
 f(x,y) = \sum_{j=0}^{N-1}f_{\A_j}(x,y) + F_N(x,y),
 \end{align}
 where $N\in \N$, each $f_{\A_j}$ is homogeneous of order $\A_j\in \R$ in 
-$(x,y)$ jointly, $f_{\A_j}\in C^\infty(\R^2_+\backslash\{(0,0)\})$.
+$(x,y)$ jointly, $f_{\A_j}\in C^\infty(\R^2_+\setminus\{(0,0)\})$.
 The remainder is assumed to be $F_N\in L^1[1,\infty)^2$. Then 
 \begin{align}
 \regint_1^\infty\regint_1^\infty f(x,y) \, dy \, dx = 
@@ -1687,11 +1754,11 @@ The remainder is assumed to be $F_N\in L^1[1,\infty)^2$. Then
 
 \begin{theorem}
 \begin{align}
-\log \det\nolimits_{\zeta} \Delta &= \regsum_{\lambda=-\infty}^\infty \log \det\nolimits_{\zeta} \Delta_\lambda 
+\log \det\nolimits_{\zeta} \Delta &= \regsumwide_{\lambda=-\infty}^\infty \log \det\nolimits_{\zeta} \Delta_\lambda 
 - 4 \regint_0^\infty h_{2}(1,y) \log (y) dy,
 \end{align}
 where $h_{2}$ denotes the homogeneous term of degree $(-5)$ in the 
-polyhomogeneous asymptotic expansion of $\textup{Tr}(\Delta_\lambda + z^2)^{-2}$
+polyhomogeneous asymptotic expansion of $\Tr(\Delta_\lambda + z^2)^{-2}$
 as $|(\lambda, z)|\to \infty$.
 \end{theorem}
 
@@ -1709,7 +1776,7 @@ as $|(\lambda, z)|\to \infty$.
 \end{split}
 \end{equation}
 The sum and the integral in $C$ commute and the only intricate summand is $B$.
-We employ the Euler Maclaurin summation formula \eqref{EM} and find
+We employ the Euler Maclaurin summation formula \Eqref{EM} and find
 \begin{equation}
 \begin{split}
 B &= -4 \regint_1^\infty z^3 \int_1^\infty \Tr(\Delta_\lambda + z^2)^{-2} \, d\lambda \, dz 
@@ -1736,7 +1803,7 @@ B &= -4 \int_1^\infty \regint_1^\infty z^3 \Tr(\Delta_\lambda + z^2)^{-2}  \, dz
 & - 2 \regint_1^\infty z^3 \Tr(\Delta_1 + z^2)^{-2} \, dz.
 \end{split}
 \end{equation}
-The desired statement follows now from \eqref{ABC} 
+The desired statement follows now from \Eqref{ABC} 
 and a second application of the Euler Maclaurin summation formula 
 so that 
 \begin{align}

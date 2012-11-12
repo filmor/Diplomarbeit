@@ -1,4 +1,6 @@
 
+\newcommand{\Eqref}[1]{\textup{Eq.}~\eqref{#1}}
+
 \newcommand{\A}{\mathrm{\alpha}}
 \newcommand{\T}{\theta} % OK, it is convenient though
 \newcommand{\w}{\mathrm{\omega}}
@@ -17,6 +19,9 @@
 %
 
 \newcommand{\regsum}{-\hspace*{-1.2em}\sum}
+\newcommand{\regsumwide}{-\hspace*{-1.5em}\sum}
+\renewcommand\regint{-\hspace*{-0.85em}\int}
+\newcommand\regintlimits{-\hspace*{-1em}\int\limits}
 
 %\newcommand{\dbar}{{\mathchar'26\mkern-11mu\mathrm{d}}} % sieht komisch aus
 \newcommand{\dbar}{{d \! \bar{ } \,}}
@@ -28,8 +33,22 @@
 \newcommand{\CL}{\operatorname{CL}}
 \newcommand{\CS}{\operatorname{CS}}
 
+% often used parentheses
+\newcommand{\bl}{\bigl(}
+\newcommand{\br}{\bigr)}
 
+\newcommand{\mpar}[1]{\marginpar{\scriptsize #1}}
 
 \theoremstyle{definition}
          \newtheorem{defn}[theorem]{Definition}
 
+
+         
+
+% Abkuerzungen
+\newcommand{\tV}{\widetilde{V}}
+\newcommand{\tW}{\widetilde{W}}
+
+% norms
+\renewcommand{\tr}{{\textup{tr}}}
+\newcommand{\HS}{{\textup{HS}}}
