@@ -6,10 +6,10 @@
 \usepackage[standard,thmmarks,hyperref,thref]{ntheorem}
 \usepackage[ngerman,english,british]{babel}
 % \usepackage[backend=biber]{biblatex}
-\usepackage[scale=0.8]{geometry}
+\usepackage[scale=0.75]{geometry}
 \usepackage[T1]{fontenc}
 % \usepackage{lmodern}
-\usepackage{esint}
+\usepackage{slashed}
 % \usepackage{mathpazo}
 \usepackage{eulervm}
 % \usepackage{fourier}
@@ -27,6 +27,7 @@
 \def\bfseries{\fontseries \bfdefault \selectfont \boldmath}
 
 \newtheorem{MainTheorem}{Main Theorem}
+\newtheorem{Hauptsatz}{Hauptsatz}
 
 \numberwithin{equation}{section}
 \numberwithin{Lemma}{section}
@@ -42,27 +43,35 @@ Operators}
 \title{\Thema}
 
 \newcommand{\Eto}[1]{\ensuremath{\mathrm e^{#1}}}
-\newcommand{\Integ}[4][]{\ensuremath{\int_{#2}^{#1}\!#4\,\mathrm d{#3}}}
+
+\newcommand{\BaseInteg}[5]{\ensuremath{#5_{#2}^{#1}\!#4\,\mathrm d{#3}}}
+\newcommand{\Integ}[4][]{\BaseInteg{#1}{#2}{#3}{#4}{\int}}
 \newcommand{\Int}[2]{\Integ[1]{0}{#1}{#2}}
 
 \newcommand{\Abs}[1]{\ensuremath{\left|#1\right|}}
 \newcommand{\Wsum}[2][0]{\ensuremath{\sum_{n=#1}^\infty \frac{#2(0)}{(2\mu)^{n+1}}}}
-\newcommand{\Regint}[2]{\ensuremath{\fint_{1}^{\infty}\!#2\,\mathrm d{#1}}}
+
 \newcommand{\Oscint}[2]{\Integ{\mathrm O}{#1}{#2}}
 \DeclareMathOperator*{\Reglim}{LIM}
-% TODO
-\DeclareMathOperator{\Regsum}{\sum}
+
+\declareslashed{}{-}{0}{0}{\int}
+\declareslashed{\mathop}{-}{-0.1}{-0.03}{\sum}
+\newcommand{\Regsum}{\slashed{\sum}}
+\newcommand{\Regint}[2]{\BaseInteg{\infty}{1}{#1}{#2}{\slashed{\int}}}
+
 \newcommand{\Sphere}[1]{\ensuremath{{\mathbb{S}^{#1}}}}
 \newcommand{\Cinf}[1][]{\ensuremath{C^\infty_{#1}}}
 \newcommand{\Rplus}{\ensuremath{{\mathbb{R}_+}}}
 
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\vol}{vol}
-\newcommand{\SimAs}[1]{\ensuremath{\mathrel{\underset{#1}{\sim}}}}
-\newcommand{\SimMu}{\ensuremath{\SimAs{\mu\to\infty}}}
+\newcommand{\SimAs}[1]{\mathrel{\underset{#1}{\sim}}}
+\newcommand{\SimMu}{\SimAs{\mu\to\infty}}
 
-\renewcommand{\Re}{\ensuremath{\operatorname{Re}}}
-\renewcommand{\Im}{\ensuremath{\operatorname{Im}}}
+\let\Re=\relax
+\let\Im=\relax
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
 \renewcommand{\theta}{\vartheta}
 \renewcommand{\phi}{\varphi}
 
@@ -113,9 +122,11 @@ Operators}
 \input{intro/en}
 \input{intro/conventions}
 \input{intro/setting}
+\input{intro/integration-formulas}
 \input{main/interior}
 \input{main/exterior}
 \input{main/compile}
+\input{main/examples}
 \input{summary}
 \appendix
 \input{appendix/special-functions}
