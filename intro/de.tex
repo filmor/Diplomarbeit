@@ -22,14 +22,34 @@ Zunächst beweisen wir folgenden Hauptsatz:
 Die Existenz der Entwicklung ist durch einen Satz der Theorie parametrischer
 Pseudodifferentialoperatoren gesichert, der ebenfalls bewiesen wird.
 
-Dann zeigen wir mithilfe Watsons Lemmas, dass für den Rand folgendes gilt:
+Dann zeigen wir mithilfe Watsons Lemmas, dass die erwähnte Asymptotik
+exponentieller Integrale behandelt, dass für den Rand folgendes gilt:
+\begin{Hauptsatz}
+  Seien $V\in C^2([0,1])$ und $W\in C^0([0,1])$ und
+  \begin{equation*}
+    (\Delta_\lambda u)(x) := -u''(x) + (\lambda^2 V(x) + W(x)) u(x).
+  \end{equation*}
+
+  Die Resolvente sei gegeben durch den Operator $(\Delta_\lambda + z^2)^{-1}$.
+  Dann hat die Spur der Resolvente die folgende gemeinsame Asymptotik in
+  $\lambda$ und $z$:
+  \begin{align*}
+    \Tr(\Delta_\lambda + z^2) \SimAs{\Abs{(\lambda, z)}\to\infty}
+    &\frac{1}{4} \frac1{\lambda^2 V(0) + z^2} \\
+    {}+{}&\frac{1}{32} \frac{\lambda^2 V'(0)}{(\lambda^2 V(0) + z^2)^5} \\
+    {}+{}&\frac{1}{16} \frac{W(0)}{(\lambda^2 V(0) + z^2)^4}
+    + \frac{1}{64} \frac{\lambda^2 (V''(0) + 6V'(0))}{(\lambda^2 V(0) + z^2)^6}
+    + \frac{1}{512} \frac{\lambda^4 V'(0)^2}{(\lambda^2 V(0) + z^2)^8}
+  \end{align*}
+\end{Hauptsatz}
 % MThm 2: Asymptotik am Rand
 Hier ist die Existenz der asymptotischen Entwicklung per Konstruktion gesichert.
 Wir starten mit expliziten Formeln für den Kern des Operators und zeigen, dass
 die jeweiligen Spurintegrale nach Watsons Lemma eine asymptotische Entwicklung
 besitzen.
 
-Unter Anwendung beider Hauptsätze erhalten wir somit den Fehlerterm als Polynom
-$n$-ten Grades in den Ableitungen von $f$ im Inneren und am Rand:
+Unter Anwendung beider Hauptsätze erhalten wir somit den Fehlerterm in der
+Lesch-Vertman-Formel als Integral über eine rationale Funktion in den
+Ableitungen von $f$ im Inneren und am Rand:
 % Cor:    Explizite Formel für den Fehlerterm in f^(n)
 
