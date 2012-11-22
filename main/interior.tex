@@ -1,6 +1,32 @@
-\section{Asymptotics for the interior parametrix}
+\section{Asymptotics of the interior parametrix}
 In this section we aim to prove the following Theorem:
-\input{snippets/main-interior}
+\begin{MainTheorem}
+  Let $\Delta_\lambda := -\partial_x^2 + \lambda^2V(x) $ be an operator as
+  introduced beforehand and $\mu(x) := \sqrt{\lambda^2 V(x) + z^2}$ (thus
+  $\mu(x)$ has the same order as $\lambda$ and $z$, since $V(x) > 0$ is given).
+  Then the trace of the resolvent of $\Delta_\lambda$ has the following common
+  asymptotic expansion in its parameter $\lambda$ and the resolvent parameter
+  $z$:
+  \begin{align*}
+  \Tr(\Delta_\lambda + z^2)^{-1} \SimAs{\Abs{(\lambda, z)}\to\infty}&
+   \Int{x}{\left(
+      \frac12\frac1{\mu(x)^{2}}
+     -\frac1{16}\frac{\lambda^2 V''(x)}{\mu(x)^5}
+     +\frac{5}{64}\frac{\lambda^4V'(x)^2}{\mu(x)^7}
+     -\frac14\frac{W(x)}{\mu(x)^3}
+     +O\left(\Abs{(\lambda, z)}^{-5}\right)
+   \right)}.
+  \end{align*}
+  \begin{Remark}
+    For $V\equiv 0$ a similar expansion has already been proven in (DIKII,
+    Gel'fand) (where $z^2 \mapsto \zeta$ and $W(x) \mapsto u(x)$) for even
+    higher orders, but we will restrict us here to one more than what we need
+    for the particular calculation we want to do in the end.  The Appendix (ref)
+    contains the source code for a simple Python program that calculates the
+    asymptotic components (apart from the $x$-Integration) of the resolvent
+    trace.
+  \end{Remark}
+\end{MainTheorem}
 To do this we first show that the asymptotic expansion exists and, using that as
 well as the product formula for pseudo-differential operators, prove the
 explicit formula in $V$, $W$ and their derivatives.
@@ -9,22 +35,24 @@ By the following classical theorem an elliptic pseudo-differential operator with
 parameter has an asymptotic expansion in its parameter:
 \input{snippets/trace-expansion}
 \begin{Proof}
+  % TODO Gehört das hier rein oder reicht ein Verweis?
 \end{Proof}
 
 \subsection{Calculation of the first coefficients}
 The multi-parametric symbol of the operator $(\Delta_\lambda + z^2)$ is
 \begin{align}
-  % TODO: Array
-    a_2(x,\xi,\lambda,z) &= \xi^2 + \lambda^2 V(x) + z^2 \\
-    a_0(x,\xi,\lambda,z) &= W(x),
-    \label{eqn:symbol}
+  a_2(x,\xi,\lambda,z) &= \xi^2 + \lambda^2 V(x) + z^2 \\
+  a_0(x,\xi,\lambda,z) &= W(x),
+  \label{eqn:symbol}
 \end{align}
-with all other $a_n \equiv 0$.
+with all other $a_n \equiv 0$. To not complicate the following calculations we
+suppress the continuous repetition of the parameters, a prime ($a_2'$) denotes
+the derivative in $x$.
 
 % TODO REF: Shubin Thm 3.4, p 27
-We use the following product formula for symbols. Let $B$ be a
-pseudo-differential operator with symbol $a$ and $b$. Then the complete symbol
-of $(\Delta_\lambda + z^2)B$ is (modulo $S^\infty$)
+We use the following product formula for symbols: Let $A$ and $B$ be
+pseudo-differential operators with symbols $a$ and $b$, respectively. Then the
+complete symbol of $(\Delta_\lambda + z^2)B$ is (modulo $S^\infty$) given by
 \begin{align}
   a * b := \sum_{n=0}^{\infty} \frac{1}{n!}\ \partial_\xi^n a\,D_x^n b
   \label{eqn:product-formula}
@@ -33,10 +61,10 @@ We are interested in the symbol of the parametrix, so we demand
 \begin{align*}
   a * b \sim 1,
 \end{align*}
-so the asymptotic expansion of $(a*b)$ in the symbol spaces is supposed to be
-$(a * b)_n \equiv \delta_{n0}$. Actually this will also work for $(b * a)$,
-i.~e.\ $BA$, but this complicates further calculations as with the chosen order
-we only have $\xi$-derivatives of $a_n$ which are
+so the asymptotic expansion of $a * b$ in the symbol spaces is supposed to be
+$(a * b)_n \equiv \delta_{n0}$ if $B$ is a parametrix of $A$. Actually this will
+also work for $b * a$, i.~e.\ $BA$, but this complicates further calculations as
+with the chosen order we only have $\xi$-derivatives of $a_n$ which are
 \begin{align}
   \partial_{\xi} a = 2\xi \text{ and } \partial_{\xi}^2 a = 2.
 \end{align}
@@ -44,23 +72,23 @@ Thus the above sum collapses and only three terms are left:
 \begin{align}
   a * b = (a_2 + a_0)b - 2\xi\mathrm i\,\partial_x b - \partial_x^2 b.
 \end{align}
-We will now split up $b$ in its asymptotic components.
 
 From the known asymptotics of $a$ we can now inductively derive the first
-coefficients of the parametrix of $(\Delta_\lambda + z^2)$.
+coefficients of the parametrix of $(\Delta_\lambda + z^2)$:
 \begin{align*}
   b_{-2} &= \frac{1}{a_2} \\
   b_{-3} &= -2\frac{\xi a_2'}{a_2^3}\\
-  b_{-4} &= -4\frac{\xi^2 a_2''}{a_2^4}
-  + 12\frac{\xi^2 (a_2')^2}{a_2^5} - \frac{a_0}{a_2^2} +
-  2\frac{a_2''}{a_2^3} -4\frac{(a_2')^2}{a_2^4}
+  b_{-4} &= 4\frac{\xi^2 a_2''}{a_2^4}
+  - 12\frac{\xi^2 (a_2')^2}{a_2^5} - \frac{a_0}{a_2^2}
+  - 2\frac{a_2''}{a_2^3} + 2\frac{(a_2')^2}{a_2^4} \\
   \label{eqn:coeff-symbol}
 \end{align*}
 
 Since we are ultimately interested in the kernel on the diagonal we will need to
-integrate the resulting symbol for the parametrix, since
+integrate the resulting symbol for the parametrix, since for a
+pseudo-differential operator $A$ with symbol $a$ we have
 \begin{align*}
-  k(x,y) &= \frac{1}{2\pi}\Oscint{\xi}{
+  k_A(x,y) &= \frac{1}{2\pi}\Oscint{\xi}{
     \Eto{\mathrm i\left\langle x-y, \xi\right\rangle} a(x,\xi)
   }
   \quad
@@ -68,42 +96,47 @@ integrate the resulting symbol for the parametrix, since
   \quad
   k(x,x) = \frac{1}{2\pi}\Integ{\mathbb{R}}{\xi}{a(x,\xi)},
 \end{align*}
-where $\int_{O}$ denotes the oscillating integral (REF), which coincides with
-the usual integral over $\mathbb{R}$ for $x = y$. The integrals can be handled
-with in a uniform way using the beta function as seen in the introduction.
-% TODO
+where $\Oscint{\xi}\cdot$ denotes the oscillating integral (REF), which
+coincides with the usual integral over $\mathbb{R}$ for $x = y$. The integrals
+over $\xi$ can be handled with in a uniform way using the beta function as seen
+in the introduction (\ref{lem:beta_function_formula}) by setting $n =
+\text{order of $\xi$ in the numerator}$, $m = \tfrac12\text{order of $a_2$ in
+the denominator}$, $a=\mu(x)=\sqrt{\lambda^2 V(x) + W(x)}$ and $b = 1$. We also
+see, that for odd $n$ the terms vanish, as we have an integral over an odd
+function, while for even $n$ we get an additional factor of $2$ for integrating
+over $\mathbb{R}$ instead of $\Rplus$.
 
 The corresponding terms in the kernel are thus
 \begin{align}
   k_{b_{-1}}(x,x,\lambda,z) &= \frac{1}{2} \frac{1}{\lambda^2 V(x) + z^2} \\
   k_{b_{-2}}(x,x,\lambda,z) &= 0 \\
-  k_{b_{-3}}(x,x,\lambda,z) &= \frac{1}{4} \frac{\lambda^2 V''(x)}{(\lambda^2
-    V(x) + z^2)^{5/2}} - \frac{25}{64} \frac{\lambda^4 V'(x)^2}{(\lambda^2V(x)
+  k_{b_{-3}}(x,x,\lambda,z) &= - \frac{1}{16} \frac{\lambda^2 V''(x)}{(\lambda^2
+    V(x) + z^2)^{5/2}} + \frac{5}{64} \frac{\lambda^4 V'(x)^2}{(\lambda^2V(x)
     + z^2)^{7/2}} -\frac{1}{4}\frac{W(x)}{(\lambda^2 V(x) + z^2)^{3/2}}
   \label{eqn:coeff-kernel}
 \end{align}
 
 These are the first three asymptotic components of the kernel of
-$(\Delta_\lambda + z^2)^{-1}$ on the open interval $(0,1)$, i.e. if we define
-$\mu(x) := \sqrt{\lambda^2 V(x) + z^2}$ we have
+$(\Delta_\lambda + z^2)^{-1}$ on the open interval $(0,1)$, i.~e.\ if we define
+$\mu(x) := \sqrt{\lambda^2 V(x) + z^2}$ as above we have
 \begin{align*}
   \Tr(\Delta_\lambda + z^2)^{-1} \SimAs{\Abs{(\lambda, z)}\to\infty}&
    \Int{x}{\left(
       \frac12\frac1{\mu(x)^{2}}
-     +\frac14\frac{\lambda^2 V''(x)}{\mu(x)^5}
-     -\frac{25}{64}\frac{\lambda^4V'(x)^2}{\mu(x)^7}
+     -\frac1{16}\frac{\lambda^2 V''(x)}{\mu(x)^5}
+     +\frac{5}{64}\frac{\lambda^4V'(x)^2}{\mu(x)^7}
      -\frac14\frac{W(x)}{\mu(x)^3}
      +O\left(\Abs{(\lambda, z)}^{-5}\right)
    \right)}.
 \end{align*}
+% TODO: Oben allgemein angeben, folgt ja aus der Rekursionsformel
 The asymptotic order of the remainder of $-5$ follows from the fact, that by
-construction every other stepin our recursion formula results in the exponents
+construction every other step in our recursion formula results in the exponents
 of $\xi$ in the numerator being odd, so the $\xi$ integral over $\mathbb{R}$
 vanishes, in particular $k_{b_{-4}} = 0$.
 
 Finally for this to give us all the information we were looking for we need to
-carry out the $x$-Integration.
-
-Evaluating this integral will be postponed until we have done the necessary
-formal steps to get to $\Tr(\Delta_\lambda + z^2)^{-2}$, and evaluate the 
-$(\lambda,z)$-integral. We will justify this a posteriori.
+carry out the $x$-Integration. Evaluating this integral will be postponed until
+we have done the necessary formal steps to get to $\Tr(\Delta_\lambda +
+z^2)^{-2}$, and evaluate the $(\lambda,z)$-integral. We will justify this
+\textit{a posteriori}.

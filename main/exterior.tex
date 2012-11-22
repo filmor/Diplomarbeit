@@ -2,7 +2,9 @@
 By using the summation formula derived in LV12 the existence and values of the
 asymptotic components of the specific operator we're looking at can be
 calculated directly. From Lemma bla we know, that we only have to consider $j\in
-\{0, 1, 2\}$ since the requested asymptotic coefficient is of order $-5$.
+\{0, 1\}$ since the requested asymptotic coefficient is of order $-3$ in the
+resolvent. We will however employ the same method to derive the asymptotics up
+to the next order.
 
 \subsection{Preliminaries}
 In (%größtenteils)
@@ -39,38 +41,6 @@ We also set
     \mathrm M(x) := \Integ[x]{0}{t}{\Lambda(t)}.
 \end{align}
 
-We will need both of the following Lemmas for the calculation. The first one is
-a classical result of asymptotic analysis and is the base of all further results
-on the asymptotics of exponential integrals.
-\begin{Lemma}[Watson]
-  \input{snippets/watsons-lemma}
-  \begin{proof}
-    Since the proof is a bit lengthy and not needed to understand the following
-    it can be found in Appendix~\ref{sec:proof-watson}.
-  \end{proof}
-%    \begin{Remark}
-%        We actually don't need analyticity but only the existence of as many
-%        derivatives as degrees we want and additionally a finiteness condition
-%        on .
-%    \end{Remark}
-\end{Lemma}
-
-The second Lemma is a quite general formula for nested integrals, in which the
-upper limit of the inner integral is the integration variable of the outer one:
-\input{snippets/integration-lemma}
-\begin{Remark}
-  This is in fact only Fubini's theorem for the integral of $(x,y)\to g(x)f(y)$
-  over a right-angled triangle:
-  \begin{center}
-    \begin{tikzpicture}
-      \draw (0,0)
-      -- (2,2)
-      -- node[anchor=west] {$y$} (2,0)
-      -- node[anchor=north] {$x$} (0,0);
-    \end{tikzpicture}
-  \end{center}
-\end{Remark}
-
 With those given we can explicitly calculate the asymptotics of the
 resolvent-trace, which we will do now for $x=0$. The case $x=1$ is identical to
 this one if we employ the transformation $x\mapsto 1-x$, which results in a sign
@@ -84,21 +54,6 @@ asymptotics of $2^3 - 1 + 2^2 - 1 + 2^1 - 1 = 11$ traces. For symmetry reasons
 we can reduce this to 7 integrals. We can do this as we can see in the further
 calculation that it suffices to prove the following Lemma:
 % TODO: Auswalzen warum Stetigkeit ausreicht.
-\begin{Lemma}
-  Let $f\colon [0,T)\to\mathbb{R}$ (where $T$ may be $\infty$) be an integrable
-  function. Then the exponential parameter integral
-  \begin{align*}
-    F(x) = \Integ[T]{0}{t}{\Eto{-tx} f(t)}
-  \end{align*}
-  is continuous in $x$.
-  \begin{Proof}
-    The statement follows immediately from a classical result of Lebesgue theory
-    on the continuity of parameter-dependent integrals (REF: Königsberger 2
-    282f). We only need to check, that there is an integrable majorant for all
-    $x$, which is simply $f(t)$ in this case, and that the whole integrand is
-    continuous in $x$ for fixed $t$ which is obvious.
-  \end{Proof}
-\end{Lemma}
 
 In the following calculations we define analogous to $R$
 \begin{align}
@@ -436,11 +391,14 @@ derivatives.
 % TODO: PROOF, das ist wichtig (sagt Lesch!)
 %       Annahme dazu: Wir können jedes Integral der Art \Tr R_{+-+-+-+…}^{(n)}
 %       in eine Form bringen, so dass Watson's Lemma angewandt werden kann.
+% TODO: Rekursion: Zeige, dass wenn wir das für \sigma schaffen, dann auch für
+%       +\sigma. Dann ist nur noch zu zeigen, dass das ganze auch für +------
+%       geht (das ist der schwierigste Teil!)
 
 Summing up the previous results we get the following three terms of the
 asymptotic expansion of $\Tr R_\theta$:
 \begin{align}
-  h_1 &= \frac{1}{4\mu^2} = \frac{1}{4} (\lambda^2 + z^2)^{-1} \\
+  h_1 &= \frac{1}{4\mu^2} = \frac{1}{4} (\lambda^2V(0) + z^2)^{-1} \\
   h_2 &= \frac{\lambda^2}{(2\mu)^5} V'(0) \\
   h_3 &= \frac{\lambda^4}{(2\mu)^8} \frac12 (V'(0))^{2}
        + \frac{\lambda^2}{(2\mu)^6} \left(V''(0) + 6V'(0)\right)
