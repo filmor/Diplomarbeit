@@ -69,4 +69,89 @@ def trace_exp(n):
 
     return sum(result) / (2 * pi)
 
+@cacheit
+def shifted_harmonic_sum(n, s=Rational(1,2)):
+    if n < s:
+        return 0
+    return shifted_harmonic_sum(n - 1, s) + Rational(1, n - s)
+
+def log_lambda_integration(expr):
+    expr = expr.diff(z) / (-2 * z)
+    expr = expr.subs(z, 1)
+    expr = expand(expr, False)
+    if isinstance(expr, Add):
+        summands = expr.args
+    else:
+        summands = [expr]
+
+    k = Wild("k")
+    n = Wild("n")
+    p = Wild("p", exclude=[l])
+
+    pattern_0 = p / (1 + k * l**2)**((n+5) / 2)
+    pattern = pattern_0 * l**n
+
+    result = []
+
+    for s in summands:
+        if s == zero_func:
+            val = 0
+        else:
+            match = pattern.matches(s)
+            if match is None:
+                match = pattern_0.matches(s)
+                # Will fail if the function doesn't have the right format
+                match[n] = 0
+
+            if match[n] % 2 == 0:
+                n_ = match[n]
+                k_ = match[k]
+                p_ = match[p]
+                val = p_ * Rational(2, (n_ + 1) * (n_ + 3)) \
+                    * k_ ** (-(n_ + 1)) \
+                    * (shifted_harmonic_sum(n_ / 2) - 1 - 2 * ln(2 * k_))
+                result.append(val)
+            else:
+                raise NotImplementedError
+
+    return sum(result)
+
+from sympy.printing.latex import LatexPrinter
+class MyLatexPrinter(LatexPrinter):
+    _default_settings = LatexPrinter._default_settings
+
+    def __init__(self, **kwargs):
+        super(MyLatexPrinter, self).__init__(kwargs)
+
+    def _print_Derivative(self, expr):
+        dim = len(expr.variables)
+
+        if len(set(expr.variables)) != 1 or not isinstance(expr.expr, Function):
+            return super(MyLatexPrinter, self)._print_Derivative(expr)
+
+        deriv_expr = ""
+        if dim == 1:
+            deriv_expr = "'"
+        elif dim == 2:
+            deriv_expr = "''"
+        else:
+            deriv_expr = r"^{(%s)}" % dim
+
+        return self._print_Function(expr.expr, deriv=deriv_expr)
+
+    def _print_Function(self, expr, exp=None, deriv=""):
+        name = expr.func.__name__
+        if deriv is "" and name not in ["W", "V", "a_2", "a_0"]:
+            return super(MyLatexPrinter, self)._print_Function(expr)
+        else:
+            args = ",".join(str(self._print(arg)) for arg in expr.args)
+            exp = "^{%s}" % exp if exp else ""
+            return "%s%s(%s)%s" % (name, deriv, args, exp)
+
+# Rename log
+log.__name__ = "ln"
+
+def format_expr(expr):
+    return MyLatexPrinter(mode="plain", fold_func_brackets=True,
+            fold_frac_powers=True).doprint(expr)
 
