@@ -1,0 +1,287 @@
+\subsection{Rationality of the homogeneous components}
+Let
+\begin{align*}
+	f_\lambda(x) := \lambda^2 V(x) + W(x).
+\end{align*}
+
+We know, that $f_\lambda$ is analytic in $x$, thus we can write
+\begin{align*}
+  f_\lambda(x) &= \sum_{n=0}^{N-1} \frac{f_\lambda^{(n)}(0)}{n!} x^n + R_N(x) \text{
+  with} \\
+  R_N(x) &= \frac{f^{(N)}(\xi)}{N!} x^{N}
+\end{align*}
+
+We want to prove that the homogeneous components of the asymptotic expansion of
+the exterior parametrix are again, like they were in the interior of the
+interval, rational functions in $V$, $W$ and their derivatives, to be precise in
+their values at 0. In particular we want to show, that we always get a
+polynomial that is divided by integral powers of $\mu = \lambda^2 V(0) + W(0)$.
+It suffices to show that if we substitute each $f_\lambda$ in the convolution of
+our kernels by a function $x^{n}$ for some $n\in\mathbb{N}$ (that may be
+different for each substitution) we end up with a finite asymptotic sum.
+
+We will do this recursively by looking at suitable generalisations of the
+kernels with $f_\lambda$ being a function of the following kind:
+\begin{Definition}[Step Polynomial]
+  Let $f_>, f_<\in K[x]$ be polynomials. Then we define the function $f_a\colon
+  K\setminus\{a\}\to K$ as 
+  \begin{align*}
+    f_a(x) := \begin{cases}
+      f_>(x) & x > a \\
+      f_<(x) & x < a
+    \end{cases}
+  \end{align*}
+  We define the degree of $f$ as the 2-tuple
+  \begin{align*}
+    \deg f := \left(\deg f_<, \deg f_>\right).
+  \end{align*}
+\end{Definition}
+
+The integral part of the proof is the following Lemma:
+\begin{Lemma}
+  \label{lem:asymp-1}
+  Let $f_b, g_b$ be step polynomials and for odd integers $k_a, k_b, K_a, K_b$
+  let $e$ be a step function defined as:
+  \begin{align*}
+    g_{k,K}(x, b) = \begin{cases}
+      k_a x + k_b b & x < b \\
+      K_a x + K_b b & x > b
+    \end{cases}
+  \end{align*}
+  % TODO: Polynomiale und \mu-Ordnung der Terme angeben
+  Then we get the following asymptotics for (step) polynomials $f^A, f^{B_1}_b,
+  f^{B_2}_b$ and $f^C$, each being of order $O(f_b)$ as $\mu\to\infty$ and of
+  the same (or element-wise lesser) degree as $f_b$:
+  \begin{align*}
+    \label{eqn:poly-1}
+    \newtag
+    \Int{x}{\Eto{-\mu((a + x) + g_{(k_a,k_b),(K_a,K_b)}(x, b))} &f_b(x)} \\
+         =&\ \Eto{-\mu(a+k_b b)}f^0_b(a) + \Eto{-\mu(a+K_b b + 1 + K_a)}f^1(a) \\
+         +&\ \Eto{-\mu g_{(2+k_a, k_b),(1,1+k_a+k_b)}(a,b)} f^A(a) \\
+         +&\ \Eto{-\mu g_{(2+k_a, k_b),(2+K_a,K_b)}(a,b)} f^{B_1}_b(a) \\
+         +&\ \Eto{-\mu g_{(1,1+k_b+k_a),(1,1+K_a+K_b)}(a,b)} f^{B_2}_b(a) \\
+         +&\ \Eto{-\mu g_{(1,1+K_a+K_b),(2+K_a,K_b)}(a,b)} f^C(a)
+  \end{align*}
+  And also (for a different set of $f^{*}_b$ in general):
+  \begin{align*}
+    \label{eqn:poly-2}
+    \newtag
+    \Int{x}{\Eto{-\mu (\Abs{a - x} + g_{(k_a,k_b),(K_a,K_b)}(x, b))} &f_b(x)} \\
+        =&\ \Eto{-\mu(a+k_bb)}f^0_b(a) + \Eto{-\mu(-a+K_bb+1+K_a)}f^1(a) \\
+        +&\ \Eto{-\mu g_{(-1,1+K_a+K_b),(1,k_b+k_a-1)}(a,b)} f^A(a) \\
+         +&\ \Eto{-\mu g_{(-1,1+k_a+k_b),(K_a, K_b)}(a,b)} f^{B_1}_b(a) \\
+         +&\ \Eto{-\mu g_{(k_a,k_b),(1,K_a+K_b-1)}(a,b)} f^{B_2}_b(a) \\
+         +&\ \Eto{-\mu g_{(-1,1+k_a+k_b),(K_a, K_b)}} f^C(a)
+  \end{align*}
+  In particular, the exponents are independent of $f_b$.
+
+  \begin{Proof}
+    Essentially we will just use this formula for $k \neq 0$
+    \begin{align}
+      \Integ[b]{a}{x}{\Eto{-kx}x^n}
+        = n!\left(\Eto{-ka}\sum_{m=0}^n \frac{a^m}{m!k^{n+1-m}} -
+                  \Eto{-kb}\sum_{m=0}^n \frac{b^m}{m!k^{n+1-m}}\right),
+    \end{align}
+    which follows directly by the substitution $x \mapsto kx$ from the formula
+    for the (upper) Incomplete Gamma Function given (and proven) in the
+    appendix. The sign is intentional, and we use in this context the convention
+    $0^0 := 1$ to deal with the special case of $a = 0$ or $b = 0$. For $k = 0$
+    we have $\frac{b^{n+1} - a^{n+1}}{n+1}$.
+    % TODO
+
+    The first integral will be done in detail and we start of by splitting it up
+    as much as needed. Let $m := \min(a,b), M := \max(a,b)$. Then we can write
+    the integral (using the given abbreviation) as
+    \begin{align*}
+      h(x) &:= \Eto{-\mu(a+x+g_{(k_a,k_b),(K_a,K_b)}(x, b))}f_b(x) \\
+      \Int{x}{h(x)} &= A + B + C \quad \text{with} \\
+                 A :&= \Integ[m]{0}{x}{h(x)} \\
+                 B :&= \Integ[M]{m}{x}{h(x)} \\
+                 C :&= \Integ[1]{M}{x}{h(x)}.
+    \end{align*}
+
+    Now we will determine each of the integrals for monomials first.
+    
+    For $k_a = -1$ we have $A = \Eto{-\mu (a+k_b b)} \frac{m^{n+1}}{n+1}$,
+    otherwise we can use the formula given above:
+    \begin{align*}
+      A &= \Integ[m]{0}{x}{\Eto{-\mu(a+x+k_a x+k_b b)}x^n}
+         = \Eto{-\mu(a+k_b b)} \Integ[m]{0}{x}{\Eto{-(1+k_a)\mu}x^n} \\
+        &= \Eto{-\mu(a+k_b b)} n! \left(
+         % TODO Term für untere Grenze oben einfügen!
+         \frac{1}{((1+k_a)\mu)^{n+1}}
+         - \Eto{-\mu(1+k_a)m}\sum_{l=0}^n \frac{m^l}{l! ((1+k_a)\mu)^{n+1-l}}
+        \right) \\
+      &= \Eto{-\mu(a+k_b b)} \frac{n!}{((1+k_a)\mu)^{n+1}} +
+        \begin{cases}
+        \Eto{-\mu((2+k_a) a+k_b b)} n! \sum_{l=0}^n
+        \frac{a^l}{l!((1+k_a)\mu)^{n+1-l}}
+          & a < b \\
+          \Eto{-\mu(a + (1+k_a+k_b)b)} n! \sum_{l=0}^n
+          \frac{b^l}{l!((1+k_a)\mu)^{n+1-k}}
+          & a > b
+      \end{cases}
+    \end{align*}
+    The non-exponential part in the case differentiation is the resulting
+    $f^A(a)$, which is indeed of degree $(n,1)$ and even $O(\mu^{-1})$ for
+    $k_a\neq -1$, but definitely $O(1)$. We have also found terms that will form
+    $\Eto{-\mu(a+k_b b)} f^0_b$, being the only contribution of $A$ for $k_a
+    = -1$ and additionally the contribution from the lower end of the interval.
+
+    For $B$ the calculation is a bit simpler, as we don't have to worry about
+    the special case at 0 but only have to catch the possible $-1$'s in $k_a$
+    and $K_a$:
+    \begin{align*}
+      B = \Eto{-\mu(1 + k_b b)} \frac{1}{n+1} \begin{cases}
+        b^{n+1} - a^{n+1} & a<b \wedge k_a = -1 \\
+        a^{n+1} - b^{n+1} & a>b \wedge K_a = -1,
+      \end{cases}
+    \end{align*}
+    thus this again contributes to $f^0_b$.
+
+    Otherwise we have for $a < b$
+    \begin{align*}
+      B &= \Eto{-\mu(a + k_b b)} \Integ[b]{a}{x}{\Eto{-\mu(1+k_a)}x^n}
+        &= \Eto{-\mu(a + (1+k_a+k_b)b)} f^{B_2}_<(a)
+         + \Eto{-\mu((2+k_a)a +k_b b)} f^{B_1}_<(a),
+    \end{align*}
+    and for $a > b$ (where we have $k\mapsto K$ and $a$ and $b$ switch roles)
+    \begin{align*}
+      B &= \Eto{-\mu(a + K_b b)} \Integ[a]{b}{x}{\Eto{-\mu(1+K_a)}x^n}
+        &= \Eto{-\mu((2+K_a)a + K_b b)} f^{B_1}_>(a)
+         + \Eto{-\mu(a + (1+K_a+K_b)b)} f^{B_2}_>(a).
+    \end{align*}
+
+    Now we do the same for $C$, paying attention to the upper end of the
+    interval. For $K_a = -1$ we have again a contribution to $f^0_b$:
+    \begin{align*}
+      C = \Eto{-\mu(a+k_b b)} \frac{1}{n+1} \begin{cases}
+        1 - b^{n+1} & a < b \\
+        1 - a^{n+1} & a > b
+      \end{cases}.
+    \end{align*}
+
+    For $K_a \neq -1$ we get:
+    \begin{align*}
+      C = \Eto{-\mu(a+K_b b)} n! \left(
+      \Eto{-\mu(1+K_a)M} \sum_{l=0}^n \frac{M^l}{l!((1+K_a)\mu)^{n+1-l}}
+      - \Eto{-\mu(1+K_a)} \sum_{l=0}^n \frac{1}{l!((1+K_a)\mu)^{n+1-l}}
+      \right)
+    \end{align*}
+    Inserting $M=a$ or $M=b$ we get the corresponding contributions for $f^C_b$
+    and the last term indeed is the $f^1$. Since we have now shown
+    \eqref{eqn:poly-1} for a monomial and the integrals are linear in the
+    function we can easily extend it to (step) polynomials by linear
+    combination.
+    
+    which proves the first equation. The
+    second one follows the same way if whilst case differentiating we insert the
+    proper differences instead of $\Abs{a-x}$, i.e.\ $a-x$ in $A$ and $B_1$ and
+    $x - a$ in $B_2$ and $C$. Also the first special case (for $f^0$ in $A$) is
+    not $k_a = -1$ but $k_a = 1$ here, the second one is the same however.
+    % TODO: Auswalzen, das geht so nicht! Zumindest am Ende muss hier noch etwas
+    % mehr stehen.
+  \end{Proof}
+\end{Lemma}
+
+Now that we know better how the kernels behave when they are concatenated we can
+prove our last Main Theorem:
+\begin{MainTheorem}
+  The homogeneous terms in the  common asymptotic expansion of the
+  resolvent-trace of $\Delta_\lambda$ at the boundary $x = 0$ is a rational
+  function in $V$, $W$ and their respective derivatives at $0$.
+  \begin{Remark}
+    This construction works \emph{ad verbatim} for $x=1$ with the standard
+    substitution $x\mapsto 1 - x$.
+  \end{Remark}
+  \begin{Proof}
+    As explained in the beginning of this section we consider the Taylor
+    expansion of $f_\lambda$ at $x=0$ with the remainder being in Lagrange form,
+    which is a polynomial of degree $N$ for some $N\in\mathbb{N}$.
+
+    Now let $R^{(n)}$ be again given by its components $R^{(n)}_{\sigma}$. We
+    will now iterate over $\sigma$ using the formulas given in the Lemma above
+    and gather the corresponding $k_a,k_b$ and $K_a,K_b$.
+
+    For $\sigma_{n} = +$ we have as starting values $k_a = k_b = K_a = K_b = 1$
+    and for $\sigma_{n} = -$ we have $k_a = K_a = -1$ and $k_b = K_b = 1$,
+    modeling the modulus in the exponent. In each step of the iteration we use
+    either \eqref{eqn:poly-1} (for $\sigma_i = +$) or \eqref{eqn:poly-2} (for
+    $\sigma_i = -$) and multiply the resulting polynomials by the
+    Taylor polynomial of $f_{\lambda}$, which, of course, doesn't change the
+    general form of them used in further calculations. However we have to keep
+    track of the polynomial degree, because this will in the end determine the
+    $\mu$-order of the corresponding term. To prove, that we indeed get a proper
+    asymptotic expansion with the homogeneous terms being rational functions we
+    have to show, that only a finite number of terms contribute to a specific
+    order. It suffices to show, that the rest term of the Taylor expansion only
+    contributes up to order of $-n_N$ for some $n$, with $\lim_{N\to\infty}
+    -n_N = -\infty$ and $n_N$ being monotonous.
+
+    Finally we want to insert $a = b$ and integrate, for which to be
+    well-defined we have to show, that first of all the step polynomials whose
+    integrals contribute are actually polynomials, i.e.\ $f_< \equiv f_>$ on all
+    of $[0,1]$ and $k_a + k_b = K_a + K_b$. Furthermore we need to show, for
+    this being an asymptotic expansion, that $k_a + k_b \geq 0$, since only in
+    this case the result of the integral is properly damped and by Watson's
+    Lemma we have only contributions from $x = 0$.
+
+    First we deal with the terms consisting only of $f^A$, $f^{B_*}$ and $f^C$.
+    Let $k_a + k_b = K_a + K_b$ (this is given for our initial values $k =
+    (1,1), K = (1,1)$ and $k = (-1,1), K=(-1,1)$). Then we have for $\sigma_i =
+    +$ and for the terms belonging to $f^A$, $f^{B_*}$ and $f_C$
+    \begin{align*}
+      k^i_a + k^i_b &= 2 + k^{i-1}_a + k^{i-1}_b \\
+      K^i_a + k^i_b &= 2 + K^{i-1}_a + K^{i-1}_b,
+    \end{align*}
+    and for $\sigma_i = -$
+    \begin{align*}
+      k^i_a + k^i_b &= k^{i-1}_a + k^{i-1}_b \\
+      K^i_a + K^i_a &= K^{i-1}_a + K^{i-1}_b.
+    \end{align*}
+    Thus if we start with $k_a + k_b = K_a + K_b$ this will be conserved and if
+    we have at least one $\sigma_i = +$ (which is given in the construction) the
+    sum of the exponents will be $> 0$, thus in the trace evaluation we have a
+    negative exponent. Also, as shown before, the polynomials preserve their
+    degree during this step. We have to note, that the $f^{B_*}_b$-terms,
+    which are step polynomials, vanish in the final step for $a = b$, as they
+    correspond to the integrals $\int_a^b$ and $\int_b^a$ respectively, thus
+    the step polynomials are of no concern.
+    % Polynomial orders?
+
+    The terms that contain $f^1$ are especially easy to cope with. We can see in
+    the formulas for the exponents, that there is no way for $k_a, k_b$ or $K_a,
+    K_b$ to \emph{both} become negative if they weren't already before. This is
+    also the reason, why none of them can ever be less than $-1$.
+    % TODO: Beweisen, dass K, k >= -1 sind (ist kurz, fehlt hier aber!)
+    For $\sigma_i = \pm$, $f^1 \neq 0$ only for $K^{i-1}_a \neq -1 \Rightarrow
+    K^{i-1}_a \geq 0$. Now this term has a factor of $\Eto{+\mu (1+K_a)}$, since
+    the terms that are multiplied with this one are only of polynomial order
+    they cannot cancel it and it does not contribute to the asymptotic expansion
+    at all.
+
+    Now we are left with handling $f^0_b$. We see immediately, that the term
+    coming from $A$
+    % TODO - Erster Term hat \mu-Ordnung n+1, also für den Restterm N+1
+    %       -> trägt nicht bei
+    %      - Terme aus B tragen nicht bei für a=b da sie 0 sind
+    %      - Für allgemeine a, b erhöht sich die Polynomordnung um n+1, also
+    %        für den Restterm auch um N+1
+
+    % TODO Watson's Lemma anwenden um zu zeigen, dass die \mu-Ordnung überall
+    %      kleiner als 0 ist, obwohl das auch in Prop2.2 drinsteckt!
+
+    Now that all of this is done the proof is finished, as we already know that
+    only a finite number of terms $R^{(n)}_\sigma$ contribute to a specific
+    order and we have shown, that each $R^{(n)}_\sigma$ does also only
+    contribute finitely many terms. Furthermore we have shown, that the
+    contributions of the rest term in the Taylor expansion, which is of order
+    $N$ in $x$, are of order $-N-1$ in $\mu$, monotonically decreasing with
+    limit $-\infty$. Thus each homogeneous component is made of a finite number
+    of products of coefficients of the Taylor expansion of $f_\lambda$, which
+    are up to a constant the derivatives of $V$ and $W$ at $x=0$.
+  \end{Proof}
+\end{MainTheorem}
+
+The constructive part of the proof, together with \thref{lem:asymp-1}, can be
+extended to a program that calculates all terms in the asymptotic expansion.

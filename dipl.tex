@@ -53,6 +53,7 @@ Operators}
 
 \newcommand{\Oscint}[2]{\Integ{\mathrm O}{#1}{#2}}
 \DeclareMathOperator*{\Reglim}{LIM}
+\newcommand{\Zetadet}{\ensuremath{\mathop{\ln\operatorname{det}_\zeta}}}
 
 \declareslashed{}{-}{0}{0}{\int}
 \declareslashed{\mathop}{-}{-0.1}{-0.03}{\sum}
@@ -74,6 +75,8 @@ Operators}
 \DeclareMathOperator{\Im}{Im}
 \renewcommand{\theta}{\vartheta}
 \renewcommand{\phi}{\varphi}
+
+\newcommand{\newtag}{\tag{\theequation}\addtocounter{equation}{1}}
 
 \begin{document}
 \begin{titlepage}
@@ -125,6 +128,7 @@ Operators}
 \input{intro/integration-formulas}
 \input{main/interior}
 \input{main/exterior}
+\input{main/exterior_polynomial}
 \input{main/compile}
 \input{main/examples}
 \input{summary}
