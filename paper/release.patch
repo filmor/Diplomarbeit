@@ -1,0 +1,22 @@
+--- main.tex	2012-06-07 17:23:07.000000000 +0200
++++ main-release.tex	2012-06-07 17:23:37.000000000 +0200
+@@ -21,7 +21,7 @@
+ %% TOPMATTER ------------------------------------------------%{{{
+ 
+ % options draft, arxiv, submit
+-\documentclass[draft,reqno]{ml-gen}
++\documentclass[submit,reqno]{ml-gen}
+ 
+ \usepackage{tikz}   % if you need figures
+ %\usepackage{graphicx} % embedded graphics
+@@ -41,8 +41,8 @@
+ % The following works better in one sided mode
+ % showkeys ignores 'oneside' and puts label on the left
+ % on even numbered pages, hence they become invisible
+-\usepackage{showlabels}
+-\renewcommand{\showlabelfont}{\scriptsize\ttfamily}
++%\usepackage{showlabels}
++%\renewcommand{\showlabelfont}{\scriptsize\ttfamily}
+ 
+ \renewcommand{\rmdefault}{pplj}
+ \usepackage{euler}
