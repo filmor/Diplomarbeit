@@ -1,7 +1,15 @@
 \section{Setting}
-% Multitude of references to ML and BV
-% Abschnitt vom Anfang von LV de-facto kopieren, eigene Definitionen benutzen un
-% genauer angeben, was was ist und woraus das jeweils folgt.
+We will first motivate our investigation of the asymptotics of multi-parametric
+Sturm-Liouville operators by a formula given in \cite{LV12}. This formula can be
+used to calculate the zeta determinant of an infinite direct sum of
+Sturm-Liouville operators by means of a regularised sum of the zeta determinants
+of the operators and an error term involving a specific (poly-)homogeneous
+component of the asymptotic expansion of the direct sum operator.
+
+We will first introduce the toy example of a surface of revolution, which indeed
+decomposes into an infinite sum of Sturm-Liouville operators, and then introduce
+the further notation needed to understand the formula, whose error term we aim
+to calculate in the end.
 
 \subsection{Laplace-Beltrami operator on a surface of revolution}
 Let $M = [0,1]\times\Sphere{1}$ be a surface of revolution by use of the metric
@@ -60,20 +68,32 @@ We will consider operators like $\Delta_\lambda$, where we will set
 \end{align}
 where the non-derivative terms as usual denote the multiplication operators
 $(M_\phi u)\colon x \mapsto \phi(x)u(x)$. We won't write this out (i.~e.\ in the
-summands of $\Delta_\lambda$ we use $W(x)$ instead of $M_W$) however we will 
+summands of $\Delta_\lambda$ we use $W(x)$ instead of $M_W$) unless necessary.
+
+In further calculations the "`multiplication part"' of the operator is of
+relevance multiple times, so we will shorten it a bit:
+\begin{align}
+  \label{def:f-lambda}
+  f_{\lambda}(x) := \lambda^2 V(x) + W(x)
+\end{align}
+Note, that this definition is $\lambda(V,W)(x)$ in \cite{LV13}.
 
 \subsection{Regularised sums and integrals}
-% TODO Define asymptotic expansion
+% TODO Define asymptotic expansion, verschiedene Basis-Funktionen
 
 % TODO log-homogeneous
-Now let $f\in\Cinf(\Rplus)$ be a function with a partial asymptotic expansion
+Now let $f\in\Cinf(\Rplus)$ be a function with a partial asymptotic expansion at
+$x\to\infty$ with regard to the log-polynomial base functions $x^{-N}
+\log^\alpha(x)$, were $\log^\alpha(x) := \log^{\alpha-1}(\log(x)), \log^1(x) :=
+\log(x)$. We denote the components by $a_{n\alpha}$, thus the expansion is
+written as
 \begin{align*}
   f(x) \SimAs{x\to\infty} \sum_{j=0}^{N-1} a_{j}\,x^{-j} + x^{-N}f_N(x),
 \end{align*}
-where $N\in\mathbb{N}$ is arbitrary and the remainder $f_N(x) = o(1)$ as
+where $N\in\mathbb{N}$ is arbitrary and the remainder is $f_N(x) = o(1)$ as
 $x\to\infty$. We define the \emph{regularised limit} for $x\to\infty$ as
 \begin{align}
-  \Reglim_{x\to\infty} f(x) := a_0,
+  \Reglim_{x\to\infty} f(x) := a_{00},
 \end{align}
 i.~e.\ as the constant part of the expansion.
 
@@ -91,7 +111,6 @@ limit-definition. This approach of regularising potentially infinite integrals
 is called Hadamard finite part (or French: partie finie) regularisation. In the
 special case that $f\in L^1[1,\infty)$ the regularised integral coincides with
 the usual Lebesgue integral of $f$.
-% TODO R\to 0
 
 Using this we can also give a meaningful definition of a \emph{regularised sum}
 over $f$. Given the Bernoulli numbers $B_j$ and the Bernoulli polynomials
@@ -107,49 +126,62 @@ $B_j(x)$ consider the Euler-MacLaurin summation formula:
 By essentially replacing the integrals by regularised integrals we arrive at the
 following definition for the regularised sum:
 \begin{align*}
-  \Regsum_{\lambda=1}^\infty := \Reglim_{N\to\infty} \sum_{\lambda=1}^N
+  \Regsum_{\lambda=1}^\infty f(\lambda) := \Reglim_{N\to\infty} \sum_{\lambda=1}^N
   f(\lambda)
 \end{align*}
-% TODO Auch von -inf bis inf
+The regularised sum over $\mathbb{Z}$ is defined by
+\begin{align*}
+  \Regsum_{\lambda\in\mathbb{Z}} f(\lambda) := f(0) + \Regsum_{\lambda=1}^\infty
+  f(\lambda) + \Regsum_{\lambda=1}^\infty f(-\lambda)
+\end{align*}
 
-The following theorem is proven in LV12 and the basis of the further
+The following theorem proven in \cite{LV12} is the basis for the following
 considerations:
 \begin{Theorem}
+  \label{thm:fubini}
   Assume $f\in\Cinf(\Rplus^2)$ is of the form
   \begin{align*}
     f(x,y) = \sum_{j=0}^{N-1} f_{\alpha_j}(x,y) + F_N(x,y)
   \end{align*}
-  where $N\in\mathbb{N}$ and each $f_{\alpha_j}\in\Cinf(\Rplus^2\setminus{0})$
+  where $N\in\mathbb{N}$ and each $f_{\alpha_j}\in\Cinf(\mathbb{R}_+^2\setminus\{0\})$
   is homogeneous of order $\alpha_j\in\mathbb{C}$ in both variables jointly,
   where the remainder $F_N$ is assumed to be in $L^1[1,\infty)^2$. Then
   \begin{align}
     \Regint{x}{\Regint{y}{f(x,y)}} =
-    \Regint{y}{\Regint{x}{f(x,y)}} + \Int{y}{f_{-2}(1,y)\ln(y)}
+    \Regint{y}{\Regint{x}{f(x,y)}} + \Integ[\infty]{0}{y}{f_{-2}(1,y)\ln(y)}.
   \end{align}
 \end{Theorem}
+Using this Fubini-like theorem we can (possibly) simplify difficult regularised
+integral, however unlike for Fubini's theorem in usual integral theory we get an
+additional error term as an integral over one homogeneous component. 
 
 \subsection{Zeta determinants}
 % TODO
+% - Definition
+% - Im Kontext hier
+% Ordnung oder so
+% Heuristik für die Formel
     
 \subsection{Goal}
-Lesch and Vertman proved in (LV) that
+Lesch and Vertman proved in \cite{LV13} the following asymptotic expansion for
+the resolvent-trace of the operator given in \eqref{eqn:laplace}:
 \begin{align}
   \Tr(\Delta + z^2)^{-2} = \sum_{\lambda=-\infty}^\infty \Tr(\Delta_\lambda +
-  z^2)^{-2} \SimAs{z\to\infty} \sum_{k=2}^{\infty} a_kz^{-k}
+  z^2)^{-2} \SimAs{z\to\infty} \sum_{k=2}^{\infty} a_kz^{-k}.
 \end{align}
-and using this asymptotic expansion, that zeta-determinant of $\Delta$ is given
-by a regularised sum of the zeta-determinants of the $\Delta_\lambda$ with an
-error term:
+Using this asymptotic expansion and \thref{thm:fubini} they showed, that the
+zeta-determinant of $\Delta$ is given by a regularised sum of the
+zeta-determinants of the $\Delta_\lambda$ with an error term:
 \begin{align}
   \Zetadet \Delta = \Regsum_{\lambda=-\infty}^\infty
   \ln\operatorname{det}_\zeta\Delta_\lambda -
   4\Integ[\infty]{0}{\lambda}{h_2(\lambda, 1)\ln(\lambda)},
 \end{align}
-where $h_2(\lambda, z)$ denotes the homogeneous term of degree $-5$ (i.e.\ the second
-non-vanishing term) in the polyhomogeneous asymptotic expansion of
+where $h_2(\lambda, z)$ denotes the homogeneous term of degree $-5$ (i.e.\ the
+second non-vanishing term) in the polyhomogeneous asymptotic expansion of
 $\Tr(\Delta_\lambda + z^2)^{-2}$ as $\Abs{(\lambda, z)}\to\infty$. The ultimate
-goal of this thesis is to calculate the error term by calculating the
-first terms in the polyhomogeneous trace-expansion of the resolvent of a
+goal of this thesis is to calculate the error term by calculating the first few
+terms in the polyhomogeneous trace-expansion of the resolvent of a
 Sturm-Liouville operator.
 
 By formally deriving $\Tr(\Delta_\lambda + z^2)^{-1}$ we see that
