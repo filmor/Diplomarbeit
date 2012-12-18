@@ -4,7 +4,6 @@ Throughout this thesis the following conventions are used:
 \begin{align*}
   \hat{u}(\xi) = (\mathcal{F}u)(\xi)
     &:= \Integ{\mathbb{R}}{x}{\Eto{-\mathrm ix\xi} u(x)} \\
-  % TODO
   (\mathcal{F}^{-1}\hat{u})(x) &:=
   \frac{1}{2\pi}\Integ{\mathbb{R}}{\xi}{\Eto{\mathrm ix\xi}
     \hat{u}(\xi)}
@@ -12,4 +11,10 @@ Throughout this thesis the following conventions are used:
 
 We will always talk about symbols and only mention amplitudes when explicitly
 needed. We thus denote the \emph{symbol} of an operator $A$ by $a$ instead of
-$\sigma_A$.
+$\sigma_A$. The kernel of an operator $A$ is denoted by $k_A$, i.e.\ 
+\begin{align*}
+  (Au)(x) =: \Integ{\mathbb{R}}{y}{k_A(x,y) u(x)},
+\end{align*}
+where $k_A$ may be a distribution.
+
+By $\log$ we denote the natural logarithm $\ln$.

@@ -5,6 +5,7 @@ x, l, z = symbols("x lambda z", real=True, positive=True)
 xi = symbols("xi", real=True)
 V, W = map(lambda x: Function(x, real=True, positive=True), "VW")
 
+# a_2, a_0 for the given operator
 a_2_func = Lambda((x, xi, l, z), xi**2 + l**2 * V(x) + z**2)
 a_0_func = Lambda((x, xi, l, z), W(x))
 zero_func = Lambda((x, xi, l, z), 0)
@@ -17,7 +18,7 @@ def r(n, a_2=Symbol("a_2"), a_0=Symbol("a_0")):
         return a_2(x,xi,l,z) ** (-1)
 
     rec = lambda k: r(n-k, a_2, a_0)
-    # Verified (now for real ...)
+
     return a_2(x, xi, l, z) ** (-1) * (
                   2 * xi * I * rec(1).diff(x)
                 + rec(2).diff(x, 2)
@@ -107,7 +108,7 @@ def log_lambda_integration(expr):
                 n_ = match[n]
                 k_ = match[k]
                 p_ = match[p]
-                val = p_ * Rational(2, (n_ + 1) * (n_ + 3)) \
+                val = p_ * Rational(1, (n_ + 1) * (n_ + 3)) \
                     * k_ ** (-(n_ + 1)) \
                     * (shifted_harmonic_sum(n_ / 2) - 1 - 2 * ln(2 * k_))
                 result.append(val)

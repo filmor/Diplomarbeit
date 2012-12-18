@@ -13,7 +13,8 @@
 % \usepackage{mathpazo}
 \usepackage{eulervm}
 % \usepackage{fourier}
-% TODO: Subequation?
+
+\bibliographystyle{amsalpha-lmp}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -29,7 +30,8 @@
 \newtheorem{MainTheorem}{Main Theorem}
 \newtheorem{Hauptsatz}{Hauptsatz}
 
-\numberwithin{equation}{section}
+\numberwithin{equation}{subsection}
+\numberwithin{Corollary}{section}
 \numberwithin{Lemma}{section}
 \numberwithin{Theorem}{section}
 \numberwithin{Remark}{section}
@@ -58,14 +60,19 @@ Operators}
 \declareslashed{}{-}{0}{0}{\int}
 \declareslashed{\mathop}{-}{-0.1}{-0.03}{\sum}
 \newcommand{\Regsum}{\slashed{\sum}}
-\newcommand{\Regint}[2]{\BaseInteg{\infty}{1}{#1}{#2}{\slashed{\int}}}
+\newcommand{\Regint}[3][1]{\BaseInteg{\infty}{#1}{#2}{#3}{\slashed{\int}}}
 
 \newcommand{\Sphere}[1]{\ensuremath{{\mathbb{S}^{#1}}}}
 \newcommand{\Cinf}[1][]{\ensuremath{C^\infty_{#1}}}
-\newcommand{\Rplus}{\ensuremath{{\mathbb{R}_+}}}
+\newcommand{\Rplus}[1][]{\ensuremath{{\mathbb{R}_+^{#1}}}}
+\newcommand{\Norm}[2][]{\ensuremath{\bigl\|#2\bigr\|_{#1}}}
+\newcommand{\InfNorm}[1]{\Norm[\infty]{#1}}
+\newcommand{\OpNorm}[1]{\Norm[\mathrm op]{#1}}
+\newcommand{\zdet}{\ensuremath{{\det}_\zeta}}
 
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\supp}{supp}
 \newcommand{\SimAs}[1]{\mathrel{\underset{#1}{\sim}}}
 \newcommand{\SimMu}{\SimAs{\mu\to\infty}}
 
@@ -116,7 +123,7 @@ Operators}
 \vfill
 \begin{center}
   \large 1.\ Gutachter: Matthias Lesch \\
-  \large 2.\ Gutachter: \\
+  \large 2.\ Gutachter: Boris Vertman \\
 \end{center}
 \newpage
 \selectlanguage{ngerman}
@@ -133,8 +140,10 @@ Operators}
 \input{main/examples}
 \input{summary}
 \appendix
+%\input{appendix/third-component}
 \input{appendix/special-functions}
 \input{appendix/proof-watson}
+\bibliography{mlbib,vertman}
 \newpage
 \selectlanguage{ngerman}
 \pagestyle{plain}

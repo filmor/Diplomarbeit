@@ -28,18 +28,16 @@ d\!\vol(g_\Sphere1)$. Under the unitary map
      (\Phi u)(x) &:= u(x) \sqrt{f(x)},
 \end{align*}
 the Laplacian $\Delta$ transforms into the operator
-% TODO: Proof
 \begin{align*}
-  \Phi\Delta\Phi^{-1} = -\frac{\partial}{\partial x^2} +
+  \Phi\Delta\Phi^{-1} = -\frac{\partial^2}{\partial x^2} +
   \frac{1}{f(x)^2}\Delta_\Sphere1 + \left( \frac{f''(x)}{2f(x)} -
   \left(\frac{f'(x)}{2f(x)}\right)^2\right).
 \end{align*}
-The functions $f_\lambda(x) := \frac{1}{\sqrt{2\pi}}\Eto{\mathrm i\lambda x}$
+The functions $e_\lambda(x) := \frac{1}{\sqrt{2\pi}}\Eto{\mathrm i\lambda x}$
 form for $\lambda\in\mathbb{Z}$ an orthonormal basis of $L^2(\Sphere1)$ of
 eigenfunctions of $\Delta_\Sphere1$ to the eigenvalues $\lambda^2$, where the
 eigenvalues $\lambda^2 \neq 0$ have multiplicity 2 while $\lambda = 0$ has
 multiplicity 1. Hence we have the decomposition
-% TODO: Proof
 \begin{align}
   \label{eqn:lpl-decomp}
   \Phi\Delta\Phi^{-1} &= \bigoplus_{\lambda=-\infty}^{\infty} \left(
@@ -63,39 +61,58 @@ We will consider operators like $\Delta_\lambda$, where we will set
 \begin{align}
   V(x) &:= f(x)^{-2} \\
   W(x) &:= \frac{f''(x)}{2f(x)} - \left(\frac{f'(x)}{2f(x)}\right)^2 =
-  \partial_x^2 \ln\sqrt{f(x)} + \left(\partial_x \ln\sqrt{f(x)}\right)^2 \\
-  \text{thus}\quad \Delta_\lambda &= -\partial_x + \lambda^2 V(x) + W(x),
+  \partial_x^2 \log\sqrt{f(x)} + \left(\partial_x \log\sqrt{f(x)}\right)^2 \\
+  \text{thus}\quad \Delta_\lambda &= -\partial^2_x + \lambda^2 V(x) + W(x),
 \end{align}
 where the non-derivative terms as usual denote the multiplication operators
-$(M_\phi u)\colon x \mapsto \phi(x)u(x)$. We won't write this out (i.~e.\ in the
+$(M_\phi u)\colon x \mapsto \phi(x)u(x)$. We won't write this out (i.e.\ in the
 summands of $\Delta_\lambda$ we use $W(x)$ instead of $M_W$) unless necessary.
 
-In further calculations the "`multiplication part"' of the operator is of
-relevance multiple times, so we will shorten it a bit:
-\begin{align}
-  \label{def:f-lambda}
-  f_{\lambda}(x) := \lambda^2 V(x) + W(x)
-\end{align}
-Note, that this definition is $\lambda(V,W)(x)$ in \cite{LV13}.
-
 \subsection{Regularised sums and integrals}
+We will first provide some general definitions on asymptotic analysis and then
+introduce the Hadamard finite part regularisation.
+
+We define the Landau symbols and asympotic equality as
+\begin{align}
+  g(x) &= O(f(x))\text{ for $x\to x_0$ } &:\Leftrightarrow \limsup_{x\to x_0}
+  \Abs{\frac{g(x)}{f(x)}} < \infty \\
+  g(x) &= o(f(x))\text{ for $x\to x_0$ } &:\Leftrightarrow \lim_{x\to
+x_0}\Abs{\frac{g(x)}{f(x)}} = 0 \\
+f &\SimAs{x\to x_0} g &:\Leftrightarrow \lim_{x\to x_0}
+\Abs{\frac{f(x)}{g(x)}} = 1,
+\end{align}
+where $x_0$ may be $\infty$. As a special case we furthermore define for
+$x\to\infty$
+\begin{align}
+  f(x) = O(x^{-\infty}) :\Leftrightarrow \forall_{n\in\mathbb{N}}\ f(x) =
+  O(x^{-n}).
+\end{align}
+
+Now let $(\phi_n)$ be a series of functions with
+\begin{align*}
+  \phi_{n+1}(x) = o(\phi_n(x))\text{ for $x\to x_0$},
+\end{align*}
+which is called an \emph{asymptotic series}. Then we say, that
+
+
 % TODO Define asymptotic expansion, verschiedene Basis-Funktionen
 
 % TODO log-homogeneous
-Now let $f\in\Cinf(\Rplus)$ be a function with a partial asymptotic expansion at
-$x\to\infty$ with regard to the log-polynomial base functions $x^{-N}
-\log^\alpha(x)$, were $\log^\alpha(x) := \log^{\alpha-1}(\log(x)), \log^1(x) :=
-\log(x)$. We denote the components by $a_{n\alpha}$, thus the expansion is
+Now let $f\in\Cinf(\Rplus)$ be a function with a partial asymptotic expansion
+for $x\to\infty$ with regard to the log-polynomial asymptotic series
+$x^{-n}\log^k(x)$, were $\log^k(x) := \log^{k-1}(\log(x)), \log^1(x) :=
+\log(x)$. We denote the components by $a_{nk}$, thus the expansion is
 written as
 \begin{align*}
-  f(x) \SimAs{x\to\infty} \sum_{j=0}^{N-1} a_{j}\,x^{-j} + x^{-N}f_N(x),
+  f(x) \SimAs{x\to\infty} \sum_{n=0}^{N-1}\sum_{k=0}^{M_n}
+  a_{nk}\,x^{-n}\log^k(x) + x^{-N}\log^{M_N}f_N(x),
 \end{align*}
 where $N\in\mathbb{N}$ is arbitrary and the remainder is $f_N(x) = o(1)$ as
 $x\to\infty$. We define the \emph{regularised limit} for $x\to\infty$ as
 \begin{align}
   \Reglim_{x\to\infty} f(x) := a_{00},
 \end{align}
-i.~e.\ as the constant part of the expansion.
+i.e.\ as the constant part of the expansion.
 
 If for some $N\in\mathbb{N}$ the remainder $(x\mapsto x^{-N}f_N(x))\in
 L^1[1,\infty)$, the integral $\Integ[R]{1}{x}{f(x)}$ does also admit an
@@ -139,7 +156,7 @@ The following theorem proven in \cite{LV12} is the basis for the following
 considerations:
 \begin{Theorem}
   \label{thm:fubini}
-  Assume $f\in\Cinf(\Rplus^2)$ is of the form
+  Assume $f\in\Cinf(\Rplus[2])$ is of the form
   \begin{align*}
     f(x,y) = \sum_{j=0}^{N-1} f_{\alpha_j}(x,y) + F_N(x,y)
   \end{align*}
@@ -148,23 +165,55 @@ considerations:
   where the remainder $F_N$ is assumed to be in $L^1[1,\infty)^2$. Then
   \begin{align}
     \Regint{x}{\Regint{y}{f(x,y)}} =
-    \Regint{y}{\Regint{x}{f(x,y)}} + \Integ[\infty]{0}{y}{f_{-2}(1,y)\ln(y)}.
+    \Regint{y}{\Regint{x}{f(x,y)}} + \Integ[\infty]{0}{y}{f_{-2}(1,y)\log(y)}.
   \end{align}
 \end{Theorem}
 Using this Fubini-like theorem we can (possibly) simplify difficult regularised
 integral, however unlike for Fubini's theorem in usual integral theory we get an
 additional error term as an integral over one homogeneous component. 
 
-\subsection{Zeta determinants}
+\subsection{Zeta Determinants}
+The zeta-function of an operator $\Delta_\lambda$ is defined for $\Re(s) > 0$
+sufficiently large by
+\begin{align}
+  \zeta(s,\Delta_\lambda) :=
+  \sum_{\mu\in\operatorname{spec}\Delta_\lambda\setminus\{0\}} m(\mu)\mu^{-s},
+\end{align}
+where $m(\mu)$ is the multiplicity of the eigenvalue $\mu > 0$. Using the
+identity
+\begin{align}
+  \label{frm:zeta-frm}
+  \zeta(s,\Delta_s) = 2 \frac{\sin\pi
+  s}{\pi}\Regint[0]{z}{z^{1-2s}\Tr(\Delta_\lambda + z^2)^{-1}}
+\end{align}
+one can derive a formula for $\log\zdet\Delta_\lambda =
+-\zeta'(0,\Delta_\lambda)$ (which is defined by the meromorphic extension to
+$\mathbb{C}$ of $\zeta$) for which $s=0$ is a regular point:
+\begin{align}
+  \log\zdet\Delta_\lambda = -2\Regint[0]{z}{z\Tr(\Delta_\lambda + z^2)^{-1}}
+\end{align}
+However the resolvent $(\Delta + z^2)^{-1}$ is not trace class, $\zdet\Delta$
+can not be defined in the exact same way. Integrating
+Formula~\eqref{frm:zeta-frm} by parts we get
+\begin{align}
+  \zeta(s,\Delta_\lambda) = 2\frac{\sin\pi
+  s}{\pi(1-s)}\Regint[0]{z}{z^{3-2s}\Tr(\Delta_\lambda + z^2)^{-2}},
+\end{align}
+and thus
+\begin{align}
+  \log\zdet\Delta_\lambda = -2 \Regint[0]{z}{z^3\Tr(\Delta_\lambda + z^2)^{-2}},
+\end{align}
+which also works for $\Delta$.
+
 % TODO
 % - Definition
 % - Im Kontext hier
 % Ordnung oder so
 % Heuristik für die Formel
-    
+
 \subsection{Goal}
 Lesch and Vertman proved in \cite{LV13} the following asymptotic expansion for
-the resolvent-trace of the operator given in \eqref{eqn:laplace}:
+the squared resolvent-trace of the operator given in \eqref{eqn:laplace}:
 \begin{align}
   \Tr(\Delta + z^2)^{-2} = \sum_{\lambda=-\infty}^\infty \Tr(\Delta_\lambda +
   z^2)^{-2} \SimAs{z\to\infty} \sum_{k=2}^{\infty} a_kz^{-k}.
@@ -173,24 +222,26 @@ Using this asymptotic expansion and \thref{thm:fubini} they showed, that the
 zeta-determinant of $\Delta$ is given by a regularised sum of the
 zeta-determinants of the $\Delta_\lambda$ with an error term:
 \begin{align}
-  \Zetadet \Delta = \Regsum_{\lambda=-\infty}^\infty
-  \ln\operatorname{det}_\zeta\Delta_\lambda -
-  4\Integ[\infty]{0}{\lambda}{h_2(\lambda, 1)\ln(\lambda)},
+  \label{eqn:central-thm}
+  \log\zdet\Delta = \Regsum_{\lambda=-\infty}^\infty
+  \log\zdet\Delta_\lambda -
+  4\Integ[\infty]{0}{\lambda}{h_2(\lambda, 1)\log(\lambda)},
 \end{align}
 where $h_2(\lambda, z)$ denotes the homogeneous term of degree $-5$ (i.e.\ the
 second non-vanishing term) in the polyhomogeneous asymptotic expansion of
 $\Tr(\Delta_\lambda + z^2)^{-2}$ as $\Abs{(\lambda, z)}\to\infty$. The ultimate
 goal of this thesis is to calculate the error term by calculating the first few
 terms in the polyhomogeneous trace-expansion of the resolvent of a
-Sturm-Liouville operator.
-
-By formally deriving $\Tr(\Delta_\lambda + z^2)^{-1}$ we see that
-\begin{align*}
+Sturm-Liouville operator, since by formally deriving $\Tr(\Delta_\lambda +
+z^2)^{-1}$ we see that
+\begin{align}
+  \label{frm:shift}
   \partial_z \Tr{(\Delta_\lambda + z^2)}^{-1} &=
-        (-2z) \Tr{(\Delta_\lambda + z^2)}^{-2}
-        \Leftrightarrow& \Tr(\Delta_\lambda + z^2)^{-2} =
+        (-2z) \Tr{(\Delta_\lambda + z^2)}^{-2} \\
+        \Leftrightarrow \Tr(\Delta_\lambda + z^2)^{-2} &=
         (-2z)^{-1}\partial_z\Tr(\Delta_\lambda + z^2)^{-1},
-\end{align*}
-thus the order of the homogeneous components is shifted by 2. This means, that
-to get the component of order $-5$ we will need to find the homogeneous
-component in the trace-expansion of the parametrix of order $-3$.
+\end{align}
+thus the order of the homogeneous components is from the resolvent to the
+squared resolvent is shifted by 2. This means, that to get the component of
+order $-5$ we will need to find the homogeneous component in the trace-expansion
+of the parametrix of order $-3$.

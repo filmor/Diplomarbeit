@@ -1,0 +1,211 @@
+\section{Calculation of the next homogeneous component at the boundary}
+
+% TODO: Auswalzen warum Stetigkeit ausreicht.
+
+% j = 2
+The calculations for $j = 2$ are a bit more involved. We start off with the case
+$\Tr R^{(2)}_{++-} =  \Tr R^{(2)}_{-++}$:
+% -++
+\begin{align*}
+  \Tr R^{(2)}_{-++} &= C_{-++} \Int{x}{
+  \Int{z_1}{
+    \Int{z_2}{
+      \Eto{-\mu(\Abs{x-z_1} + z_1 + z_2 + z_2 + x)}
+      \lambda(z_1)\lambda(z_2)
+    }
+  }
+  } \\
+  &= C_{-++} \Int{z_2}{\Eto{-2\mu z_2}\lambda(z_2)}
+  \Int{x}{
+    \left(
+    \Integ[x]{0}{z_1}{
+      \Eto{-2\mu x}\lambda(z_1)
+    }
+    + \Integ[1]{x}{z_1}{
+      \Eto{-2\mu z_1}\lambda(z_1)
+    }
+    \right)
+  } \\
+  &= C_{-++} \Int{z}{\Eto{-2\mu z}\lambda(z)}
+  \Int{x}{\Eto{-2\mu x}(\Lambda(x) + x\lambda(x))} \\
+  &\SimMu (2\mu)^{-4} \Wsum{\lambda^{(n)}} \Wsum[1]{(n+1)\lambda^{(n-1)}}.
+\end{align*}
+Very similar to that we can calculate $\Tr R_{+-+}$:
+% +-+
+\begin{align*}
+  \Tr R_{+-+}^{(2)} &= C_{+-+} \Int{x}{
+    \Int{z_1}{
+      \Int{z_2}{
+        \Eto{-\mu(x+z_1 + \Abs{z_1 - z_2} + z_2 + x)}
+        \lambda(z_1)\lambda(z_2)
+      }
+    }
+  } \\
+  &= C_{+-+} \Int{x}{\Eto{-2\mu x}}
+  \Int{z_1}{
+    \left(
+    \Integ[1]{z_1}{z_2}{
+      \Eto{-2\mu z_2}\lambda(z_1)\lambda(z_2)
+    }
+    + \Integ[z_1]{0}{z_2}{
+      \Eto{-2\mu z_1}\lambda(z_1)\lambda(z_2)
+    }
+    \right)
+  } \\
+  &= C_{+-+} \Int{x}{\Eto{-2\mu x}}
+    \Int{z}{
+      \Eto{-2\mu z}\left(
+        \Lambda(z)\lambda(z) + z (\lambda(z))^2
+      \right)
+    } \\
+  % Result
+    &\SimMu (2\mu)^{-5} \sum_{n=0}^\infty \frac{(\Lambda\lambda)^{(n)} +
+  (z(\lambda(z))^2)^{(n)}(0)}{(2\mu)^{n+1}}
+\end{align*}
+
+% --+
+Finally we arrive at the two most difficult terms, involving two absolute values
+in the exponent, first $\Tr R_{--+}^{(2)}$:
+\begin{align*}
+  \Tr R_{--+}^{(2)} &= C_{--+} \Int{x}{
+    \Int{z_1}{
+      \Int{z_2}{
+        \Eto{-\mu(\Abs{x-z_1} + \Abs{z_1 - z_2} + z_2 + x)}
+        \lambda(z_1)\lambda(z_2)
+      }
+    }
+  } \\
+  = C_{--+} \Int{x}{\Bigl( \\
+    % (I) x < z_1 < z_2
+    &\Integ[1]{x}{z_1}{\Integ[1]{z_1}{z_2}{
+        \Eto{-2\mu z_2}\lambda(z_1)\lambda(z_2)
+      }
+    } \\ &+
+    % (III) x < z_1, z_2 < z_1 
+    \Integ[1]{x}{z_1}{\Integ[0]{z_1}{z_2}{
+        \Eto{-2\mu z_1}\lambda(z_1)\lambda(z_2)
+      }
+    } \\ &+
+    % (IV) x < z_2 < z_1
+    \Integ[x]{0}{z_1}{\Integ[z_1]{0}{z_2}{
+        \Eto{-2\mu x}\lambda(z_1)\lambda(z_2)
+      }
+    } \\ &+
+    % (II) x > z_1, x > z_2
+      \Integ[x]{0}{z_1}{\Integ[1]{z_1}{z_2}{
+        \Eto{-2\mu (x + z_2 - z_1)}\lambda(z_1)\lambda(z_2)
+      }
+    }
+    \Bigr)
+  }
+\end{align*}
+After splitting the Integral in those four terms we evaluate them one by one:
+\begin{enumerate}[(I)]
+  \item Using $\Integ[x]{0}{z}{z\lambda(z)} = x\Lambda(x) - M(x)$ we have:
+    \begin{align*}
+      \Int{x}{
+        \Integ[1]{x}{z_1}{\Integ[1]{z_1}{z_2}{
+            \Eto{-2\mu z_2}\lambda(z_1)\lambda(z_2)
+          }
+        }
+      }
+      &= \Int{z_1}{z_1 \Integ[1]{z_1}{z_2}{\Eto{-2\mu z_2}\lambda(z_1)\lambda(z_2)}}
+      \\
+      &= \Int{z_2}{\Eto{-2\mu z_2}\lambda(z_2) \Integ[z_2]{0}{z_1}{z_1\lambda(z_1)}}
+      \\
+      &\SimMu \Wsum{(x\lambda\Lambda - \lambda M)^{(n)}}
+    \end{align*}
+
+  \item
+    \begin{align*}
+      \Int{x}{
+        \Integ[1]{x}{z_1}{
+          \Integ[z_1]{0}{z_2}{
+            \Eto{-2\mu z_1}{\lambda(z_1)\lambda(z_2)}
+          }
+        }
+      }
+      &= \Int{z_1}{z_1 \Eto{-2\mu z_1}\lambda(z_1)\Lambda(z_1)} \\
+      &\SimMu \Wsum{(z\lambda\Lambda)^{(n)}}
+    \end{align*}
+
+  \item
+    \begin{align*}
+      \Int{x}{
+        \Integ[x]{0}{z_1}{
+          \Integ[z_1]{0}{z_2}{
+            \Eto{-2\mu x}\lambda(z_1)\lambda(z_2)
+          }
+        }
+      }
+      &= \Int{x}{
+        \Eto{-2\mu x} \Integ[x]{0}{z_1}{\lambda(z_1)\Lambda(z_1)}
+      } \\
+      &\SimMu \sum_{n=1}^\infty \frac{(\lambda\Lambda)^{(n-1)}}{(2\mu)^{n+1}}
+    \end{align*}
+
+  \item After those pretty straight-forward calculations we are left with a more
+    difficult one:
+    \begin{align*}
+      \Int{x}{
+        \Eto{-2\mu x}
+        &\Integ[x]{0}{z_1}{
+          \Eto{+2\mu z_1} \lambda(z_1)
+          \Integ[1]{z_1}{z_2}{
+            \Eto{-2\mu z_2} \lambda(z_2)
+          }
+        }
+      } \\
+      =&\Int{z_1}{
+        \Eto{2\mu z_1}\lambda(z_1)
+        \Integ[1]{z_1}{z_2}{
+          \Eto{-2\mu z_2}\lambda(z_2)
+        }
+        \frac{1}{2\mu}\left(\Eto{-2\mu z_1} - \Eto{-2\mu}\right)
+      } \\
+      =&\ \frac{1}{2\mu}
+        \Int{z_1}{
+          \lambda(z_1)
+          \Integ[1]{z_1}{z_2}{
+            \Eto{-2\mu z_2}\lambda(z_2)
+          }
+        }
+        -\frac{1}{4\mu}
+        \left(\Int{z}{\Eto{-2\mu z}\lambda(z)}\right)^{2}
+        \\
+        =&\ \frac{1}{2\mu} \Int{z_2}{\Eto{-2\mu z_2}\lambda(z_2)\Lambda(z_2)}
+        -\frac1{4\mu}\left(\Int{z}{\Eto{-2\mu z}\lambda(z)}\right)^{2}
+        \\
+        &\ \SimMu \sum_{n=1}\frac{(\lambda \Lambda)^{(n-1)}}{(2\mu)^{n+1}}
+              -\frac{1}{4\mu}\left(\Wsum{\lambda^{(n)}}\right)^2
+    \end{align*}
+    % TODO Finalize
+\end{enumerate}
+which leads us to
+\begin{align*}
+  \Tr R_{--+}^{(2)}
+  &= (2\mu)^{-4} \sum_{n=1}^{\infty}
+  \frac{
+    (M + 2x\lambda\Lambda)^{(n)}(0)
+    + 2(\lambda\Lambda)^{(n-1)}(0)
+  }{(2\mu)^n}
+\end{align*}
+
+% -+-
+\begin{align*}
+  \Tr R_{-+-}^{(2)} &= C_{-+-} \Int{x}{
+    \Int{z_2}{
+      \Int{z_1}{
+        \Eto{-\mu(\Abs{x-z_1}+z_1+z_2+\Abs{z_2-x})}\lambda(z_1)\lambda(z_2)
+      }
+    }
+  } \\
+  &= C_{-+-} \Int{x}{
+    \Eto{-2\mu x}
+    \left(
+      \Lambda(x)^2 + 2\lambda(x)M(x)
+      % TODO: Dritter Term ist noch nicht 
+      % gerechnet!
+    \right)
+  }
+\end{align*}

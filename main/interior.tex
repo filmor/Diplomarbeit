@@ -1,43 +1,46 @@
-\section{Asymptotics of the interior parametrix}
+\section{Asymptotics of the Interior Parametrix}
 In this section we aim to prove the following Theorem:
 \begin{MainTheorem}
-  Let $\Delta_\lambda := -\partial_x^2 + \lambda^2V(x) $ be an operator as
+  Let $\Delta_\lambda := -\partial_x^2 + \lambda^2V(x)+W(x)$ be an operator as
   introduced beforehand and $\mu(x) := \sqrt{\lambda^2 V(x) + z^2}$ (thus
   $\mu(x)$ has the same order as $\lambda$ and $z$, since $V(x) > 0$ is given).
   Then the trace of the resolvent of $\Delta_\lambda$ has the following common
   asymptotic expansion in its parameter $\lambda$ and the resolvent parameter
   $z$:
   \begin{align*}
-  \Tr(\Delta_\lambda + z^2)^{-1} \SimAs{\Abs{(\lambda, z)}\to\infty}&
-   \Int{x}{\left(
-      \frac12\frac1{\mu(x)^{2}}
-     -\frac1{16}\frac{\lambda^2 V''(x)}{\mu(x)^5}
-     +\frac{5}{64}\frac{\lambda^4V'(x)^2}{\mu(x)^7}
-     -\frac14\frac{W(x)}{\mu(x)^3}
-     +O\left(\Abs{(\lambda, z)}^{-5}\right)
-   \right)}.
+    \input{snippets/formula-interior}
   \end{align*}
   \begin{Remark}
-    % TODO Zusätzliche Ordnung
-    For $V\equiv 0$ this expansion has already been proven in (DIKII, Gel'fand)
+    For $V\equiv 0$ this expansion has already been proven in \cite{gelfand}
     (where $z^2 \mapsto \zeta$ and $W(x) \mapsto u(x)$) and calculated for even
-    higher orders, but we will restrict us in this text to (one more than) what
-    we need for the particular calculation we want to do in the end.  The
-    Appendix (ref) contains the source code for a simple Python program that
-    calculates the asymptotic components (apart from the $x$-Integration) of the
-    resolvent trace, as well as a list of the coefficients to higher order.
+    higher orders, but we will restrict ourselves in this text to what we need
+    for the particular calculation we want to do in the end.  The
+    Appendix~\ref{app:source-code} contains the source code for a simple Python
+    program that calculates the asymptotic components (apart from the
+    $x$-Integration) of the resolvent trace, as well as a list of the
+    coefficients to higher order.
   \end{Remark}
 \end{MainTheorem}
-To do this we first show that the asymptotic expansion exists and, using that as
-well as the product formula for pseudo-differential operators, prove the
-explicit formula in $V$, $W$ and their derivatives.
-\subsection{Existence}
-By the following classical theorem an elliptic pseudo-differential operator with
-parameter has an asymptotic expansion in its parameter:
-\input{snippets/trace-expansion}
-\begin{Proof}
-  % TODO Gehört das hier rein oder reicht ein Verweis?
-\end{Proof}
+To do this we first note that the asymptotic expansion exists by a classical
+theorem on the theory of pseudo-differential operators with paramater, namely
+\begin{Theorem}
+  Let $M$ be a closed $n$-dimensional smooth manifold, $E$ and $F$ smooth
+  vector bundles over $M$, and $A\in\mathrm{CL}^m(M,E; F)$ (the set of
+  classical pseudo-differential operators).
+
+  If $m+n<0$ then for all $x\in M$ $A(x)$ is trace-class and $\Tr A(\cdot)\in
+  \mathrm{CS}^{m+n}(\Gamma)$, with
+  \begin{align*}
+    \Tr A(x)\SimAs{\left|x\right|\to\infty}
+    \sum_{j=0}^{\infty} e_{m-j}\bigl(\tfrac{x}{\left|x\right|}\bigr)
+    \left|x\right|^{m+n-j}
+  \end{align*}
+  \begin{Proof}
+    A proof can be found in \cite{Lesch10}.
+  \end{Proof}
+\end{Theorem}
+Using that as well as the product formula for pseudo-differential operators, we
+prove the explicit formula in $V$, $W$ and their derivatives.
 
 \subsection{Calculation of the first coefficients}
 The multi-parametric symbol of the operator $(\Delta_\lambda + z^2)$ is
@@ -50,14 +53,15 @@ with all other $a_n \equiv 0$. To not complicate the following calculations we
 suppress the continuous repetition of the parameters, a prime ($a_2'$) denotes
 the derivative in $x$.
 
-% TODO REF: Shubin Thm 3.4, p 27
 We use the following product formula for symbols: Let $A$ and $B$ be
 pseudo-differential operators with symbols $a$ and $b$, respectively. Then the
 complete symbol of $(\Delta_\lambda + z^2)B$ is (modulo $S^\infty$) given by
 \begin{align}
-  a * b := \sum_{n=0}^{\infty} \frac{1}{n!}\ \partial_\xi^n a\,D_x^n b
+  a * b := \sum_{n=0}^{\infty} \frac{1}{n!}\ \partial_\xi^n a\,D_x^n b.
   \label{eqn:product-formula}
 \end{align}
+A proof of this formula can be found in \cite[Thm 3.4]{Shu:POS}.
+
 We are interested in the symbol of the parametrix, so we demand
 \begin{align*}
   a * b \sim 1,
@@ -71,7 +75,7 @@ with the chosen order we only have $\xi$-derivatives of $a_n$ which are
 \end{align}
 Thus the above sum collapses and only three terms are left:
 \begin{align}
-  a * b = (a_2 + a_0)b - 2\xi\mathrm i\,\partial_x b - \partial_x^2 b.
+  a * b = (a_2 + a_0)b - 2\xi\mathrm i\,\partial_x b - \partial_x^2 b
 \end{align}
 
 From the known asymptotics of $a$ we can now inductively derive the first
@@ -97,15 +101,15 @@ pseudo-differential operator $A$ with symbol $a$ we have
   \quad
   k(x,x) = \frac{1}{2\pi}\Integ{\mathbb{R}}{\xi}{a(x,\xi)},
 \end{align*}
-where $\Oscint{\xi}\cdot$ denotes the oscillating integral (REF), which
-coincides with the usual integral over $\mathbb{R}$ for $x = y$. The integrals
-over $\xi$ can be handled with in a uniform way using the beta function as seen
-in the introduction (\ref{lem:beta_function_formula}) by setting $n =
-\text{order of $\xi$ in the numerator}$, $m = \tfrac12\text{order of $a_2$ in
-the denominator}$, $a=\mu(x)=\sqrt{\lambda^2 V(x) + W(x)}$ and $b = 1$. We also
-see, that for odd $n$ the terms vanish, as we have an integral over an odd
-function, while for even $n$ we get an additional factor of $2$ for integrating
-over $\mathbb{R}$ instead of $\Rplus$.
+where $\Oscint{\xi}\cdot$ denotes the oscillating integral (as defined in
+\cite[]{Shu:POS}), which coincides with the usual integral over $\mathbb{R}$ for
+$x = y$. The integrals over $\xi$ can be handled with in a uniform way using the
+beta function as seen in the introduction (\ref{lem:beta_function_formula}) by
+setting $n = \text{order of $\xi$ in the numerator}$, $m = \tfrac12\text{order
+of $a_2$ in the denominator}$, $a=\mu(x)=\sqrt{\lambda^2 V(x) + W(x)}$ and $b =
+1$. We also see, that for odd $n$ the terms vanish, as we have an integral over
+an odd function, while for even $n$ we get an additional factor of $2$ for
+integrating over $\mathbb{R}$ instead of $\Rplus$.
 
 The corresponding terms in the kernel are thus
 \begin{align}
@@ -113,24 +117,18 @@ The corresponding terms in the kernel are thus
   k_{b_{-2}}(x,x,\lambda,z) &= 0 \\
   k_{b_{-3}}(x,x,\lambda,z) &= - \frac{1}{16} \frac{\lambda^2 V''(x)}{(\lambda^2
     V(x) + z^2)^{5/2}} + \frac{5}{64} \frac{\lambda^4 V'(x)^2}{(\lambda^2V(x)
-    + z^2)^{7/2}} -\frac{1}{4}\frac{W(x)}{(\lambda^2 V(x) + z^2)^{3/2}}
+    + z^2)^{7/2}} -\frac{1}{4}\frac{W(x)}{(\lambda^2 V(x) + z^2)^{3/2}}.
   \label{eqn:coeff-kernel}
 \end{align}
 
 These are the first three asymptotic components of the kernel of
-$(\Delta_\lambda + z^2)^{-1}$ on the open interval $(0,1)$, i.~e.\ if we define
+$(\Delta_\lambda + z^2)^{-1}$ on the open interval $(0,1)$, i.e.\ if we define
 $\mu(x) := \sqrt{\lambda^2 V(x) + z^2}$ as above we have
 \begin{align*}
-  \Tr(\Delta_\lambda + z^2)^{-1} \SimAs{\Abs{(\lambda, z)}\to\infty}&
-   \Int{x}{\left(
-      \frac12\frac1{\mu(x)^{2}}
-     -\frac1{16}\frac{\lambda^2 V''(x)}{\mu(x)^5}
-     +\frac{5}{64}\frac{\lambda^4V'(x)^2}{\mu(x)^7}
-     -\frac14\frac{W(x)}{\mu(x)^3}
-     +O\left(\Abs{(\lambda, z)}^{-5}\right)
-   \right)}.
+  \input{snippets/formula-interior}.
 \end{align*}
 % TODO: Oben allgemein angeben, folgt ja aus der Rekursionsformel
+% Was heißt das?!
 The asymptotic order of the remainder of $-5$ follows from the fact, that by
 construction every other step in our recursion formula results in the exponents
 of $\xi$ in the numerator being odd, so the $\xi$ integral over $\mathbb{R}$
@@ -139,5 +137,8 @@ vanishes, in particular $k_{b_{-4}} = 0$.
 Finally for this to give us all the information we were looking for we need to
 carry out the $x$-Integration. Evaluating this integral will be postponed until
 we have done the necessary formal steps to get to $\Tr(\Delta_\lambda +
-z^2)^{-2}$, and evaluate the $(\lambda,z)$-integral. We will justify this
-\textit{a posteriori}.
+z^2)^{-2}$, and evaluate the $(\lambda,z)$-integral. Since by
+Equation~\eqref{frm:shift} and Equation~\eqref{eqn:central-theorem} we know,
+that we will only differentiate and integrate with a $\ln\lambda$-term, and all
+intermediate steps are integrable we can indeed postpone the evaluation until we
+have enough information on $V$ and $W$ to perform the integration.

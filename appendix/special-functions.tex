@@ -2,30 +2,73 @@
 \subsection{Gamma Function}
 The Gamma function is defined on $\mathbb{R}_{+}$ as the exponential integral
 \begin{align}
-    \Gamma(x) := \Integ[\infty]{0}{t}{\Eto{-t}t^{x-1}}.
+    \Gamma(x) := \Integ[\infty]{0}{t}{\Eto{-t}t^{x-1}},
     \label{def:gamma}
 \end{align}
+which coincides with $(x-1)!$ for $x\in\mathbb{N}$. In the text we use the so
+called (upper) Incomplete Gamma Function, defined by the integral
+\begin{align}
+  \Gamma(x,b) := \Integ[\infty]{b}{t}{\Eto{-t}t^{x-1}},
+\end{align}
+for which we will now prove the following lemma:
+\begin{Lemma}
+  Let $n\in\mathbb{N_0}$, $k\in\mathbb{R}$. Then the following formula holds:
+  \begin{align}
+    \Gamma(n+1, b) = \Integ[b]{\infty}{t}{\Eto{-t} t^n} = n!\ \Eto{-b}\sum_{m=0}^n
+    \frac{b^m}{m!}
+  \end{align}
+  \begin{Proof}
+    We will prove this by induction over $n$. For $n = 0$ we are left with
+    \begin{align*}
+      \Gamma(1, b) = \Integ[b]{\infty}{t}{\Eto{-t}} = \Eto{-b}.
+    \end{align*}
+    For $n$ we partially integrate
+    \begin{align*}
+      \Gamma(n+1, b) &= \Integ[b]{\infty}{t}{\Eto{-t} t^n} 
+                     = \left.-\Eto{-t} t^n \right|_{b}^{\infty} +
+      n\Integ[b]{\infty}{t}{\Eto{-t}t^{n-1}}
+      = \Eto{-b} b^n + n\Gamma(n, b) \\
+      &= \Eto{-b} b^n + n (n-1)!\ \Eto{-b}\sum_{m=0}^{n-1} \frac{b^m}{m!} \\
+      &= n!\ \Eto{-b} \sum_{m=0}^n \frac{b^m}{m!},
+    \end{align*}
+    where we inserted the induction requirement in the last step.
+  \end{Proof}
+\end{Lemma}
 
 \subsection{Digamma Function}
 The Digamma function is the logarithmic derivative of the Gamma function
 \begin{align}
-    \psi(x) := \frac{\mathrm d}{\mathrm dx}\ln{\Gamma(x)}
+    \psi(x) := \frac{\mathrm d}{\mathrm dx}\log{\Gamma(x)}
             = \frac{\Gamma'(x)}{\Gamma(x)},
     \label{def:digamma}
 \end{align}
 which is sometimes also denoted by the ancient greek letter $\digamma$, which is
 actually called ``digamma''.
 
+We will need the following property of the digamma function:
+\begin{align}
+  \psi(x + 1) = \psi(x) + \frac1x,
+\end{align}
+which is easily proven using the recursion rule of the gamma function:
+\begin{align*}
+  \psi(x+1) &= \frac{\mathrm d}{\mathrm dx}\log{\Gamma(x+1)} = \frac{\mathrm
+d}{\mathrm dx}\log{x\Gamma(x)} \\
+  &= \frac{\mathrm d}{\mathrm dx}\log{x} + \frac{\mathrm d}{\mathrm
+  dx}\log{\Gamma(x)} \\
+  &= \frac1x + \psi(x).
+\end{align*}
+Furthermore we need the special value at $x = \frac12$, $\psi(\frac12) =
+-\gamma-\log 2$, which can be found using the Gauss Digamma Theorem REF.
+
 \subsection{Beta Function}
 \label{sec:beta_function}
-The Beta function is defined for $x,y\in\mathbb{C}$ with $\Re(x),\Re(y) > 0$ as
+The beta function is defined for $x,y\in\mathbb{C}$ with $\Re(x),\Re(y) > 0$ as
 \begin{align}
     B(x,y) = \Integ[1]{0}{t}{t^{x-1}(1-t)^{y-1}}.
     \label{def:beta}
 \end{align}
-It is also sometimes called \textit{Euler integral of the first kind}.
-
-In this Thesis we use two specific representations of the Beta function, namely
+It is also sometimes called \textit{Euler integral of the first kind}. In this
+thesis we use two specific representations of the beta function, namely
 \begin{align}
     B(x, y) &= \frac{\Gamma(x)\cdot\Gamma(y)}{\Gamma(x+y)} \quad \text{and}
     \label{frm:beta_rep1} \\
@@ -33,7 +76,7 @@ In this Thesis we use two specific representations of the Beta function, namely
     \label{frm:beta_rep2}
 \end{align}
 
-We can derive Formula \ref{frm:beta_rep2} easily by substituting $t \mapsto
+We can derive Formula~\ref{frm:beta_rep2} easily by substituting $t \mapsto
 \frac{t'}{1+t'}$. Formula \ref{frm:beta_rep1} is a bit more subtle:
 \begin{align*}
     \Gamma(x) \Gamma(y) &= \Integ[\infty]{0}{t_1}{\Eto{-t_1}t_1^{x-1}}
@@ -55,7 +98,7 @@ We can derive Formula \ref{frm:beta_rep2} easily by substituting $t \mapsto
     \Leftrightarrow \Gamma(x)\Gamma(y) &= \Gamma(x+y)B(x,y)
 \end{align*}
 
-From the first representation we can also calculate the derivative of the Beta
+From the first representation we can also calculate the derivative of the beta
 function:
 \begin{align}
     \frac{\partial}{\partial x} B(x, y)

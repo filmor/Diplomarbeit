@@ -1,25 +1,21 @@
 \subsection{Rationality of the homogeneous components}
-Let
+We have seen in the preceding subsection, that like in the interior case the
+first homogeneous components of the multi-parametric expansion of
+$\Tr(\Delta_\lambda + z^2)^{-1}$ are rational functions in $V$, $W$ and their
+derivatives at $x = 0$. We want to prove, that this also holds for all higher
+orders in the asymptotic expansion. In particular we want to show, that we
+always get a polynomial that is divided by integral powers of $\mu = \lambda^2
+V(0) + W(0)$. % TODO Anständig umschreiben was passiert
+
+We know, that $f_\lambda$ is analytic in $x$ since it is a composition of
+$\Cinf$-functions, thus we can write
 \begin{align*}
-	f_\lambda(x) := \lambda^2 V(x) + W(x).
+  f_\lambda(x) &= \sum_{n=0}^{N-1} \frac{f_\lambda^{(n)}(0)}{n!} x^n + R_N(x)
+  \text{ with} \\ R_N(x) &= \frac{f^{(N)}(\xi)}{N!} x^{N}.
 \end{align*}
-
-We know, that $f_\lambda$ is analytic in $x$, thus we can write
-\begin{align*}
-  f_\lambda(x) &= \sum_{n=0}^{N-1} \frac{f_\lambda^{(n)}(0)}{n!} x^n + R_N(x) \text{
-  with} \\
-  R_N(x) &= \frac{f^{(N)}(\xi)}{N!} x^{N}
-\end{align*}
-
-We want to prove that the homogeneous components of the asymptotic expansion of
-the exterior parametrix are again, like they were in the interior of the
-interval, rational functions in $V$, $W$ and their derivatives, to be precise in
-their values at 0. In particular we want to show, that we always get a
-polynomial that is divided by integral powers of $\mu = \lambda^2 V(0) + W(0)$.
-It suffices to show that if we substitute each $f_\lambda$ in the convolution of
-our kernels by a function $x^{n}$ for some $n\in\mathbb{N}$ (that may be
-different for each substitution) we end up with a finite asymptotic sum.
-
+It thus suffices to show that if we substitute each $f_\lambda$ in the
+convolution of our kernels by a function $x^{n}$ for some $n\in\mathbb{N}$ (that
+may be different for each substitution) we end up with a finite asymptotic sum.
 We will do this recursively by looking at suitable generalisations of the
 kernels with $f_\lambda$ being a function of the following kind:
 \begin{Definition}[Step Polynomial]
@@ -41,7 +37,7 @@ The integral part of the proof is the following Lemma:
 \begin{Lemma}
   \label{lem:asymp-1}
   Let $f_b, g_b$ be step polynomials and for odd integers $k_a, k_b, K_a, K_b$
-  let $e$ be a step function defined as:
+  let $g$ be a step function defined as:
   \begin{align*}
     g_{k,K}(x, b) = \begin{cases}
       k_a x + k_b b & x < b \\
@@ -84,22 +80,26 @@ The integral part of the proof is the following Lemma:
     \end{align}
     which follows directly by the substitution $x \mapsto kx$ from the formula
     for the (upper) Incomplete Gamma Function given (and proven) in the
-    appendix. The sign is intentional, and we use in this context the convention
-    $0^0 := 1$ to deal with the special case of $a = 0$ or $b = 0$. For $k = 0$
-    we have $\frac{b^{n+1} - a^{n+1}}{n+1}$.
+    appendix.
     % TODO
+    The overall sign is intentional, and we use in this context the convention
+    $0^0 := 1$ to deal with the special case of $a = 0$ or $b = 0$. For $k = 0$
+    we have
+    \begin{align}
+      \Integ[b]{a}{x}{\Eto{-kx}x^n} = \Integ[b]{a}{x}{x^n} = \frac{b^{n+1} -
+      a^{n+1}}{n+1}.
+    \end{align}
 
     The first integral will be done in detail and we start of by splitting it up
     as much as needed. Let $m := \min(a,b), M := \max(a,b)$. Then we can write
     the integral (using the given abbreviation) as
     \begin{align*}
       h(x) &:= \Eto{-\mu(a+x+g_{(k_a,k_b),(K_a,K_b)}(x, b))}f_b(x) \\
-      \Int{x}{h(x)} &= A + B + C \quad \text{with} \\
-                 A :&= \Integ[m]{0}{x}{h(x)} \\
-                 B :&= \Integ[M]{m}{x}{h(x)} \\
-                 C :&= \Integ[1]{M}{x}{h(x)}.
+      \Int{x}{h(x)} &= A + B + C, \\ \text{with} \quad
+      A &:= \Integ[m]{0}{x}{h(x)},
+      B := \Integ[M]{m}{x}{h(x)},\text{ and }
+      C := \Integ[1]{M}{x}{h(x)}.
     \end{align*}
-
     Now we will determine each of the integrals for monomials first.
     
     For $k_a = -1$ we have $A = \Eto{-\mu (a+k_b b)} \frac{m^{n+1}}{n+1}$,
@@ -108,7 +108,6 @@ The integral part of the proof is the following Lemma:
       A &= \Integ[m]{0}{x}{\Eto{-\mu(a+x+k_a x+k_b b)}x^n}
          = \Eto{-\mu(a+k_b b)} \Integ[m]{0}{x}{\Eto{-(1+k_a)\mu}x^n} \\
         &= \Eto{-\mu(a+k_b b)} n! \left(
-         % TODO Term für untere Grenze oben einfügen!
          \frac{1}{((1+k_a)\mu)^{n+1}}
          - \Eto{-\mu(1+k_a)m}\sum_{l=0}^n \frac{m^l}{l! ((1+k_a)\mu)^{n+1-l}}
         \right) \\
@@ -215,8 +214,11 @@ prove our last Main Theorem:
     asymptotic expansion with the homogeneous terms being rational functions we
     have to show, that only a finite number of terms contribute to a specific
     order. It suffices to show, that the rest term of the Taylor expansion only
-    contributes up to order of $-n_N$ for some $n$, with $\lim_{N\to\infty}
-    -n_N = -\infty$ and $n_N$ being monotonous.
+    contributes up to order of $-n_N$ for some $n$, with
+    \begin{align*}
+      \lim_{N\to\infty} -n_N = -\infty
+    \end{align*}
+    and $n_N$ being monotonous.
 
     Finally we want to insert $a = b$ and integrate, for which to be
     well-defined we have to show, that first of all the step polynomials whose
@@ -261,7 +263,9 @@ prove our last Main Theorem:
     at all.
 
     Now we are left with handling $f^0_b$. We see immediately, that the term
-    coming from $A$
+    coming from $A$ has order $-n-1$, so the rest term's is of order $-N-1$.
+    Terms from $B$ don't contribute for $a=b$, for general $a,b$ their order
+    decreases by $n+1$, so for the rest term by $N+1$.
     % TODO - Erster Term hat \mu-Ordnung n+1, also für den Restterm N+1
     %       -> trägt nicht bei
     %      - Terme aus B tragen nicht bei für a=b da sie 0 sind
@@ -282,6 +286,5 @@ prove our last Main Theorem:
     are up to a constant the derivatives of $V$ and $W$ at $x=0$.
   \end{Proof}
 \end{MainTheorem}
-
 The constructive part of the proof, together with \thref{lem:asymp-1}, can be
 extended to a program that calculates all terms in the asymptotic expansion.
