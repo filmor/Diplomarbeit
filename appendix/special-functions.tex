@@ -1,17 +1,19 @@
 \section{Special Functions}
 \subsection{Gamma Function}
-The Gamma function is defined on $\mathbb{R}_{+}$ as the exponential integral
+\label{app:gamma}
+The gamma function is defined on $\mathbb{R}_{+}$ as the exponential integral
 \begin{align}
     \Gamma(x) := \Integ[\infty]{0}{t}{\Eto{-t}t^{x-1}},
     \label{def:gamma}
 \end{align}
 which coincides with $(x-1)!$ for $x\in\mathbb{N}$. In the text we use the so
-called (upper) Incomplete Gamma Function, defined by the integral
+called (upper) incomplete gamma function, defined by the integral
 \begin{align}
   \Gamma(x,b) := \Integ[\infty]{b}{t}{\Eto{-t}t^{x-1}},
 \end{align}
 for which we will now prove the following lemma:
 \begin{Lemma}
+  \label{lem:incomplete-gamma}
   Let $n\in\mathbb{N_0}$, $k\in\mathbb{R}$. Then the following formula holds:
   \begin{align}
     \Gamma(n+1, b) = \Integ[b]{\infty}{t}{\Eto{-t} t^n} = n!\ \Eto{-b}\sum_{m=0}^n
@@ -36,7 +38,7 @@ for which we will now prove the following lemma:
 \end{Lemma}
 
 \subsection{Digamma Function}
-The Digamma function is the logarithmic derivative of the Gamma function
+The digamma function is the logarithmic derivative of the gamma function
 \begin{align}
     \psi(x) := \frac{\mathrm d}{\mathrm dx}\log{\Gamma(x)}
             = \frac{\Gamma'(x)}{\Gamma(x)},

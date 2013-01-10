@@ -1,4 +1,5 @@
 \subsection{Integration Lemmas}
+% TODO Umformulieren
 During the course of this thesis we will see some recurring patterns in the
 integrals that need to be solved. We will thus list some explicit formulas for
 them now and prove the simpler ones here.
@@ -17,7 +18,6 @@ most further results on the asymptotics of exponential integrals.
 %        on .
 %    \end{Remark}
 \end{Lemma}
-
 The next lemma considers the continuity properties of exponential integrals like
 the ones that are object of Watson's Lemma:
 \begin{Lemma}
@@ -29,30 +29,29 @@ the ones that are object of Watson's Lemma:
   \end{align*}
   is continuous in $x$.
   \begin{Proof}
-    The statement follows immediately from a classical result of Lebesgue theory
-    on the continuity of parameter-dependent integrals (REF: Königsberger 2
-    282f). We only need to check, that there is an integrable majorant for all
-    $x$, which is simply $f(t)$ in this case, and that the whole integrand is
-    continuous in $x$ for fixed $t$ which is obvious.
+    The statement follows immediately from a classical result of Lebesgue
+    integration theory on the continuity of parameter-dependent integrals
+    (\cite[p282f]{Konigsberger2004}). We only need to check, that there is an
+    integrable majorant for all $x$, which is simply $f(t)$ in this case, and
+    that the whole integrand is continuous in $x$ for fixed $t$ which is
+    obvious.
   \end{Proof}
 \end{Lemma}
-
 The third lemma is a quite general formula for nested integrals, in which the
 upper limit of the inner integral is the integration variable of the outer one:
 \input{snippets/integration-lemma}
 \begin{Remark}
   This is in fact only Fubini's theorem for the integral of $(x,y)\to g(x)f(y)$
-  over a right-angled triangle:
-  \begin{center}
-    \begin{tikzpicture}
-      \draw (0,0)
-      -- (2,2)
-      -- node[anchor=west] {$y$} (2,0)
-      -- node[anchor=north] {$x$} (0,0);
-    \end{tikzpicture}
-  \end{center}
+  over a right-angled triangle.
+%  \begin{center}
+%    \begin{tikzpicture}
+%      \draw (0,0)
+%      -- node[anchor=east] {$y$} (0,1)
+%      -- node[anchor=south] {$x$} (1,1)
+%      -- (0,0);
+%    \end{tikzpicture}
+%  \end{center}
 \end{Remark}
-
 Finally we give a formula for a particular kind of integral that comes up a lot
 in the final calculations:
 \begin{Lemma}
@@ -63,7 +62,7 @@ in the final calculations:
     \frac{a^{n-2m+1}}{2b^{n+1}}B\bigl(\tfrac{n+1}{2}, \tfrac{2m - n -
     1}{2}\bigr),
   \end{align*}
-  where $B$ denotes the Beta function.
+  where $B$ denotes the beta function.
   \begin{Proof}
     \begin{align*}
       \Integ[\infty]{0}{x}{\frac{x^n}{(a^2 + b^2 x^2)^{m}}} 
@@ -76,7 +75,10 @@ in the final calculations:
         &= \frac{a^{n-2m+1}}{2b^{n+1}}B\bigl(\tfrac{n+1}{2}, \tfrac{2m - n -
       1}{2}\bigr)
     \end{align*}
-    The formula used in the last step is proven in the Appendix
-    \ref{sec:beta_function}.
+    The formula used in the last step,
+    \begin{align*}
+      B(a,b) = \Integ[\infty]{0}{z}{\frac{z^{a-1}}{(1+z)^{a+b}}},
+    \end{align*}
+    is proven in the Appendix~\ref{sec:beta_function}.
   \end{Proof}
 \end{Lemma}

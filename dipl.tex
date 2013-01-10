@@ -1,10 +1,11 @@
 \documentclass[paper=a4,twoside,parskip=full]{scrartcl}
 
 \usepackage[utf8]{inputenc}
+\usepackage[ngerman,australian]{babel}
+
 \usepackage{amsmath,amssymb,amsfonts,fancyhdr,csquotes,tikz,enumerate}
+\usepackage[standard,thmmarks,hyperref,thref,amsmath]{ntheorem}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
-\usepackage[standard,thmmarks,hyperref,thref]{ntheorem}
-\usepackage[ngerman,english,british]{babel}
 % \usepackage[backend=biber]{biblatex}
 \usepackage[scale=0.75]{geometry}
 \usepackage[T1]{fontenc}
@@ -70,6 +71,7 @@ Operators}
 \newcommand{\OpNorm}[1]{\Norm[\mathrm op]{#1}}
 \newcommand{\zdet}{\ensuremath{{\det}_\zeta}}
 
+\DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\vol}{vol}
 \DeclareMathOperator{\supp}{supp}
@@ -106,7 +108,7 @@ Operators}
   \end{center}
   \vspace{\stretch{1}}
   \begin{center}
-      Dezember 2012 \\
+      Januar 2013 \\
       \bigskip
       Von \\
       \bigskip
@@ -126,9 +128,10 @@ Operators}
   \large 2.\ Gutachter: Boris Vertman \\
 \end{center}
 \newpage
+\section{Introduction}
 \selectlanguage{ngerman}
 \input{intro/de}
-\selectlanguage{british}
+\selectlanguage{australian}
 \input{intro/en}
 \input{intro/conventions}
 \input{intro/setting}
@@ -143,7 +146,7 @@ Operators}
 %\input{appendix/third-component}
 \input{appendix/special-functions}
 \input{appendix/proof-watson}
-\bibliography{mlbib,vertman}
+\bibliography{mlbib,vertman,mendeley}
 \newpage
 \selectlanguage{ngerman}
 \pagestyle{plain}

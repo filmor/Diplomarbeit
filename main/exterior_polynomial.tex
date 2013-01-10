@@ -8,7 +8,7 @@ always get a polynomial that is divided by integral powers of $\mu = \lambda^2
 V(0) + W(0)$. % TODO Anständig umschreiben was passiert
 
 We know, that $f_\lambda$ is analytic in $x$ since it is a composition of
-$\Cinf$-functions, thus we can write
+the analytic functions $V$ and $W$, thus we can write
 \begin{align*}
   f_\lambda(x) &= \sum_{n=0}^{N-1} \frac{f_\lambda^{(n)}(0)}{n!} x^n + R_N(x)
   \text{ with} \\ R_N(x) &= \frac{f^{(N)}(\xi)}{N!} x^{N}.
@@ -32,11 +32,10 @@ kernels with $f_\lambda$ being a function of the following kind:
     \deg f := \left(\deg f_<, \deg f_>\right).
   \end{align*}
 \end{Definition}
-
 The integral part of the proof is the following Lemma:
 \begin{Lemma}
   \label{lem:asymp-1}
-  Let $f_b, g_b$ be step polynomials and for odd integers $k_a, k_b, K_a, K_b$
+  Let $f_b$ be a step polynomial and for odd integers $k_a, k_b$ and $K_a, K_b$
   let $g$ be a step function defined as:
   \begin{align*}
     g_{k,K}(x, b) = \begin{cases}
@@ -79,8 +78,8 @@ The integral part of the proof is the following Lemma:
                   \Eto{-kb}\sum_{m=0}^n \frac{b^m}{m!k^{n+1-m}}\right),
     \end{align}
     which follows directly by the substitution $x \mapsto kx$ from the formula
-    for the (upper) Incomplete Gamma Function given (and proven) in the
-    appendix.
+    for the (upper) incomplete gamma function given (and proven) in the
+    Appendix~\ref{app.gamma} (\thref{lem:incomplete-gamma}).
     % TODO
     The overall sign is intentional, and we use in this context the convention
     $0^0 := 1$ to deal with the special case of $a = 0$ or $b = 0$. For $k = 0$
@@ -117,7 +116,7 @@ The integral part of the proof is the following Lemma:
         \frac{a^l}{l!((1+k_a)\mu)^{n+1-l}}
           & a < b \\
           \Eto{-\mu(a + (1+k_a+k_b)b)} n! \sum_{l=0}^n
-          \frac{b^l}{l!((1+k_a)\mu)^{n+1-k}}
+          \frac{b^l}{l!((1+k_a)\mu)^{n+1-l}}
           & a > b
       \end{cases}
     \end{align*}
@@ -151,10 +150,13 @@ The integral part of the proof is the following Lemma:
          + \Eto{-\mu(a + (1+K_a+K_b)b)} f^{B_2}_>(a).
     \end{align*}
 
+    % TODO: Zeigen, dass der Term nicht beiträgt!
+    %       Hier stimmt irgendwas noch nicht, die Integrationen muss ich nach-
+    %       prüfen.
     Now we do the same for $C$, paying attention to the upper end of the
     interval. For $K_a = -1$ we have again a contribution to $f^0_b$:
     \begin{align*}
-      C = \Eto{-\mu(a+k_b b)} \frac{1}{n+1} \begin{cases}
+      C = \Eto{-\mu(K_b b - a)} \frac{1}{n+1} \begin{cases}
         1 - b^{n+1} & a < b \\
         1 - a^{n+1} & a > b
       \end{cases}.
@@ -186,12 +188,16 @@ The integral part of the proof is the following Lemma:
 Now that we know better how the kernels behave when they are concatenated we can
 prove our last Main Theorem:
 \begin{MainTheorem}
-  The homogeneous terms in the  common asymptotic expansion of the
-  resolvent-trace of $\Delta_\lambda$ at the boundary $x = 0$ is a rational
-  function in $V$, $W$ and their respective derivatives at $0$.
+  The homogeneous terms in the common asymptotic expansion of the
+  resolvent-trace of $\Delta_\lambda$ at the boundary $x = 0$ are rational
+  functions in $V$, $W$ and their respective derivatives, at $0$.
   \begin{Remark}
     This construction works \emph{ad verbatim} for $x=1$ with the standard
     substitution $x\mapsto 1 - x$.
+  \end{Remark}
+  \begin{Remark}
+    % TODO: Zeigen, dass der gleiche Kram wie oben gilt, mit einfach
+    % verringerter Ordnung (weil hier einmal mehr integriert ist)
   \end{Remark}
   \begin{Proof}
     As explained in the beginning of this section we consider the Taylor
@@ -257,7 +263,7 @@ prove our last Main Theorem:
     also the reason, why none of them can ever be less than $-1$.
     % TODO: Beweisen, dass K, k >= -1 sind (ist kurz, fehlt hier aber!)
     For $\sigma_i = \pm$, $f^1 \neq 0$ only for $K^{i-1}_a \neq -1 \Rightarrow
-    K^{i-1}_a \geq 0$. Now this term has a factor of $\Eto{+\mu (1+K_a)}$, since
+    K^{i-1}_a \geq 0$. Now this term has a factor of $\Eto{-\mu (1+K_a)}$, since
     the terms that are multiplied with this one are only of polynomial order
     they cannot cancel it and it does not contribute to the asymptotic expansion
     at all.
@@ -284,6 +290,8 @@ prove our last Main Theorem:
     limit $-\infty$. Thus each homogeneous component is made of a finite number
     of products of coefficients of the Taylor expansion of $f_\lambda$, which
     are up to a constant the derivatives of $V$ and $W$ at $x=0$.
+    % TODO: Genauer ansehen, welche Terme am Ende beitragen, indem wir \mu- und
+    % Polynomordnung nachhalten (die müsste gleich sein!)
   \end{Proof}
 \end{MainTheorem}
 The constructive part of the proof, together with \thref{lem:asymp-1}, can be

@@ -12,7 +12,9 @@ zero_func = Lambda((x, xi, l, z), 0)
 
 @cacheit
 def r(n, a_2=Symbol("a_2"), a_0=Symbol("a_0")):
-    if n < 2:
+    if n == 0:
+        return zero_func
+    if n == 1:
         return zero_func
     if n == 2:
         return a_2(x,xi,l,z) ** (-1)
@@ -22,13 +24,13 @@ def r(n, a_2=Symbol("a_2"), a_0=Symbol("a_0")):
     return a_2(x, xi, l, z) ** (-1) * (
                   2 * xi * I * rec(1).diff(x)
                 + rec(2).diff(x, 2)
-                - (a_0(x, xi, l, z) * rec(2) if n > 3 else 0)
+                - rec(2) * a_0(x, xi, l, z)
                 )
 
 def rr(n):
-    return r(n, a_2=a_2_func, a_0=a_0_func)
+    return r(n, a_2=a_2_func, a_0=a_0_func)(x,xi,l,z)
 
-def trace_exp(n):
+def kernel_exp(n):
     expr = expand(rr(n), deep=False)
 
     summands = None

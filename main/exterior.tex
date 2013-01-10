@@ -56,16 +56,18 @@ particular asymptotics for $\mu\to\infty$ is the same as asymptotics for
 $\Abs{(\lambda,z)}\to\infty$.
 
 Now we aim to rewrite the operator-inverse such that we are only inverting
-$x$-independent operators, especially $(L+\mu^2)$ and $(L^\theta+\mu^2)$, for
-which we have explicit expressions of their inverse's kernels. We assume for now
-for some $\delta > 0$ sufficiently small, that $\supp V \subset [0,\delta]$ and
-$\left\|V-V(0)\right\|_{\infty}\leq \frac12V(0)$. Algebraically we have
+operators that don't depend explicitly on the functions $V$ and $W$, especially
+$(L+\mu^2)$ and $(L^\theta+\mu^2)$, for which we have explicit expressions of
+their inverse's kernels. We assume for now for some $\delta > 0$ sufficiently
+small, that $\supp V \subset [0,\delta]$ and $\Abs{V-V(0)}_{\infty}\leq
+\frac12V(0)$. Algebraically we have
 \begin{align*}
   (L^\theta + \lambda^2 V(x) + W(x) + z^2)^{-1} =
     \bigl(I + (L^\theta + \mu^2)^{-1}(\lambda^2\tilde V(x) + W(x))\bigr)^{-1}
     (L^\theta + \mu^2)^{-1}.
 \end{align*}
-Since for $z$ sufficiently large we have
+Since for $z$ sufficiently large we have (with $\OpNorm{\cdot}$ being the
+operator norm)
 \begin{align*}
   \OpNorm{(L^\theta + \mu^2)^{-1}(\lambda^2\tilde V(x) + W(x))} \leq
   \frac{\lambda^2\InfNorm{\tilde V} + \InfNorm{W}}{\lambda^2 V(0) + z^2},
@@ -184,10 +186,11 @@ further considerations:
   \end{align}
   and thus for $\mu\to\infty$
   \begin{align}
-    \Bigl\|\partial^\alpha_\lambda\partial^\beta_z\sum_{j=M}^\infty
-    R^{(j)}\Bigr\| = O(\mu^{-M-\alpha-\beta-3/2}),
+    \Norm[\mathrm{tr}]{\partial^\alpha_\lambda\partial^\beta_z\sum_{j=M}^\infty
+    R^{(j)}} = O(\mu^{-M-\alpha-\beta-3/2}),
   \end{align}
-  where $\|\cdot\|_{\mathrm{tr}}$ denotes the trace norm.
+  where $\|\cdot\|_{\mathrm{tr}}$ denotes the trace norm
+  ($\Norm[\mathrm{tr}]{A} = \Tr(A^*A) = \Tr\Abs{A}$).
 \end{Theorem}
 This tells us, that, since we are aiming to find the asymptotics up to order 2
 we need to consider $R^{(j)}$ up to $j=1$, since already the trace of $R^{(2)}$
@@ -248,7 +251,7 @@ From this calculation we immediately get the first term we were looking for:
 \end{align}
 
 For higher $j$ terms we need to employ both Watson's Lemma and our integration
-formula. The process (which will also be used in the appendix) is always the
+formula. The process (which can also be used for higher orders) is always the
 same:
 \begin{enumerate}
   \item Write down the whole integral with one large exponential
@@ -316,45 +319,36 @@ given above this is also the asymptotics of $\Tr R_{-+}$, so we have:
   \sum_{n=0}^\infty \frac{2(n+2)f_\lambda^{(n)}(0) - f^{(n)}_\lambda(0)}{(2\mu)^n} \\
   &= (2\mu)^{-4} \sum_{n=0}^\infty \frac{(2n + 3)f_\lambda^{(n)}(0)}{(2\mu)^n}
 \end{align*}
-Now that we have calculated $\Tr R^{(1)}$ and $\Tr R^{(2)}$ we only need to sum them up and
-match coefficients to get the first three terms in the asymptotic expansion of
-$\Tr(\Delta_\lambda + z^2)^{-1}$. In particular we have to deal with the fact,
-that $f_\lambda(x) = \lambda^2 V_\psi(x) + W_\psi(x)$ is of mixed order.
-Furthermore we note that, as it was for the interior parametrix, the
+Now that we have calculated $\Tr R^{(1)}$ and $\Tr R^{(2)}$ we only need to sum
+them up and match coefficients to get the first three terms in the asymptotic
+expansion of $\Tr(\Delta_\lambda + z^2)^{-1}$. In particular we have to deal
+with the fact, that $f_\lambda(x) = \lambda^2 V_\psi(x) + W_\psi(x)$ is of mixed
+order.  Furthermore we note that, as it was for the interior parametrix, the
 coefficients of the trace expansion are again a homogeneous polynomial in $V$,
 $W$ and their respective derivatives, which will be proven in the next section.
 Different from the interior parametrix, the half-integral orders are not 0 by
 construction, but the first one indeed is because $\Tr R^{(1)}$ only contributes
-to $h_{-2}$ while all other $\Tr R^{(j)}$ also contribute to higher terms.
+to $(\Tr R)_{-2}$ while all other $\Tr R^{(j)}$ also contribute to higher terms.
 
-We get the following three terms of the asymptotic expansion of $\Tr R_\theta$:
+We get the following three terms of the asymptotic expansion of $\Tr R$:
 \begin{align}
-  h_{-2} &= \frac{1}{4\mu^2} = \frac{1}{4} (\lambda^2V(0) + z^2)^{-1} \\
-  h_{-5/2} &= 0 \\
-  h_{-3} &= \frac{5\lambda^2}{(2\mu)^5} V'(0)
+  (\Tr R)_{-2} &= \frac{1}{4\mu^2} = \frac{1}{4} (\lambda^2V(0) + z^2)^{-1} \\
+  (\Tr R)_{-5/2} &= 0 \\
+    (\Tr R)_{-3} &= \frac{5\lambda^2}{(2\mu)^5} V'(0) =
+  \frac{5}{32}\frac{\lambda^2 V'(0)}{(\lambda^2 V(0) + z^2)^{-5}}
 \end{align}
 
 We have thus proven the following theorem
 \begin{MainTheorem}
   \label{main:boundary}
-  The multiparametric trace-expansion of the resolvent of the Sturm-Liouville
-  operator
-  \begin{align*}
-    \Delta_\lambda = -\partial_x^2 + \lambda^2 V(x) + W(x)
-  \end{align*}
-  on $\mathbb{R_+}$ up to the third non-vanishing order at $x=0$ with the
-  generalised Neumann boundary conditions $f(0)\cos\theta + f'(0)\sin\theta$ is
-  given by
-  \begin{align*}
-    \left.\Tr(\Delta_\lambda + z^2)^{-1}\right|_{x=0} \SimMu
-    \frac{1}{(2\mu)^2} + \frac{5\lambda^2}{(2\mu)^5} V'(0) + O(\mu^{-4}),
-  \end{align*}
-  with $\mu^2 := \lambda^2 V(0) + W(0)$.
+  \input{snippets/main-exterior}
   \begin{Corollary}
     \label{cor:boundary}
-    Using the previous definitions we also get the expansion at $x = 1$:
+    Using the previous definitions we also get the expansion near $1$ by
+    considering a new cutoff function $\psi$ on $(0,1]$ that is $0$ outside of a
+    sufficiently small neighbourhood of $x=1$.
     \begin{align*}
-      \left.\Tr(\Delta_\lambda + z^2)^{-1}\right|_{x=1} \SimMu
+      \Tr(\psi(x)(\Delta_\lambda + z^2)^{-1}) \SimMu
       \frac{1}{(2\mu)^2} - \frac{5\lambda^2}{(2\mu)^5} V'(1) + O(\mu^{-4})
     \end{align*}
     \begin{Proof}

@@ -1,6 +1,6 @@
 \section{Setting}
 We will first motivate our investigation of the asymptotics of multi-parametric
-Sturm-Liouville operators by a formula given in \cite{LV12}. This formula can be
+Sturm-Liouville operators by a formula given in \cite{LV13}. This formula can be
 used to calculate the zeta determinant of an infinite direct sum of
 Sturm-Liouville operators by means of a regularised sum of the zeta determinants
 of the operators and an error term involving a specific (poly-)homogeneous
@@ -12,6 +12,7 @@ the further notation needed to understand the formula, whose error term we aim
 to calculate in the end.
 
 \subsection{Laplace-Beltrami operator on a surface of revolution}
+\label{sec:laplace-beltrami}
 Let $M = [0,1]\times\Sphere{1}$ be a surface of revolution by use of the metric
 $g = \mathrm dx^2 \oplus f(x)^2 g_\Sphere{1}$ with $f\in \Cinf([0,1],
 \Rplus)$. The associated Laplace-Beltrami operator is given by
@@ -24,8 +25,8 @@ acting on $\Cinf[0]\bigl((0,1)\times\Sphere1\bigr)$. The correct Lebesgue
 measure on the space $(M,g)$ is given by $f(x)\,\mathrm dx\, \mathrm
 d\!\vol(g_\Sphere1)$. Under the unitary map
 \begin{align*}
-  \Phi: L^2(M, g)&\to L^2([0,1], \mathrm dx)\otimes L^2(\Sphere1, g_\Sphere1) \\
-     (\Phi u)(x) &:= u(x) \sqrt{f(x)},
+  \Phi\colon L^2(M, g)&\to L^2([0,1], \mathrm dx)\otimes L^2(\Sphere1,
+  g_\Sphere1) \\ (\Phi u)(x) &:= u(x) \sqrt{f(x)},
 \end{align*}
 the Laplacian $\Delta$ transforms into the operator
 \begin{align*}
@@ -33,11 +34,11 @@ the Laplacian $\Delta$ transforms into the operator
   \frac{1}{f(x)^2}\Delta_\Sphere1 + \left( \frac{f''(x)}{2f(x)} -
   \left(\frac{f'(x)}{2f(x)}\right)^2\right).
 \end{align*}
-The functions $e_\lambda(x) := \frac{1}{\sqrt{2\pi}}\Eto{\mathrm i\lambda x}$
-form for $\lambda\in\mathbb{Z}$ an orthonormal basis of $L^2(\Sphere1)$ of
-eigenfunctions of $\Delta_\Sphere1$ to the eigenvalues $\lambda^2$, where the
-eigenvalues $\lambda^2 \neq 0$ have multiplicity 2 while $\lambda = 0$ has
-multiplicity 1. Hence we have the decomposition
+For $\lambda\in\mathbb{Z}$ the functions $e_\lambda(x) :=
+\frac{1}{\sqrt{2\pi}}\Eto{\mathrm i\lambda x}$ form an orthonormal basis of
+$L^2(\Sphere1)$ of eigenfunctions of $\Delta_\Sphere1$ to the eigenvalues
+$\lambda^2$, where the eigenvalues $\lambda^2 \neq 0$ have multiplicity 2 while
+$\lambda = 0$ has multiplicity 1. Hence we have the decomposition
 \begin{align}
   \label{eqn:lpl-decomp}
   \Phi\Delta\Phi^{-1} &= \bigoplus_{\lambda=-\infty}^{\infty} \left(
@@ -68,41 +69,65 @@ where the non-derivative terms as usual denote the multiplication operators
 $(M_\phi u)\colon x \mapsto \phi(x)u(x)$. We won't write this out (i.e.\ in the
 summands of $\Delta_\lambda$ we use $W(x)$ instead of $M_W$) unless necessary.
 
-\subsection{Regularised sums and integrals}
-We will first provide some general definitions on asymptotic analysis and then
-introduce the Hadamard finite part regularisation.
+\subsection{Regularised Sums and Integrals}
+\label{sec:regsum-int}
+We will first provide some general definitions on asymptotic analysis based on
+\cite[Ch.1]{Miller2006} and then introduce the Hadamard finite part regularisation.
 
-We define the Landau symbols and asympotic equality as
-\begin{align}
-  g(x) &= O(f(x))\text{ for $x\to x_0$ } &:\Leftrightarrow \limsup_{x\to x_0}
-  \Abs{\frac{g(x)}{f(x)}} < \infty \\
-  g(x) &= o(f(x))\text{ for $x\to x_0$ } &:\Leftrightarrow \lim_{x\to
-x_0}\Abs{\frac{g(x)}{f(x)}} = 0 \\
-f &\SimAs{x\to x_0} g &:\Leftrightarrow \lim_{x\to x_0}
-\Abs{\frac{f(x)}{g(x)}} = 1,
-\end{align}
-where $x_0$ may be $\infty$. As a special case we furthermore define for
-$x\to\infty$
-\begin{align}
-  f(x) = O(x^{-\infty}) :\Leftrightarrow \forall_{n\in\mathbb{N}}\ f(x) =
-  O(x^{-n}).
-\end{align}
+\begin{Definition}
+  The Landau symbols and asympotic equality are defined as
+  \begin{align}
+    g(x) = O(f(x))\text{ for $x\to x_0$ } &:\Leftrightarrow \limsup_{x\to x_0}
+    \Abs{\frac{g(x)}{f(x)}} < \infty \\
+    g(x) = o(f(x))\text{ for $x\to x_0$ } &:\Leftrightarrow \lim_{x\to
+    x_0}\Abs{\frac{g(x)}{f(x)}} = 0 \\
+    f \SimAs{x\to x_0} g &:\Leftrightarrow \lim_{x\to x_0}
+    \Abs{\frac{f(x)}{g(x)}} = 1,
+  \end{align}
+  where $x_0$ may be $\infty$. As a special case we furthermore define for
+  $x\to\infty$
+  \begin{align}
+    f(x) = O(x^{-\infty}) :\Leftrightarrow \forall_{n\in\mathbb{N}}\ f(x) =
+    O(x^{-n}).
+  \end{align}
+\end{Definition}
+Like in many other texts we will also use the Landau symbols in actual
+calculations, however it is of note, that this is only valid in finite sums, for
+all other calculations (in particular integrations) we have to take additional
+measures.
 
-Now let $(\phi_n)$ be a series of functions with
+\begin{Definition}
+  Let $(\phi_n)$ be a sequence of functions with
 \begin{align*}
   \phi_{n+1}(x) = o(\phi_n(x))\text{ for $x\to x_0$},
 \end{align*}
-which is called an \emph{asymptotic series}. Then we say, that
+  which is called an \emph{asymptotic sequence}. Then, for a sequence $(a_n)$
+  the sum
+  \begin{align*}
+    \sum_{n=0}^N a_n\phi_n(x)
+  \end{align*}
+  is an \emph{asymptotic approximation} as $x\to x_0$ if
+  \begin{align*}
+    \label{eqn:def-asymp-exp}
+    f(z) - \sum_{n=0}^N a_n\phi_n(x) = o(\phi_N(x)).
+  \end{align*}
+  If the above is true for all $N\in\mathbb{N}$, the formal infinite sum
+  \begin{align*}
+    \sum_{n=0}^\infty a_n\phi_n(x)
+  \end{align*}
+  is called an \emph{asymptotic series} and is said to be an \emph{asymptotic
+  expansion} of $f(x)$, which we will denote by
+  \begin{align*}
+    f(x) \SimAs{x\to x_0} \sum_{n=0}^\infty a_n\phi_n(x).
+  \end{align*}.
+  If \eqref{eqn:def-asymp-exp} holds for all $N < N_0$, we say $f(x)$ has a
+  \emph{partial asymptotic expansion}.
+\end{Definition}
 
-
-% TODO Define asymptotic expansion, verschiedene Basis-Funktionen
-
-% TODO log-homogeneous
 Now let $f\in\Cinf(\Rplus)$ be a function with a partial asymptotic expansion
 for $x\to\infty$ with regard to the log-polynomial asymptotic series
-$x^{-n}\log^k(x)$, were $\log^k(x) := \log^{k-1}(\log(x)), \log^1(x) :=
-\log(x)$. We denote the components by $a_{nk}$, thus the expansion is
-written as
+$x^{-n}\log^k(x)$, were $\log^k(x) := (\log(x))^k$. We denote the components by
+$a_{nk}$, thus the expansion is written as
 \begin{align*}
   f(x) \SimAs{x\to\infty} \sum_{n=0}^{N-1}\sum_{k=0}^{M_n}
   a_{nk}\,x^{-n}\log^k(x) + x^{-N}\log^{M_N}f_N(x),
@@ -121,13 +146,13 @@ integral} as
 \begin{align}
   \Regint{x}{f(x)} := \Reglim_{R\to\infty}\Integ[R]{1}{x}{f(x)}.
 \end{align}
-We also see here the necessity for using $x^n \log^m(x)$ as base-functions in
-our asymptotic expansion, as only then the integral over the asymptotic
-expansion results in a meaningful expansion for which we can then use the given
-limit-definition. This approach of regularising potentially infinite integrals
-is called Hadamard finite part (or French: partie finie) regularisation. In the
-special case that $f\in L^1[1,\infty)$ the regularised integral coincides with
-the usual Lebesgue integral of $f$.
+The integral is also the reason why we consider $x^n \log^m(x)$ as
+base-functions in the asymptotic expansions, since that way the integral over
+the expansion results in a meaningful expansion with the same base-functions.
+This approach of regularising potentially infinite integrals is called Hadamard
+finite part (or French: \textit{partie finie}) regularisation. In the special
+case that $f\in L^1[1,\infty)$ the regularised integral coincides with the usual
+Lebesgue integral of $f$.
 
 Using this we can also give a meaningful definition of a \emph{regularised sum}
 over $f$. Given the Bernoulli numbers $B_j$ and the Bernoulli polynomials
@@ -152,7 +177,7 @@ The regularised sum over $\mathbb{Z}$ is defined by
   f(\lambda) + \Regsum_{\lambda=1}^\infty f(-\lambda)
 \end{align*}
 
-The following theorem proven in \cite{LV12} is the basis for the following
+The following theorem proven in \cite{LV13} is the basis for the following
 considerations:
 \begin{Theorem}
   \label{thm:fubini}
@@ -203,13 +228,8 @@ and thus
 \begin{align}
   \log\zdet\Delta_\lambda = -2 \Regint[0]{z}{z^3\Tr(\Delta_\lambda + z^2)^{-2}},
 \end{align}
-which also works for $\Delta$.
-
-% TODO
-% - Definition
-% - Im Kontext hier
-% Ordnung oder so
-% Heuristik für die Formel
+which also works for $\Delta$, since we have an asymptotic expansion for
+$\Tr(\Delta_\lambda + z^2)^{-2}$.
 
 \subsection{Goal}
 Lesch and Vertman proved in \cite{LV13} the following asymptotic expansion for
