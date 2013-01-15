@@ -84,10 +84,9 @@ left:
   \Rightarrow b_{-n} &= \frac1{a_2} \left( 2\xi\mathrm i\, \partial_x b_{-(n-1)}
   + \partial_x^2 b_{-(n-2)} - a_0 b_{-(n-2)} \right),
 \end{align*}
-with the starting values $b_0 = 0$, $b_{-1} = 0$ and $b_{-2} = a_2^{-1}$.
-%TODO Warum?
-We can now inductively derive the first coefficients of the parametrix of
-$(\Delta_\lambda + z^2)$:
+with the starting values $b_0 = 0$, $b_{-1} = 0$ and $b_{-2} = a_2^{-1}$ since
+the order of the inverse has to be $-2$. We can now inductively derive the first
+coefficients of the parametrix of $(\Delta_\lambda + z^2)$:
 \begin{align*}
   \label{eqn:coeff-symbol}
   b_{-2} &= \frac{1}{a_2} \\
@@ -108,25 +107,28 @@ pseudo-differential operator $A$ with symbol $a$ we have
   \quad
   k(x,x) = \frac{1}{2\pi}\Integ{\mathbb{R}}{\xi}{a(x,\xi)},
 \end{align*}
-where $\Oscint{\xi}{\,\cdot\,}$ denotes the oscillating integral (as defined in
-\cite[]{Shu:POS}), which coincides with the usual integral over $\mathbb{R}$ for
-$x = y$. The integrals over $\xi$ can be handled with in a uniform way using the
-beta function as seen in the introduction (\ref{lem:beta_function_formula}) by
-setting $n = (\text{order of $\xi$ in the numerator})$, $m = \tfrac12(\text{order
-of $a_2$ in the denominator})$, $a=\mu(x)=\sqrt{\lambda^2 V(x) + W(x)}$ and $b =
-1$. We also see, that for odd $n$ the terms vanish, as we have an integral over
-an odd function, while for even $n$ we get an additional factor of $2$ for
-integrating over $\mathbb{R}$ instead of $\Rplus$.
+where $\Oscint{\xi}{\,\cdot\,}$ denotes the oscillatory integral (as defined in
+\cite[Def.~1.1]{Shu:POS}), which coincides with the usual integral over
+$\mathbb{R}$ for $x = y$. The integrals over $\xi$ can be handled with in a
+uniform way using the beta function as seen in the introduction
+(\ref{lem:beta_function_formula}) by setting $n = (\text{order of $\xi$ in the
+numerator})$, $m = \text{exponent of $a_2$ in the denominator}$,
+$a=\mu(x)=\sqrt{\lambda^2 V(x) + W(x)}$ and $b = 1$. We also see, that for odd
+$n$ the terms vanish, as we have an integral over an odd function, while for
+even $n$ we get an additional factor of $2$ for integrating over $\mathbb{R}$
+instead of $\Rplus$.
 
 The corresponding terms in the kernel are thus
-\begin{align}
-  k_{-2}(x,x,\lambda,z) &= \frac{1}{2} \frac{1}{\lambda^2 V(x) + z^2} \\
-  k_{-3}(x,x,\lambda,z) &= 0 \\
-  k_{-4}(x,x,\lambda,z) &= - \frac{1}{16} \frac{\lambda^2 V''(x)}{(\lambda^2
+\begin{align*}
+  k_{-1}(x,x,\lambda,z) &= \frac{1}{2} \frac{1}{(\lambda^2 V(x) + z^2)^{1/2}} \\
+  k_{-2}(x,x,\lambda,z) &= 0 \\
+  k_{-3}(x,x,\lambda,z) &= - \frac{1}{16} \frac{\lambda^2 V''(x)}{(\lambda^2
     V(x) + z^2)^{5/2}} + \frac{5}{64} \frac{\lambda^4 V'(x)^2}{(\lambda^2V(x)
     + z^2)^{7/2}} -\frac{1}{4}\frac{W(x)}{(\lambda^2 V(x) + z^2)^{3/2}}.
   \label{eqn:coeff-kernel}
-\end{align}
+\end{align*}
+We note, that the $(\lambda,z)$-order of the integrated terms increases by $1$
+which is reflected by a change of the index.
 
 These are the first three asymptotic components of the kernel of
 $(\Delta_\lambda + z^2)^{-1}$ on the open interval $(0,1)$, i.e.\ if we define
@@ -134,125 +136,99 @@ $\mu(x) := \sqrt{\lambda^2 V(x) + z^2}$ as above we have
 \begin{align*}
   \input{snippets/formula-interior},
 \end{align*}
-which proves \thref{main:interior}.  The asymptotic order of the remainder of
-$-5$ follows from the fact, that by construction every other step in our
+which proves \thref{main:interior}. The asymptotic order of the remainder of
+$-4$ follows from the fact, that by construction every other step in our
 recursion formula results in the exponents of $\xi$ in the numerator being odd,
-so the $\xi$ integral over $\mathbb{R}$ vanishes, in particular $k_{b_{-4}} =
+so the $\xi$ integral over $\mathbb{R}$ vanishes, in particular $k_{-4} =
 0$.
 
 Finally for this to give us all the information we were looking for we need to
-carry out the $x$-Integration. Evaluating this integral will be postponed until
-we have done the necessary formal steps to get to $\Tr(\Delta_\lambda +
-z^2)^{-2}$, and evaluate the $(\lambda,z)$-integral. Since by
-Equation~\eqref{frm:shift} and Equation~\eqref{eqn:central-theorem} we know,
-that we will only differentiate and integrate with a $\log\lambda$-term, and all
-intermediate steps are integrable we can indeed postpone the evaluation until we
-have enough information on $V$ and $W$ to perform the integration.
+carry out the $x$-Integration. Since by Equation~\eqref{frm:shift} and
+Equation~\eqref{eqn:central-thm} we know, that we will only differentiate the
+formula and integrate the result multiplied with a $\log\lambda$-term, and all
+intermediate steps are integrable we can postpone the evaluation until we have
+enough information on $V$ and $W$ to perform the integration.
 
-\begin{Remark}
-  We can see by closely looking on the generating
-  Equation~\eqref{eqn:int-recursion} that we can, without doing the explicit
-  calculations show, that the terms in the kernel expansion have a certain
-  structure, we will consider $k_{-n}$.
+\subsection{Homogeneity in $V$, $W$ and their Derivatives}
+We see by closely looking on the generating Equation~\eqref{eqn:int-recursion}
+that we can (without carrying out the explicit calculations) show that the terms
+in the kernel expansion have a certain structure.
 
-  First, we define an order for possible components in the numerator of the
-  terms in the expansion (where $A(x)$ and $B(x)$ are expressions in $V$, $W$
-  and their derivatives, and $C\in\mathbb{C}$):
-  \begin{align}
-    &\ord \lambda^2 V(x) := 0 \\
-    &\ord W(x) := 2 \\
-    &\ord \partial_x A(x) := \ord(A(x)) + 1 \\
-    &\ord CA(x) := \ord(A(x)) \\
-    &\ord A(x)B(x) := \ord A(x) + \ord B(x) \\
-    &\ord C := 0
-  \end{align}
-  We know by construction, that apart from some complex constant only
-  derivatives of $\lambda^2 V(x)$ (in form of derivatives of $a_2$), $W(x)$ as
-  well as derivatives of $W(x)$ may appear in the numerator. The denominator is
-  uniquely defined by the count of $\lambda^2 V^{(l)}(x)$ terms in the
-  numerator, i.e.\ if there are $k$ factors of $\lambda^2 V^{(l)}$, then the
-  denominator is $(\lambda^2 V(x) + z^2)^{n+2k-1}$.
-
-  For the numerator we can see, that the order of the expression always adds up
-  to $n-2$, for example if we consider $n=4$ we have the following
-  possibilities
+First, we define an order for the building blocks in the numerator of the
+terms in the expansion:
+\begin{Definition}
+  We define an order on terms of $V$ and $W$ by:
   \begin{align*}
-    V''(x), W(x), (V'(x))^2,
+    &\ord \lambda^2 V(x) := 0 \\
+    &\ord W(x) := 2
   \end{align*}
-  since those are exactly the terms with order $2$ we can produce.
+  For $A(x)\neq 0$ and $B(x)$ being rational expressions in $V$, $W$ and their
+  derivatives, and $C\in\mathbb{C}$ we also define the following calculation
+  rules:
+  \begin{align*}
+    \ord C &:= 0 \\
+    \ord A(x)^{C} &:= C\ord A(x) \\
+    \ord \partial_x A(x) &:= \ord(A(x)) + 1 \\
+    \ord A(x)B(x) &:= \ord A(x) + \ord B(x)
+  \end{align*}
+  The sum of two terms $A(x)$ and $B(x)$ has a well-defined order if $\ord A(x)
+  = \ord B(x)$, namely $\ord(A(x) + B(x)) = \ord A(x) = \ord B(x)$.
+\end{Definition}
+% TODO: Wohldefininiertheit zeigen
 
+We know by construction that, apart from some complex constant, only derivatives
+of $\lambda^2 V(x)$ (in form of derivatives of $a_2$), $W(x)$ as well as
+derivatives of $W(x)$ may appear in the numerator. The denominator is uniquely
+defined by the count of $\lambda^2 V^{(l)}(x)$ terms in the numerator, i.e.\ if
+there are $k$ factors of $\lambda^2 V^{(l)}$, then the denominator is
+$(\lambda^2 V(x) + z^2)^{(n+2k-1)/2}$, by $(\lambda,z)$-homogeneity.
+
+For the numerator we can see, that the order of the expression always adds up to
+$n-2$ ($n$ being the $(\lambda,z)$-order, for example if we consider $n=4$ we
+have the following possibilities
+\begin{align*}
+  V''(x), W(x), (V'(x))^2,
+\end{align*}
+since those are exactly the terms with order $2$ we can produce. This is what we
+will proof now:
+\begin{Theorem}
+  Given the previous definition of the order $\ord$ in $V$, $W$ and their
+  respective derivatives the following holds for the terms in the asymptotic
+  expansion of the kernel on the diagonal of $(\Delta_\lambda + z^2)^{-1}$:
+  \begin{align}
+    \ord k_{-n}(x, x) = n - 1
+  \end{align}
   \begin{Proof}
-    % TODO: \xi verarbeiten (ist aber nicht viel, einfach an den entsprechenden
-    %       Stellen einfügen
-    % TODO: "Summe" von zwei Mengen
-    We prove this claim by induction over $n$ on symbol level. It suffices to
-    prove, that if for $n$ we have all possible terms of order $n-2$, the
-    recursion formula \eqref{frm:int-recursion} again yields all possible terms
-    for $(n+1)-2$. We can specify each term by two finite sets $S_V$ and $S_W$
-    of tuples of the derivation order and their respective multiplicities:
+    First we note that the $\xi$-integration does not change the order of the
+    expression since
     \begin{align*}
-      A_{S_V,S_W}(x) &= \prod_{(p,\pi)\in S_V} (\lambda^2 V^{(p)}(x))^\pi
-      \prod_{(r,\rho)\in S_W} (W^{(r)}(x))^\rho \\
-      \Rightarrow \ord A_{S_V,S_W}(x) &= \sum_{(p,\pi)\in S_V} p\pi +
-      \sum_{(r,\rho)\in S_W} (2+r)\rho
+      \ord \frac{\xi^n}{(\lambda^2 V(x) + z^2 + \xi^2)^m} = \ord (\lambda^2 V(x)
+      + z^2)^{n-2m+1} = 0,
     \end{align*}
-    We know from the previous considerations, that each such term has the
-    denominator
+    thus the order of the term before and after the integration is the same.
+    However, since the $(\lambda,z)$-order changes, the indexation is different,
+    i.e.\ $k_{-n}$ corresponds to $b_{-(n+1)}$. We
+    thus prove the claim
     \begin{align*}
-      D_{S_V}(x) &= \prod_{(p,\pi)\in S_V} (\lambda^2 V(x) + z^2)^\pi.
+      \ord k_{-(n-1)} = \ord b_{-n} = n - 2
     \end{align*}
-    By construction we have $\ord D_{S_V} = 0$. Now we need to differentiate the
-    quotient $A_{S_V,S_W}(x) / D_{S_V}(x)$ to see, how the sets $S_V$ and $S_W$
-    change:
+    by induction over $n$ on symbol level. We start with $b_{-2} = a_2^{-1} =
+    (\lambda^2 V(x) + z^2 + \xi^2)^{-1}$, which clearly has order $0$. Since the
+    recursion formula involves the two previous terms we also need to check
+    $b_{-3}$:
     \begin{align*}
-      \frac{\mathrm d}{\mathrm dx}\frac{A(x)}{D(x)} &= \frac{\partial_x
-        A(x)}{D(x)} - \frac{A(x)}{D(x)} \frac{\partial_x D(x)}{D(x)}
+      \ord b_{-3} = \ord 2\xi \frac{a_2'}{a_2^3} = \ord a_2' = \ord \lambda^2
+      V'(x) = 1
     \end{align*}
-    It suffices to calculate the derivatives of $A$ and $D$.
-
-    Let $\gamma = \sum_{(p,\pi)\in S_V}\pi$, then
+    For the induction step we only need to look closely on the recursion formula
+    \eqref{eqn:int-recursion} and use the given calculation rules:
     \begin{align*}
-      % TODO:
-      \partial_x D_{S_V}(x) &= -\gamma (\lambda^2 V(x) + z^2)^{\gamma - 1}
-      (\lambda^2 V'(x)) \\
-      \Rightarrow \ord \partial_x D_{S_V} &= \ord (\lambda^2 V(x) + z^2)^{\gamma - 1}
-      + \ord \lambda^2 V'(x) = 1
+      &\ord 2\xi i \partial_x b_{-(n-1)} = \ord \partial_x b_{-(n-1)} = ((n-1) - 2) +
+      1 = n - 2\\
+      &\ord \partial_x^2 b_{-(n-2)} = ((n - 2) - 2) + 2 = n - 2 \\
+      &\ord a_0 b_{-(n-2)} = \ord W(x) b_{-(n-2)} = 2 + ((n-2) - 2) = n - 2
     \end{align*}
-    For $A$ we consider one particular term for $(p,\pi)$, where $f\in\{V,W\}$:
-    \begin{align*}
-      \partial_x (f^{(p)}(x))^\pi &= \pi (f^{(p)})^{\pi-1}
-      (f^{(p+1)}) \\
-      \Rightarrow \{(p,\pi)\} &\mapsto \{(p,\pi-1), (p+1,1)\} \\
-      \Rightarrow \ord \partial_x (V^{(p)}(x))^\pi &= p(\pi-1) + (p+1)1 = p\pi +
-      1 \\
-      \Rightarrow \ord \partial_x (W^{(r)}(x))^\rho &= (2 + r)(\rho-1) +
-      (2+r+1)1 = (2+r)\rho + 1.
-    \end{align*}
-    We thus have shown, that
-    \begin{align*}
-      \ord \partial_x\frac{A_{S_V,S_W}}{D_{S_V}(x)} = \ord
-      \frac{A_{S_V,S_W}(x)}{D_{S_V}(x)} + 1,
-    \end{align*}
-    which proves our first claim, namely that the order of each term $k_{-n}$ is
-    $n-2$, since we start with $k_{-2}$ which has order $0$.
-
-    Now for the second claim we have a closer look on the produced sets $S_V$
-    and $S_W$. We have seen, that $S_V$ and $S_W$ transform under
-    differentiation by
-    \begin{align*}
-      \{(p,\pi)\} \mapsto \{(p,\pi-1),(p+1,1)\},
-    \end{align*}
-    where in a set $S$ for each $p$ the corresponding $\pi$ are to be summed up
-    after each differentiation step, i.e.\
-    $\{(p,\pi-1),(p,1)\}\mapsto\{(p,\pi)\})$. Thus deriving the result again we
-    get
-    \begin{align*}
-      \{(p,\pi-1), (p+1,1)\} &\mapsto \{(p,\pi-2),(p+1,1),(p+1,0),(p+2,1)\} \\
-                             &\mapsto \{(p,\pi-2), (p+1,1), (p+2,1)\}.
-    \end{align*}
-    Now we only have to show, that if $b_{-(n-1)}$ and $b_{-(n-2)}$ are sums
-    such that all possible $S_V$ and $S_W$ for which $\ord A_{S_V,S_W} = n-2$
-    appear, then this does also hold for $b_{-n}$.
-    % TODO
+    Since $b_{-n}$ is the sum of those terms divided by $a_2$, which has order
+    $0$ this proves the homogeneity in $V$, $W$ and their derivatives.
   \end{Proof}
-\end{Remark}
+\end{Theorem}
