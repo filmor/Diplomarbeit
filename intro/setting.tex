@@ -67,14 +67,22 @@ We will consider operators like $\Delta_\lambda$, where we will set
   \text{thus}\quad \Delta_\lambda &= -\partial^2_x + \lambda^2 V(x) + W(x),
 \end{align}
 where the non-derivative terms as usual denote the multiplication operators
-$(M_\phi u)\colon x \mapsto \phi(x)u(x)$. We won't write this out (i.e.\ in the
-summands of $\Delta_\lambda$ we use $W(x)$ instead of $M_W$) unless necessary.
+$(M_\phi u)\colon x \mapsto \phi(x)u(x)$. We won't write this out, i.e.\ in the
+summands of $\Delta_\lambda$ we use $W(x)$ instead of $M_W$.
+
+In our calculations we will not depend on the specific choice of $V$ and $W$,
+but instead only require
+\begin{align*}
+  &V,W\in\Cinf([0,1]) \\
+  &\forall_{x\in[0,1]}\colon V(x) > 0 \\
+  &V\text{ and }W\text{ analytic in neighbourhoods of $0$ and $1$}.
+\end{align*}
+If $f$ is analytic and $f>0$ this is given.
 
 \subsection{Regularised Sums and Integrals}
 \label{sec:regsum-int}
 We will first provide some general definitions on asymptotic analysis based on
 \cite[Ch.1]{Miller2006} and then introduce the Hadamard finite part regularisation.
-
 \begin{Definition}
   The Landau symbols and asympotic equality are defined as
   \begin{align}
@@ -124,7 +132,6 @@ measures.
   If \eqref{eqn:def-asymp-exp} holds for all $N < N_0$, we say $f(x)$ has a
   \emph{partial asymptotic expansion}.
 \end{Definition}
-
 Now let $f\in\Cinf(\Rplus)$ be a function with a partial asymptotic expansion
 for $x\to\infty$ with regard to the log-polynomial asymptotic series
 $x^{-n}\log^k(x)$, were $\log^k(x) := (\log(x))^k$. We denote the components by
