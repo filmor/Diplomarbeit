@@ -2,28 +2,28 @@
 \subsection{Gamma Function}
 \label{app:gamma}
 The gamma function is defined on $\mathbb{R}_{+}$ as the exponential integral
-\begin{align}
-    \Gamma(x) := \Integ[\infty]{0}{t}{\Eto{-t}t^{x-1}},
-    \label{def:gamma}
-\end{align}
+\begin{equation}
+  \Gamma(x) := \Integ[\infty]{0}{t}{\Eto{-t}t^{x-1}},
+  \label{def:gamma}
+\end{equation}
 which coincides with $(x-1)!$ for $x\in\mathbb{N}$. In the text we use the so
 called (upper) incomplete gamma function, defined by the integral
-\begin{align}
+\begin{equation}
   \Gamma(x,b) := \Integ[\infty]{b}{t}{\Eto{-t}t^{x-1}},
-\end{align}
+\end{equation}
 for which we will now prove the following lemma:
 \begin{Lemma}
   \label{lem:incomplete-gamma}
   Let $n\in\mathbb{N}_0$, $k\in\mathbb{R}$. Then the following formula holds:
-  \begin{align}
-    \Gamma(n+1, b) = \Integ[b]{\infty}{t}{\Eto{-t} t^n} = n!\ \Eto{-b}\sum_{m=0}^n
-    \frac{b^m}{m!}
-  \end{align}
+  \begin{equation}
+    \Gamma(n+1, b) = \Integ[b]{\infty}{t}{\Eto{-t} t^n} = n!{\ }
+    \Eto{-b}\sum_{m=0}^n \frac{b^m}{m!}
+  \end{equation}
   \begin{Proof}
     We will prove this by induction over $n$. For $n = 0$ we are left with
-    \begin{align*}
+    \begin{equation*}
       \Gamma(1, b) = \Integ[b]{\infty}{t}{\Eto{-t}} = \Eto{-b}.
-    \end{align*}
+    \end{equation*}
     For $n$ we partially integrate
     \begin{align*}
       \Gamma(n+1, b) &= \Integ[b]{\infty}{t}{\Eto{-t} t^n} 
@@ -39,18 +39,19 @@ for which we will now prove the following lemma:
 
 \subsection{Digamma Function}
 The digamma function is the logarithmic derivative of the gamma function
-\begin{align}
+\begin{equation}
     \psi(x) := \frac{\mathrm d}{\mathrm dx}\log{\Gamma(x)}
             = \frac{\Gamma'(x)}{\Gamma(x)},
     \label{def:digamma}
-\end{align}
+\end{equation}
 which is sometimes also denoted by the ancient greek letter $\digamma$, which is
 actually called ``digamma''.
 
 We will need the following property of the digamma function:
-\begin{align}
+\begin{equation}
+  \label{eqn:digamma-recursion}
   \psi(x + 1) = \psi(x) + \frac1x,
-\end{align}
+\end{equation}
 which is easily proven using the recursion rule of the gamma function:
 \begin{align*}
   \psi(x+1) &= \frac{\mathrm d}{\mathrm dx}\log{\Gamma(x+1)} = \frac{\mathrm
@@ -60,15 +61,15 @@ d}{\mathrm dx}\log{x\Gamma(x)} \\
   &= \frac1x + \psi(x).
 \end{align*}
 Furthermore we need the special value at $x = \frac12$, $\psi(\frac12) =
--\gamma-\log 2$, which can be found using the Gauss Digamma Theorem REF.
+-\gamma-\log 2$, which can be found using the Gauss Digamma Theorem.
 
 \subsection{Beta Function}
 \label{sec:beta_function}
 The beta function is defined for $x,y\in\mathbb{C}$ with $\Re(x),\Re(y) > 0$ as
-\begin{align}
+\begin{equation}
     B(x,y) = \Integ[1]{0}{t}{t^{x-1}(1-t)^{y-1}}.
     \label{def:beta}
-\end{align}
+\end{equation}
 It is also sometimes called \textit{Euler integral of the first kind}. In this
 thesis we use two specific representations of the beta function, namely
 \begin{align}
@@ -77,7 +78,6 @@ thesis we use two specific representations of the beta function, namely
     B(x, y) &= \Integ[\infty]{0}{t}{\frac{t^{x-1}}{(1 + t)^{x+y}}}
     \label{frm:beta_rep2}
 \end{align}
-
 We can derive \cref{frm:beta_rep2} easily by substituting $t \mapsto
 \frac{t'}{1+t'}$. \Cref{frm:beta_rep1} is a bit more subtle:
 \begin{align*}
@@ -97,7 +97,6 @@ We can derive \cref{frm:beta_rep2} easily by substituting $t \mapsto
             \Integ[1]{0}{t}{t^{x-1}(1-t)^{y-1}} \\
     \Leftrightarrow \Gamma(x)\Gamma(y) &= \Gamma(x+y)B(x,y)
 \end{align*}
-
 From the first representation we can also calculate the derivative of the beta
 function:
 \begin{align}

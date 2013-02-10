@@ -49,9 +49,10 @@ digamma function (cf.\ \cref{frm:beta_deriv}), so we get
 \end{equation*}
 where $\gamma$ is the Euler-Mascheroni constant. Noting that $n$ is always even
 in our expansion we can evaluate $\psi\bigl(\tfrac{n+1}{2}\bigr)$ a bit further
-by using the recurrence relation $\psi(x + 1) = \psi(x) + \tfrac{1}{x}$ and the
-special value $\psi(\tfrac{1}{2}) = -\gamma - 2\log 2$, which brings us to the
-following explicit formula for the integral:
+by using the recurrence relation $\psi(x + 1) = \psi(x) + \tfrac{1}{x}$ (cf.\
+\cref{eqn:digamma-recursion}) and the special value $\psi(\tfrac{1}{2}) =
+-\gamma - 2\log 2$, which brings us to the following explicit formula for the
+integral:
 \begin{equation}
   \Integ[\infty]{0}{\lambda}{
     \frac{\lambda^n}{(1 + k \lambda^2)^{\frac{n+5}{2}}}

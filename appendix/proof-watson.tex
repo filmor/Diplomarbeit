@@ -1,4 +1,4 @@
-\section{Proof of Watson's lemma}
+\section{Proof of Watson's Lemma}
 \label{sec:proof-watson}
 \begin{Theorem}
   \input{snippets/watsons-lemma}
@@ -8,37 +8,36 @@
 
     Since we only assume differentiability in some neighbourhood of $t=0$ we
     need to estimate the integral for some $0 < s < T$, with $s$ being
-    sufficiently small such that $g\in C^{\infty}([0,s])$ is analytic. We
+    sufficiently small such that $g\in C^{\infty}[0,s]$ is analytic. We
     can now split up the integral $F(x)$ as
-    \begin{align*}
+    \begin{equation*}
       F(x) = \Integ[s]{0}{t}{\Eto{-xt}\phi(t)} +
       \Integ[T]{s}{t}{\Eto{-xt}\phi(t)}.
-    \end{align*}
+    \end{equation*}
 
     The integral over $\left[s,T\right]$ can be easily estimated as
-    \begin{align*}
+    \begin{equation*}
       \Abs{\Integ[T]{s}{t}{\Eto{-xt}\phi(t)}}
-      &\le \Eto{-xs} \Integ[T]{s}{t}{\Abs{\phi(t)}} \\
-      &\le \Eto{-xs}\Integ[T]{0}{t}{\Abs{\phi(t)}}.
-    \end{align*}
+      \le \Eto{-xs} \Integ[T]{s}{t}{\Abs{\phi(t)}}
+      \le \Eto{-xs}\Integ[T]{0}{t}{\Abs{\phi(t)}}.
+    \end{equation*}
     Since we assumed this integral to be finite and $s>0$ we have for
     $x\to\infty$
-    \begin{align}
+    \begin{equation*}
       \Integ[T]st{\Eto{-xt}\phi(t)} = O(x^{-\infty}),
-    \end{align}
+    \end{equation*}
     so we see that this term doesn't contribute to the asymptotic expansion.
-
-    For the first term, the integral over $\left[0,s\right]$ we use the
-    taylor expansion of $g$ with remainder
-    \begin{align*}
+    For the first term, the integral over $[0,s]$ we use the taylor expansion of
+    $g$ with remainder
+    \begin{equation*}
       g(t) = \sum_{n=0}^{N} \frac{g^{(n)}(0)}{n!}t^n + r_N(t).
-    \end{align*}
+    \end{equation*}
     We thus have
-    \begin{align*}
+    \begin{equation*}
       \Integ[s]0t{\Eto{-xt}t^\sigma g(t)} = \sum_{n=0}^N
       \frac{g^{(n)}(0)}{n!} \Integ[s]0t{\Eto{-xt}t^{\sigma+n}} +
       \Integ[s]0t{\Eto{-xt}t^\sigma r_N(t)},
-    \end{align*}
+    \end{equation*}
     where we can estimate the remainder term as
     \begin{align*}
       \left|\Integ[s]0t{\Eto{-xt}t^\sigma r_N(t)}\right| &\le
@@ -60,32 +59,31 @@
     For the second term we can use the Hölder equation in the special case
     $p=q=2$, where we split the exponential as $\Eto{-xt} =
     \Eto{-xt/2}\Eto{-xt/2}$, to get
-    \begin{align*}
-      \Integ[\infty]{s}{t}{\Eto{-xt}t^\alpha} &\le
+    \begin{equation*}
+      \Integ[\infty]{s}{t}{\Eto{-xt}t^\alpha} \le
       \sqrt{\Integ[\infty]{s}{t}{\Eto{-xt}}} \cdot
-      \sqrt{\Integ[\infty]{s}{t}{\Eto{-xt}t^{2\alpha}}} \\
-      &= \Eto{-xs/2} \sqrt{\Integ[\infty]{s}{t}{\Eto{-xt}t^{2\alpha}}}.
-    \end{align*}
+      \sqrt{\Integ[\infty]{s}{t}{\Eto{-xt}t^{2\alpha}}}
+      = \Eto{-xs/2} \sqrt{\Integ[\infty]{s}{t}{\Eto{-xt}t^{2\alpha}}}.
+    \end{equation*}
     The second term in the product decreases with $x$, and since we are
     interested in the case $x\to\infty$ we can assume $x>1$ to estimate the
     square of the second factor as
-    \begin{align*}
-      \Integ[\infty]{s}{t}{\Eto{-xt}t^{2\alpha}} &\underset{x>1}\le
-      \Integ[\infty]{s}{t}{\Eto{-t}t^{2\alpha}} \\
-      &=: C_{s,\alpha}
-    \end{align*}
+    \begin{equation*}
+      \Integ[\infty]{s}{t}{\Eto{-xt}t^{2\alpha}} \underset{x>1}\le
+      \Integ[\infty]{s}{t}{\Eto{-t}t^{2\alpha}} =: C_{s,\alpha}
+    \end{equation*}
     and thus since $s>0$ we have the following asymptotic behaviour for
     $x\to\infty$:
-    \begin{align*}
-      \Integ[\infty]{s}{t}{\Eto{-xt}t^\alpha} &\le \Eto{-xs/2}
-      \sqrt{\Integ[\infty]{s}{t}{\Eto{-t}t^{2\alpha}}} \\
-      &\le C_{s,\alpha}\,\Eto{-xs/2} = O(x^{-\infty}),
-    \end{align*}
-    thus, again, this term doesn't contribute to the asymptotic expansion. Using
-    this we have
-    \begin{align*}
+    \begin{equation*}
+      \Integ[\infty]{s}{t}{\Eto{-xt}t^\alpha} \le \Eto{-xs/2}
+      \sqrt{\Integ[\infty]{s}{t}{\Eto{-t}t^{2\alpha}}}
+      \le C_{s,\alpha}\,\Eto{-xs/2} = O(x^{-\infty}),
+    \end{equation*}
+    thus this term doesn't contribute to the asymptotic expansion. Using this we
+    have
+    \begin{equation*}
       F_\alpha(x) = x^{-(\alpha+1)}\,\Gamma(\alpha + 1) + O(x^{-\infty}),
-    \end{align*}
+    \end{equation*}
     and inserting $\alpha = \sigma + N + 1$ for the remainder and $\alpha =
     \sigma + n$ for the main term we arrive at
     \begin{align*}
@@ -100,8 +98,8 @@
     This proves the statement.
   \end{Proof}
   \begin{Remark}
-    A different, more general approach on this is taken in \cite[Example 53,
-    p104]{Estrada1993}, where the Lemma is proven by use of the expansion of
+    A different, more general approach on this is taken in \cite[Ex.~53,
+    p.104]{Estrada1993}, where the Lemma is proven by use of the expansion of
     $f(\lambda x)$ for $f(x) = H(x)\Eto{-x}$, $H$ being the Heaviside function.
   \end{Remark}
 \end{Theorem}

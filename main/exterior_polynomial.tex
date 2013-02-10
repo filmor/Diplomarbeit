@@ -92,10 +92,10 @@ of this form do not contribute to the final asymptotic expansion.
       \Eto{-\mu(a-b)}\Integ[1]{b}{x}{\Eto{-\mu(x+x)}f(x)}
     \end{align*}
     For the lower term we get
-    \begin{align*}
+    \begin{equation*}
       \Eto{-\mu(a+b)}\Integ[b]{0}{x}{x^n} =
       \Eto{-\mu(a+b)}\left(\frac{b^{n+1}}{n+1} - 0\right),
-    \end{align*}
+    \end{equation*}
     which gives the first part of the result. For the upper integration we
     finally have
     \begin{align*}
@@ -119,14 +119,14 @@ similar Lemma:
   \end{align*}
   \begin{Proof}
     The first integral gives
-    \begin{align*}
-      \Int{x}{\Eto{-\mu((a-x)+(x+b))}x^n} &= \Eto{-\mu(a+b)}\frac{1}{n+1}
-    \end{align*}
+    \begin{equation*}
+      \Int{x}{\Eto{-\mu((a-x)+(x+b))}x^n} = \Eto{-\mu(a+b)}\frac{1}{n+1}
+    \end{equation*}
     For the upper part of the second integral we immediately get
-    \begin{align*}
+    \begin{equation*}
       \Eto{-\mu(a-b)}\Integ[1]{b}{x}{x^n} =
       \Eto{-\mu(a-b)}\frac{1-b^{n+1}}{n+1},
-    \end{align*}
+    \end{equation*}
     the lower part is
     \begin{align*}
       \Eto{-\mu(a+b)}\Integ[b]{0}{x}{\Eto{2\mu x}x^n} &=
@@ -143,7 +143,7 @@ our last Main Theorem:
   boundary $x = 0$ are rational functions in $V$, $W$ and their respective
   derivatives, at $0$. Using the order $\ord$ defined in \thref{def:order} we
   see that if $-n$ is the $\mu$-order of a term $A$ in the asymptotic expansion
-  then we have $\ord A = n + 1$.
+  then we have $\ord A = n - 2$.
   \begin{Remark}
     This construction works \emph{ad verbatim} for $x=1$ with the standard
     substitution $x\mapsto 1 - x$.
@@ -164,21 +164,21 @@ our last Main Theorem:
     $\Eto{-\mu(a+b)}H^n_2(b)$. If we evaluate the asymptotics of the trace of
     such a term applying Watson's Lemma on the monomials we get (setting $a = b
     =: x$)
-    \begin{align}
+    \begin{align*}
       \Int{x}{\Eto{-2\mu x}H^n_2(x)}
       &= -n!\sum_{m=0}^n \frac{\Int{x}{\Eto{-2\mu x} x^m}}{m!(2\mu)^{n+1-m}} \\
-      &\SimMu -n!\sum_{m=0}^n \frac{m! / (2\mu)^{m+1}}{m!(2\mu)^{n+1-m}} \\
-      &= -n!\sum_{m=0}^n \frac{1}{(2\mu)^{n+2}} = -\frac{(n+1)!}{(2\mu)^{n+2}}
-    \end{align}
+      &\SimMu -n!\sum_{m=0}^n \frac{m! / (2\mu)^{m+1}}{m!(2\mu)^{n+1-m}}
+      = -n!\sum_{m=0}^n \frac{1}{(2\mu)^{n+2}} = -\frac{(n+1)!}{(2\mu)^{n+2}}
+    \end{align*}
     Coincidentally this is exactly the same contribution that $-x^{n+1}$ would
     give, i.e.
-    \begin{align*}
+    \begin{equation*}
       \Int{x}{\Eto{-2\mu x}H^n_2(x)} \SimMu -\Int{x}{\Eto{-2\mu x}x^{n+1}}.
-    \end{align*}
-    Since also $H^n_2(0) = -n! 0^0 / (2\mu)^{n+1} = -n! (2\mu)^{-n-1}$ and thus
-    \begin{align*}
+    \end{equation*}
+    Since also $H^n_2(0) = -n!\ 0^0 / (2\mu)^{n+1} = -n! (2\mu)^{-n-1}$ and thus
+    \begin{equation*}
       \Int{x}{\Eto{-2\mu x}H^n_2(0)} \SimMu -n! (2\mu)^{-n-2},
-    \end{align*}
+    \end{equation*}
     all terms (apart from the $\Eto{-\mu(a-b)}$ that we are dealing with at the
     end of the proof) coming from $x^n$ have the same definite $\mu$-order.
 
@@ -198,15 +198,15 @@ our last Main Theorem:
     since we are actually using $\tilde V(x) = V(x) - V(0)$. Also every kernel
     concatenation is accompanied by an additional $(2\mu)^{-1}$ from $C_\sigma$,
     thus the final $\mu$-order of a contribution of $\lambda^2 V^{(n)}(0)$ is
-    \begin{align*}
+    \begin{equation*}
       (2\mu)^{-1} x^n \lambda^2 V^{(n)}(0) \mapsto O(\mu^{-1-(n+1)+2}) =
       O(\mu^{-n})
-    \end{align*}
+    \end{equation*}
     For $W$ we get nearly the same, but $W(0)$ may appear and the order is not
     modified by a $\lambda^2$-factor, thus we have
-    \begin{align*}
-      (2\mu)^{-1} x^n W^{(n)}(0) \mapsto O(\mu^{-1-(n+1)}) = O(\mu^{-(n+2)}
-    \end{align*}
+    \begin{equation*}
+      (2\mu)^{-1} x^n W^{(n)}(0) \mapsto O(\mu^{-1-(n+1)}) = O(\mu^{-(n+2)})
+    \end{equation*}
     Combining all those facts we see, that 
     \begin{enumerate}
       \item We start with a $\mu$-order of -1

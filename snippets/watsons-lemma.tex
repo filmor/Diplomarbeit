@@ -1,15 +1,15 @@
 Let $\phi\colon [0,1] \to \mathbb{C}, \phi(t) = t^\sigma g(t)$ such that $g$ is
 analytic in some neighbourhood of $t=0$, $\sigma > -1$, $\beta > 0$, and
 \begin{equation*}
-    \exists_{C, b > 0} \forall_{t > 0} \left|\phi(t)\right| < C \Eto{bt}.
+  \exists C, b > 0\, \forall t > 0\colon \Abs{\phi(t)} < C \Eto{bt}.
 \end{equation*}
 Then the exponential integral
 \begin{align*}
-    F(x) := \Integ[T]{0}{t}{\Eto{-\beta\,xt}\phi(t)}
+  F(x) := \Integ[T]{0}{t}{\Eto{-\beta\,xt}\phi(t)}.
 \end{align*}
 is finite for all $x \geq 0$ and has the asymptotic expansion in terms of the
-gamma function $\Gamma$ (see Appendix~\ref{app:gamma})
+gamma function $\Gamma$ (cf.\ \cref{app:gamma})
 \begin{equation*}
-    F(x)\SimAs{x\to\infty}\sum_{n=0}^{\infty}
-    \frac{g^{(n)}(0)}{(\beta x)^{n+\sigma+1}} \frac{\Gamma(n+\sigma+1)}{n!}
+  F(x)\SimAs{x\to\infty}\sum_{n=0}^{\infty}
+  \frac{g^{(n)}(0)}{(\beta x)^{n+\sigma+1}} \frac{\Gamma(n+\sigma+1)}{n!}
 \end{equation*}

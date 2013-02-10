@@ -7,70 +7,88 @@ $[0,1]$.
 Operatoren dieser Art erhält man beispielsweise bei der Untersuchung der
 Resolvente des Laplace-Beltrami-Operators $\Delta$ auf einer Rotationsfläche
 wenn dieser bezüglich der eindimensionalen Sphäre $\mathbb{S}^1$ in seine
-Komponenten zerlegt wird, also als eine unendliche direkte Summe $\Delta =
-\bigoplus_{\lambda\in\operatorname{spec}\Delta_\Sphere{1}}\Delta_\lambda$ als Operator der
-direkten Summe der Eigenräume ($\times[0,1]$) geschrieben
-wird.\ref{sec:laplace-beltrami}
+Komponenten zerlegt wird, also als eine unendliche direkte Summe von Operatoren
+$\Delta =
+\bigoplus_{\lambda\in\operatorname{spec}\Delta_\Sphere{1}}\Delta_\lambda$ auf
+der direkten Summe der Eigenräume ($\times[0,1]$) geschrieben wird (siehe
+\cref{sec:laplace-beltrami}).
 %
 Die enstehenden Operatoren sind Sturm-Liouville-Operatoren mit einem Parameter
-$\lambda$ und lassen sich also für Funktionen $V,W\in\Cinf([0,1])$ mit $V > 0$
+$\lambda$ und lassen sich also für Funktionen $V,W\in\Cinf{[0,1]}$ mit $V > 0$
 und $W > 0$ schreiben als
-\begin{align*}
+\begin{equation*}
   (\Delta_\lambda u)(x) = -u''(x) + \lambda^2 V(x) u(x) + W(x) u(x).
-\end{align*}
+\end{equation*}
 Für den Fall des Laplace-Beltrami-Operators auf einer von einer Funktion
 $f\in\Cinf([0,1])$ mit $f>0$ erzeugten Rotationsfläche sind $V$ und $W$ gegeben
 als
 \begin{align*}
-  V(x) &= \frac1{f(x)^2} \\
+  V(x) &= \frac1{f(x)^2}, \\
   W(x) &= \frac{f''(x)}{2f(x)} - \left(\frac{f'(x)}{2f(x)}\right)^2.
 \end{align*}
-
-In \cite{LV13} wird gezeigt, dass sich die Zetadeterminante, (formal) definiert
+In \cite{LV13} wird gezeigt, dass sich die Zetadeterminante des
+Laplace-Beltrami-Operators $\Delta$ auf einer Rotationsfläche, (formal) definiert
 als
 \begin{align*}
-  \zeta(s,A) &:= \sum_{\mu\in\operatorname{spec}A\setminus\{0\}} m(\mu)\mu^{-s}
-  \\
-  \log\zdet A &= -\zeta'(0,A)
+  \zeta(s,\Delta) := {} &
+  \sum_{\mathclap{\mu\in\operatorname{spec}\Delta\setminus\{0\}}}
+  m(\mu)\mu^{-s} \text{ für } \Re(s) > 1, \\
+  \log\zdet \Delta = {} & {-\zeta'}(0,\Delta) \text{ durch meromorphe
+Fortsetzung},
 \end{align*}
-für einen Operator $A$, der Summe in gewisser Weise als (regularisierte) Summe
-der Zetadeterminanten der Summanden zuzüglich eines Fehlerterms schreiben lässt:
+in gewisser Weise als (regularisierte) Summe der Zetadeterminanten der Summanden
+zuzüglich eines Fehlerterms schreiben lässt:
 \begin{align*}
-  \label{eqn:intro-de-lvformel}
-  \log\zdet\Delta = \Regsum\zdet\Delta_\lambda + C
+  \label[equation]{eqn:intro-de-lvformel}
+  \log\zdet\Delta = \Regsum_{\mathclap{\lambda =
+  -\infty}}^\infty\log\zdet\Delta_\lambda + C
 \end{align*}
 In diesem Kontext ist die regularisierte Summe $\Regsum$ über die
 Hadamard-Regularisierung der Euler-MacLaurin-Formel
-definiert.\ref{sec:regsum-int}
+definiert (siehe \cref{sec:regsum-int}).
 
-Das Ziel ist es, den in \eqref{eqn:intro-de-lvformel} angegebenen Fehlerterm zu
-berechnen. In \cite{LV13} wird gezeigt, dass obiger Fehlerterm $C$ sich aus der
-asymptotischen Entwicklung von $\Tr(\Delta_\lambda + z^2)^{-2}$ berechnen lässt,
-welche wiederum leicht auf die asymptotische Entwicklung von $\Tr(\Delta_\lambda
-+ z^2)^{-1}$ zurückzuführen ist. Der Operator
+Das Ziel der vorliegenden Arbeit ist es, den in \cref{eqn:intro-de-lvformel} als
+$C$ bezeichneten Fehlerterm zu berechnen. In \cite{LV13} wird gezeigt, dass der
+Fehlerterm sich aus der asymptotischen Entwicklung von $\Tr(\Delta_\lambda +
+z^2)^{-2}$ berechnen lässt, welche wiederum leicht auf die asymptotische
+Entwicklung von $\Tr(\Delta_\lambda + z^2)^{-1}$ zurückzuführen ist. Der
+Operator
 \begin{align*}
   (A_{\lambda,z}u)(x) := (\Delta_\lambda u)(x) + z^2 u(x)
            = -u''(x) + (\lambda^2 V(x) + z^2) u(x) + W(x) u(x)
 \end{align*}
 ist nun ein \emph{multiparametrischer Sturm-Liouville-Operator}. Ist $h(\lambda,
-z)$ der Term $-5$ter Ordnung in der gemeinsamen asymptotischen Entwicklung in
-$(\lambda,z)$ der Spur $\Tr A_{\lambda,z}^{-2}$, so gilt für den Fehlerterm:
+z)$ der Term der Homogenitätsordnung $-5$ der gemeinsamen asymptotischen
+Entwicklung in $(\lambda,z)$ der Spur $\Tr A_{\lambda,z}^{-2}$, so ist
+$h(1,\cdot)\log(\cdot)\in L^1(0,\infty)$ und es gilt für den Fehlerterm:
 \begin{align*}
   C = \Integ[\infty]{0}{\lambda}{h(1,\lambda)\log\lambda}
 \end{align*}
-Um diesen berechnen zu können wird die asymptotische Entwicklung der
-Resolventenspur $\Tr(\Delta_\lambda + z^2)^{-1}$ sowohl im Inneren, also auf dem
+Um diesen berechnen zu können wird das asymptotische Verhalten des
+Resolventenkerns $k_{(\Delta_\lambda + z^2)^{-1}}$ sowohl im Inneren, also auf dem
 Intervall $(0,1)$, als auch an den Rändern $0$ und $1$ untersucht.
+
+Da wir hierfür die Parametrix (also $(\Delta_\lambda + z^2)^{-1}$ statt
+$(\Delta_\lambda + z^2)^{-2}$) betrachten benötigen wir den Term der
+Homogenitätsordnung $-3$, denn
+\begin{equation*}
+  \Tr(\Delta_\lambda + z^2)^{-2} = (-2z)^{-1}\partial_z\Tr(\Delta_\lambda +
+  z^2)^{-1},
+\end{equation*}
+also ist die eine Entwicklung um $2$ gegenüber der anderen verschoben.
 
 Im Inneren kann die Entwicklung mittels der Theorie parametrischer
 Pseudodifferentialoperatoren, die auch die Existenz sichert, explizit rekursiv
 bestimmt werden, wir erhalten daraus den 
-\begin{Hauptsatz}
+\begin{Hauptsatz}[Resolvente im Inneren]
   \input{snippets/main-interior}
 \end{Hauptsatz}
 Neben der expliziten Bestimmung der Koeffizienten können wir noch zeigen, dass
 die Terme der Entwicklung nicht nur eine Homogenität in $(\lambda,z)$, sondern
-auch in $V$, $W$ und deren Ableitungen aufweisen.
+auch in $V$, $W$ und deren Ableitungen aufweisen:
+\begin{Hauptsatz}[Homogenität im Inneren]
+  \input{snippets/homogeneity-interior}
+\end{Hauptsatz}
 
 Am Rand wird der Operator zunächst mit einem Neumannreihenargument in
 einfachere Operatoren zerlegt. Die Asymptotik dieser Operatoren lässt sich so nach
@@ -80,7 +98,7 @@ bestimmt werden muss. Dazu wird die Asymptotik der Spur mithilfe der sehr
 einfachen Asymptotik exponentieller Integrale ($F(x) =
 \Integ[T]{0}{t}{\Eto{-tx}f(t)}$), bekannt als Watsons Lemma, bestimmt. Damit
 erhalten wir
-\begin{Hauptsatz}
+\begin{Hauptsatz}[Resolventenspur am Rand]
   \input{snippets/main-exterior}
 \end{Hauptsatz}
 Die Formel gilt mit geringen Abwandlungen auch für $x=1$. Hier ist die Existenz
@@ -88,11 +106,15 @@ der asymptotischen Entwicklung durch einen Satz aus \cite{LV13} gesichert.
 Weiterhin beweisen wir im letzten Hauptsatz, dass die asymptotische
 Entwicklung wie für die Resolventenspur im Inneren schon lange bekannt, auch am
 Rand aus rationalen Funktionen in $V$, $W$ und deren Ableitungen besteht und die
-Terme eine ähnliche Homogenität aufweisen.
+Terme eine ähnliche Homogenität aufweisen:
+\begin{Hauptsatz}[Homogenität am Rand]
+  \input{snippets/homogeneity-exterior}
+\end{Hauptsatz}
 
 Unter Anwendung der beiden ersten Hauptsätze erhalten wir somit letztlich den
 Fehlerterm in der Lesch-Vertman-Formel als Integral über eine rationale Funktion
-in den Ableitungen von $f$ im Inneren und am Rand:
+in den Ableitungen von $f$ im Inneren und am Rand unter Anwendung eines
+Integralsatzes aus der Theorie der speziellen Funktionen:
 %TODO: Snippet
 \begin{align*}
   \Integ[\infty]{0}{\lambda}{
