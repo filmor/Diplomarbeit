@@ -4,50 +4,60 @@ In this section we aim to prove the following Theorem:
   \label{main:interior}
   \input{snippets/main-interior}
   \begin{Remark}
+    Note again, that the order we are looking for here is \emph{not} $-5$ but
+    instead $-3$ (i.e.\ the three terms in the middle) since we are dealing with
+    $\Tr(\Delta_\lambda + z^2)^{-1}$ instead of $\Tr(\Delta_\lambda + z^2)^{-2}$
+    here.
+  \end{Remark}
+  \begin{Remark}
     For $V\equiv 0$ this expansion has already been proven in
     \cite[Ch 2.1]{Gel'fand1975} (where $z^2 \mapsto \zeta$ and $W(x) \mapsto
     u(x)$) and calculated for even higher orders, but we will restrict ourselves
     in this text to what we need for the particular calculation we want to do in
-    the end.  The Appendix~\ref{app:source-code} contains the source code for a
-    simple Python program that calculates the asymptotic components (apart from
-    the $x$-Integration) of the resolvent trace, as well as a list of the
-    coefficients to higher order.
+    the end.
   \end{Remark}
 \end{MainTheorem}
-To do this we first note that the asymptotic expansion exists by a classical
-theorem on the theory of pseudo-differential operators with paramater, namely
+To prove this we first note that the asymptotic expansion exists by a classical
+theorem on the theory of pseudo-differential operators with parameter, namely
 \begin{Theorem}
-  Let $M$ be a closed $n$-dimensional smooth manifold and
-  $\Gamma\subset\mathbb{R}^p$ a cone and $A\in\mathrm{CL}^m(M;\Gamma)$ (the set
-  of classical pseudo-differential operators with parameter).
+  Let $U\subset\mathbb{R}^n$ be open, $\Gamma\subset\mathbb{R}^p$ a cone and
+  $A\in\mathrm{CL}^m(U;\Gamma)$ (the set of classical pseudo-differential
+  operators with parameter in $\Gamma$).
 
-  If $m+n<0$ then for all $x\in M$, then for $\mu\in\Gamma$ $A(\mu)$ is
-  trace-class and $\Tr A(\cdot)\in \mathrm{CS}^{m+n}(\Gamma)$ (the space of
-  classical symbols), with
-  \begin{align*}
-    \Tr A(\mu)\SimAs{\Abs{\mu}\to\infty}
-    \sum_{j=0}^{\infty} e_{m-j}\bigl(\tfrac{\mu}{\Abs{\mu}}\bigr)
+  If $m+n<0$ then for all $\mu\in\Gamma$ the operator $A(\mu)$ is trace-class
+  and the kernel on the diagonal $x\mapsto k_A(x, x;\mu)$ is in
+  $\mathrm{CS}^{m+n}(\Gamma)$ (the space of classical symbols), with the
+  asymptotic expansion
+  \begin{equation*}
+    k_A(x,x;\mu)\SimAs{\Abs{\mu}\to\infty}
+    \sum_{j=0}^{\infty} e_{m-j}\bigl(x,\tfrac{\mu}{\Abs{\mu}}\bigr)
     \Abs{\mu}^{m+n-j}.
-  \end{align*}
+  \end{equation*}
   \begin{Proof}
     A proof can be found in \cite[Thm 5.1]{Les:PDO}, where it is shown in the
-    slightly more general case of log-polynomial asymptotics. The idea is first
-    prove a corresponding asymptotic expansion of the kernel on the diagonal by
-    use of the asymptotic expansion of the symbol, which is given for classical
-    operators. The theorem follows then by integrating the expansion of the
-    kernel over $x$, which is well-defined as $M$ is compact.
+    slightly more general case of log-polynomial symbols. The idea is to use
+    the asymptotic expansion of the symbol, which is given for classical
+    operators, and explicitly evaluate the Schwartz kernel on the diagonal by
+    means of the formula
+    \begin{equation*}
+      k_A(x,x;\mu) = \frac{1}{2\pi}\Integ{\mathbb R}{x}{a(x,x;\mu)}.
+    \end{equation*}
+    A reference for the formula and explanation is given in the next subsection
+    as we will use it there for concrete calculations.
   \end{Proof}
 \end{Theorem}
-Using that as well as the product formula for pseudo-differential operators, we
-prove the explicit formula in $V$, $W$ and their derivatives.
+Using the existence as well as the product formula for pseudo-differential
+operators, we prove the explicit formula in $V$, $W$ and their derivatives.
 
-\subsection{Calculation of the first coefficients}
-The multi-parametric symbol of the operator $(\Delta_\lambda + z^2)$ is
-\begin{align}
-  a_2(x,\xi,\lambda,z) &= \xi^2 + \lambda^2 V(x) + z^2 \\
-  a_0(x,\xi,\lambda,z) &= W(x),
+\subsection{Calculation of the first Coefficients}
+The multi-parametric symbol of the operator $(\Delta_\lambda + z^2)$ is given by
+\begin{equation}
   \label{eqn:symbol}
-\end{align}
+  \begin{split}
+    a_2(x,\xi,\lambda,z) &= \xi^2 + \lambda^2 V(x) + z^2 \\
+    a_0(x,\xi,\lambda,z) &= W(x),
+  \end{split}
+\end{equation}
 with all other $a_n \equiv 0$. To not complicate the following calculations we
 suppress the continuous repetition of the parameters, a prime ($a_2'$) denotes
 the derivative in $x$.
@@ -55,78 +65,90 @@ the derivative in $x$.
 We use the following product formula for symbols: Let $A$ and $B$ be
 pseudo-differential operators with symbols $a$ and $b$, respectively. Then the
 complete symbol of $(\Delta_\lambda + z^2)B$ is (modulo $S^\infty$) given by
-\begin{align}
+\begin{equation}
   a * b := \sum_{n=0}^{\infty} \frac{1}{n!}\ \partial_\xi^n a\,D_x^n b,
   \label{eqn:product-formula}
-\end{align}
+\end{equation}
 where $D_x^n := (-i)^n \partial_x^n$. A proof of this formula can be found in
 \cite[Thm 3.4]{Shu:POS}.
 
-We are interested in the symbol of the parametrix, so we demand
-\begin{align*}
+We are interested in the symbol of the parametrix, so we demand that (as
+symbols)
+\begin{equation*}
   a * b \sim 1,
-\end{align*}
-so the asymptotic expansion of $a * b$ in the symbol spaces is supposed to be
-$(a * b)_n \equiv \delta_{n0}$ if $B$ is a parametrix of $A$. Actually this will
+\end{equation*}
+so the components of the asymptotic expansion of $a * b$ in the symbol spaces
+are supposed to be
+\begin{equation}
+  \label{eqn:ab-as-symbols}
+  (a * b)_n \equiv \delta_{n0}
+\end{equation}
+if $B$ is a parametrix of $A$. Actually this will
 also work for $b * a$, i.e.\ $BA$, but this complicates further calculations as
-with the chosen order we only have $\xi$-derivatives of $a = a_2 + a_0$ which
+with the chosen order we only get $\xi$-derivatives of $a = a_2 + a_0$ which
 are
-\begin{align}
+\begin{equation}
   \partial_{\xi} a = 2\xi \text{ and } \partial_{\xi}^2 a = 2.
-\end{align}
-Thus the sum in \eqref{eqn:product-formula} collapses and only three terms are
+\end{equation}
+Thus the sum in \cref{eqn:product-formula} collapses and only three terms are
 left:
-\begin{align*}
-  a * b &= (a_2 + a_0)b - 2\xi\mathrm i\,\partial_x b - \partial_x^2 b
-  \ \mathrel{\overset{!}{\sim}}\ 1, \\
-  \newtag
+\begin{equation*}
+  a * b = (a_2 + a_0)b - 2\xi\mathrm i\,\partial_x b - \partial_x^2 b
+  \ \mathrel{\overset{!}{\sim}}\ 1,
+\end{equation*}
+which gives by use of \cref{eqn:ab-as-symbols}
+\begin{equation}
   \label{eqn:int-recursion}
-  \Rightarrow b_{-n} &= \frac1{a_2} \left( 2\xi\mathrm i\, \partial_x b_{-(n-1)}
+  b_{-n} = \frac1{a_2} \left( 2\xi\mathrm i\, \partial_x b_{-(n-1)}
   + \partial_x^2 b_{-(n-2)} - a_0 b_{-(n-2)} \right),
-\end{align*}
+\end{equation}
 with the starting values $b_0 = 0$, $b_{-1} = 0$ and $b_{-2} = a_2^{-1}$ since
 the order of the inverse has to be $-2$. We can now inductively derive the first
 coefficients of the parametrix of $(\Delta_\lambda + z^2)$:
-\begin{align*}
+\begin{equation}
   \label{eqn:coeff-symbol}
-  b_{-2} &= \frac{1}{a_2} \\
-  b_{-3} &= -2\frac{\xi a_2'}{a_2^3}\\
-  b_{-4} &= 4\xi^2\left(\frac{a_2''}{a_2^4}
-  - 3\frac{(a_2')^2}{a_2^5}\right) - \frac{a_0}{a_2^2}
-  - 2\frac{a_2''}{a_2^3} + 2\frac{(a_2')^2}{a_2^4}
-\end{align*}
+  \begin{split}
+    b_{-2} &= \frac{1}{a_2} \\
+    b_{-3} &= -2\frac{\xi a_2'}{a_2^3}\\
+    b_{-4} &= 4\xi^2\left(\frac{a_2''}{a_2^4}
+    - 3\frac{(a_2')^2}{a_2^5}\right) - \frac{a_0}{a_2^2}
+    - 2\frac{a_2''}{a_2^3} + 2\frac{(a_2')^2}{a_2^4}
+  \end{split}
+\end{equation}
 Since we are ultimately interested in the kernel on the diagonal we will need to
-integrate the resulting symbol for the parametrix, since for a
-pseudo-differential operator $A$ with symbol $a$ we have
-\begin{align*}
-  k_A(x,y) &= \frac{1}{2\pi}\Oscint{\xi}{
+integrate the resulting symbol of the parametrix, as for a pseudo-differential
+operator $A$ with symbol $a$ we have
+\begin{equation*}
+  k_A(x,y) = \frac{1}{2\pi}\Oscint{\xi}{
     \Eto{\mathrm i\left\langle x-y, \xi\right\rangle} a(x,\xi)
   }
   \quad
   \Rightarrow
   \quad
   k(x,x) = \frac{1}{2\pi}\Integ{\mathbb{R}}{\xi}{a(x,\xi)},
-\end{align*}
+\end{equation*}
 where $\Oscint{\xi}{\,\cdot\,}$ denotes the oscillatory integral (as defined in
-\cite[Def.~1.1]{Shu:POS}), which coincides with the usual integral over
-$\mathbb{R}$ for $x = y$. The integrals over $\xi$ can be handled with in a
+\cite[Def.~1.1]{Shu:POS}) which coincides with the usual integral over
+$\mathbb{R}$ for $x = y$. The integrals over $\xi$ can be dealt with in a
 uniform way using the beta function as seen in the introduction
-(\ref{lem:beta_function_formula}) by setting $n = (\text{order of $\xi$ in the
-numerator})$, $m = \text{exponent of $a_2$ in the denominator}$,
-$a=\mu(x)=\sqrt{\lambda^2 V(x) + W(x)}$ and $b = 1$. We also see, that for odd
-$n$ the terms vanish, as we have an integral over an odd function, while for
-even $n$ we get an additional factor of $2$ for integrating over $\mathbb{R}$
-instead of $\Rplus$.
+(\cref{lem:beta_function_formula}) by letting $n$ be the order of $\xi$ in the
+numerator, $m$ the exponent of $a_2$ in the denominator, $a := \mu(x) =
+\sqrt{\lambda^2 V(x) + W(x)}$ and $b = 1$. We also see, that for odd $n$ the
+terms vanish, as we have an integral over an odd function, while for even $n$ we
+get an additional factor of $2$ for integrating over $\mathbb{R}$ instead of
+$\Rplus$.
 
 The corresponding terms in the kernel are thus
-\begin{align*}
-  k_{-1}(x,x,\lambda,z) &= \frac{1}{2} \frac{1}{(\lambda^2 V(x) + z^2)^{1/2}} \\
-  k_{-2}(x,x,\lambda,z) &= 0 \\
-  k_{-3}(x,x,\lambda,z) &= - \frac{1}{16} \frac{\lambda^2 V''(x)}{(\lambda^2
-    V(x) + z^2)^{5/2}} + \frac{5}{64} \frac{\lambda^4 V'(x)^2}{(\lambda^2V(x)
-    + z^2)^{7/2}} -\frac{1}{4}\frac{W(x)}{(\lambda^2 V(x) + z^2)^{3/2}}.
+\begin{equation}
+  \begin{split}
+    k_{-1}(x,x,\lambda,z) &= \frac{1}{2} \frac{1}{(\lambda^2 V(x) + z^2)^{1/2}} \\
+    k_{-2}(x,x,\lambda,z) &= 0 \\
+    k_{-3}(x,x,\lambda,z) &= - \frac{1}{16} \frac{\lambda^2 V''(x)}{(\lambda^2
+      V(x) + z^2)^{5/2}} + \frac{5}{64} \frac{\lambda^4 V'(x)^2}{(\lambda^2V(x)
+      + z^2)^{7/2}} -\frac{1}{4}\frac{W(x)}{(\lambda^2 V(x) + z^2)^{3/2}}.
+    \end{split}
   \label{eqn:coeff-kernel}
-\end{align*}
+\end{equation}
 We note, that the $(\lambda,z)$-order of the integrated terms increases by $1$
 which is reflected by a change of the index.
 
@@ -137,30 +159,29 @@ $\mu(x) := \sqrt{\lambda^2 V(x) + z^2}$ as above we have
   \input{snippets/formula-interior},
 \end{align*}
 which proves \thref{main:interior}. The asymptotic order of the remainder of
-$-4$ follows from the fact, that by construction every other step in our
+$-5$ follows from the fact, that by construction every other step in our
 recursion formula results in the exponents of $\xi$ in the numerator being odd,
-so the $\xi$ integral over $\mathbb{R}$ vanishes, in particular $k_{-4} =
+so the $\xi$ integral over $\mathbb{R}$ vanishes, in particular we get $k_{-4} =
 0$.
 
 Finally for this to give us all the information we were looking for we need to
-carry out the $x$-Integration. Since by Equation~\eqref{frm:shift} and
-Equation~\eqref{eqn:central-thm} we know, that we will only differentiate the
-formula and integrate the result multiplied with a $\log\lambda$-term, and all
-intermediate steps are integrable we can postpone the evaluation until we have
-enough information on $V$ and $W$ to perform the integration.
+carry out the $x$-Integration. Since by \cref{frm:shift,eqn:central-thm} we
+know, that we will only differentiate the formula and integrate the result
+multiplied with a $\log\lambda$-term, and all intermediate steps are integrable
+we can postpone the evaluation until we have enough information on $V$ and $W$
+to perform the integration.
 
 \subsection{Homogeneity in $V$, $W$ and their Derivatives}
-We see by closely looking on the generating Equation~\eqref{eqn:int-recursion}
-that we can (without carrying out the explicit calculations) show that the terms
-in the kernel expansion have a certain structure.
-
-First, we define an order for the building blocks in the numerator of the
-terms in the expansion:
+We see by closely looking on the generating \cref{eqn:int-recursion} that we can
+(without carrying out the explicit calculations) show that the terms in the
+kernel expansion have a certain structure.  First, we define an order for the
+building blocks in the numerator of the terms in the expansion:
 \begin{Definition}
+  \label{def:order}
   We define an order on terms of $V$ and $W$ by:
   \begin{align*}
-    &\ord \lambda^2 V(x) := 0 \\
-    &\ord W(x) := 2
+    \ord \lambda^2 V(x) &:= 0 \\
+              \ord W(x) &:= 2
   \end{align*}
   For $A(x)\neq 0$ and $B(x)$ being rational expressions in $V$, $W$ and their
   derivatives, and $C\in\mathbb{C}$ we also define the following calculation
@@ -173,9 +194,26 @@ terms in the expansion:
   \end{align*}
   The sum of two terms $A(x)$ and $B(x)$ has a well-defined order if $\ord A(x)
   = \ord B(x)$, namely $\ord(A(x) + B(x)) = \ord A(x) = \ord B(x)$.
+  \begin{Remark}
+    The definition can be motivated from our toy example given in the
+    introduction where we had
+    \begin{align*}
+      V(x) = f(x)^{-2} \text{ and } W(x) = \frac{f''(x)}{2f(x)} -
+      \left(\frac{f'(x)}{2f(x)}\right)^2.
+    \end{align*}
+    If we now rescale this as $x\mapsto kx$ we get
+    \begin{align*}
+      V(x) &\mapsto f(kx)^{-2} = V(kx) \text{ while} \\
+      W(x) &\mapsto \frac{k^2 f''(kx)}{2f(x)} -
+      \left(\frac{kf'(kx)}{2f(x)}\right)^2 = k^2 W(kx),
+    \end{align*}
+    $\ord$ thus represents the rescaling exponent. This does also immediately
+    give the calculation rules, especially the increase of $\ord$ on
+    differentiation comes directly from the fact that $\partial^n
+    f\circ(x\mapsto kx)(x) = k^n f(kx)$ (which also proves the well-definedness
+    of $\ord$).
+  \end{Remark}
 \end{Definition}
-% TODO: Wohldefininiertheit zeigen
-
 We know by construction that, apart from some complex constant, only derivatives
 of $\lambda^2 V(x)$ (in form of derivatives of $a_2$), $W(x)$ as well as
 derivatives of $W(x)$ may appear in the numerator. The denominator is uniquely
@@ -190,38 +228,39 @@ have the following possibilities
   V''(x), W(x), (V'(x))^2,
 \end{align*}
 since those are exactly the terms with order $2$ we can produce. This is what we
-will proof now:
-\begin{Theorem}
+will prove now:
+\begin{MainTheorem}
   Given the previous definition of the order $\ord$ in $V$, $W$ and their
   respective derivatives the following holds for the terms in the asymptotic
   expansion of the kernel on the diagonal of $(\Delta_\lambda + z^2)^{-1}$:
-  \begin{align}
+  \begin{equation}
+    \label{eqn:ord-vs-mu-order}
     \ord k_{-n}(x, x) = n - 1
-  \end{align}
+  \end{equation}
   \begin{Proof}
     First we note that the $\xi$-integration does not change the order of the
     expression since
-    \begin{align*}
+    \begin{equation*}
       \ord \frac{\xi^n}{(\lambda^2 V(x) + z^2 + \xi^2)^m} = \ord (\lambda^2 V(x)
       + z^2)^{n-2m+1} = 0,
-    \end{align*}
+    \end{equation*}
     thus the order of the term before and after the integration is the same.
     However, since the $(\lambda,z)$-order changes, the indexation is different,
     i.e.\ $k_{-n}$ corresponds to $b_{-(n+1)}$. We
     thus prove the claim
-    \begin{align*}
+    \begin{equation*}
       \ord k_{-(n-1)} = \ord b_{-n} = n - 2
-    \end{align*}
+    \end{equation*}
     by induction over $n$ on symbol level. We start with $b_{-2} = a_2^{-1} =
     (\lambda^2 V(x) + z^2 + \xi^2)^{-1}$, which clearly has order $0$. Since the
     recursion formula involves the two previous terms we also need to check
     $b_{-3}$:
-    \begin{align*}
-      \ord b_{-3} = \ord 2\xi \frac{a_2'}{a_2^3} = \ord a_2' = \ord \lambda^2
-      V'(x) = 1
-    \end{align*}
+    \begin{equation*}
+      \ord b_{-3} = \ord\left(2\xi \frac{a_2'}{a_2^3}\right) = \ord a_2' = \ord
+      \lambda^2 V'(x) = 1
+    \end{equation*}
     For the induction step we only need to look closely on the recursion formula
-    \eqref{eqn:int-recursion} and use the given calculation rules:
+    (\cref{eqn:int-recursion}) and use the given calculation rules:
     \begin{align*}
       &\ord 2\xi i \partial_x b_{-(n-1)} = \ord \partial_x b_{-(n-1)} = ((n-1) - 2) +
       1 = n - 2\\
@@ -231,4 +270,4 @@ will proof now:
     Since $b_{-n}$ is the sum of those terms divided by $a_2$, which has order
     $0$ this proves the homogeneity in $V$, $W$ and their derivatives.
   \end{Proof}
-\end{Theorem}
+\end{MainTheorem}

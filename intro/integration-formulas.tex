@@ -1,38 +1,32 @@
 \subsection{Integration Lemmas}
-% TODO Umformulieren
 During the course of this thesis we will see some recurring patterns in the
-integrals that need to be solved. We will thus list some explicit formulas for
+integrals that have to be solved. We will thus list some explicit formulas for
 them now and prove the simpler ones here.
 
 The first one is a classical result of asymptotic analysis and is the basis of
 most further results on the asymptotics of exponential integrals.
-\begin{Lemma}[Watson]
+\begin{Lemma}[Watson's Lemma]
   \input{snippets/watsons-lemma}
   \begin{proof}
     Since the proof is a bit lengthy and not needed to understand the following
-    it can be found in Appendix~\ref{sec:proof-watson}.
+    it can be found in \cref{sec:proof-watson}.
   \end{proof}
-%    \begin{Remark}
-%        We actually don't need analyticity but only the existence of as many
-%        derivatives as degrees we want and additionally a finiteness condition
-%        on .
-%    \end{Remark}
 \end{Lemma}
 The next lemma considers the continuity properties of exponential integrals like
-the ones that are object of Watson's Lemma:
+the ones Watson's lemma deals with:
 \begin{Lemma}
   \label{lem:continuity_of_watson_integrals}
   Let $f\colon [0,T)\to\mathbb{R}$ (where $T$ may be $\infty$) be an integrable
   function. Then the exponential parameter integral
-  \begin{align*}
+  \begin{equation*}
     F(x) = \Integ[T]{0}{t}{\Eto{-tx} f(t)}
-  \end{align*}
+  \end{equation*}
   is continuous in $x$.
   \begin{Proof}
     The statement follows immediately from a classical result of Lebesgue
     integration theory on the continuity of parameter-dependent integrals
-    (\cite[p282f]{Konigsberger2004}). We only need to check, that there is an
-    integrable majorant for all $x$, which is simply $f(t)$ in this case, and
+    (cf.\ \cite[p282f]{Konigsberger2004}). We only need to check, that there is
+    an integrable majorant for all $x$, which is simply $f(t)$ in this case, and
     that the whole integrand is continuous in $x$ for fixed $t$ which is
     obvious.
   \end{Proof}
@@ -43,17 +37,9 @@ upper limit of the inner integral is the integration variable of the outer one:
 \begin{Remark}
   This is in fact only Fubini's theorem for the integral of $(x,y)\to g(x)f(y)$
   over a right-angled triangle.
-%  \begin{center}
-%    \begin{tikzpicture}
-%      \draw (0,0)
-%      -- node[anchor=east] {$y$} (0,1)
-%      -- node[anchor=south] {$x$} (1,1)
-%      -- (0,0);
-%    \end{tikzpicture}
-%  \end{center}
 \end{Remark}
 Finally we give a formula for a particular kind of integral that comes up a lot
-in the final calculations:
+in the calculations:
 \begin{Lemma}
   \label{lem:beta_function_formula}
   Let $a, b > 0$ and $m > n$. Then
@@ -76,9 +62,9 @@ in the final calculations:
       1}{2}\bigr)
     \end{align*}
     The formula used in the last step,
-    \begin{align*}
+    \begin{equation*}
       B(a,b) = \Integ[\infty]{0}{z}{\frac{z^{a-1}}{(1+z)^{a+b}}},
-    \end{align*}
-    is proven in the Appendix~\ref{sec:beta_function}.
+    \end{equation*}
+    is proven in the \cref{sec:beta_function}.
   \end{Proof}
 \end{Lemma}

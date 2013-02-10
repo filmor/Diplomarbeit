@@ -1,9 +1,9 @@
 \section{Setting}
 We will first motivate our investigation of the asymptotics of multi-parametric
-Sturm-Liouville operators by a formula given in \cite{LV13}. This formula can be
-used to calculate the zeta determinant of an infinite direct sum of
-Sturm-Liouville operators by means of a regularised sum of the zeta determinants
-of the operators and an error term involving a specific (poly-)homogeneous
+Sturm-Liouville operators by a formula given in \cite{LV13}, which we outline
+below. This formula can be used to represent the zeta determinant of an infinite
+direct sum of Sturm-Liouville operators by means of a regularised sum of the
+zeta determinants of the operators and an error term involving a homogeneous
 component of the asymptotic expansion of the direct sum operator.
 
 We will first introduce the toy example of a surface of revolution, which indeed
@@ -41,214 +41,230 @@ $L^2(\Sphere1)$ of eigenfunctions of $\Delta_\Sphere1$ to the eigenvalues
 $\lambda^2$, where the eigenvalues $\lambda^2 \neq 0$ have multiplicity 2 while
 $\lambda = 0$ has multiplicity 1. Hence we have the decomposition
 \begin{align}
+  % TODO Anständig formatieren
   \label{eqn:lpl-decomp}
-  \Phi\Delta\Phi^{-1} &= \bigoplus_{\lambda=-\infty}^{\infty} \left(
+  \Phi\Delta\Phi^{-1} &= \bigoplus_{\lambda=-\infty}^{\infty} \Biggl(
     -\frac{\partial^2}{\partial x^2} + \frac{\lambda^2}{f(x)^2} + 
      \left( \frac{f''(x)}{2f(x)} -
-     \left(\frac{f'(x)}{2f(x)}\right)^2\right)\right)
+     \left(\frac{f'(x)}{2f(x)}\right)^2\right)\Biggr)
      =: \bigoplus_{\lambda=0}^{\infty}\Delta_\lambda
 \end{align}
-into a direct sum of one-dimensional Sturm-Liouville operators $\Delta_\lambda$.
+into a direct sum of one-dimensional Sturm-Liouville operators $\Delta_\lambda$,
+acting on $\Cinf((0,1),\langle e_\lambda\rangle)$, i.e.\ the space of
+$\Cinf$-functions mapping the interval $(0,1)$ to the vector space spanned by
+the given eigenfunctions $e_\lambda$ for $\lambda\in\mathbb{Z}$.
+
 We consider separated Dirichlet or generalised Neumann boundary conditions for
-$\Delta$, where it is straight-forward to see, that those also correspond to
+$\Delta$, where it is straight-forward to see that those also correspond to
 separated Dirichlet, resp.\ generalised Neumann boundary conditions for
 $\Phi\Delta\Phi^{-1}$ and that the resulting self-adjoint operator is compatible
-with the given decomposition \eqref{eqn:lpl-decomp}. Since the transformed
-operator does indeed behave, from an analytical point of view, the same as the
-operator $\Delta$ we will denote the self-adjoint extensions of $\Delta$ and
-$\Delta_\lambda$ again by the same name. Since we are considering fixed boundary
-conditions this is not too ambiguous.
+with the decomposition given in \cref{eqn:lpl-decomp}. Since $\Phi$ is unitary the transformed
+operator unitarily (and thus spectrally) equivalent to $\Delta$. We will denote
+the self-adjoint extensions of $\Delta$ and $\Delta_\lambda$ again by the same
+name. Since we are considering fixed boundary conditions this is not too
+ambiguous.
 
 We will consider operators like $\Delta_\lambda$, where we will set
 \begin{align}
+  \label{eqn:v-from-f}
   V(x) &:= f(x)^{-2} \\
+  \label{eqn:w-from-f}
   W(x) &:= \frac{f''(x)}{2f(x)} - \left(\frac{f'(x)}{2f(x)}\right)^2 =
-  \partial_x^2 \log\sqrt{f(x)} + \left(\partial_x \log\sqrt{f(x)}\right)^2 \\
+    \partial_x^2 \log\sqrt{f(x)} + \left(\partial_x \log\sqrt{f(x)}\right)^2 \\
+  \label{eqn:d_lambda}
   \text{thus}\quad \Delta_\lambda &= -\partial^2_x + \lambda^2 V(x) + W(x),
 \end{align}
 where the non-derivative terms as usual denote the multiplication operators
-$(M_\phi u)\colon x \mapsto \phi(x)u(x)$. We won't write this out, i.e.\ in the
-summands of $\Delta_\lambda$ we use $W(x)$ instead of $M_W$.
+$(M_\phi u)\colon x \mapsto \phi(x)u(x)$. We won't write this out, for example
+in the we use $W(x)$ instead of $M_W$ in the summands of $\Delta_\lambda$,
+% TODO Hübscher begründen
+although this abuses notation since $x$ is undefined in this context.
 
 In our calculations we will not depend on the specific choice of $V$ and $W$,
 but instead only require
-\begin{align*}
-  &V,W\in\Cinf([0,1]) \\
-  &\forall_{x\in[0,1]}\colon V(x) > 0 \\
-  &V\text{ and }W\text{ analytic in neighbourhoods of $0$ and $1$}.
-\end{align*}
-If $f$ is analytic and $f>0$ this is given.
+\begin{equation*}
+  \begin{split}
+    &V,W\in\Cinf([0,1]) \\
+    &\forall_{x\in[0,1]}\colon V(x) > 0 \\
+    &V\text{ and }W\text{ analytic in neighbourhoods of $0$ and $1$}.
+  \end{split}
+\end{equation*}
+If we use an analytic function $f>0$ in \cref{eqn:v-from-f,eqn:w-from-f} this is
+given.
 
 \subsection{Regularised Sums and Integrals}
 \label{sec:regsum-int}
-We will first provide some general definitions on asymptotic analysis based on
-\cite[Ch.1]{Miller2006} and then introduce the Hadamard finite part regularisation.
+Before we introduce the Hadamard finite part regularisation that is used to
+regularise sums and integrals we will provide some general definitions on
+asymptotic analysis based on \cite[Ch.1]{Miller2006}.
 \begin{Definition}
-  The Landau symbols and asympotic equality are defined as
-  \begin{align}
-    g(x) = O(f(x))\text{ for $x\to x_0$ } &:\Leftrightarrow \limsup_{x\to x_0}
+  The Landau symbols and asymptotic equality are defined as
+  \begin{align*}
+    g(x) &= O(f(x))\text{ for $x\to x_0$ }& &:\Leftrightarrow \limsup_{x\to x_0}
     \Abs{\frac{g(x)}{f(x)}} < \infty \\
-    g(x) = o(f(x))\text{ for $x\to x_0$ } &:\Leftrightarrow \lim_{x\to
+    g(x) &= o(f(x))\text{ for $x\to x_0$ }& &:\Leftrightarrow \lim_{x\to
     x_0}\Abs{\frac{g(x)}{f(x)}} = 0 \\
-    f \SimAs{x\to x_0} g &:\Leftrightarrow \lim_{x\to x_0}
+    f &\SimAs{x\to x_0} g& &:\Leftrightarrow \lim_{x\to x_0}
     \Abs{\frac{f(x)}{g(x)}} = 1,
-  \end{align}
-  where $x_0$ may be $\infty$. As a special case we furthermore define for
-  $x\to\infty$
-  \begin{align}
-    f(x) = O(x^{-\infty}) :\Leftrightarrow \forall_{n\in\mathbb{N}}\ f(x) =
+    \intertext{where $x_0$ may be $\infty$. As a special case we furthermore define for
+    $x\to\infty$}
+    f(x) &= O(x^{-\infty})& &:\Leftrightarrow \forall_{n\in\mathbb{N}}\ f(x) =
     O(x^{-n}).
-  \end{align}
+  \end{align*}
 \end{Definition}
 Like in many other texts we will also use the Landau symbols in actual
-calculations, however it is of note, that this is only valid in finite sums, for
-all other calculations (in particular integrations) we have to take additional
-measures.
-
+calculations, however it is of note that this is only valid in finite sums, for
+all other calculations (in particular integrations) we have to be more careful.
 \begin{Definition}
   Let $(\phi_n)$ be a sequence of functions with
-\begin{align*}
-  \phi_{n+1}(x) = o(\phi_n(x))\text{ for $x\to x_0$},
-\end{align*}
+  \begin{align*}
+    \phi_{n+1}(x) = o(\phi_n(x))\text{ for $x\to x_0$},
+  \end{align*}
   which is called an \emph{asymptotic sequence}. Then, for a sequence $(a_n)$
-  the sum
-  \begin{align*}
-    \sum_{n=0}^N a_n\phi_n(x)
-  \end{align*}
-  is an \emph{asymptotic approximation} as $x\to x_0$ if
-  \begin{align*}
+  the sum $\sum_{n=0}^N a_n\phi_n(x)$ is an \emph{asymptotic approximation to
+  the function $f$} as $x\to x_0$ if
+  \begin{equation}
     \label{eqn:def-asymp-exp}
-    f(z) - \sum_{n=0}^N a_n\phi_n(x) = o(\phi_N(x)).
-  \end{align*}
-  If the above is true for all $N\in\mathbb{N}$, the formal infinite sum
-  \begin{align*}
-    \sum_{n=0}^\infty a_n\phi_n(x)
-  \end{align*}
-  is called an \emph{asymptotic series} and is said to be an \emph{asymptotic
-  expansion} of $f(x)$, which we will denote by
-  \begin{align*}
+    f(x) - \sum_{n=0}^N a_n\phi_n(x) = o(\phi_N(x)).
+  \end{equation}
+  If the above is true for all $N\in\mathbb{N}$, the formal infinite sum is
+  called an \emph{asymptotic series} and is said to be an \emph{asymptotic
+  expansion} of $f$ for $x\to x_0$, which we will denote by
+  \begin{equation*}
     f(x) \SimAs{x\to x_0} \sum_{n=0}^\infty a_n\phi_n(x).
-  \end{align*}.
-  If \eqref{eqn:def-asymp-exp} holds for all $N < N_0$, we say $f(x)$ has a
-  \emph{partial asymptotic expansion}.
+  \end{equation*}
+  Let $N_0\in\mathbb{N}$. In case \cref{eqn:def-asymp-exp} at least holds for
+  all $N < N_0$, we say $f$ has a \emph{partial asymptotic expansion}.
 \end{Definition}
 Now let $f\in\Cinf(\Rplus)$ be a function with a partial asymptotic expansion
 for $x\to\infty$ with regard to the log-polynomial asymptotic series
 $x^{-n}\log^k(x)$, were $\log^k(x) := (\log(x))^k$. We denote the components by
 $a_{nk}$, thus the expansion is written as
-\begin{align*}
+\begin{equation*}
   f(x) \SimAs{x\to\infty} \sum_{n=0}^{N-1}\sum_{k=0}^{M_n}
   a_{nk}\,x^{-n}\log^k(x) + x^{-N}\log^{M_N}f_N(x),
-\end{align*}
+\end{equation*}
 where $N\in\mathbb{N}$ is arbitrary and the remainder is $f_N(x) = o(1)$ as
 $x\to\infty$. We define the \emph{regularised limit} for $x\to\infty$ as
-\begin{align}
+\begin{equation}
   \Reglim_{x\to\infty} f(x) := a_{00},
-\end{align}
+\end{equation}
 i.e.\ as the constant part of the expansion.
 
 If for some $N\in\mathbb{N}$ the remainder $(x\mapsto x^{-N}f_N(x))\in
 L^1[1,\infty)$, the integral $\Integ[R]{1}{x}{f(x)}$ does also admit an
 asymptotic expansion of the form given above and we define its \emph{regularised
 integral} as
-\begin{align}
+\begin{equation}
   \Regint{x}{f(x)} := \Reglim_{R\to\infty}\Integ[R]{1}{x}{f(x)}.
-\end{align}
+\end{equation}
 The integral is also the reason why we consider $x^n \log^m(x)$ as
 base-functions in the asymptotic expansions, since that way the integral over
 the expansion results in a meaningful expansion with the same base-functions.
-This approach of regularising potentially infinite integrals is called Hadamard
-finite part (or French: \textit{partie finie}) regularisation. In the special
-case that $f\in L^1[1,\infty)$ the regularised integral coincides with the usual
-Lebesgue integral of $f$.
+This approach of regularising potentially infinite integrals is called
+\emph{Hadamard finite part} (or French: \textit{partie finie}) regularisation.
+In the special case that $f\in L^1[1,\infty)$ the regularised integral coincides
+with the usual Lebesgue integral of $f$ over $[1,\infty)$.
 
 Using this we can also give a meaningful definition of a \emph{regularised sum}
 over $f$. Given the Bernoulli numbers $B_j$ and the Bernoulli polynomials
 $B_j(x)$ consider the Euler-MacLaurin summation formula:
+\begin{equation}
+  \label{eqn:euler-maclaurin}
+  \begin{split}
+    \sum_{\lambda=1}^N f(\lambda) = {} & \Integ[N]{1}{x}{f(x)}
+    + \sum_{k=1}^M \frac{B_{2k}}{(2k)!}\left(f^{(2k-1)}(N) - f^{(2k-1)}(1)\right)
+    \\
+    &+ \frac1{(2M + 1)!}\Integ[N]{1}{x}{B_{2m+1}(x-[x])f^{(2M+1)}(x)}
+    + \frac12(f(1)+f(N))
+  \end{split}
+\end{equation}
+By essentially replacing all of the integrals in this formula by regularised
+integrals we arrive at the following definition for the regularised sum:
 \begin{align*}
-  \sum_{\lambda=1}^N f(\lambda) &= \Integ[N]{1}{x}{f(x)}
-  + \sum_{k=1}^M \frac{B_{2k}}{(2k)!}\left(f^{(2k-1)}(N) - f^{(2k-1)}(1)\right)
-  \\
-  &\mathbin{+} \frac1{(2M + 1)!}\Integ[N]{1}{x}{B_{2m+1}(x-[x])f^{(2M+1)}(x)}
-  \\
-  &\mathbin{+} \frac12(f(1)+f(N))
+  \Regsum_{\lambda=1}^\infty f(\lambda) := {}& \Reglim_{N\to\infty}
+  \sum_{\lambda=1}^N f(\lambda) \\
+  = {} & \Regint{x}{f(x)} + \sum_{k=1}^M \frac{B_{2k}}{(2k)!}\left(
+  \Reglim_{N\to\infty} f^{(2k-1)}(N) - f^{(2k-1)}(1)\right) \\
+  &+ \frac1{(2M + 1)!}\Regint{x}{B_{2m+1}(x - [x])f^{(2M+1)}(x)}
+   + \frac12(f(1) + \Reglim_{N\to\infty} f(N))
 \end{align*}
-By essentially replacing the integrals by regularised integrals we arrive at the
-following definition for the regularised sum:
-\begin{align*}
-  \Regsum_{\lambda=1}^\infty f(\lambda) := \Reglim_{N\to\infty} \sum_{\lambda=1}^N
-  f(\lambda)
-\end{align*}
-The regularised sum over $\mathbb{Z}$ is defined by
-\begin{align*}
+The regularised sum over all of $\mathbb{Z}$ is defined by
+\begin{equation*}
   \Regsum_{\lambda\in\mathbb{Z}} f(\lambda) := f(0) + \Regsum_{\lambda=1}^\infty
-  f(\lambda) + \Regsum_{\lambda=1}^\infty f(-\lambda)
-\end{align*}
+  f(\lambda) + \Regsum_{\lambda=1}^\infty f(-\lambda).
+\end{equation*}
 
 The following theorem proven in \cite{LV13} is the basis for the following
 considerations:
 \begin{Theorem}
   \label{thm:fubini}
   Assume $f\in\Cinf(\Rplus[2])$ is of the form
-  \begin{align*}
+  \begin{equation*}
     f(x,y) = \sum_{j=0}^{N-1} f_{\alpha_j}(x,y) + F_N(x,y)
-  \end{align*}
+  \end{equation*}
   where $N\in\mathbb{N}$ and each $f_{\alpha_j}\in\Cinf(\mathbb{R}_+^2\setminus\{0\})$
   is homogeneous of order $\alpha_j\in\mathbb{C}$ in both variables jointly,
   where the remainder $F_N$ is assumed to be in $L^1[1,\infty)^2$. Then
-  \begin{align}
+  \begin{equation*}
     \Regint{x}{\Regint{y}{f(x,y)}} =
     \Regint{y}{\Regint{x}{f(x,y)}} + \Integ[\infty]{0}{y}{f_{-2}(1,y)\log(y)}.
-  \end{align}
+  \end{equation*}
 \end{Theorem}
 Using this Fubini-like theorem we can (possibly) simplify difficult regularised
-integral, however unlike for Fubini's theorem in usual integral theory we get an
-additional error term as an integral over one homogeneous component. 
+integrals, however unlike Fubini's theorem in Lebesgue integral theory we get an
+additional error term as an integral over one homogeneous component in this
+case.
 
 \subsection{Zeta Determinants}
-The zeta-function of an operator $\Delta_\lambda$ is defined for $\Re(s) > 0$
+The zeta function of an operator $\Delta_\lambda$ is defined for $\Re(s) > 0$
 sufficiently large by
-\begin{align}
+\begin{equation}
   \zeta(s,\Delta_\lambda) :=
   \sum_{\mu\in\operatorname{spec}\Delta_\lambda\setminus\{0\}} m(\mu)\mu^{-s},
-\end{align}
+\end{equation}
 where $m(\mu)$ is the multiplicity of the eigenvalue $\mu > 0$. Using the
-identity
-\begin{align}
+identity % TODO: Ref dafür, in Les98 steht das zwar, aber nicht bewiesen :(
+\begin{equation}
   \label{frm:zeta-frm}
   \zeta(s,\Delta_s) = 2 \frac{\sin\pi
   s}{\pi}\Regint[0]{z}{z^{1-2s}\Tr(\Delta_\lambda + z^2)^{-1}}
-\end{align}
+\end{equation}
 one can derive a formula for $\log\zdet\Delta_\lambda =
 -\zeta'(0,\Delta_\lambda)$ (which is defined by the meromorphic extension to
 $\mathbb{C}$ of $\zeta$) for which $s=0$ is a regular point:
 \begin{align}
   \log\zdet\Delta_\lambda = -2\Regint[0]{z}{z\Tr(\Delta_\lambda + z^2)^{-1}}
 \end{align}
-However the resolvent $(\Delta + z^2)^{-1}$ is not trace class, $\zdet\Delta$
-can not be defined in the exact same way. Integrating
-Formula~\eqref{frm:zeta-frm} by parts we get
-\begin{align}
+However since the resolvent $(\Delta + z^2)^{-1}$ is not trace class,
+$\zdet\Delta$ can not be defined in the exact same way. Integrating
+\cref{frm:zeta-frm} by parts we get
+\begin{equation*}
   \zeta(s,\Delta_\lambda) = 2\frac{\sin\pi
   s}{\pi(1-s)}\Regint[0]{z}{z^{3-2s}\Tr(\Delta_\lambda + z^2)^{-2}},
-\end{align}
+\end{equation*}
 and thus
-\begin{align}
+\begin{equation*}
   \log\zdet\Delta_\lambda = -2 \Regint[0]{z}{z^3\Tr(\Delta_\lambda + z^2)^{-2}},
-\end{align}
+\end{equation*}
 which also works for $\Delta$, since we have an asymptotic expansion for
 $\Tr(\Delta_\lambda + z^2)^{-2}$.
 
-\subsection{Goal}
+\subsection{Objective}
 Lesch and Vertman proved in \cite{LV13} the following asymptotic expansion for
-the squared resolvent-trace of the operator given in \eqref{eqn:laplace}:
+the squared resolvent-trace of the operator given in \cref{eqn:laplace}:
 \begin{align}
   \Tr(\Delta + z^2)^{-2} = \sum_{\lambda=-\infty}^\infty \Tr(\Delta_\lambda +
   z^2)^{-2} \SimAs{z\to\infty} \sum_{k=2}^{\infty} a_kz^{-k}.
 \end{align}
+\begin{Remark}
+  % TODO: Auswalzen
+  Note that in general the asymptotics of $\Tr(\Delta_\lambda + z^2)$ in
+  $(\lambda,z)$ are different of the asymptotic of $\Tr(\Delta_\lambda + z^2)$.
+\end{Remark}
 Using this asymptotic expansion and \thref{thm:fubini} they showed, that the
-zeta-determinant of $\Delta$ is given by a regularised sum of the
-zeta-determinants of the $\Delta_\lambda$ with an error term:
+zeta determinant of $\Delta$ is given by a regularised sum of the
+zeta determinants of the $\Delta_\lambda$ with an additional error term:
 \begin{align}
   \label{eqn:central-thm}
   \log\zdet\Delta = \Regsum_{\lambda=-\infty}^\infty

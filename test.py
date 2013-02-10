@@ -151,9 +151,6 @@ class MyLatexPrinter(LatexPrinter):
             exp = "^{%s}" % exp if exp else ""
             return "%s%s(%s)%s" % (name, deriv, args, exp)
 
-# Rename log
-log.__name__ = "ln"
-
 def format_expr(expr):
     return MyLatexPrinter(mode="plain", fold_func_brackets=True,
             fold_frac_powers=True).doprint(expr)

@@ -1,82 +1,82 @@
 \section{Compilation and Application}
+Finally we want to make use of the previous calculations to evaluate the error
+term of \cref{eqn:central-thm} in general and finally for a concrete example.
+
+\subsection{Evaluation of the Error Term}
 Since we saw in the previous sections that the homogeneous components of the
 trace expansion of the resolvent are of the form $\frac{\lambda^n}{(\lambda^2 k
 + z^2)^m}$ (with $k$ being one of $V(0)$, $V(1)$ and $V(x)$) we get the
 following formula for the coefficients of $\Tr{(\Delta_\lambda + z^2)}^{-2}$:
-\begin{align}
+\begin{equation}
   (-2z)^{-1} \partial_z \frac{\lambda^n}{(\lambda^2 k + z^2)^{m}}
-    &= m \frac{\lambda^n}{(\lambda^2 k + z^2)^{m+1}}
-\end{align}
-
+    = m \frac{\lambda^n}{(\lambda^2 k + z^2)^{m+1}}
+\end{equation}
 Now that we have calculated the coefficients we only need to integrate the
 homogeneous part with the logarithm, as given in the main theorem (\cite[Thm
 1.4]{LV13}):
-\begin{align*}
-  \log\zdet\Delta - \Regsum_{\lambda=-\infty}^\infty \log\zdet\Delta_\lambda =
-  -4 \Integ[\infty]{0}{\lambda}{h_2(1,\lambda)\ln(\lambda)}
-\end{align*}
-
+\begin{equation*}
+  \log\zdet\Delta - \Regsum_{\mathclap{\lambda=-\infty}}^\infty
+  \log\zdet\Delta_\lambda = -4
+  \Integ[\infty]{0}{\lambda}{h_2(1,\lambda)\log(\lambda)}
+\end{equation*}
 To do that we use the Mellin transform, since the derivative at $0$ of the
 transformation integral (which can be calculated easier) is
-\begin{align*}
+\begin{equation*}
     \left.\frac\partial{\partial r}\right|_{r=0}\Integ[\infty]{0}{x}{x^r f(x)}
-    &= \Integ[\infty]{0}{x}{\ln{(x)} f(x)}
-\end{align*}
+    = \Integ[\infty]{0}{x}{\log{(x)} f(x)}
+\end{equation*}
 if one of the integrals exist. We thus calculate again using our integration
-formula from \thref{lem:beta_function_formula} with $x\mapsto \lambda$, $a \mapsto 1$,
-$b \mapsto k \in\{V(0), V(1), V(x)\}$, $n \mapsto n + r$ and $m \mapsto
-\tfrac{n+5}{2}$:
-\begin{align*}
+formula from \thref{lem:beta_function_formula} with $x\mapsto \lambda$, $a
+\mapsto 1$, $b \mapsto k \in\{V(0), V(1), V(x)\}$, $n \mapsto n + r$ and $m
+\mapsto \tfrac{n+5}{2}$:
+\begin{equation*}
     \Integ[\infty]{0}{\lambda}{\frac{\lambda^{n + r}}{\left(1 +
-    k\lambda^2\right)^{\frac{n+5}{2}}}} &=
+    k\lambda^2\right)^{\frac{n+5}{2}}}} =
       \frac{1}{2k^{n+r+1}} B\bigl(\tfrac{n+r+1}{2}, \tfrac{4-r}{2}\bigr)
-\end{align*}
-The beta function is symmetric, and its derivative is $\partial_a B(a,b) =
-B(a,b) (\psi(a) - \psi(a+b))$, where $\psi(x) = \partial_x \ln\Gamma(x)$ is the
-digamma function (see Formula~\ref{frm:beta_deriv}), so we get
-\begin{align*}
+\end{equation*}
+The beta function is symmetric and its derivative is $\partial_a B(a,b) =
+B(a,b) (\psi(a) - \psi(a+b))$, where $\psi(x) = \partial_x \log\Gamma(x)$ is the
+digamma function (cf.\ \cref{frm:beta_deriv}), so we get
+\begin{equation*}
   \Integ[\infty]{0}{\lambda}{
-    \frac{\lambda^n}{(1 + k\lambda^2)^{\frac{n+5}{2}}}\ln\lambda
-  } &=
+    \frac{\lambda^n}{(1 + k\lambda^2)^{\frac{n+5}{2}}}\log\lambda
+  } =
       \frac{
-        \psi\bigl(\frac{n+1}{2}\bigr) - 2\ln(k) + \gamma - 1
+        \psi\bigl(\frac{n+1}{2}\bigr) - 2\log(k) + \gamma - 1
       }{
            (n+3)(n+1)k^{n+1}
       },
-\end{align*}
+\end{equation*}
 where $\gamma$ is the Euler-Mascheroni constant. Noting that $n$ is always even
 in our expansion we can evaluate $\psi\bigl(\tfrac{n+1}{2}\bigr)$ a bit further
 by using the recurrence relation $\psi(x + 1) = \psi(x) + \tfrac{1}{x}$ and the
-special value $\psi(\tfrac{1}{2}) = -\gamma - 2\ln 2$, which brings us to the
+special value $\psi(\tfrac{1}{2}) = -\gamma - 2\log 2$, which brings us to the
 following explicit formula for the integral:
-\begin{align}
+\begin{equation}
   \Integ[\infty]{0}{\lambda}{
     \frac{\lambda^n}{(1 + k \lambda^2)^{\frac{n+5}{2}}}
-    \ln\lambda
+    \log\lambda
   } = \frac{1}{(n+1)(n+3)k^{n+1}}
-  \Biggl( \sum_{i=1}^{n/2}\frac{2}{2i - 1} -1 - 2\ln(2k) \Biggr).
-\end{align}
+  \Biggl( \sum_{i=1}^{n/2}\frac{2}{2i - 1} -1 - 2\log(2k) \Biggr).
+\end{equation}
 
 Now that we can calculate this we can give an explicit expression for the error
 term as an integral over $x$:
 \begin{align}
-  \Integ[\infty]{0}{\lambda}{
-    h_2(\lambda, 1) \ln\lambda
-  }
+  \Integ[\infty]{0}{\lambda}{ h_2(\lambda, 1) \log\lambda }
   &=
   \label{eqn:interior_result}
   % Interior:
-  \Int{x}{\Biggl(\frac{(1 + 2 \ln(2 V(x))) W(x)}{8 V(x)}
-    - \frac{ (1 - 2 \ln(2 V(x)))V''(x)}{96 V(x)^{3}} \\
-    &\hphantom{=\int_0^1\Biggl(}\mathbin{+} \frac{\left(\frac{5}{3} - 2\ln(2
+  \Int{x}{\Biggl(\frac{(1 + 2 \log(2 V(x))) W(x)}{8 V(x)}
+    - \frac{ (1 - 2 \log(2 V(x)))V''(x)}{96 V(x)^{3}} \\
+    &\hphantom{=\int_0^1\Biggl(}\mathbin{+} \frac{\left(\frac{5}{3} - 2\log(2
     V(x))\right)\left(V'(x)\right)^{2}}{128 V(x)^{5}}\Biggr) } \nonumber \\
-&\mathbin- 5\frac{(1 - 2\ln(2 V(1)))V'(1)}{192 V(1)^3}
-+ 5\frac{(1 - 2 \ln(2 V(0)))V'(0)}{192 V(0)^3}
+&\mathbin- 5\frac{(1 - 2\log(2 V(1)))V'(1)}{192 V(1)^3}
++ 5\frac{(1 - 2 \log(2 V(0)))V'(0)}{192 V(0)^3}
 \label{eqn:exterior_result}
 \end{align}
 Here \eqref{eqn:interior_result} is the contribution of the interior terms,
 while \eqref{eqn:exterior_result} is the contribution of the boundary. We have
 seen, that the integrands coming from the interior parametrix stayed integrable
-over $x$ during the whole process, as $V \geq \delta > 0$ since
-$V\in\Cinf{[0,1]}$.
-% TODO Richtig begründen!
+over $x$ during the whole process, as $V \geq \delta > 0 \Rightarrow V^{-1} \leq
+\delta^{-1} < \infty$ since $V\in\Cinf{[0,1]}$.

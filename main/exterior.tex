@@ -1,43 +1,43 @@
 \section{Asymptotics of the Boundary Parametrix}
 By using a summation formula that is derived in \cite[2.2]{LV13}, the existence
 and values of the asymptotic components of $\Tr(\Delta_\lambda + z^2)^{-1}$ at
-the boundary can be calculated directly. From Formula~\eqref{frm:shift} we know,
-that we only have to consider terms up to order $O(\Abs{(\lambda,z)}^{-3})$
-since the requested asymptotic coefficient is of order $-3$ in the resolvent.
-The method derived in this section can however be used to also extract higher
-orders.
+the boundary can be calculated directly. By \cref{frm:shift} we know, that we
+only have to consider terms up to order $O(\Abs{(\lambda,z)}^{-3})$ since the
+requested asymptotic coefficient is of order $-3$ in the resolvent.  The method
+derived in this section can however be used to also extract higher orders.
 
 \subsection{Preliminaries}
 We will first briefly step through the process that justifies the formula for
-the trace-resolvent we are going to use. We denote the multiplicative part of
-the operator $\Delta_\lambda$ by 
-\begin{align*}
+the trace-resolvent we are going to use, based on \cite{LV13}. We denote the
+multiplicative part of the operator $\Delta_\lambda$ by 
+\begin{equation}
   \label{def:f-lambda}
-  f_\lambda(x) &:= \lambda^2 V(x) + W(x)\text{, i.e.} \newtag \\
-  \Delta_\lambda &= -\partial_x^2 + f_\lambda(x).
-\end{align*}
+  \begin{split}
+    f_\lambda(x) :={}& \lambda^2 V(x) + W(x)\text{, i.e.} \\
+   \Delta_\lambda ={}& {-\partial_x^2} + f_\lambda(x).
+  \end{split}
+\end{equation}
 Without loss of generality we will use $x = 0$ as the model case here, by the
 substitution $x\mapsto 1-x$ we get very similar results for $x=1$ which will be
 formulated as a Corollary. The parametrix of $\Delta_\lambda + z^2$ near the
-boundary $x=0$ can be constructed quite explicitely. We first consider $L :=
+boundary $x=0$ can be constructed explicitly. We first consider $L :=
 \Delta_\lambda - f_\lambda(x) = -\partial_x^2$ acting on
 $C_0^\infty(\mathbb{R})$, which is essentially self-adjoint in
 $L^2(\mathbb{R})$, we denote the self-adjoint extension by $\overline L$. Now,
 for $\theta \in [0,\pi)$, let $L^\theta$ be $\overline L$ restricted to
-\begin{align*}
-  \mathcal{D}(L^\theta) := \left\{ f\in H^1\Rplus \middle| f(0)\cos\theta +
+\begin{equation*}
+  \mathcal{D}(L^\theta) := \left\{ f\in H^1\Rplus\, \middle|\, f(0)\cos\theta +
   f'(0)\sin(\theta) = 0\right\},
-\end{align*}
+\end{equation*}
 i.e.\ we employ generalised Neumann boundary conditions. The case $\theta =
 \pi$, which is $f'(0) = 0$, is taken out of this although it behaves essentially
-the same, we will note where this matters.
+the same, we will note it where this matters.
 
-% TODO: Das sollte gezeigt oder zumindest begründet werden! Siehe Note
 For $\mu\in\mathbb{C}$, $\Re\mu > 0$ one can show, that the resolvent kernel of
 $(\overline L + \mu^2)^{-1}$ is given by
-\begin{align}
+\begin{equation*}
   k_{(\overline L + \mu^2)^{-1}}(x,y;\mu) = \frac1{2\mu}\Eto{-\mu\Abs{x-y}},
-\end{align}
+\end{equation*}
 and the kernel of $(L^\theta+\mu^2)^{-1}$ by
 \begin{align}
   \label{frm:k-l-theta}
@@ -50,29 +50,29 @@ and the kernel of $(L^\theta+\mu^2)^{-1}$ by
 However we are interested in the kernel of $(\Delta_\lambda + z^2)^{-1}$ for the
 chosen boundary conditions near $x = 0$, namely $(L^\theta + f_\lambda(x) +
 z^2)^{-1}$. Let
-\begin{align}
+\begin{equation}
   \label{def:mu}
   \mu^2 := \lambda^2 V(0) + z^2
-\end{align}
-and note that $\mu^2 = (\mu(0))^2$ using the definition from the previous
-section. We will use this abbreviation in this section also as a substitute for
-$\Abs{(\lambda,z)}$. Since $V\in C_0^\infty([0,1])$ and $V > 0$ we have $V(0) >
-0$ (and $V(1) > 0$), this gives of course the same analytical results, in
-particular asymptotics for $\mu\to\infty$ is the same as asymptotics for
-$\Abs{(\lambda,z)}\to\infty$.
+\end{equation}
+and note that $\mu^2 = (\mu(0))^2$ using the definition from
+\cref{main:interior}. We will use this abbreviation in this section also as a
+substitute for $\Abs{(\lambda,z)}$. Since $V\in C_0^\infty([0,1])$ and $V > 0$
+we have $V(0) > 0$ (and $V(1) > 0$), this gives of course the same analytical
+results, in particular asymptotics for $\mu\to\infty$ is the same as asymptotics
+for $\Abs{(\lambda,z)}\to\infty$.
 
 Now we aim to rewrite the operator-inverse such that we are only inverting
 operators that don't depend explicitly on the functions $V$ and $W$, in
-particular in terms of $(L+\mu^2)$ and $(L^\theta+\mu^2)$, for which we have
-explicit expressions of their inverse's kernels. We assume for now for some
-$\delta > 0$ sufficiently small, that $\supp V \subset [0,\delta]$ and
+particular in terms of $(L+\mu^2)$ and $(L^\theta+\mu^2)$ for which we have
+explicit expressions of their inverses' kernels. We assume for now for some
+$\delta > 0$ sufficiently small that $\supp V \subset [0,\delta]$ and
 $\Abs{V-V(0)}_{\infty}\leq \frac12V(0)$. Algebraically we have
-\begin{align*}
+\begin{equation*}
   (L^\theta + \lambda^2 V(x) + W(x) + z^2)^{-1} =
     \bigl(I + (L^\theta + \mu^2)^{-1}(\lambda^2\tilde V(x) + W(x))\bigr)^{-1}
     (L^\theta + \mu^2)^{-1}.
-\end{align*}
-Since for $z$ sufficiently large we have (with $\OpNorm{\cdot}$ being the
+\end{equation*}
+Since for $z$ sufficiently large we have (with $\OpNorm{\,\cdot\,}$ being the
 operator norm)
 \begin{align*}
   \OpNorm{(L^\theta + \mu^2)^{-1}(\lambda^2\tilde V(x) + W(x))} \leq
@@ -80,48 +80,46 @@ operator norm)
   \text{as } \InfNorm{\tilde V} \leq \frac12V(0)
 \end{align*}
 we can write this as a converging Neumann series:
-\begin{align}
+\begin{multline}
   \label{frm:neumann-sum}
-  \Rightarrow (L^\theta + \lambda^2 V(x) + W(x) + z^2)^{-1} =
+  \Rightarrow (L^\theta + \lambda^2 V(x) + W(x) + z^2)^{-1} \\ =
     \sum_{j=0}^\infty (-1)^j \left((L^\theta + \mu^2)^{-1}(\lambda^2\tilde V(x)
     + W(x))\right)^j (L^\theta + \mu^2)^{-1}.
-\end{align}
+\end{multline}
 Now, back to our original $V$ and $W$, we introduce cut-off functions $\phi,
 \psi\in\Cinf(\Rplus)$ that are $1$ in a neighbourhood of $x = 0$ and $0$ on
 $[\delta,\infty)$. Furthermore $\supp\phi\subset\supp\psi$ and
 $\supp\psi\,\cap\,\supp\mathrm d\psi = \emptyset$. Setting $W_\psi(x) :=
 \psi(x)W(x)$ and $\tilde V_\psi(x) = \psi(x)V(x) - V(0)$ we have by choosing
 $\delta$ small enough $\InfNorm{\tilde V_\psi} < \frac12V(0)$, as needed for the
-Neumann series expansion.
-
-Let
+Neumann series expansion. Let
 \begin{align}
   \label{frm:r-delta}
   R_\delta &:= \psi(L^\theta + \lambda^2V_\psi(x) + W_\psi(x) + z^2)^{-1}\phi \\
   \label{frm:f-lambda}
   \text{and } f_\lambda(x) &:= \lambda^2\tilde V_\psi(x) + W_\psi(x).
 \end{align}
-Note that $f_\lambda(x) = \lambda(V,W)(x)$ in \cite{LV13}, we'll use this
-notation to make the distinction between $\lambda$ as a parameter and the
+Note that $f_\lambda(x)$ is notated $\lambda(V,W)(x)$ in \cite{LV13}, we'll use
+this notation to make the distinction between $\lambda$ as a parameter and the
 function (which is of order $2$ in $\lambda$) clearer.
 
-It is shown in \cite[Sec.2]{LV13}, that the previous choices do not change the
-asymptotic behaviour of the trace-resolvent at $x=0$ and that for $R_\delta$ the
-right-hand-side in \eqref{frm:neumann-sum} is well-defined:
-\begin{align*}
+It is shown in \cite[Sec.~2]{LV13}, that the previous choices do not change the
+asymptotic behaviour of the resolvent trace at $x=0$ and that for $R_\delta$ the
+right-hand-side in \cref{frm:neumann-sum} is well-defined:
+\begin{equation*}
   \Tr((L^\theta + \lambda^2 V(x) + W(x) + z^2)^{-1}\phi) =
   \Tr R_\delta + O(\mu^{-\infty}), \quad \text{as } \mu\to\infty.
-\end{align*}
+\end{equation*}
 We define
-\begin{align}
+\begin{equation}
   \label{frm:r-theta}
-  R^\theta &:= (L^\theta + \mu^2)^{-1},
-\end{align}
-for which we already know the kernel by Equation~\eqref{frm:k-l-theta}:
-\begin{align*}
+  R^\theta := (L^\theta + \mu^2)^{-1},
+\end{equation}
+for which we already know the kernel by \cref{frm:k-l-theta}:
+\begin{equation*}
   k_{R^\theta}(x,y;\mu) = \frac1{2\mu} \left( \Eto{-\mu\Abs{x-y}} +
   C(\mu,\theta)\Eto{-\mu(x+y)}\right)
-\end{align*}
+\end{equation*}
 We denote by $R_-$ and $R_+$ the operators belonging to the kernels
 \begin{align*}
   k_{R_-}(x,y;\mu) := \tfrac1{2\mu}\Eto{-\mu\Abs{x-y}} \text{ and }
@@ -129,35 +127,36 @@ We denote by $R_-$ and $R_+$ the operators belonging to the kernels
 \end{align*}
 such that $R^\theta = \tfrac1{2\mu}(R_- + R_+)$. Now we can write our Neumann
 series as
-\begin{align*}
-  R_\delta = \sum_{j=0}^\infty (-1)^j M_\psi\left(R^\theta
-  M_{f_\lambda}\right)^j R^\theta M_\phi,
-\end{align*}
+\begin{equation*}
+  R_\delta = \sum_{j=0}^\infty (-1)^j M_\psi (R^\theta
+  M_{f_\lambda})^j R^\theta M_\phi,
+\end{equation*}
 where we have for once explicitly written out $M_f$ to emphasise that we mean
 the multiplication operator, whose kernel is given by the Dirac
 delta-distribution as
-\begin{align*}
+\begin{equation*}
   k_{M_f}(x,y) = \delta(x-y)f(x).
-\end{align*}
-Now we insert our newly defined $R_-$ and $R_+$ into the sum and split of the
-terms, that only contain $R_-$. To simplify the expressions we define an
+\end{equation*}
+Now we insert our newly defined operators $R_-$ and $R_+$ into the sum and split
+of the terms that only contain $R_-$. To simplify the expressions we define an
 abbreviation for the compositions. Let $n\in\mathbb{N}$ and $\sigma \in
-\{+,-\}^n$, i.e.\ a tuple of symbols $+$, $-$, which we will denote when given
-explicitly by, e.g.\ $++--+$. Then recursively (starting with
-the already defined $R_-$ and $R_+$) define
+\{+,-\}^n$, i.e.\ a tuple of symbols $+$ and $-$, which we will denote when
+given explicitly by, e.g.\ $++--+$. Then we recursively (starting with the
+already defined $R_-$ and $R_+$) define
+\begin{equation}
+  R_\sigma := R_{\sigma_1} M_{f_\lambda} R_{(\sigma_2,\ldots,\sigma_{n})},
+\end{equation}
+for which we can also give the kernels explicitly by use of the general formula
+$k_{AB}(x,y) = \Integ{\mathbb{R}}{z}{k_A(x,z)k_B(z,y)}$, where we, by slight
+abuse of notation, reuse the variable $z$ in the following to denote the
+integration variable.  This won't lead to ambiguity as the resolvent variable
+$z$ is hidden in $\mu$ for the whole section. We have
 \begin{align}
-  R_\sigma &:= R_{\sigma_1} M_{f_\lambda}
-  R_{(\sigma_2,\ldots,\sigma_{n})},
-\end{align}
-for which we also give the kernels explicitly by use of the formula $k_{AB}(x,y) =
-\Integ{\mathbb{R}}{z}{k_A(x,z)k_B(z,y)}$, where we, by slight abuse of notation,
-reuse the variable $z$ in the following to denote the integration variable.
-This won't lead to ambiguity as the resolvent variable $z$ is hidden in $\mu$
-for the whole section. We have
-\begin{align}
+  \label{eqn:kernel-plus}
   k_{R_{(+,\sigma_1,\ldots,\sigma_n)}}(x,y) &=
   \frac1{2\mu}C(\mu,\theta)\Int{z}{\Eto{-\mu(x+z)}f_\lambda(z)
   k_{R_\sigma}(z,y)} \\
+  \label{eqn:kernel-minus}
   k_{R_{(-,\sigma_1,\ldots,\sigma_n)}}(x,y) &=
   \frac1{2\mu}\Int{z}{\Eto{-\mu\Abs{x-y}}f_\lambda(z) k_{R_\sigma}(z,y)}.
 \end{align}
@@ -165,67 +164,66 @@ for the whole section. We have
 We can now express, by use of $R_\theta = R_- + R_+$, $R_\delta$ in the
 following way:
 \begin{align}
-  R_\delta = \sum_{j=0}^\infty (-1)^j \psi(x) \sum_{\sigma\in\{+,-\}^{j+1}}
-  R_\sigma \phi(x)
+  R_\delta = \sum_{j=0}^\infty (-1)^j \psi(x)
+  \ \sum_{\mathclap{\sigma\in\{+,-\}^{j+1}}} R_\sigma \phi(x)
 \end{align}
 The two last results we have to cite are the fact, that terms with $\sigma =
 (-,\ldots,-)$ don't contribute to the asymptotics, thus we can rewrite the
 formula as
-\begin{align}
-  R^{(j)} &= (-1)^j \sum_{ \substack{ \sigma\in\{+,-\}^{j+1} \\
-  \sigma\neq(-,\ldots,-) } } \psi R_\sigma \phi \\
-  \Rightarrow R^0_\delta &= \sum_{j=0}^\infty R^{(j)}.
-\end{align}
-
-Finally, the following theorem (\cite[Prop 2.2]{LV13}) will be central to the
+\begin{equation}
+  R^{(j)} = (-1)^j \sum_{\mathclap{\substack{ \sigma\in\{+,-\}^{j+1} \\
+  \sigma\neq(-,\ldots,-) }}} \psi R_\sigma \phi
+  \quad \Rightarrow \quad R^0_\delta =
+  \sum_{j=0}^\infty R^{(j)},
+\end{equation}
+and the following theorem (\cite[Prop.~2.2]{LV13}), that will be central to the
 further considerations:
 \begin{Theorem}
   \label{thm:r-expansion}
   Let $M\in\mathbb{N}$, $\alpha,\beta\in\mathbb{N}_0$ be fixed. For $\mu_0$
   sufficiently large there exist constants $C>0$, $q\in(0,1)$ such that for
   $N\geq M$ and $\mu \geq \mu_0$
-  \begin{align}
+  \begin{equation*}
     \Norm[\mathrm{tr}]{\partial_\lambda^\alpha\partial^\beta_z R^{(N)}}
     \leq CNq^{N-M}\mu^{-M-\alpha-\beta-3/2}
-  \end{align}
+  \end{equation*}
   and thus for $\mu\to\infty$
-  \begin{align}
+  \begin{equation*}
     \Norm[\mathrm{tr}]{\partial^\alpha_\lambda\partial^\beta_z\sum_{j=M}^\infty
     R^{(j)}} = O(\mu^{-M-\alpha-\beta-3/2}),
-  \end{align}
+  \end{equation*}
   where $\|\cdot\|_{\mathrm{tr}}$ denotes the trace norm
-  ($\|A\|_\mathrm{tr} = \Tr(A^*A) = \Tr\Abs{A}$).
+  ($\|A\|_\mathrm{tr} = \Tr\bigl((A^*A)^{1/2}\bigr) = \Tr\Abs{A}$).
 \end{Theorem}
-This tells us, that, since we are aiming to find the asymptotics up to order 2
+This tells us that since we are aiming to find the asymptotics up to order $2$
 we need to consider $R^{(j)}$ up to $j=1$, since already the trace of $R^{(2)}$
 is $O(\mu^{-7/2})$, i.e.\ $o(\mu^{-3})$.
 
 \subsection{Calculations}
 Equipped with the definitions and theorems of the preceding subsection we can
-explicitly calculate the asymptotics of the resolvent-trace, which we will do
+explicitly calculate the asymptotics of the resolvent trace, which we will do
 now for $x=0$. The case $x=1$ is identical to this one if we employ the
 transformation $x\mapsto 1-x$, which results in a sign change for odd
 derivatives of $f_\lambda(x)$, and of course evaluation at $x=1$ instead of $0$.
-
 From the above considerations we know that we will have to calculate the
 asymptotics of $3$ traces.
 
-In the following calculations we define analogous to $R$ the factor
-\begin{align}
+In the following calculations we define analogous to $R_\sigma$ the factor
+\begin{equation}
   C_{(\sigma_1,\ldots,\sigma_n)} := (-1)^{n+1}\Bigl(\frac{1}{2\mu}\Bigr)^n
   \prod_{ \substack{ 1\le i \le n \\ \sigma_i = - }} C(\mu,\theta).
-\end{align}
-If $c$ is the count of minuses in $\sigma$, then we can see that
+\end{equation}
+For $c$ being the count of minuses in $\sigma$ we can see that
 $\lim_{\mu\to\infty} C_\sigma = (-1)^{n+c+1} (2\mu)^{-n}$, since $C(\mu,\theta)
 \to -1$. For $\theta = \pi$ we'd get a different result here, namely $C_\sigma
-\to (-1)^{n+1}(2\mu)^{-n}$ since $C(\mu,\theta)\to +1$.
+\to (-1)^{n+1}(2\mu)^{-n}$ since $C(\mu,\pi)\to +1$.
 
 The calculation of all terms with $\sigma=(+,\ldots,+)\in\{-,+\}^j$ is
 straightforward:
-\begin{align*}
-  \newtag
+\begin{equation}
   \label{frm:r-plusplus}
-  \Tr R_{+\ldots+} &=
+  \begin{split}
+    \Tr R_{+\ldots+} &=
     C_{+\ldots+}
     \Int{x}{\left(
       \Integ{[0,1]^{j-1}}{z}{
@@ -234,29 +232,30 @@ straightforward:
       }\right)
     } \\
     &= C_{+\ldots+}
-      \Int{x}{\Eto{-2\mu x}} \left(\Int{z}{\Eto{-2\mu
-      z}f_\lambda(z)}\right)^{j-1} \\
+    \Int{x}{\Eto{-2\mu x}} \left(\Int{z}{\Eto{-2\mu
+    z}f_\lambda(z)}\right)^{j-1} \\
     &= C_{+\ldots+}
-      \left(\frac1{2\mu} - \frac{\Eto{-2\mu}}{2\mu}\right)
-      \left(\Int{z}{\Eto{-2\mu z}f_\lambda(z)}\right)^{j-1} \\
-      &\SimMu (-2\mu)^{-j-1}
-      \left(\Wsum{f_\lambda^{(n)}}\right)^{j-1} = (-1)^{j-1} (2\mu)^{-2j}
-      \left(\sum_{n=0}^\infty\frac{f_\lambda^{(n)}(0)}{(2\mu)^n}\right)^{j-1}.
-\end{align*}
-The last transformation uses Watson's lemma as well as the fact, that we can
+    \left(\frac1{2\mu} - \frac{\Eto{-2\mu}}{2\mu}\right)
+    \left(\Int{z}{\Eto{-2\mu z}f_\lambda(z)}\right)^{j-1} \\
+    &\SimMu (-2\mu)^{-j-1}
+    \left(\Wsum{f_\lambda^{(n)}}\right)^{j-1} = (-1)^{j-1} (2\mu)^{-2j}
+    \left(\sum_{n=0}^\infty\frac{f_\lambda^{(n)}(0)}{(2\mu)^n}\right)^{j-1}.
+  \end{split}
+\end{equation}
+The last transformation uses Watson's lemma as well as the fact that we can
 apply it simultaneously to multiple integrals to determine the common
 asymptotics, which is ensured by the finiteness of $F(x) =
-\Int{x}{\Eto{-tx}f(t)}$.
+\Int{x}{\Eto{-tx}f(t)}$ using \cref{lem:continuity_of_watson_integrals}.
 
 From this calculation we immediately get the first term we were looking for:
-\begin{align}
+\begin{equation}
   \label{eqn:tr1}
   \Tr R^{(1)} = \Tr R_+ \SimAs{\mu\to\infty} (2\mu)^{-2}
-\end{align}
+\end{equation}
 
-For higher $j$ terms we need to employ both Watson's Lemma and our integration
-formula. The process (which can also be used for higher orders) is always the
-same:
+For higher $j$ terms we need to employ both Watson's lemma and our triangle
+integration formula (\cref{lem:triangle-integration}). The process (which can
+also be used for higher orders) is the following:
 \begin{enumerate}
   \item Write down the whole integral with one large exponential
   \item Combine all terms that appear trivially in the exponent (i.e. not in the
@@ -274,11 +273,10 @@ expansion. To get an actual coefficient from that we use combinatorics (we could
 of course just combine the sum using the Cauchy product formula, but that will
 just result in a much more complicated term).
 
-From \eqref{frm:r-plusplus} we know, that 
-\begin{align*}
-  \Tr R_{++} = -(2\mu)^{-4}\sum_{n=0}^\infty
-  \frac{f^{(n)}_\lambda(0)}{(2\mu)^n},
-\end{align*}
+From \cref{frm:r-plusplus} we know, that 
+\begin{equation*}
+  \Tr R_{++} = -(2\mu)^{-4}\sum_{n=0}^\infty \frac{f^{(n)}_\lambda(0)}{(2\mu)^n},
+\end{equation*}
 leading to two contributions. Now we only need to calculate $\Tr R_{+-}$ for
 $j=1$, since $\Tr R_{+-} = \Tr R_{-+}$:
 \begin{align*}
@@ -316,32 +314,28 @@ since $F_\lambda(0) = 0$. We also used the identity $(xf(x))^{(n)} = xf^{(n)}(x)
 evaluate at $0$) as well as the triangle integration
 (\thref{lem:triangle-integration}) with $g \equiv 1$.  For the symmetry reasons
 given above this is also the asymptotics of $\Tr R_{-+}$, so we have:
-\begin{align*}
-  \newtag
+\begin{equation}
   \label{eqn:tr2}
-  \Tr R^{(2)} &\SimAs{\mu\to\infty} (2\mu)^{-4}
-  \sum_{n=0}^\infty \frac{2(n+2)f_\lambda^{(n)}(0) - f^{(n)}_\lambda(0)}{(2\mu)^n} \\
-  &= (2\mu)^{-4} \sum_{n=0}^\infty \frac{(2n + 3)f_\lambda^{(n)}(0)}{(2\mu)^n}
-\end{align*}
+  \begin{split}
+    \Tr R^{(2)} &\SimAs{\mu\to\infty} (2\mu)^{-4} \sum_{n=0}^\infty
+  \frac{2(n+2)f_\lambda^{(n)}(0) - f^{(n)}_\lambda(0)}{(2\mu)^n} \\ &=
+    (2\mu)^{-4} \sum_{n=0}^\infty \frac{(2n + 3)f_\lambda^{(n)}(0)}{(2\mu)^n}
+  \end{split}
+\end{equation}
 Now that we have calculated $\Tr R^{(1)}$ and $\Tr R^{(2)}$ we only need to sum
 them up and match coefficients to get the first three terms in the asymptotic
 expansion of $\Tr(\Delta_\lambda + z^2)^{-1}$. In particular we have to deal
-with the fact, that $f_\lambda(x) = \lambda^2 V_\psi(x) + W_\psi(x)$ is of mixed
+with the fact that $f_\lambda(x) = \lambda^2 V_\psi(x) + W_\psi(x)$ is of mixed
 order.  Furthermore we note that, as it was for the interior parametrix, the
 coefficients of the trace expansion are again a homogeneous polynomial in $V$,
 $W$ and their respective derivatives, which will be proven in the next section.
-Different from the interior parametrix, the half-integral orders are not 0 by
-construction, but the first one indeed is because $\Tr R^{(1)}$ only contributes
-to $(\Tr R)_{-2}$ while all other $\Tr R^{(j)}$ also contribute to higher terms.
+In contrast to the interior parametrix the even integral orders do not vanish by
+construction. Also the starting order is $-2$ instead of $-1$.
 
 We get the following three terms of the asymptotic expansion of $\Tr R$:
-% TODO: Eigentlich sind alle Ordnungen ganzzahlig, da der Parameter quadratisch
-%       ist. Passt auch von den Formeln. Nur seltsam, dass Tr R_{-1} nicht
-%       vorkommt.
 \begin{align}
   (\Tr R)_{-2} &= \frac{1}{4\mu^2} = \frac{1}{4} (\lambda^2V(0) + z^2)^{-1} \\
-  (\Tr R)_{-5/2} &= 0 \\
-    (\Tr R)_{-3} &= \frac{5\lambda^2}{(2\mu)^5} V'(0) =
+  (\Tr R)_{-3} &= \frac{5\lambda^2}{(2\mu)^5} V'(0) =
   \frac{5}{32}\frac{\lambda^2 V'(0)}{(\lambda^2 V(0) + z^2)^{5/2}}
 \end{align}
 
@@ -353,16 +347,16 @@ We have thus proven the following theorem
     \label{cor:boundary}
     Using the previous definitions we also get the expansion near $1$ by
     considering a new cutoff function $\psi$ on $(0,1]$ that is $0$ outside of a
-    sufficiently small neighbourhood of $x=1$.
-    \begin{align*}
-      \Tr(\psi(x)(\Delta_\lambda + z^2)^{-1}) \SimMu
+    sufficiently small neighbourhood of $x=1$:
+    \begin{equation*}
+      \Tr\left(\psi(x)(\Delta_\lambda + z^2)^{-1}\right) \SimMu
       \frac{1}{(2\mu)^2} - \frac{5\lambda^2}{(2\mu)^5} V'(1) + O(\mu^{-4})
-    \end{align*}
+    \end{equation*}
     \begin{Proof}
       Apply \thref{main:boundary} to the operator
-      \begin{align*}
+      \begin{equation*}
         \tilde\Delta_\lambda = \Delta_\lambda\circ(x\mapsto 1-x).
-      \end{align*}
+      \end{equation*}
       That way all analytical properties are kept, but $\partial_x^n|_{x=0}
       \mapsto (-1)^n \partial_x^n|_{x=1}$, so a sign is introduced for odd
       derivatives and we evaluate at $x=1$.

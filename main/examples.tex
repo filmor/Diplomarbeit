@@ -19,7 +19,7 @@ following sketch:
   \draw[->,semithick] (0,0) -- (0,2.5);
   % z-Achse
   % TODO
-  \draw[->,semithick] (0,0) -- (-0.5,-0.333);
+  \draw[->,semithick] (0,0) -- (-0.8,-0.5);
 	\draw (0,-0.5) node {$0$};
   \draw (-0.5,2) node {$1$};
 	\draw (4,-0.5) node {$1$};
@@ -27,27 +27,29 @@ following sketch:
 \end{center}
 We first calculate $V$ and $W$ from the given $f$ and then evaluate the
 $x$-integral left in the formula of the error term:
-\begin{align}
-  f(x) &:= x + \epsilon \\
-  V(x) &= (x + \epsilon)^{-2} \\
-  W(x) &= -\frac 2 V(x)
-\end{align}
+\begin{equation}
+  \begin{split}
+    f(x) &:= x + \epsilon \\
+    V(x) &= (x + \epsilon)^{-2} \\
+    W(x) &= -\frac 2{V(x)}
+  \end{split}
+\end{equation}
 The contributions at the boundaries can be read off immediately, since we don't
 need to integrate there. At $x=0$ we have
-\begin{align}
+\begin{equation}
   \label{res:boundary0}
   -\frac{5}{48}(2\log(2\epsilon^{-2}) - 1),
-\end{align}
+\end{equation}
 at $x=1$ we get
-\begin{align*}
+\begin{equation}
   \label{res:boundary1}
   \frac{5}{48}(2\log(2(\epsilon + 1)^{-2}) -1).
-\end{align*}
+\end{equation}
 In the naive limit $\epsilon\to0$ we get the following contribution from the
 boundary:
-\begin{align*}
+\begin{equation*}
   \frac{5}{48}(1-2\log(2))
-\end{align*}
+\end{equation*}
 The terms of the interior parametrix can be dealt with using the method
 described in the main part of this section (or using a CAS) and we get the
 following result for the error term (where the boundary contributions have
@@ -65,8 +67,8 @@ already been added):
   -\frac{193}{3600}.
 \end{align}
 For completeness' sake we evaluate again the naive limit $\epsilon\to0$ to be
-\begin{align*}
+\begin{equation}
   -\frac{13\log(2)}{40}-\frac{193}{3600} \approx -0.28.
-\end{align*}
+\end{equation}
 This result could be compared with a more careful approach to evaluate the error
 term for a cone.

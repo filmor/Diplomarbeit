@@ -14,7 +14,7 @@ called (upper) incomplete gamma function, defined by the integral
 for which we will now prove the following lemma:
 \begin{Lemma}
   \label{lem:incomplete-gamma}
-  Let $n\in\mathbb{N_0}$, $k\in\mathbb{R}$. Then the following formula holds:
+  Let $n\in\mathbb{N}_0$, $k\in\mathbb{R}$. Then the following formula holds:
   \begin{align}
     \Gamma(n+1, b) = \Integ[b]{\infty}{t}{\Eto{-t} t^n} = n!\ \Eto{-b}\sum_{m=0}^n
     \frac{b^m}{m!}
@@ -78,8 +78,8 @@ thesis we use two specific representations of the beta function, namely
     \label{frm:beta_rep2}
 \end{align}
 
-We can derive Formula~\ref{frm:beta_rep2} easily by substituting $t \mapsto
-\frac{t'}{1+t'}$. Formula \ref{frm:beta_rep1} is a bit more subtle:
+We can derive \cref{frm:beta_rep2} easily by substituting $t \mapsto
+\frac{t'}{1+t'}$. \Cref{frm:beta_rep1} is a bit more subtle:
 \begin{align*}
     \Gamma(x) \Gamma(y) &= \Integ[\infty]{0}{t_1}{\Eto{-t_1}t_1^{x-1}}
                            \Integ[\infty]{0}{t_2}{\Eto{-t_2}t_2^{y-1}} \\
@@ -93,9 +93,7 @@ We can derive Formula~\ref{frm:beta_rep2} easily by substituting $t \mapsto
             \Eto{-z}(zt)^{x-1}(z(1-t))^{y-1}z
             }
         } \\
-        &= \Integ[\infty]{0}{z}{
-            \Eto{-z}z^{x+y-1}
-            }
+        &= \Integ[\infty]{0}{z}{ \Eto{-z}z^{x+y-1} }
             \Integ[1]{0}{t}{t^{x-1}(1-t)^{y-1}} \\
     \Leftrightarrow \Gamma(x)\Gamma(y) &= \Gamma(x+y)B(x,y)
 \end{align*}
