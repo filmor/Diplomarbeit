@@ -1,5 +1,5 @@
 \subsection{Rationality of the homogeneous components}
-We have seen in the preceding subsection that like in the interior case the
+We have seen in the preceding subsection that, like in the interior case, the
 first homogeneous components of the multi-parametric expansion of
 $\Tr(\Delta_\lambda + z^2)^{-1}$ are rational functions in $V$, $W$ and their
 derivatives at $x = 0$. We want to prove that this also holds for all higher
@@ -7,7 +7,7 @@ orders in the asymptotic expansion. In particular we want to show, that we
 always get a polynomial that is divided by integral powers of $\mu = \lambda^2
 V(0) + W(0)$.
 
-We know, that $f_\lambda$ is analytic in $x$ near the boundary since it is a
+We know that $f_\lambda$ is analytic in $x$ near the boundary since it is a
 composition of the analytic functions $V$ and $W$, thus we can write with
 $N\in\mathbb{N}$ and $\xi\in(0,1)$
 \begin{align*}
@@ -15,13 +15,11 @@ $N\in\mathbb{N}$ and $\xi\in(0,1)$
   \text{ with} \\ R_N(x) &= \frac{f^{(N)}(\xi)}{N!} x^{N}.
 \end{align*}
 It thus suffices to show that if we substitute each $f_\lambda$ in the
-convolution of our kernels by a function $x^{n}$ for some $n\in\mathbb{N}$ (that
+concatenation of our kernels by a function $x^n$ for some $n\in\mathbb{N}$ (that
 may be different for each substitution) we end up with a finite asymptotic sum.
 We will do this recursively by looking at suitable generalisations of the
-kernels.
-
-Essentially, after splitting up the integrals, we will just evaluate the
-them directly for $k=0$ and use the following formula otherwise, making use
+kernels. Essentially, after splitting up the integrals, we will just evaluate
+the them directly for $k=0$ and use the following formula otherwise, making use
 of $n\in\mathbb{N}$,
 \begin{equation}
   \Integ[b]{a}{x}{\Eto{-\mu kx}x^n}
@@ -47,18 +45,18 @@ deal with the special case of $a = 0$ or $b = 0$.
 % +- und ++ reichen aus, weil wir herumtauschen können
 The integral part of the proof are the following calculations, that aim to
 describe how the kernels behave on concatenation, i.e.\ we want to investigate
-the kernels (see \cref{eqn:kernel-plus,eqn:kernel-minus})
+the kernels (cf.\ \cref{eqn:kernel-plus,eqn:kernel-minus})
 \begin{align*}
-  k_{++} &= \Int{x}{\Eto{-\mu((a + x) + (x + b))}f_\lambda(x)} \\
+  k_{++} &= \Int{x}{\Eto{-\mu((a + x) + (x + b))}f_\lambda(x)} \text{ and}\\
   k_{+-} &= \Int{x}{\Eto{-\mu((a + x) + \Abs{x - b})}f_\lambda(x)}
 \end{align*}
 It will suffice to use a Taylor polynomial of $f_\lambda(x)$, since we can
 estimate the $\mu$-order of all combinations involving the residue term $R$ in
-the same way as we estimate the interesting terms. The proof idea is to show
-that if we start with $R_+$ all kernel concatenations in the given manner that
-we apply from the right result in a kernel of the form $\Eto{-\mu(a+b)}p(b)$ for
-some polynomial $p$ and is thus again similar to $R_+$. All terms that are not
-of this form do not contribute to the final asymptotic expansion.
+the same way as we estimate the interesting terms. The ansatz is to show that if
+we start with $R_+$ all kernel concatenations that we apply from the right
+result in a kernel of the form $\Eto{-\mu(a+b)}p(b)$ for some polynomial $p$ and
+is thus again similar to $R_+$. All terms that are not of this form do not
+contribute to the final asymptotic expansion.
 \begin{Lemma}
   \label{lem:asymp-1}
   For all $n\in\mathbb{N}_0$, $a,b\in[0,1]$ and $\mu\in\mathbb{R}$ we
@@ -149,7 +147,7 @@ our last Main Theorem:
     substitution $x\mapsto 1 - x$.
   \end{Remark}
   \begin{Remark}
-    We see, that $\ord$ is shifted by 1 in comparison to the interior
+    We see, that $\ord$ is shifted by $1$ in comparison to the interior
     parametrix. However we will already have evaluated the trace integral for
     the boundary terms, and it seems logical that if differentiating by $x$
     raises the order by $1$, integration should lower it by 1, giving the same
@@ -158,75 +156,97 @@ our last Main Theorem:
   \end{Remark}
   \begin{Proof}
     We will reuse our $R_\sigma$-notation and derive the $\mu$- as well as the
-    $V$/$W$-order ($\ord$) of $\Tr R_\sigma$.
+    $V$/$W$-order ($\ord$) of $\Tr R_\sigma$. To simplify notation in the
+    following exposition we also define for $n\in\mathbb{Z}$ and
+    $C\in\mathbb{C}$
+    \begin{equation}
+      \ord_\mu C\mu^n := n
+    \end{equation}
+    and for $A$ being a polynomial in two parameters $a$,$b$
+    \begin{equation}
+      \ord_x A(a,b) := \deg A.
+    \end{equation}
+    The idea is to show that first of all with every concatenation of a kernel
+    the overall $\mu$-order of the corresponding trace increases and that this
+    increase directly depends directly on the differentiation order.
 
-    First let us consider a result term as it appears in \thref{lem:asymp-1},
-    $\Eto{-\mu(a+b)}H^n_2(b)$. If we evaluate the asymptotics of the trace of
-    such a term applying Watson's Lemma on the monomials we get (setting $a = b
-    =: x$)
-    \begin{align*}
-      \Int{x}{\Eto{-2\mu x}H^n_2(x)}
-      &= -n!\sum_{m=0}^n \frac{\Int{x}{\Eto{-2\mu x} x^m}}{m!(2\mu)^{n+1-m}} \\
-      &\SimMu -n!\sum_{m=0}^n \frac{m! / (2\mu)^{m+1}}{m!(2\mu)^{n+1-m}}
-      = -n!\sum_{m=0}^n \frac{1}{(2\mu)^{n+2}} = -\frac{(n+1)!}{(2\mu)^{n+2}}
-    \end{align*}
-    Coincidentally this is exactly the same contribution that $-x^{n+1}$ would
-    give, i.e.
-    \begin{equation*}
-      \Int{x}{\Eto{-2\mu x}H^n_2(x)} \SimMu -\Int{x}{\Eto{-2\mu x}x^{n+1}}.
-    \end{equation*}
-    Since also $H^n_2(0) = -n!\ 0^0 / (2\mu)^{n+1} = -n! (2\mu)^{-n-1}$ and thus
-    \begin{equation*}
-      \Int{x}{\Eto{-2\mu x}H^n_2(0)} \SimMu -n! (2\mu)^{-n-2},
-    \end{equation*}
-    all terms (apart from the $\Eto{-\mu(a-b)}$ that we are dealing with at the
-    end of the proof) coming from $x^n$ have the same definite $\mu$-order.
+    The final $\mu$-order of the trace of a term in the kernel $A(a,b) :=
+    (2\mu)^{-m}\Eto{-\mu(a+b)}b^n$ (i.e.\ $\ord_x A = n$ and $\ord_\mu A = m$) can
+    be calculated using Watson's lemma to be
+    \begin{equation}
+      \Int{x}{A(x,x)} = (2\mu)^{-m}\Int{x}{\Eto{-2\mu x}x^n} \SimMu
+      \frac{n!}{(2\mu)^{n+m+1}} = O(\mu^{n+m+1}).
+    \end{equation}
+    To find the final $\mu$-order of a term we thus have to keep track of
+    $\ord_x - \ord_\mu$ for all of its summands.
 
-    % Den Prozess genauer erklären, wir schieben x^n dazwischen, das hebt aber
-    % nur die Gesamtordnung
-    The process can be iterated, if $\sigma_1 = +$ we can contract all following
-    kernel concatenations to $\Eto{-\mu(a+b)} P(x)$ for some polynomial $P$ that
-    by construction still has the property, that $\mu$-order and $x$-order add
-    up, where the common sum 
+    Now let $\sigma\in\{+,-\}^j$ for $j\in\mathbb{N}$ with $\sigma_1 = +$. In
+    each kernel concatenation we choose one summand of the Taylor polynomial of
+    $f_\lambda$ and see how the difference $\ord_x - \ord_\mu$ behaves.
+    Independent of the actual concatenation we get an additional
+    $(2\mu)^{-1}$-term from the prefactor $C_\sigma$ which lowers $\ord_\mu$ by
+    $1$. Now we choose a term in the Taylor polynomial of $f_\lambda$ of
+    differentiation order $n$, i.e.\ 
+    \begin{equation*}
+      \frac{\lambda^2 V^{(n)}(0)}{n!} x^n \quad \text{ or } \quad
+      \frac{W^{(n)}(0)}{n!}x^n.
+    \end{equation*}
+    In the first case the choice alone raises $\ord_\mu$ of the result by $2$
+    because of the $\lambda^2$ in the numerator. The behaviour of the
+    concatenation can be read of from \cref{lem:asymp-1}:
+    
+    If we are in the i$^{\text{th}}$ concatenation and $\sigma_i = +$ we refer to
+    \cref{eqn:poly-1}. We ignore all $\Eto{-2\mu}$-terms for now, we will show
+    later that they don't contribute. The introduced factor to $\Eto{-\mu(a+b)}$
+    is $H^n_2(0)$ in this case which is
+    \begin{equation*}
+      H^n_2(0) = n! \sum_{m=0}^n \frac{0^m}{m!(2\mu)^{n+1-m}} =
+      \frac{n!}{(2\mu)^{n+1}},
+    \end{equation*}
+    thus this lowers $\ord_\mu$ by $n+1$ and leaves $\ord_x$ unchanged.
 
-    We see that the $x$-order and the $\mu$-order add up in the trace
-    evaluation, i.e.\ $x^n \mapsto \mu^{-(n+1)}$. Since every term in the Taylor
-    expansion of $f_\lambda$ is of the form $x^n f^{(n)}_\lambda(0)$ each
-    derivative lowers the $\mu$-order by 1, which establishes the relative
-    connection of the $\mu$-order and $\ord$. To verify the absolute order we
-    observe, that for $V$ only terms of higher derivation order than $1$ occur
-    since we are actually using $\tilde V(x) = V(x) - V(0)$. Also every kernel
-    concatenation is accompanied by an additional $(2\mu)^{-1}$ from $C_\sigma$,
-    thus the final $\mu$-order of a contribution of $\lambda^2 V^{(n)}(0)$ is
+    For $\sigma_i = -$ we get from \cref{eqn:poly-2} that the contribution is a
+    bit more complicated, in this case the two factors to $\Eto{-\mu(a+b)}$ are
+    $\frac{b^{n+1}}{n+1}$, which raises $\ord_x$ by $n+1$, and
     \begin{equation*}
-      (2\mu)^{-1} x^n \lambda^2 V^{(n)}(0) \mapsto O(\mu^{-1-(n+1)+2}) =
-      O(\mu^{-n})
+      H^n_2(b) = n! \sum_{m=0}^n \frac{b^m}{m!(2\mu)^{n+1-m}}
     \end{equation*}
-    For $W$ we get nearly the same, but $W(0)$ may appear and the order is not
-    modified by a $\lambda^2$-factor, thus we have
-    \begin{equation*}
-      (2\mu)^{-1} x^n W^{(n)}(0) \mapsto O(\mu^{-1-(n+1)}) = O(\mu^{-(n+2)})
-    \end{equation*}
-    Combining all those facts we see, that 
+    for which each summand has $\ord_x - \ord_\mu = n+1$.
+
+    Thus we see that on each kernel concatenation we have the following overall
+    behaviour of the difference $\ord_x - \ord_\mu$: 
     \begin{enumerate}
-      \item We start with a $\mu$-order of -1
-      \item Each $\lambda^2 V^{(n)}(0)$-term lowers the $\mu$-order by $n$ and
-        appears only with $n > 0$
-      \item Each $W^{(n)}(0)$-term lowers the $\mu$-order by $n+2$
+      \item The concatenation as such lowers the difference by $1$ from the
+        prefactor
+      \item Each $W^{(n)}(0)$-term lowers the difference by $n+1$
+      \item Each $\lambda^2 V^{(n)}(0)$-term lowers the difference by $n-1$ and
+        appears only with $n > 0$ (i.e.\ it never raises the difference)
     \end{enumerate}
-    Since those are the only options we have in each concatenation step we see,
-    that the final $\mu$-order of $\Tr R_\sigma$ is at most minus the length of
-    the tuple $\sigma$ minus 1 ($-\#{\sigma}-1$), which is always choosing
-    $\lambda^2 V'(0)$. Since we have shown that every $\Tr R_\sigma$ contributes
-    to only a finite number of homogeneous components and the contributions are
-    polynomials in $V$, $W$ and their derivatives with the given order relation
-    we have proven the statement as well as the remark as long as all
-    contributions stem from the $\Eto{-\mu(a+b)}H^n_2(x)$-terms.
+    Combining the last two with the first one we finally have
+    \begin{enumerate}
+      \item Each $W^{(n)}(0)$-term lowers the difference by $n+2$
+      \item Each $\lambda^2 V^{(n)}(0)$-term lowers the difference by $n$ and
+        appears only with $n > 0$
+    \end{enumerate}
+    Now we only need to note that we start of with a term of $(2\mu)^{-1}$,
+    i.e.\ we begin with $\ord_x = 0$ and $\ord_\mu = -1$ and take into account
+    that the trace evaluation subtracts another $1$ of the $\mu$-order to see
+    that we have (for the case $\sigma_1 = +$) proven the claim that each term
+    $A$ in the final asymptotic expansion of $\mu$-order $-n$ has $\ord A = n -
+    2$.
 
-    The contributions of the $\Eto{-\mu(a-b)}$-term in \cref{eqn:poly-1} are
-    completely damped away by the accompanying $\Eto{-2\mu}$ factor. This also
-    doesn't change in the iteration of the process, as proven in
-    \thref{lem:asymp-2}.
+    To cover the cases with $\sigma_1 = -$ we note that there is always
+    $i\in\mathbb{N}$ such that $\sigma_i = +$. We can thus start of the whole
+    process described before from one such $i$ which will leave us with a term
+    of the form $\Eto{-\mu(a+b)}P(b)$ at the end of the concatenation chain. We
+    can then turn the integral around symbolically and employ the same process
+    as before. Note that we have of course count all parameters appearing in the
+    polynomial into $\ord_x$.
+
+    The contributions of the $\Eto{-\mu(a-b)}$-terms in
+    \cref{eqn:poly-1,eqn:poly-2} are completely damped away by the accompanying
+    $\Eto{-2\mu}$ factor. This also doesn't change in the iteration of the
+    process, as proven in \thref{lem:asymp-2}.
   \end{Proof}
 \end{MainTheorem}
 The constructive part of the proof, together with \thref{lem:asymp-1}, can
