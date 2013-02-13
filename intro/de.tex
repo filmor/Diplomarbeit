@@ -14,13 +14,13 @@ der direkten Summe der Eigenräume ($\times[0,1]$) geschrieben wird (siehe
 \cref{sec:laplace-beltrami}).
 %
 Die enstehenden Operatoren sind Sturm-Liouville-Operatoren mit einem Parameter
-$\lambda$ und lassen sich also für Funktionen $V,W\in\Cinf{[0,1]}$ mit $V > 0$
+$\lambda$, lassen sich also für Funktionen $V,W\in\Cinf{[0,1]}$ mit $V > 0$
 und $W > 0$ schreiben als
 \begin{equation*}
   (\Delta_\lambda u)(x) = -u''(x) + \lambda^2 V(x) u(x) + W(x) u(x).
 \end{equation*}
 Für den Fall des Laplace-Beltrami-Operators auf einer von einer Funktion
-$f\in\Cinf([0,1])$ mit $f>0$ erzeugten Rotationsfläche sind $V$ und $W$ gegeben
+$f\in\Cinf{[0,1]}$ mit $f>0$ erzeugten Rotationsfläche sind $V$ und $W$ gegeben
 als
 \begin{align*}
   V(x) &= \frac1{f(x)^2}, \\
@@ -36,7 +36,7 @@ als
   \log\zdet \Delta = {} & {-\zeta'}(0,\Delta) \text{ durch meromorphe
 Fortsetzung},
 \end{align*}
-in gewisser Weise als (regularisierte) Summe der Zetadeterminanten der Summanden
+in gewisser Weise als regularisierte Summe der Zetadeterminanten der Summanden
 zuzüglich eines Fehlerterms schreiben lässt:
 \begin{align*}
   \label[equation]{eqn:intro-de-lvformel}
@@ -60,13 +60,14 @@ Operator
 ist nun ein \emph{multiparametrischer Sturm-Liouville-Operator}. Ist $h(\lambda,
 z)$ der Term der Homogenitätsordnung $-5$ der gemeinsamen asymptotischen
 Entwicklung in $(\lambda,z)$ der Spur $\Tr A_{\lambda,z}^{-2}$, so ist
-$h(1,\cdot)\log(\cdot)\in L^1(0,\infty)$ und es gilt für den Fehlerterm:
+$h(1,\,\cdot\,)\log(\,\cdot\,)\in L^1(0,\infty)$ und es gilt für den Fehlerterm:
 \begin{align*}
   C = \Integ[\infty]{0}{\lambda}{h(1,\lambda)\log\lambda}
 \end{align*}
 Um diesen berechnen zu können wird das asymptotische Verhalten des
-Resolventenkerns $k_{(\Delta_\lambda + z^2)^{-1}}$ sowohl im Inneren, also auf dem
-Intervall $(0,1)$, als auch an den Rändern $0$ und $1$ untersucht.
+Resolventenkerns des Operators $k_{(\Delta_\lambda + z^2)^{-1}}$ sowohl im
+Inneren, also auf dem Intervall $(0,1)$, als auch an den Rändern $0$ und $1$
+untersucht.
 
 Da wir hierfür die Parametrix (also $(\Delta_\lambda + z^2)^{-1}$ statt
 $(\Delta_\lambda + z^2)^{-2}$) betrachten benötigen wir den Term der
@@ -89,15 +90,14 @@ auch in $V$, $W$ und deren Ableitungen aufweisen:
 \begin{Hauptsatz}[Homogenität im Inneren]
   \input{snippets/homogeneity-interior}
 \end{Hauptsatz}
-
 Am Rand wird der Operator zunächst mit einem Neumannreihenargument in
 einfachere Operatoren zerlegt. Die Asymptotik dieser Operatoren lässt sich so nach
 oben abschätzen, dass, um den Term $-5$ter Ordnung zu finden, letztlich die
 Asymptotik von endlich vielen (um genau zu sein 3) dieser einfacheren Operatoren
 bestimmt werden muss. Dazu wird die Asymptotik der Spur mithilfe der sehr
 einfachen Asymptotik exponentieller Integrale ($F(x) =
-\Integ[T]{0}{t}{\Eto{-tx}f(t)}$), bekannt als Watsons Lemma, bestimmt. Damit
-erhalten wir
+\Integ[T]{0}{t}{\Eto{-tx}f(t)}$), bekannt als Watsons Lemma, bestimmt. Wir
+erhalten daraus
 \begin{Hauptsatz}[Resolventenspur am Rand]
   \input{snippets/main-exterior}
 \end{Hauptsatz}

@@ -3,19 +3,21 @@ We will first motivate our investigation of the asymptotics of multi-parametric
 Sturm-Liouville operators by a formula given in \cite{LV13}, which we outline
 below. This formula can be used to represent the zeta determinant of an infinite
 direct sum of Sturm-Liouville operators by means of a regularised sum of the
-zeta determinants of the operators and an error term involving a homogeneous
-component of the asymptotic expansion of the direct sum operator.
+zeta determinants of the summed operators and an error term involving a
+homogeneous component of the asymptotic expansion of the resolvent of the summed
+up operators.
 
 We will first introduce the toy example of a surface of revolution, which indeed
 decomposes into an infinite sum of Sturm-Liouville operators, and then introduce
-the further notation needed to understand the formula, whose error term we aim
+the further notation needed to understand the formula whose error term we aim
 to calculate in the end.
 
-\subsection{Laplace-Beltrami operator on a surface of revolution}
+\subsection{Laplace-Beltrami Operator on a Surface of Revolution}
 \label{sec:laplace-beltrami}
 Let $M = [0,1]\times\Sphere{1}$ be a surface of revolution by use of the metric
-$g = \mathrm dx^2 \oplus f(x)^2 g_\Sphere{1}$ with $f\in \Cinf([0,1],
-\Rplus)$. The associated Laplace-Beltrami operator is given by
+$g = \mathrm dx^2 \oplus f(x)^2 g_\Sphere{1}$ with $f\in \Cinf([0,1], \Rplus)$
+and $g_\Sphere1$ being the standard metric on $\Sphere1$. The associated
+Laplace-Beltrami operator is given by
 \begin{align}
   \Delta = -\frac{\partial^2}{\partial x^2} -
             \frac{f'(x)}{f(x)}\frac{\partial}{\partial x} +
@@ -41,12 +43,11 @@ $L^2(\Sphere1)$ of eigenfunctions of $\Delta_\Sphere1$ to the eigenvalues
 $\lambda^2$, where the eigenvalues $\lambda^2 \neq 0$ have multiplicity 2 while
 $\lambda = 0$ has multiplicity 1. Hence we have the decomposition
 \begin{align}
-  % TODO Anständig formatieren
   \label{eqn:lpl-decomp}
-  \Phi\Delta\Phi^{-1} &= \bigoplus_{\lambda=-\infty}^{\infty} \Biggl(
+  \Phi\Delta\Phi^{-1} &= \bigoplus_{\lambda=-\infty}^{\infty} \left[
     -\frac{\partial^2}{\partial x^2} + \frac{\lambda^2}{f(x)^2} + 
      \left( \frac{f''(x)}{2f(x)} -
-     \left(\frac{f'(x)}{2f(x)}\right)^2\right)\Biggr)
+   \left(\frac{f'(x)}{2f(x)}\right)^2\right)\right]
      =: \bigoplus_{\lambda=0}^{\infty}\Delta_\lambda
 \end{align}
 into a direct sum of one-dimensional Sturm-Liouville operators $\Delta_\lambda$,
@@ -58,21 +59,21 @@ We consider separated Dirichlet or generalised Neumann boundary conditions for
 $\Delta$, where it is straight-forward to see that those also correspond to
 separated Dirichlet, resp.\ generalised Neumann boundary conditions for
 $\Phi\Delta\Phi^{-1}$ and that the resulting self-adjoint operator is compatible
-with the decomposition given in \cref{eqn:lpl-decomp}. Since $\Phi$ is unitary the transformed
-operator unitarily (and thus spectrally) equivalent to $\Delta$. We will denote
-the self-adjoint extensions of $\Delta$ and $\Delta_\lambda$ again by the same
-name. Since we are considering fixed boundary conditions this is not too
-ambiguous.
+with the decomposition given in \cref{eqn:lpl-decomp}. Since $\Phi$ is unitary
+the transformed operator is unitarily (and thus spectrally) equivalent to
+$\Delta$. We will denote the transformed self-adjoint extensions of $\Delta$ and
+$\Delta_\lambda$ again by the same name. Since we are considering fixed boundary
+conditions this is not too ambiguous.
 
 We will consider operators like $\Delta_\lambda$, where we will set
 \begin{align}
   \label{eqn:v-from-f}
-  V(x) &:= f(x)^{-2} \\
+  V(x) :={}& f(x)^{-2} \text{ and } \\
   \label{eqn:w-from-f}
-  W(x) &:= \frac{f''(x)}{2f(x)} - \left(\frac{f'(x)}{2f(x)}\right)^2 =
+  W(x) :={}& \frac{f''(x)}{2f(x)} - \left(\frac{f'(x)}{2f(x)}\right)^2 =
     \partial_x^2 \log\sqrt{f(x)} + \left(\partial_x \log\sqrt{f(x)}\right)^2 \\
   \label{eqn:d_lambda}
-  \text{thus}\quad \Delta_\lambda &= -\partial^2_x + \lambda^2 V(x) + W(x),
+  \text{thus}\quad \Delta_\lambda = {}& -\partial^2_x + \lambda^2 V(x) + W(x),
 \end{align}
 where the non-derivative terms as usual denote the multiplication operators
 $(M_\phi u)\colon x \mapsto \phi(x)u(x)$. We won't write this out, for example
@@ -112,7 +113,7 @@ asymptotic analysis based on \cite[Ch.1]{Miller2006}.
     O(x^{-n}).
   \end{align*}
 \end{Definition}
-Like in many other texts we will also use the Landau symbols in actual
+As done in many other texts we will also use the Landau symbols in actual
 calculations, however it is of note that this is only valid in finite sums, for
 all other calculations (in particular integrations) we have to be more careful.
 \begin{Definition}
@@ -149,7 +150,7 @@ $x\to\infty$. We define the \emph{regularised limit} for $x\to\infty$ as
 \begin{equation}
   \Reglim_{x\to\infty} f(x) := a_{00},
 \end{equation}
-i.e.\ as the constant part of the expansion.
+i.e.\ as the constant (or \emph{finite}) part of the expansion.
 
 If for some $N\in\mathbb{N}$ the remainder $(x\mapsto x^{-N}f_N(x))\in
 L^1[1,\infty)$, the integral $\Integ[R]{1}{x}{f(x)}$ does also admit an
@@ -167,8 +168,8 @@ In the special case that $f\in L^1[1,\infty)$ the regularised integral coincides
 with the usual Lebesgue integral of $f$ over $[1,\infty)$.
 
 Using this we can also give a meaningful definition of a \emph{regularised sum}
-over $f$. Given the Bernoulli numbers $B_j$ and the Bernoulli polynomials
-$B_j(x)$ consider the Euler-MacLaurin summation formula:
+over $f$. Given the Bernoulli numbers $B_j$, the Bernoulli polynomials
+$B_j(x)$ and $M\in\mathbb{N}$ consider the Euler-MacLaurin summation formula:
 \begin{equation}
   \label{eqn:euler-maclaurin}
   \begin{split}
@@ -221,53 +222,56 @@ The zeta function of an operator $\Delta_\lambda$ is defined for $\Re(s) > 0$
 sufficiently large by
 \begin{equation}
   \zeta(s,\Delta_\lambda) :=
-  \sum_{\mu\in\operatorname{spec}\Delta_\lambda\setminus\{0\}} m(\mu)\mu^{-s},
+  \sum_{\mathclap{\mu\in\operatorname{spec}\Delta_\lambda\setminus\{0\}}}
+  m(\mu)\mu^{-s},
 \end{equation}
 where $m(\mu)$ is the multiplicity of the eigenvalue $\mu > 0$. Using the
 identity % TODO: Ref dafür, in Les98 steht das zwar, aber nicht bewiesen :(
 \begin{equation}
   \label{frm:zeta-frm}
   \zeta(s,\Delta_s) = 2 \frac{\sin\pi
-  s}{\pi}\Regint[0]{z}{z^{1-2s}\Tr(\Delta_\lambda + z^2)^{-1}}
+  s}{\pi}\,\Regint[0]{z}{z^{1-2s}\Tr(\Delta_\lambda + z^2)^{-1}}
 \end{equation}
 one can derive a formula for $\log\zdet\Delta_\lambda =
 -\zeta'(0,\Delta_\lambda)$ (which is defined by the meromorphic extension to
 $\mathbb{C}$ of $\zeta$) for which $s=0$ is a regular point:
 \begin{align}
-  \log\zdet\Delta_\lambda = -2\Regint[0]{z}{z\Tr(\Delta_\lambda + z^2)^{-1}}
+  \log\zdet\Delta_\lambda = -2\,\Regint[0]{z}{z\Tr(\Delta_\lambda + z^2)^{-1}}
 \end{align}
 However since the resolvent $(\Delta + z^2)^{-1}$ is not trace class,
 $\zdet\Delta$ can not be defined in the exact same way. Integrating
 \cref{frm:zeta-frm} by parts we get
 \begin{equation*}
   \zeta(s,\Delta_\lambda) = 2\frac{\sin\pi
-  s}{\pi(1-s)}\Regint[0]{z}{z^{3-2s}\Tr(\Delta_\lambda + z^2)^{-2}},
+  s}{\pi(1-s)}\,\Regint[0]{z}{z^{3-2s}\Tr(\Delta_\lambda + z^2)^{-2}},
 \end{equation*}
 and thus
 \begin{equation*}
-  \log\zdet\Delta_\lambda = -2 \Regint[0]{z}{z^3\Tr(\Delta_\lambda + z^2)^{-2}},
+  \log\zdet\Delta_\lambda = -2\, \Regint[0]{z}{z^3\Tr(\Delta_\lambda + z^2)^{-2}},
 \end{equation*}
 which also works for $\Delta$, since we have an asymptotic expansion for
 $\Tr(\Delta_\lambda + z^2)^{-2}$.
 
 \subsection{Objective}
 Lesch and Vertman proved in \cite{LV13} the following asymptotic expansion for
-the squared resolvent-trace of the operator given in \cref{eqn:laplace}:
+the squared resolvent trace of the operator given in \cref{eqn:laplace}:
 \begin{align}
-  \Tr(\Delta + z^2)^{-2} = \sum_{\lambda=-\infty}^\infty \Tr(\Delta_\lambda +
-  z^2)^{-2} \SimAs{z\to\infty} \sum_{k=2}^{\infty} a_kz^{-k}.
+  \Tr(\Delta + z^2)^{-2} = \sum_{\mathclap{\lambda=-\infty}}^\infty
+  \Tr(\Delta_\lambda + z^2)^{-2} \SimAs{z\to\infty} \sum_{k=2}^{\infty}
+  a_kz^{-k}.
 \end{align}
 \begin{Remark}
-  % TODO: Auswalzen
-  Note that in general the asymptotics of $\Tr(\Delta_\lambda + z^2)$ in
-  $(\lambda,z)$ are different of the asymptotic of $\Tr(\Delta_\lambda + z^2)$.
+  Note that in general the asymptotics of $\Tr(\Delta_\lambda + z^2)^{-2}$ in
+  $(\lambda,z)$ is very different from the asymptotics of $\Tr(\Delta +
+  z^2)^{-2}$, in particular $\Tr(\Delta_\lambda+z^2)^{-2} = O(z^{-3})$ while
+  $\Tr(\Delta + z^2)^{-2} = O(z^{-2})$ for $z\to\infty$.
 \end{Remark}
 Using this asymptotic expansion and \thref{thm:fubini} they showed, that the
 zeta determinant of $\Delta$ is given by a regularised sum of the
 zeta determinants of the $\Delta_\lambda$ with an additional error term:
 \begin{align}
   \label{eqn:central-thm}
-  \log\zdet\Delta = \Regsum_{\lambda=-\infty}^\infty
+  \log\zdet\Delta = \Regsum_{\mathclap{\lambda=-\infty}}^\infty
   \log\zdet\Delta_\lambda -
   4\Integ[\infty]{0}{\lambda}{h_2(\lambda, 1)\log(\lambda)},
 \end{align}
@@ -285,7 +289,7 @@ z^2)^{-1}$ we see that
         \Leftrightarrow \Tr(\Delta_\lambda + z^2)^{-2} &=
         (-2z)^{-1}\partial_z\Tr(\Delta_\lambda + z^2)^{-1},
 \end{align}
-thus the order of the homogeneous components is from the resolvent to the
-squared resolvent is shifted by 2. This means, that to get the component of
-order $-5$ we will need to find the homogeneous component in the trace-expansion
-of the parametrix of order $-3$.
+thus the order of the homogeneous components is shifted by 2 from the resolvent
+to the squared resolvent. This means, that to get the component of order $-5$ we
+will need to find the homogeneous component in the trace-expansion of the
+parametrix of order $-3$.

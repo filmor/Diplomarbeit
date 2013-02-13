@@ -209,20 +209,23 @@ building blocks in the numerator of the terms in the expansion:
     \end{align*}
     $\ord$ thus represents the rescaling exponent. This does also immediately
     give the calculation rules, especially the increase of $\ord$ on
-    differentiation comes directly from the fact that $\partial^n
-    f\circ(x\mapsto kx)(x) = k^n f(kx)$ (which also proves the well-definedness
-    of $\ord$).
+    differentiation comes directly from the fact that
+    \begin{equation*}
+      \partial^n f\circ(x\mapsto kx)(x) = k^n f(kx)
+    \end{equation*}
+    (which also proves the well-definedness of $\ord$).
   \end{Remark}
 \end{Definition}
-We know by construction that, apart from some complex constant, only derivatives
-of $\lambda^2 V(x)$ (in form of derivatives of $a_2$), $W(x)$ as well as
-derivatives of $W(x)$ may appear in the numerator. The denominator is uniquely
-defined by the count of $\lambda^2 V^{(l)}(x)$ terms in the numerator, i.e.\ if
-there are $k$ factors of $\lambda^2 V^{(l)}$, then the denominator is
-$(\lambda^2 V(x) + z^2)^{(n+2k-1)/2}$, by $(\lambda,z)$-homogeneity.
+We know that by construction, apart from some complex constant, only derivatives
+of $\lambda^2 V(x)$ (in form of derivatives of $a_2$), $W(x)$ itself as well as
+derivatives of $W(x)$ may appear in the numerator of a term in the asymptotic
+expansion. The denominator is uniquely defined by the count of $\lambda^2
+V^{(l)}(x)$ terms in the numerator, i.e.\ if there are $k$ factors of $\lambda^2
+V^{(l)}$, then the denominator is $(\lambda^2 V(x) + z^2)^{(n+2k-1)/2}$, by
+$(\lambda,z)$-homogeneity.
 
 For the numerator we can see, that the order of the expression always adds up to
-$n-2$ ($n$ being the $(\lambda,z)$-order, for example if we consider $n=4$ we
+$n-1$ ($n$ being the $(\lambda,z)$-order, for example if we consider $n=3$ we
 have the following possibilities
 \begin{align*}
   V''(x), W(x), (V'(x))^2,

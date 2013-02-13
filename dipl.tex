@@ -1,4 +1,4 @@
-\documentclass[paper=a4,twoside,parskip=full]{scrartcl}
+\documentclass[paper=a4,twoside,parskip=full,bibliography=totoc]{scrartcl}
 
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman,english]{babel}
@@ -11,7 +11,7 @@
 
 % \usepackage[backend=biber]{biblatex}
 
-\usepackage[scale=0.75]{geometry}
+\usepackage[scale=0.8,bindingoffset=1cm]{geometry}
 \usepackage[T1]{fontenc}
 % \usepackage{lmodern}
 \usepackage{slashed}
@@ -49,6 +49,8 @@
 \theorembodyfont{\upshape}
 \renewtheorem{Remark}{Remark}[section]
 
+\newcommand{\EmptyPage}{\thispagestyle{empty}\mbox{}\newpage}
+
 \newcommand{\Thema}{Zur Resolventenspur multiparametrischer
 Sturm-Liouville-Operatoren}
 \newcommand{\ThemaEn}{On the Resolvent Trace of multi-parametric Sturm-Liouville
@@ -69,10 +71,10 @@ Operators}
 \newcommand{\Oscint}[2]{\Integ{\mathrm O}{#1}{#2}}
 \DeclareMathOperator*{\Reglim}{LIM}
 
-\declareslashed{}{-}{0}{0}{\int}
+\declareslashed{}{\mathclap-}{0}{0}{\int}
 \declareslashed{\mathop}{-}{-0.1}{-0.03}{\sum}
 \newcommand{\Regsum}{\slashed{\sum}}
-\newcommand{\Regint}[3][1]{\BaseInteg{\infty}{#1}{#2}{#3}{\slashed{\int}}}
+\newcommand{\Regint}[3][1]{\BaseInteg{\infty}{\!#1}{#2}{#3}{\slashed{\int}}}
 
 \newcommand{\Sphere}[1]{\ensuremath{{\mathbb{S}^{#1}}}}
 \newcommand{\Cinf}[1][]{\ensuremath{C^\infty_{#1}}}
@@ -119,7 +121,7 @@ Operators}
   \end{center}
   \vspace{\stretch{1}}
   \begin{center}
-      Januar 2013 \\
+      Februar 2013 \\
       \bigskip
       Von \\
       \bigskip
@@ -132,19 +134,34 @@ Operators}
   \end{center}
 \end{titlepage}
 \newpage
-\tableofcontents
-\vfill
-\begin{center}
-  \large 1.\ Gutachter: Dr.\ Boris Vertman \\
-  \large 2.\ Gutachter: Prof.\ Dr.\ Werner Müller
-\end{center}
+\EmptyPage
+\thispagestyle{empty}
+\selectlanguage{ngerman}
+\section*{Danksagung}
+{\large
+Ich möchte zunächst Prof.~Dr.~Lesch für die Vergabe des Themas und die
+anfängliche Betreuung danken. Für die spätere Übernahme und Weiterführung der
+Betreuung und für die Übernahme des Erstgutachtens danke ich Dr.~Vertman, für
+die spontane Übernahme des Zweitgutachtens Prof.~Dr.~Müller.
+
+Desweiteren danke ich Christian für die Korrekturen.
+
+Ich danke Lena für ihre ganze Unterstützung bei der Erstellung dieser Arbeit und
+darüber hinaus.
+}
 \newpage
-\section{Introduction}
+\EmptyPage
+\selectlanguage{english}
+\setcounter{page}{1}
+\tableofcontents
+\newpage
+\sectionmark{Introduction}
+\EmptyPage
+%\section{Introduction}
 \selectlanguage{ngerman}
 \input{intro/de}
 \selectlanguage{english}
 \input{intro/en}
-\setcounter{MainTheorem}{0}
 \input{intro/conventions}
 \input{intro/setting}
 \input{intro/integration-formulas}
@@ -154,14 +171,16 @@ Operators}
 \input{main/compile}
 \input{main/examples}
 \input{summary}
+\newpage
 \appendix
 \input{appendix/special-functions}
 \input{appendix/proof-watson}
 \newpage
 \bibliography{mlbib,vertman,mendeley}
 \newpage
+\EmptyPage
 \selectlanguage{ngerman}
-\pagestyle{plain}
+\thispagestyle{plain}
 \begin{center}
     \textbf{\large Eidesstattliche Erklärung}
 \end{center}

@@ -1,4 +1,4 @@
-\subsection{Rationality of the homogeneous components}
+\subsection{Rationality of the homogeneous Components}
 We have seen in the preceding subsection that, like in the interior case, the
 first homogeneous components of the multi-parametric expansion of
 $\Tr(\Delta_\lambda + z^2)^{-1}$ are rational functions in $V$, $W$ and their
@@ -7,20 +7,22 @@ orders in the asymptotic expansion. In particular we want to show, that we
 always get a polynomial that is divided by integral powers of $\mu = \lambda^2
 V(0) + W(0)$.
 
-We know that $f_\lambda$ is analytic in $x$ near the boundary since it is a
-composition of the analytic functions $V$ and $W$, thus we can write with
-$N\in\mathbb{N}$ and $\xi\in(0,1)$
-\begin{align*}
-  f_\lambda(x) &= \sum_{n=0}^{N-1} \frac{f_\lambda^{(n)}(0)}{n!} x^n + R_N(x)
-  \text{ with} \\ R_N(x) &= \frac{f^{(N)}(\xi)}{N!} x^{N}.
-\end{align*}
+We know that $f_\lambda$ (\cref{def:f-lambda}) is analytic in $x$ near the
+boundary since it is a composition of the analytic functions $V$ and $W$ (and
+cutoff functions that are $1$ near the boundary), thus we can write with
+$N\in\mathbb{N}$ and some $\xi\in[0,1]$
+\begin{equation}
+  \label{eqn:taylor-of-f}
+  f_\lambda(x) = \sum_{n=0}^{N-1} \frac{f_\lambda^{(n)}(0)}{n!} x^n + R_N(x)
+  \text{ with } R_N(x) = \frac{f^{(N)}(\xi)}{N!} x^{N}.
+\end{equation}
 It thus suffices to show that if we substitute each $f_\lambda$ in the
-concatenation of our kernels by a function $x^n$ for some $n\in\mathbb{N}$ (that
+composition of our kernels by a function $x^n$ for some $n\in\mathbb{N}$ (that
 may be different for each substitution) we end up with a finite asymptotic sum.
 We will do this recursively by looking at suitable generalisations of the
 kernels. Essentially, after splitting up the integrals, we will just evaluate
-the them directly for $k=0$ and use the following formula otherwise, making use
-of $n\in\mathbb{N}$,
+them directly for $k=0$ and use the following formula otherwise, making use of
+$n\in\mathbb{N}$,
 \begin{equation}
   \Integ[b]{a}{x}{\Eto{-\mu kx}x^n}
     = -n!\left(\Eto{-\mu kb}\sum_{m=0}^n \frac{b^m}{m!(\mu k)^{n+1-m}} -
@@ -28,11 +30,12 @@ of $n\in\mathbb{N}$,
 \end{equation}
 which follows directly by the substitution $x \mapsto \mu kx$ from the formula
 for the (upper) incomplete gamma function given (and proven) in the
-\cref{app:gamma} (\thref{lem:incomplete-gamma}). Since we need it on multiple
+\cref{app:gamma} (\cref{lem:incomplete-gamma}). Since we need it on multiple
 occasions we define for $k\ne 0$ the shortcut
-\begin{equation*}
+\begin{equation}
+  \label{def:h-n-k}
   H^n_k(x) := n!\sum_{m=0}^n \frac{x^m}{m!(\mu k)^{n+1-m}}
-\end{equation*}
+\end{equation}
 such that we can write
 \begin{equation}
   \label{eqn:ex-integ}
@@ -42,20 +45,20 @@ such that we can write
 Note that in this context we will make use of the convention $0^0 := 1$ to
 deal with the special case of $a = 0$ or $b = 0$.
 
-% +- und ++ reichen aus, weil wir herumtauschen können
-The integral part of the proof are the following calculations, that aim to
-describe how the kernels behave on concatenation, i.e.\ we want to investigate
+The integral part of the proof lies in the following calculations that aim to
+describe how the kernels behave on composition, i.e.\ we want to investigate
 the kernels (cf.\ \cref{eqn:kernel-plus,eqn:kernel-minus})
 \begin{align*}
-  k_{++} &= \Int{x}{\Eto{-\mu((a + x) + (x + b))}f_\lambda(x)} \text{ and}\\
-  k_{+-} &= \Int{x}{\Eto{-\mu((a + x) + \Abs{x - b})}f_\lambda(x)}
+  k_{R_{++}}(a,b) &= \Int{x}{\Eto{-\mu((a + x) + (x + b))}f_\lambda(x)} \text{ and }\\
+  k_{R_{+-}}(a,b) &= \Int{x}{\Eto{-\mu((a + x) + \Abs{x - b})}f_\lambda(x)}.
 \end{align*}
 It will suffice to use a Taylor polynomial of $f_\lambda(x)$, since we can
 estimate the $\mu$-order of all combinations involving the residue term $R$ in
 the same way as we estimate the interesting terms. The ansatz is to show that if
-we start with $R_+$ all kernel concatenations that we apply from the right
-result in a kernel of the form $\Eto{-\mu(a+b)}p(b)$ for some polynomial $p$ and
-is thus again similar to $R_+$. All terms that are not of this form do not
+we start with $R_+$ all kernel compositions that we apply from the right
+result in a kernel of the form $\Eto{-\mu(a+b)}p(b)$ for some polynomial $p$
+(that has specific properties regarding its degree and $\mu$-order in each term)
+and is thus again similar to $k_{R_+}$. All terms that are not of this form do not
 contribute to the final asymptotic expansion.
 \begin{Lemma}
   \label{lem:asymp-1}
@@ -63,10 +66,10 @@ contribute to the final asymptotic expansion.
   have
   \begin{align}
     \label{eqn:poly-1}
-    \Int{x}{\Eto{-\mu((a + x) + (x + b))} x^n} &= \Eto{-\mu(a+b)}H_2^n(0) -
-    \Eto{-\mu(a-b)}\Eto{-2\mu}H^n_2(1) \\
+    \Int{x}{\Eto{-\mu((a + x) + (x + b))}\,x^n} &= \Eto{-\mu(a+b)}H_2^n(0) -
+    \Eto{-\mu(a-b)}\Eto{-2\mu}H^n_2(1) \text{ and }\\
     \label{eqn:poly-2}
-    \Int{x}{\Eto{-\mu((a + x) + \Abs{x - b})}x^n} &=
+    \Int{x}{\Eto{-\mu((a + x) + \Abs{x - b})}\,x^n} &=
     \Eto{-\mu(a+b)}\left(\frac{b^{n+1}}{n+1} + H_2^n(b)\right) +
     \Eto{-\mu(a-b)}\Eto{-2\mu}H^n_2(1).
   \end{align}
@@ -76,13 +79,13 @@ contribute to the final asymptotic expansion.
     being a polynomial.
   \end{Remark}
   \begin{Proof}
-    The formulas follow by direct application of \eqref{eqn:ex-integ}:
+    The formulas follow by direct application of \cref{eqn:ex-integ}:
     \begin{align*}
       \Int{x}{\Eto{-\mu((a+x)+(b+x))}x^n} &= \Eto{-\mu(a+b)}\Int{x}{\Eto{-2\mu x}x^n} \\
         &= \Eto{-\mu(a+b)}\left(-\Eto{-2\mu}H^n_2(1) + H^n_2(0)\right) \\
         &= \Eto{-\mu(a+b)} H^n_2(0) - \Eto{-2\mu} H^n_2(1)
     \end{align*}
-    For \eqref{eqn:poly-2} we split the integral to account for the modulus in
+    For \cref{eqn:poly-2} we split the integral to account for the modulus in
     the exponent:
     \begin{align*}
       \Int{x}{\Eto{-\mu( (a+x) + \Abs{x - b})}f(x)} &=
@@ -104,16 +107,17 @@ contribute to the final asymptotic expansion.
     which proves the claim.
   \end{Proof}
 \end{Lemma}
-To show, that the $\Eto{-2\mu}$-terms in the end do not contribute to the
-asymptotic expansion of the trace we additionally state the following very
+To show, that the $\Eto{-2\mu}$-terms do not contribute to the asymptotic
+expansion of the trace in the end we additionally state the following very
 similar Lemma:
 \begin{Lemma}
   \label{lem:asymp-2}
-  Using the same definitions as in \thref{lem:asymp-1} we have
+  Using the same definitions as in \cref{lem:asymp-1} we have
   \begin{align*}
-    \Int{x}{\Eto{-\mu((a-x) + (x+b))}x^n} &= \Eto{-\mu(a+b)}\frac{1}{n+1} \\
-\Int{x}{\Eto{-\mu((a-x) + \Abs{x-b})}x^n} &= \Eto{-\mu(a+b)}H^n_{-2}(0) -
-    \Eto{-\mu(a-b)}H^n_{-2}(b)
+    \Int{x}{\Eto{-\mu((a-x) + (x+b))}\,x^n} &= \Eto{-\mu(a+b)}\frac{1}{n+1}
+    \text{ and } \\
+\Int{x}{\Eto{-\mu((a-x) + \Abs{x-b})}\,x^n} &= \Eto{-\mu(a+b)}H^n_{-2}(0) -
+    \Eto{-\mu(a-b)}H^n_{-2}(b).
   \end{align*}
   \begin{Proof}
     The first integral gives
@@ -133,17 +137,17 @@ similar Lemma:
     \end{align*}
   \end{Proof}
 \end{Lemma}
-Now that we know how the kernels behave when they are concatenated we can prove
+Now that we know how the kernels behave when they are composed we can prove
 our last Main Theorem:
 \begin{MainTheorem}
-  The homogeneous terms in the asymptotic expansion of the
-  resolvent-trace of $\Delta_\lambda$ in the parameters $(\lambda,z)$ at the
-  boundary $x = 0$ are rational functions in $V$, $W$ and their respective
-  derivatives, at $0$. Using the order $\ord$ defined in \thref{def:order} we
-  see that if $-n$ is the $\mu$-order of a term $A$ in the asymptotic expansion
-  then we have $\ord A = n - 2$.
+  The homogeneous terms in the asymptotic expansion of the resolvent trace of
+  $\Delta_\lambda$ in the parameters $(\lambda,z)$ at the boundary $x = 0$ are
+  rational functions in $V$, $W$ and their respective derivatives, at $0$. Using
+  the order $\ord$ defined in \thref{def:order} we see that if $-n$ is the
+  $\mu$-order of a term $A$ in the asymptotic expansion then we have $\ord A = n
+  - 2$.
   \begin{Remark}
-    This construction works \emph{ad verbatim} for $x=1$ with the standard
+    This construction works \emph{ad verbatim} for $x = 1$ with the standard
     substitution $x\mapsto 1 - x$.
   \end{Remark}
   \begin{Remark}
@@ -166,36 +170,35 @@ our last Main Theorem:
     \begin{equation}
       \ord_x A(a,b) := \deg A.
     \end{equation}
-    The idea is to show that first of all with every concatenation of a kernel
+    The idea is to show that first of all with every composition of a kernel
     the overall $\mu$-order of the corresponding trace increases and that this
     increase directly depends directly on the differentiation order.
 
     The final $\mu$-order of the trace of a term in the kernel $A(a,b) :=
-    (2\mu)^{-m}\Eto{-\mu(a+b)}b^n$ (i.e.\ $\ord_x A = n$ and $\ord_\mu A = m$) can
-    be calculated using Watson's lemma to be
+    (2\mu)^{-m}\Eto{-\mu(a+b)}b^n$ (i.e.\ $\ord_x A = n$ and $\ord_\mu A = m$)
+    can be calculated using Watson's lemma to be
     \begin{equation}
       \Int{x}{A(x,x)} = (2\mu)^{-m}\Int{x}{\Eto{-2\mu x}x^n} \SimMu
       \frac{n!}{(2\mu)^{n+m+1}} = O(\mu^{n+m+1}).
     \end{equation}
-    To find the final $\mu$-order of a term we thus have to keep track of
-    $\ord_x - \ord_\mu$ for all of its summands.
+    To find the final $\mu$-order of a term we thus have to keep track of of the
+    difference $\delta := \ord_x A - \ord_\mu A$ for all of its summands.
 
     Now let $\sigma\in\{+,-\}^j$ for $j\in\mathbb{N}$ with $\sigma_1 = +$. In
-    each kernel concatenation we choose one summand of the Taylor polynomial of
-    $f_\lambda$ and see how the difference $\ord_x - \ord_\mu$ behaves.
-    Independent of the actual concatenation we get an additional
-    $(2\mu)^{-1}$-term from the prefactor $C_\sigma$ which lowers $\ord_\mu$ by
-    $1$. Now we choose a term in the Taylor polynomial of $f_\lambda$ of
-    differentiation order $n$, i.e.\ 
+    each kernel composition we choose one summand of the Taylor polynomial of
+    $f_\lambda$ and see how the difference $\delta$ behaves.  Independent of the
+    actual composition we get an additional $(2\mu)^{-1}$-term from the
+    prefactor $C_\sigma$ which lowers $\ord_\mu$ by $1$. Now we choose a term in
+    the Taylor polynomial of $f_\lambda$ of differentiation order $n$, i.e.\ 
     \begin{equation*}
       \frac{\lambda^2 V^{(n)}(0)}{n!} x^n \quad \text{ or } \quad
       \frac{W^{(n)}(0)}{n!}x^n.
     \end{equation*}
     In the first case the choice alone raises $\ord_\mu$ of the result by $2$
     because of the $\lambda^2$ in the numerator. The behaviour of the
-    concatenation can be read of from \cref{lem:asymp-1}:
+    composition can be read of from \cref{lem:asymp-1}:
     
-    If we are in the i$^{\text{th}}$ concatenation and $\sigma_i = +$ we refer to
+    If we are in the i$^{\text{th}}$ composition and $\sigma_i = +$ we refer to
     \cref{eqn:poly-1}. We ignore all $\Eto{-2\mu}$-terms for now, we will show
     later that they don't contribute. The introduced factor to $\Eto{-\mu(a+b)}$
     is $H^n_2(0)$ in this case which is
@@ -211,12 +214,12 @@ our last Main Theorem:
     \begin{equation*}
       H^n_2(b) = n! \sum_{m=0}^n \frac{b^m}{m!(2\mu)^{n+1-m}}
     \end{equation*}
-    for which each summand has $\ord_x - \ord_\mu = n+1$.
+    for which each summand has $\delta = n+1$.
 
-    Thus we see that on each kernel concatenation we have the following overall
-    behaviour of the difference $\ord_x - \ord_\mu$: 
+    Thus we see that on each kernel composition we have the following overall
+    behaviour of the difference $\delta$: 
     \begin{enumerate}
-      \item The concatenation as such lowers the difference by $1$ from the
+      \item The composition as such lowers the difference by $1$ from the
         prefactor
       \item Each $W^{(n)}(0)$-term lowers the difference by $n+1$
       \item Each $\lambda^2 V^{(n)}(0)$-term lowers the difference by $n-1$ and
@@ -233,12 +236,15 @@ our last Main Theorem:
     that the trace evaluation subtracts another $1$ of the $\mu$-order to see
     that we have (for the case $\sigma_1 = +$) proven the claim that each term
     $A$ in the final asymptotic expansion of $\mu$-order $-n$ has $\ord A = n -
-    2$.
+    2$. We note that all of this also holds for the Lagrange rest term in the
+    Taylor polynomial (\cref{eqn:taylor-of-f}), i.e.\ by choosing the
+    polynomial order high enough we see that the rest term does not contribute
+    to the asymptotic components.
 
     To cover the cases with $\sigma_1 = -$ we note that there is always
     $i\in\mathbb{N}$ such that $\sigma_i = +$. We can thus start of the whole
     process described before from one such $i$ which will leave us with a term
-    of the form $\Eto{-\mu(a+b)}P(b)$ at the end of the concatenation chain. We
+    of the form $\Eto{-\mu(a+b)}P(b)$ at the end of the composition chain. We
     can then turn the integral around symbolically and employ the same process
     as before. Note that we have of course count all parameters appearing in the
     polynomial into $\ord_x$.
@@ -246,7 +252,9 @@ our last Main Theorem:
     The contributions of the $\Eto{-\mu(a-b)}$-terms in
     \cref{eqn:poly-1,eqn:poly-2} are completely damped away by the accompanying
     $\Eto{-2\mu}$ factor. This also doesn't change in the iteration of the
-    process, as proven in \thref{lem:asymp-2}.
+    process, as shown in \thref{lem:asymp-2}, since the overall structure
+    $\Eto{-\mu}\Eto{-\mu(a+b)}$ or $\Eto{-\mu}\Eto{-\mu(a-b)}$ is invariant
+    under the composition of the kernels $k_{R_+}$ and $k_{R_-}$ from the right.
   \end{Proof}
 \end{MainTheorem}
 The constructive part of the proof, together with \thref{lem:asymp-1}, can
